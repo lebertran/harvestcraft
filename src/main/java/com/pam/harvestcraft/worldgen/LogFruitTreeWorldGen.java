@@ -5,9 +5,10 @@ import java.util.Random;
 import com.pam.harvestcraft.blocks.BlockRegistry;
 
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.common.IWorldGenerator;
@@ -16,14 +17,14 @@ public class LogFruitTreeWorldGen implements IWorldGenerator
 {
 
 	@Override
-	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
+	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
 	{
 		final int xChunk = chunkX * 16 + 8, zChunk = chunkZ * 16 + 8;
 		int xCh = chunkX * 16 + random.nextInt(16);
 		int yCh = random.nextInt(128);
 		int zCh = chunkZ * 16 + random.nextInt(16);
 
-		BiomeGenBase biome = world.getWorldChunkManager().getBiomeGenerator(new BlockPos(xChunk + 16, 0, zChunk + 16));
+		BiomeGenBase biome = world.getBiomeGenForCoords(new BlockPos(xChunk + 16, 0, zChunk + 16));
 
 		if (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.DEAD)) 
 		{

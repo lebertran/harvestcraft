@@ -273,8 +273,20 @@ public class BlockRegistry
 }
 	private static Block registerBlock(String name, Class<? extends ItemBlock> itemblock, Block block)
 	{
+		block.setRegistryName(name);
 		block.setUnlocalizedName(name);
-		GameRegistry.registerBlock(block, itemblock, name);
+
+		GameRegistry.register(block);
+		try {
+			ItemBlock itemBlock = itemblock.getConstructor(Block.class).newInstance(block);
+			itemBlock.setRegistryName(name);
+
+			GameRegistry.register(itemBlock);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		//GameRegistry.registerBlock(block, itemblock, name);
 
 		return block;
 	}

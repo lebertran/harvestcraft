@@ -3,7 +3,7 @@ package com.pam.harvestcraft.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.translation.I18n;
 
 public class ItemBlockFruit extends ItemBlock
 {
@@ -15,6 +15,6 @@ public class ItemBlockFruit extends ItemBlock
 	@Override
 	public String getItemStackDisplayName(ItemStack stack)
 	{
-		return ("" + StatCollector.translateToLocal("harvestcraft." + this.getUnlocalizedNameInefficiently(stack) + ".name")).trim();
+		return ("" + I18n.translateToLocal("harvestcraft." + this.getUnlocalizedNameInefficiently(stack) + ".name")).trim();
 	}
 }

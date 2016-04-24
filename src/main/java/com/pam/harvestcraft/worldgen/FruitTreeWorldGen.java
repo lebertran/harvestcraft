@@ -10,9 +10,10 @@ import net.minecraft.block.BlockOldLog;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.common.IWorldGenerator;
@@ -21,14 +22,14 @@ public class FruitTreeWorldGen implements IWorldGenerator
 {
 
 	@Override
-	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
+	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
 	{
 		final int xChunk = chunkX * 16 + 8, zChunk = chunkZ * 16 + 8;
 		int xCh = chunkX * 16 + random.nextInt(16);
 		int yCh = random.nextInt(128);
 		int zCh = chunkZ * 16 + random.nextInt(16);
 
-		BiomeGenBase biome = world.getWorldChunkManager().getBiomeGenerator(new BlockPos(xChunk + 16, 0, zChunk + 16));
+		BiomeGenBase biome = world.getBiomeGenForCoords(new BlockPos(xChunk + 16, 0, zChunk + 16));
 
 		if (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.DEAD)) 
 		{
@@ -246,7 +247,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generateAppleTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.OAK);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamApple.getDefaultState();
 
 		{
@@ -269,7 +270,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generateAvocadoTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.OAK);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamAvocado.getDefaultState();
 
 		{
@@ -292,7 +293,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generateCherryTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.OAK);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamCherry.getDefaultState();
 
 		{
@@ -315,7 +316,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generateChestnutTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.OAK);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamChestnut.getDefaultState();
 
 		{
@@ -338,7 +339,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generateNutmegTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.OAK);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamNutmeg.getDefaultState();
 
 		{
@@ -361,7 +362,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generatePearTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.OAK);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamPear.getDefaultState();
 
 		{
@@ -384,7 +385,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generatePlumTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.OAK);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamPlum.getDefaultState();
 
 		{
@@ -407,7 +408,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generateWalnutTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.OAK);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamWalnut.getDefaultState();
 
 		{
@@ -430,7 +431,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generateGooseberryTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.OAK);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamGooseberry.getDefaultState();
 
 		{
@@ -453,7 +454,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generateAlmondTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamAlmond.getDefaultState();
 
 		{
@@ -476,7 +477,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generateApricotTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamApricot.getDefaultState();
 
 		{
@@ -499,7 +500,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generateBananaTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamBanana.getDefaultState();
 
 		{
@@ -522,7 +523,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generateCashewTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamCashew.getDefaultState();
 
 		{
@@ -545,7 +546,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generateCoconutTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamCoconut.getDefaultState();
 
 		{
@@ -568,7 +569,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generateDateTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamDate.getDefaultState();
 
 		{
@@ -591,7 +592,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generateDragonfruitTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamDragonfruit.getDefaultState();
 
 		{
@@ -614,7 +615,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generateDurianTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamDurian.getDefaultState();
 
 		{
@@ -637,7 +638,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generateFigTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamFig.getDefaultState();
 
 		{
@@ -660,7 +661,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generateGrapefruitTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamGrapefruit.getDefaultState();
 
 		{
@@ -683,7 +684,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generateLemonTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamLemon.getDefaultState();
 
 		{
@@ -706,7 +707,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generateLimeTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamLime.getDefaultState();
 
 		{
@@ -729,7 +730,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generateMangoTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamMango.getDefaultState();
 
 		{
@@ -752,7 +753,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generateOliveTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamOlive.getDefaultState();
 
 		{
@@ -775,7 +776,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generateOrangeTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamOrange.getDefaultState();
 
 		{
@@ -798,7 +799,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generatePapayaTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamPapaya.getDefaultState();
 
 		{
@@ -821,7 +822,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generatePeachTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamPeach.getDefaultState();
 
 		{
@@ -844,7 +845,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generatePecanTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamPecan.getDefaultState();
 
 		{
@@ -867,7 +868,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generatePeppercornTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamPeppercorn.getDefaultState();
 
 		{
@@ -890,7 +891,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generatePersimmonTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamPersimmon.getDefaultState();
 
 		{
@@ -913,7 +914,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generatePistachioTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamPistachio.getDefaultState();
 
 		{
@@ -936,7 +937,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generatePomegranateTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamPomegranate.getDefaultState();
 
 		{
@@ -959,7 +960,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generateStarfruitTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamStarfruit.getDefaultState();
 
 		{
@@ -982,7 +983,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generateVanillabeanTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamVanillabean.getDefaultState();
 
 		{
@@ -1005,7 +1006,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generateCinnamonTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamCinnamon.getDefaultState();
 		{
 			for (int tries = 0; tries < BlockRegistry.tropicalfruittreeRarity; tries++)
@@ -1029,7 +1030,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generateMapleTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.SPRUCE);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.SPRUCE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.SPRUCE).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamMaple.getDefaultState();
 		{
 			for (int tries = 0; tries < BlockRegistry.tropicalfruittreeRarity; tries++)
@@ -1051,7 +1052,7 @@ public class FruitTreeWorldGen implements IWorldGenerator
 	public boolean generatePaperbarkTree(World world, Random random, int x, int y, int z)
 	{
 		final IBlockState a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
-		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+		final IBlockState b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, false);
 		final IBlockState c = BlockRegistry.pamPaperbark.getDefaultState();
 		{
 			for (int tries = 0; tries < BlockRegistry.tropicalfruittreeRarity; tries++)

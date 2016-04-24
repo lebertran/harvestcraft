@@ -12,6 +12,7 @@ out
 *.iws
 *.iml
 .idea
+atlassian-ide-plugin.xml
 
 # gradle
 build
@@ -20,3 +21,9 @@ build
 # other
 eclipse
 run
+
+*.jar
+!/gradle/wrapper/gradle-wrapper.jar
+
+
+

@@ -8,9 +8,10 @@ import com.pam.harvestcraft.item.ItemRegistry;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.model.ModelBakery;
-import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.model.ModelBakery;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 
 public class ItemModels 
 {
@@ -577,7 +578,7 @@ public class ItemModels
 
 			for (String registration : registrations)
 			{
-				ModelBakery.addVariantName(item, registration);
+				ModelBakery.registerItemVariants(item, new ResourceLocation(registration));
 			}
 		}
 	}

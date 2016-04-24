@@ -3,16 +3,15 @@ package com.pam.harvestcraft.blocks;
 import java.util.List;
 import java.util.Random;
 
-import com.pam.harvestcraft.harvestcraft;
+import com.pam.harvestcraft.HarvestCraft;
 import com.pam.harvestcraft.item.ItemRegistry;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.properties.PropertyInteger;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;
@@ -21,18 +20,17 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumWorldBlockLayer;
-import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockPamFruit extends Block  implements IGrowable
+public class BlockPamFruit extends Block implements IGrowable
 {
 
 	public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 2);
@@ -40,10 +38,10 @@ public class BlockPamFruit extends Block  implements IGrowable
 	public BlockPamFruit() 
 	{
 		super(Material.plants);
-		this.setCreativeTab(harvestcraft.modTab);
+		this.setCreativeTab(HarvestCraft.modTab);
 		this.setHardness(5);
 		this.setTickRandomly(true);
-		this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, Integer.valueOf(0)));
+		this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, 0));
 	}
 	
 	@Override
@@ -69,21 +67,18 @@ public class BlockPamFruit extends Block  implements IGrowable
 		}
 	}
 
-	@Override
-	public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
-	{
-		return null;
-	}
+    @Override
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState worldIn, World pos, BlockPos state) {
+        return null;
+    }
 
 	@Override
-	public boolean isOpaqueCube()
-	{
+	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
 
 	@Override
-	public boolean isFullCube()
-	{
+	public boolean isFullCube(IBlockState state) {
 		return false;
 	}
 
@@ -92,40 +87,38 @@ public class BlockPamFruit extends Block  implements IGrowable
 		return leafBlock == Blocks.leaves;
 	}
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public EnumWorldBlockLayer getBlockLayer()
-	{
-		return EnumWorldBlockLayer.CUTOUT;
-	}
-	
-	@Override
+    @Override
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getBlockLayer() {
+        return BlockRenderLayer.CUTOUT;
+    }
+
+    @Override
 	public IBlockState getStateFromMeta(int meta)
 	{
-		return this.getDefaultState().withProperty(AGE, Integer.valueOf(meta));
+		return this.getDefaultState().withProperty(AGE, meta);
 	}
 
 
 	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return ((Integer) state.getValue(AGE)).intValue();
+		return state.getValue(AGE);
 	}
 
-	@Override
-	protected BlockState createBlockState()
-	{
-		return new BlockState(this, new IProperty[] { AGE });
-	}
+    @Override
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, AGE);
+    }
 
-	@Override
+    @Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
 	{
-		int i = ((Integer) state.getValue(AGE)).intValue();
+		int i = state.getValue(AGE);
 
 		if (i < 2 && rand.nextInt(25) == 0)
 		{
-			state = state.withProperty(AGE, Integer.valueOf(i + 1));
+			state = state.withProperty(AGE, i + 1);
 			worldIn.setBlockState(pos, state, 2);
 		}
 
@@ -134,18 +127,18 @@ public class BlockPamFruit extends Block  implements IGrowable
 
 	public void grow(World worldIn, BlockPos pos, IBlockState state)
 	{
-		int i = ((Integer) state.getValue(AGE)).intValue() + MathHelper.getRandomIntegerInRange(worldIn.rand, 2, 5);
+		int i = state.getValue(AGE) + MathHelper.getRandomIntegerInRange(worldIn.rand, 2, 5);
 		if (i > 2)
 		{
 			i = 2;
 		}
-		worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(i)), 2);
+		worldIn.setBlockState(pos, state.withProperty(AGE, i), 2);
 	}
 
 	@Override
 	public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient)
 	{
-		return ((Integer) state.getValue(AGE)).intValue() < 2;
+		return state.getValue(AGE) < 2;
 	}
 
 	@Override
@@ -159,13 +152,11 @@ public class BlockPamFruit extends Block  implements IGrowable
 	{
 		this.grow(worldIn, pos, state);
 	}
-	
 
-	
-	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
+    @Override
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem,EnumFacing side, float hitX, float hitY, float hitZ)
 	{
-		if (((Integer) state.getValue(AGE)).intValue() == 2)
+		if (state.getValue(AGE) == 2)
 		{
 			if (worldIn.isRemote)
 			{

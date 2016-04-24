@@ -1,17 +1,15 @@
 package com.pam.harvestcraft.blocks;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
 import java.util.*;
 
-/**
- * Created by Matt on 4/8/2016.
- */
 public abstract class BlockBaseGarden extends BlockBush {
     public static Map<String, List<ItemStack>> drops = new HashMap<String, List<ItemStack>>();
     private final String type;

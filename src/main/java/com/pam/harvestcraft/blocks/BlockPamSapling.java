@@ -1,39 +1,18 @@
 package com.pam.harvestcraft.blocks;
 
-import java.util.List;
 import java.util.Random;
 
-import com.pam.harvestcraft.harvestcraft;
+import com.pam.harvestcraft.HarvestCraft;
 import com.pam.harvestcraft.worldgen.FruitTreeGen;
-import com.pam.harvestcraft.worldgen.FruitTreeWorldGen;
 import com.pam.harvestcraft.worldgen.LogFruitTreeGen;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockBush;
-import net.minecraft.block.BlockLeaves;
-import net.minecraft.block.BlockOldLeaf;
-import net.minecraft.block.BlockOldLog;
-import net.minecraft.block.BlockPlanks;
-import net.minecraft.block.BlockSapling;
-import net.minecraft.block.IGrowable;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.properties.PropertyInteger;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.*;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumWorldBlockLayer;
-import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.event.terraingen.TerrainGen;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -46,11 +25,12 @@ public class BlockPamSapling extends BlockBush implements IGrowable
 	public BlockPamSapling(String name)
 	{
 		super();
-		this.setBlockBounds(0.1F, 0.0F, 0.1F, 0.9F, 0.8F, 0.9F);
-		this.setCreativeTab(harvestcraft.modTab);
+		//@TODO: necessary?
+		//this.setBlockBounds(0.1F, 0.0F, 0.1F, 0.9F, 0.8F, 0.9F);
+		this.setCreativeTab(HarvestCraft.modTab);
 		GameRegistry.registerBlock(this, name);
 		setUnlocalizedName(name);
-		this.setStepSound(Block.soundTypeGrass);
+		this.setStepSound(SoundType.PLANT);
 		this.setHardness(0.0F);
 
 	}
@@ -84,23 +64,20 @@ public class BlockPamSapling extends BlockBush implements IGrowable
 		}
 	}
 
-	@Override
-	public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
-	{
-		return null;
-	}
+    @Override
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState worldIn, World pos, BlockPos state) {
+        return null;
+    }
 
-	@Override
-	public boolean isOpaqueCube()
-	{
-		return false;
-	}
+    @Override
+    public boolean isOpaqueCube(IBlockState state) {
+        return false;
+    }
 
-	@Override
-	public boolean isFullCube()
-	{
-		return false;
-	}
+    @Override
+    public boolean isFullCube(IBlockState state) {
+        return false;
+    }
 
 	public boolean isSuitableSoilBlock(Block soilBlock)
 	{
@@ -693,12 +670,9 @@ public class BlockPamSapling extends BlockBush implements IGrowable
 		this.grow(worldIn, pos, state, rand);
 	}
 
-
 	@Override
-	@SideOnly(Side.CLIENT)
-	public EnumWorldBlockLayer getBlockLayer()
-	{
-		return EnumWorldBlockLayer.CUTOUT;
+	public BlockRenderLayer getBlockLayer() {
+		return BlockRenderLayer.CUTOUT;
 	}
 
 	@Override

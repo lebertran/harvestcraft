@@ -1,17 +1,17 @@
 package com.pam.harvestcraft.item;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.model.ModelBakery;
-import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 
 import com.pam.harvestcraft.Reference;
+import org.lwjgl.Sys;
 
 public final class ItemRenderRegister {
 
 	public static void preInit() {
-		//ModelBakery.registerItemVariants(ItemRegistry.metaItem, new ResourceLocation("harvestcraft:meta_item_white"), new ResourceLocation("harvestcraft:meta_item_black"));
+		//ModelBakery.registerItemVariants(ItemRegistry.metaItem, new ResourceLocation("HarvestCraft:meta_item_white"), new ResourceLocation("HarvestCraft:meta_item_black"));
 	}
 
 	public static void registerItemRenderer() {
@@ -791,8 +791,13 @@ public final class ItemRenderRegister {
 	public static String modid = Reference.MODID;
 
 	public static void reg(Item item) {
-		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(modid + ":" + item.getUnlocalizedName().substring(5), "inventory"));
-	}
+        String resName = item.getRegistryName().toString();
+
+		ModelResourceLocation res =
+                new ModelResourceLocation(resName, "inventory");
+		Minecraft.getMinecraft().getRenderItem().
+                getItemModelMesher().register(item, 0, res);
+    }
 
 	public static void reg(Item item, int meta, String file) {
 		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, meta, new ModelResourceLocation(modid + ":" + file, "inventory"));

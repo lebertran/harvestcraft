@@ -3,15 +3,16 @@ package com.pam.harvestcraft.blocks;
 import java.util.List;
 import java.util.Random;
 
-import com.pam.harvestcraft.harvestcraft;
+import com.pam.harvestcraft.HarvestCraft;
 import com.pam.harvestcraft.item.ItemRegistry;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;
@@ -20,36 +21,45 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumWorldBlockLayer;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.IntegerCache;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockPamCrop extends Block  implements IGrowable, net.minecraftforge.common.IPlantable
-{
+public class BlockPamCrop extends Block implements IGrowable, net.minecraftforge.common.IPlantable {
 
 	public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 3);
 	
-	public BlockPamCrop() 
-	{
+	public BlockPamCrop() {
 		super(Material.plants);
-		this.setCreativeTab(harvestcraft.modTab);
+		this.setCreativeTab(HarvestCraft.modTab);
 		this.setTickRandomly(true);
-        float f = 0.5F;
-        this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.25F, 0.5F + f);
+
+        //@TODO: is this necessary?
+        //float f = 0.5F;
+        //this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.25F, 0.5F + f);
+
 		this.setHardness(1.0F);
-        this.setStepSound(soundTypeGrass);
+        this.setStepSound(SoundType.PLANT);
         this.disableStats();
-		this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, Integer.valueOf(0)));
+		this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, 0));
 	}
-	
-	@Override
+
+    @Override
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, AGE);
+    }
+
+    @Override
 	public boolean canPlaceBlockAt(World world, BlockPos pos)
 	{
 		Block soilBlock = world.getBlockState(pos.down()).getBlock();
@@ -72,54 +82,45 @@ public class BlockPamCrop extends Block  implements IGrowable, net.minecraftforg
 		}
 	}
 
-	@Override
-	public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
-	{
-		return null;
-	}
+    @Override
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState worldIn, World pos, BlockPos state) {
+        return null;
+    }
 
-	@Override
-	public boolean isOpaqueCube()
-	{
-		return false;
-	}
+    @Override
+    public boolean isFullyOpaque(IBlockState state) {
+        return false;
+    }
 
-	@Override
-	public boolean isFullCube()
-	{
-		return false;
-	}
+    @Override
+    public boolean isFullCube(IBlockState state) {
+        return false;
+    }
 
 	public boolean isSuitableSoilBlock(Block soilBlock)
 	{
 		return soilBlock == Blocks.farmland;
 	}
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public EnumWorldBlockLayer getBlockLayer()
-	{
-		return EnumWorldBlockLayer.CUTOUT;
-	}
-	
-	@Override
+    @Override
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getBlockLayer() {
+        return BlockRenderLayer.CUTOUT;
+    }
+
+    @Override
 	public IBlockState getStateFromMeta(int meta)
 	{
-		return this.getDefaultState().withProperty(AGE, Integer.valueOf(meta));
+		return getDefaultState().withProperty(AGE, meta);
 	}
 
 
 	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return ((Integer) state.getValue(AGE)).intValue();
+		return state.getValue(AGE);
 	}
 
-	@Override
-	protected BlockState createBlockState()
-	{
-		return new BlockState(this, new IProperty[] { AGE });
-	}
 
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
@@ -127,7 +128,7 @@ public class BlockPamCrop extends Block  implements IGrowable, net.minecraftforg
 
         if (worldIn.getLightFromNeighbors(pos.up()) >= 9)
         {
-            int i = ((Integer)state.getValue(AGE)).intValue();
+            int i = state.getValue(AGE);
 
             if (i < 3)
             {
@@ -135,7 +136,7 @@ public class BlockPamCrop extends Block  implements IGrowable, net.minecraftforg
 
                 if (rand.nextInt((int)(50.0F / f) + 1) == 0)
                 {
-                    worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(i + 1)), 2);
+                    worldIn.setBlockState(pos, state.withProperty(AGE, i + 1), 2);
                 }
             }
         }
@@ -144,20 +145,20 @@ public class BlockPamCrop extends Block  implements IGrowable, net.minecraftforg
 	protected static float getGrowthChance(Block blockIn, World worldIn, BlockPos pos)
     {
         float f = 1.0F;
-        BlockPos blockpos = pos.down();
+        BlockPos blockPos = pos.down();
 
         for (int i = -1; i <= 1; ++i)
         {
             for (int j = -1; j <= 1; ++j)
             {
                 float f1 = 0.0F;
-                IBlockState iblockstate = worldIn.getBlockState(blockpos.add(i, 0, j));
+                IBlockState iBlockState = worldIn.getBlockState(blockPos.add(i, 0, j));
 
-                if (iblockstate.getBlock().canSustainPlant(worldIn, blockpos.add(i, 0, j), net.minecraft.util.EnumFacing.UP, (net.minecraftforge.common.IPlantable)blockIn))
+                if (iBlockState.getBlock().canSustainPlant(iBlockState, worldIn, blockPos.add(i, 0, j), EnumFacing.UP, (IPlantable) blockIn))
                 {
                     f1 = 1.0F;
 
-                    if (iblockstate.getBlock().isFertile(worldIn, blockpos.add(i, 0, j)))
+                    if (iBlockState.getBlock().isFertile(worldIn, blockPos.add(i, 0, j)))
                     {
                         f1 = 3.0F;
                     }
@@ -198,25 +199,26 @@ public class BlockPamCrop extends Block  implements IGrowable, net.minecraftforg
 	
 	public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state)
     {
-        return (worldIn.getLight(pos) >= 8 || worldIn.canSeeSky(pos)) && worldIn.getBlockState(pos.down()).getBlock().canSustainPlant(worldIn, pos.down(), net.minecraft.util.EnumFacing.UP, this);
+        return (worldIn.getLight(pos) >= 8 || worldIn.canSeeSky(pos)) && worldIn.getBlockState(pos.down()).getBlock().canSustainPlant(state,
+                worldIn, pos.down(), net.minecraft.util.EnumFacing.UP, this);
     }
 
 	public void grow(World worldIn, BlockPos pos, IBlockState state)
     {
-        int i = ((Integer)state.getValue(AGE)).intValue() + MathHelper.getRandomIntegerInRange(worldIn.rand, 2, 5);
+        int i = state.getValue(AGE) + MathHelper.getRandomIntegerInRange(worldIn.rand, 2, 5);
 
         if (i > 3)
         {
             i = 3;
         }
 
-        worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(i)), 2);
+        worldIn.setBlockState(pos, state.withProperty(AGE, i), 2);
     }
 
 	@Override
 	public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient)
 	{
-		return ((Integer) state.getValue(AGE)).intValue() < 3;
+		return state.getValue(AGE) < 3;
 	}
 
 	@Override
@@ -230,16 +232,11 @@ public class BlockPamCrop extends Block  implements IGrowable, net.minecraftforg
 	{
 		this.grow(worldIn, pos, state);
 	}
-	
 
-	
-	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
-	{
-		if (((Integer) state.getValue(AGE)).intValue() == 3)
-		{
-			if (worldIn.isRemote)
-			{
+    @Override
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+		if (state.getValue(AGE) == 3) {
+			if (worldIn.isRemote) {
 				return true;
 			}
 			
@@ -449,13 +446,13 @@ public class BlockPamCrop extends Block  implements IGrowable, net.minecraftforg
 	}
 
 	@Override
-    public net.minecraftforge.common.EnumPlantType getPlantType(net.minecraft.world.IBlockAccess world, BlockPos pos)
+    public EnumPlantType getPlantType(IBlockAccess world, BlockPos pos)
     {
-		return net.minecraftforge.common.EnumPlantType.Crop;
+		return EnumPlantType.Crop;
     }
 
     @Override
-    public IBlockState getPlant(net.minecraft.world.IBlockAccess world, BlockPos pos)
+    public IBlockState getPlant(IBlockAccess world, BlockPos pos)
     {
         IBlockState state = world.getBlockState(pos);
         if (state.getBlock() != this) return getDefaultState();

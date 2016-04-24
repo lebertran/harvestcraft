@@ -2,7 +2,7 @@ package com.pam.harvestcraft.item;
 
 import java.util.List;
 
-import com.pam.harvestcraft.harvestcraft;
+import com.pam.harvestcraft.HarvestCraft;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -14,7 +14,7 @@ public class MetaItem extends Item {
 		super();
 		this.setHasSubtypes(true);
 		this.setUnlocalizedName(unlocalizedName);
-		this.setCreativeTab(harvestcraft.modTab);
+		this.setCreativeTab(HarvestCraft.modTab);
 	}
 
 	@Override
