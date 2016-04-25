@@ -1,17 +1,11 @@
 package com.pam.harvestcraft;
 
 import com.pam.harvestcraft.handlers.WorldLoadEventHandler;
-import com.pam.harvestcraft.item.ItemRegistry;
-import com.pam.harvestcraft.item.PamCropSeedDropRegistry;
-import com.pam.harvestcraft.item.PamFoodOreDictionaryRegistry;
-import com.pam.harvestcraft.item.PamFoodRecipes;
-import com.pam.harvestcraft.item.PamOtherOreDictionaryRegistry;
-import com.pam.harvestcraft.item.PamOtherRecipes;
+import com.pam.harvestcraft.item.*;
 import com.pam.harvestcraft.proxy.CommonProxy;
 import com.pam.harvestcraft.worldgen.BushWorldWorldGen;
 import com.pam.harvestcraft.worldgen.FruitTreeWorldGen;
 import com.pam.harvestcraft.worldgen.LogFruitTreeWorldGen;
-
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -28,24 +22,24 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 @Mod(modid = Reference.MODID, name = Reference.NAME, version = Reference.VERSION)
 public class HarvestCraft {
 
-	@Instance(Reference.MODID)
-	public static HarvestCraft instance;
+    @Instance(Reference.MODID)
+    @SuppressWarnings("unused")
+    public static HarvestCraft instance;
 
-	@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
-	public static CommonProxy proxy;
-	
-	public static CreativeTabs modTab = new CreativeTabs(Reference.MODID)
-	{
-		public Item getTabIconItem()
-		{
-			return Items.wheat;
-		}
-	};
+    @SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
+    public static CommonProxy proxy;
+
+    public static CreativeTabs modTab = new CreativeTabs(Reference.MODID) {
+        public Item getTabIconItem() {
+            return Items.wheat;
+        }
+    };
 
     @EventHandler
+    @SuppressWarnings("unused")
     public void preInit(FMLPreInitializationEvent event) {
         Config.instance.load(event);
-    	proxy.preInit(event);
+        proxy.preInit(event);
         Config.instance.configureGardenDrops();
 
         PamFoodRecipes.getRecipes();
@@ -66,6 +60,7 @@ public class HarvestCraft {
     }
 
     @EventHandler
+    @SuppressWarnings("unused")
     public void postInit(FMLPostInitializationEvent event) {
         proxy.postInit(event);
     }

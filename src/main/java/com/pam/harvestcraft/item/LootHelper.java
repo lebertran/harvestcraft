@@ -1,6 +1,5 @@
 package com.pam.harvestcraft.item;
 
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.*;
@@ -10,8 +9,8 @@ import net.minecraft.world.storage.loot.functions.LootFunction;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+//TODO: Does this work properly?
 public class LootHelper {
     public static final HashMap<ResourceLocation, LootPool> additionalLoot = new HashMap<ResourceLocation, LootPool>();
 

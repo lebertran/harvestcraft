@@ -4,9 +4,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import java.util.*;
 
@@ -19,8 +21,7 @@ public abstract class BlockBaseGarden extends BlockBush {
         this.type = type;
     }
 
-    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
-    {
+    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
         List<ItemStack> newStack = new ArrayList<ItemStack>();
         List<ItemStack> ourDrops = drops.get(type);
         Collections.shuffle(ourDrops);
@@ -32,7 +33,7 @@ public abstract class BlockBaseGarden extends BlockBush {
             ItemStack drop = ourDrops.get(i);
 
             // This should never happen, but check it anyway...
-            if(drop == null) {
+            if (drop == null) {
                 System.err.println("Tried to get a null item for garden '" + type + "'.");
                 continue;
             }
@@ -42,5 +43,4 @@ public abstract class BlockBaseGarden extends BlockBush {
         }
         return newStack;
     }
-
 }

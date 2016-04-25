@@ -2,7 +2,6 @@ package com.pam.harvestcraft.proxy;
 
 import com.pam.harvestcraft.blocks.ItemModels;
 import com.pam.harvestcraft.item.ItemRenderRegister;
-
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;

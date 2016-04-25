@@ -13,6 +13,11 @@ import java.util.Arrays;
 import java.util.List;
 
 
+/**
+ * Modified functions from github.com/cyanobacterium/AdditionalLootTables
+ * <p>
+ * mostly (C) 2016 Chris Hall under the MIT License
+ */
 public class LootHandler {
     private static LootTableManager reference = null;
 

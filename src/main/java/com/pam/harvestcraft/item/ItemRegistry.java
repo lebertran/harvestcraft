@@ -2,30 +2,25 @@ package com.pam.harvestcraft.item;
 
 import com.pam.harvestcraft.HarvestCraft;
 import com.pam.harvestcraft.blocks.BlockRegistry;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemSeedFood;
 import net.minecraft.item.ItemSeeds;
-import net.minecraft.potion.Potion;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
-//@TODO Potion effects
+//@TODO Potion effects and reformat
 public class ItemRegistry {
     public static Item[] PamCropItems;
     public static Item[] PamSeeds;
     public static Item[] PamTemperateFruits;
     public static Item[] PamWarmFruits;
     public static Item[] PamLogFruits;
-    public static ArrayList<Item> PamAllItems;
 
     public static Item cuttingboardItem;
     public static Item potItem;
@@ -35,34 +30,12 @@ public class ItemRegistry {
     public static Item mortarandpestleItem;
     public static Item mixingbowlItem;
     public static Item juicerItem;
-    //public static Item pamscookbookItem;
-//public static Item queenbeeItem;
-//public static Item waxcombItem;
-//public static Item honeycombItem;
-//public static Item beeswaxItem;
     public static Item honeyItem;
-    //public static Item grubItem;
-//public static Item royaljellyItem;
     public static Item saltItem;
-    //public static Item waxItem;
     public static Item wovencottonItem;
-    //public static Item hardenedleatherItem;
     public static Item freshwaterItem;
     public static Item freshmilkItem;
-//public static Item grainbaitItem;
-//public static Item veggiebaitItem;
-//public static Item fruitbaitItem;
-//public static Item fishtrapbaitItem;
-//public static Item hardenedleatherhelmItem;
-//public static Item hardenedleatherchestItem;
-//public static Item hardenedleatherleggingsItem;
-//public static Item hardenedleatherbootsItem;
-
-//public static ItemArmor.ArmorMaterial armorHardenedLeather = EnumHelper.addArmorMaterial("HARDENEDLEATHER", 15, new int[] { 2, 6, 5, 2 }, 9);
-
-    //public static Item muttonrawItem;
     public static Item calamarirawItem;
-    //public static Item muttoncookedItem;
     public static Item calamaricookedItem;
     public static Item sunflowerseedsItem;
     public static Item blackberryItem;
@@ -819,7 +792,6 @@ public class ItemRegistry {
 
     public static int cropfoodRestore;
     public static float cropsaturationRestore;
-    //public static boolean sheepdropMutton;
     public static boolean squiddropCalamari;
     public static float snacksaturation;
     public static float mealsaturation;
@@ -893,18 +865,12 @@ public class ItemRegistry {
     public static boolean enablecroptoseedRecipe;
     public static boolean enabletofuasmeatinRecipes;
     public static boolean enabletofuasmilkinRecipes;
-    public static boolean enableharvestcraftfish;
-    public static int fishtrapbaitrecipeamount;
-    public static int grainbaitrecipeamount;
-    public static int veggiebaitrecipeamount;
-    public static int fruitbaitrecipeamount;
     public static boolean enablelistAllwaterfreshwater;
     public static boolean enablelistAllwatervanillawaterbucket;
 
     public static void initItems(FMLPreInitializationEvent event, Configuration config) {
         cropfoodRestore = config.get("crops", "cropfoodRestore", 1).getInt();
         cropsaturationRestore = (float) config.get("crops", "cropsaturationRestore", 0.6000000238418579D).getDouble(0.6000000238418579D);
-//sheepdropMutton = config.get("general", "sheepdropMutton", true).getBoolean(true);
         squiddropCalamari = config.get("general", "squiddropCalamari", true).getBoolean(true);
         snacksaturation = (float) config.get("crops", "snacksaturation", 0.6000000238418579D).getDouble(0.6000000238418579D);
         mealsaturation = (float) config.get("crops", "mealsaturation", 1.2000000476837158D).getDouble(1.2000000476837158D);
@@ -983,13 +949,6 @@ public class ItemRegistry {
         enabletofuasmeatinRecipes = config.get("miscellaneous recipes", "enabletofuasmeatinRecipes", true).getBoolean(true);
         enabletofuasmilkinRecipes = config.get("miscellaneous recipes", "enabletofuasmilkinRecipes", true).getBoolean(true);
 
-//enableharvestcraftfish = config.get("miscellaneous recipes", "enableharvestcraftfish", true).getBoolean(true);
-
-//fishtrapbaitrecipeamount = config.get("miscellaneous recipes", "fishtrapbaitrecipeamount", 4).getInt();
-//grainbaitrecipeamount = config.get("miscellaneous recipes", "grainbaitrecipeamount", 4).getInt();
-//veggiebaitrecipeamount = config.get("miscellaneous recipes", "veggiebaitrecipeamount", 4).getInt();
-//fruitbaitrecipeamount = config.get("miscellaneous recipes", "fruitbaitrecipeamount", 4).getInt();
-
         enablelistAllwaterfreshwater = config.get("miscellaneous recipes", "enablelistAllwaterfreshwater", true).getBoolean(true);
         enablelistAllwatervanillawaterbucket = config.get("miscellaneous recipes", "enablelistAllwatervanillawaterbucket", true).getBoolean(true);
     }
@@ -1013,27 +972,9 @@ public class ItemRegistry {
         mixingbowlItem.setContainerItem(mixingbowlItem);
         juicerItem.setContainerItem(juicerItem);
 
-//GameRegistry.registerItem(queenbeeItem = new ItemPamBee().setUnlocalizedName("queenbeeItem").setCreativeTab(HarvestCraft.modTab), "queenbeeItem");
-//GameRegistry.registerItem(waxcombItem = new Item().setUnlocalizedName("waxcombItem").setCreativeTab(HarvestCraft.modTab), "waxcombItem");
-//GameRegistry.registerItem(honeycombItem = new Item().setUnlocalizedName("honeycombItem").setCreativeTab(HarvestCraft.modTab), "honeycombItem");
-//GameRegistry.registerItem(beeswaxItem = new Item().setUnlocalizedName("beeswaxItem").setCreativeTab(HarvestCraft.modTab), "beeswaxItem");
         GameRegistry.registerItem(honeyItem = new ItemFood(4, 0.6F, false).setUnlocalizedName("honeyItem").setCreativeTab(HarvestCraft.modTab), "honeyItem");
-//GameRegistry.registerItem(grubItem = new Item().setUnlocalizedName("grubItem").setCreativeTab(HarvestCraft.modTab), "grubItem");
-//GameRegistry.registerItem(royaljellyItem = new Item().setUnlocalizedName("royaljellyItem").setCreativeTab(HarvestCraft.modTab), "royaljellyItem");
         GameRegistry.registerItem(saltItem = new Item().setUnlocalizedName("saltItem").setCreativeTab(HarvestCraft.modTab), "saltItem");
-//GameRegistry.registerItem(waxItem = new Item().setUnlocalizedName("waxItem").setCreativeTab(HarvestCraft.modTab), "waxItem");
         GameRegistry.registerItem(wovencottonItem = new Item().setUnlocalizedName("wovencottonItem").setCreativeTab(HarvestCraft.modTab), "wovencottonItem");
-//GameRegistry.registerItem(hardenedleatherItem = new Item().setUnlocalizedName("hardenedleatherItem").setCreativeTab(HarvestCraft.modTab), "hardenedleatherItem");
-//GameRegistry.registerItem(grainbaitItem = new Item().setUnlocalizedName("grainbaitItem").setCreativeTab(HarvestCraft.modTab), "grainbaitItem");
-//GameRegistry.registerItem(veggiebaitItem = new Item().setUnlocalizedName("veggiebaitItem").setCreativeTab(HarvestCraft.modTab), "veggiebaitItem");
-//GameRegistry.registerItem(fruitbaitItem = new Item().setUnlocalizedName("fruitbaitItem").setCreativeTab(HarvestCraft.modTab), "fruitbaitItem");
-//GameRegistry.registerItem(fishtrapbaitItem = new Item().setUnlocalizedName("fishtrapbaitItem").setCreativeTab(HarvestCraft.modTab), "fishtrapbaitItem");
-//GameRegistry.registerItem(hardenedleatherhelmItem = new ItemPamArmor(armorHardenedLeather, 0).setUnlocalizedName("hardenedleatherhelmItem"), "hardenedleatherhelmItem");
-//GameRegistry.registerItem(hardenedleatherchestItem = new ItemPamArmor(armorHardenedLeather, 1).setUnlocalizedName("hardenedleatherchestItem"), "hardenedleatherchestItem");
-//GameRegistry.registerItem(hardenedleatherleggingsItem = new ItemPamArmor(armorHardenedLeather, 2).setUnlocalizedName("hardenedleatherleggingsItem"), "hardenedleatherleggingsItem");
-//GameRegistry.registerItem(hardenedleatherbootsItem = new ItemPamArmor(armorHardenedLeather, 3).setUnlocalizedName("hardenedleatherbootsItem"), "hardenedleatherbootsItem");
-//GameRegistry.registerItem(muttonrawItem = new ItemFood(3, snacksaturation, true).setUnlocalizedName("muttonrawItem").setCreativeTab(HarvestCraft.modTab), "muttonrawItem");
-//GameRegistry.registerItem(muttoncookedItem = new ItemFood(8, meatymealsaturation, true).setUnlocalizedName("muttoncookedItem").setCreativeTab(HarvestCraft.modTab), "muttoncookedItem");
         GameRegistry.registerItem(calamarirawItem = new ItemFood(2, snacksaturation, false).setUnlocalizedName("calamarirawItem").setCreativeTab(HarvestCraft.modTab), "calamarirawItem");
         GameRegistry.registerItem(calamaricookedItem = new ItemFood(5, meatymealsaturation, false).setUnlocalizedName("calamaricookedItem").setCreativeTab(HarvestCraft.modTab), "calamaricookedItem");
         GameRegistry.registerItem(sunflowerseedsItem = new ItemFood(cropfoodRestore, cropsaturationRestore, false).setUnlocalizedName("sunflowerseedsItem").setCreativeTab(HarvestCraft.modTab), "sunflowerseedsItem");
@@ -1723,8 +1664,6 @@ public class ItemRegistry {
         GameRegistry.registerItem(randomtacoItem = new ItemFood(16, mealsaturation, false).setUnlocalizedName("randomtacoItem").setCreativeTab(HarvestCraft.modTab), "randomtacoItem");
         GameRegistry.registerItem(turkeyrawItem = new ItemFood(2, snacksaturation, true).setUnlocalizedName("turkeyrawItem").setCreativeTab(HarvestCraft.modTab), "turkeyrawItem");
         GameRegistry.registerItem(turkeycookedItem = new ItemFood(5, meatymealsaturation, true).setUnlocalizedName("turkeycookedItem").setCreativeTab(HarvestCraft.modTab), "turkeycookedItem");
-//GameRegistry.registerItem(rabbitrawItem = new ItemFood(2, snacksaturation, true).setUnlocalizedName("rabbitrawItem").setCreativeTab(HarvestCraft.modTab), "rabbitrawItem");
-//GameRegistry.registerItem(rabbitcookedItem = new ItemFood(5, meatymealsaturation, true).setUnlocalizedName("rabbitcookedItem").setCreativeTab(HarvestCraft.modTab), "rabbitcookedItem");
         GameRegistry.registerItem(venisonrawItem = new ItemFood(3, snacksaturation, true).setUnlocalizedName("venisonrawItem").setCreativeTab(HarvestCraft.modTab), "venisonrawItem");
         GameRegistry.registerItem(venisoncookedItem = new ItemFood(8, meatymealsaturation, true).setUnlocalizedName("venisoncookedItem").setCreativeTab(HarvestCraft.modTab), "venisoncookedItem");
         GameRegistry.registerItem(strawberrymilkshakeItem = new ItemFood(6, mealsaturation, false).setUnlocalizedName("strawberrymilkshakeItem").setCreativeTab(HarvestCraft.modTab), "strawberrymilkshakeItem");
@@ -1809,18 +1748,10 @@ public class ItemRegistry {
         GameRegistry.registerItem(yorkshirepuddingItem = new ItemFood(5, mealsaturation, false).setUnlocalizedName("yorkshirepuddingItem").setCreativeTab(HarvestCraft.modTab), "yorkshirepuddingItem");
         GameRegistry.registerItem(toadintheholeItem = new ItemFood(10, meatymealsaturation, false).setUnlocalizedName("toadintheholeItem").setCreativeTab(HarvestCraft.modTab), "toadintheholeItem");
 
-
         PamCropItems = new Item[]{asparagusItem, barleyItem, beanItem, beetItem, broccoliItem, cauliflowerItem, celeryItem, cranberryItem, garlicItem, gingerItem, leekItem, lettuceItem, oatsItem, onionItem, parsnipItem, peanutItem, pineappleItem, radishItem, riceItem, rutabagaItem, ryeItem, scallionItem, soybeanItem, spiceleafItem, sweetpotatoItem, tealeafItem, turnipItem, whitemushroomItem, artichokeItem, bellpepperItem, blackberryItem, blueberryItem, brusselsproutItem, cabbageItem, cactusfruitItem, candleberryItem, cantaloupeItem, chilipepperItem, coffeebeanItem, cornItem, cottonItem, cucumberItem, eggplantItem, grapeItem, kiwiItem, mustardseedsItem, okraItem, peasItem, raspberryItem, rhubarbItem, seaweedItem, strawberryItem, tomatoItem, wintersquashItem, zucchiniItem, bambooshootItem, spinachItem, curryleafItem, sesameseedsItem, waterchestnutItem};
         PamSeeds = new Item[]{asparagusseedItem, barleyseedItem, beanseedItem, beetseedItem, broccoliseedItem, cauliflowerseedItem, celeryseedItem, cranberryseedItem, garlicseedItem, gingerseedItem, leekseedItem, lettuceseedItem, oatsseedItem, onionseedItem, parsnipseedItem, peanutseedItem, pineappleseedItem, radishseedItem, riceseedItem, rutabagaseedItem, ryeseedItem, scallionseedItem, soybeanseedItem, spiceleafseedItem, sweetpotatoseedItem, teaseedItem, turnipseedItem, whitemushroomseedItem, artichokeseedItem, bellpepperseedItem, blackberryseedItem, blueberryseedItem, brusselsproutseedItem, cabbageseedItem, cactusfruitseedItem, candleberryseedItem, cantaloupeseedItem, chilipepperseedItem, coffeeseedItem, cornseedItem, cottonseedItem, cucumberseedItem, eggplantseedItem, grapeseedItem, kiwiseedItem, mustardseedItem, okraseedItem, peasseedItem, raspberryseedItem, rhubarbseedItem, seaweedseedItem, strawberryseedItem, tomatoseedItem, wintersquashseedItem, zucchiniseedItem, bambooshootseedItem, spinachseedItem, curryleafseedItem, sesameseedsseedItem, waterchestnutseedItem};
         PamTemperateFruits = new Item[]{Items.apple, avocadoItem, cherryItem, chestnutItem, nutmegItem, pearItem, plumItem, walnutItem, gooseberryItem};
         PamWarmFruits = new Item[]{almondItem, apricotItem, bananaItem, cashewItem, coconutItem, dateItem, dragonfruitItem, durianItem, figItem, grapefruitItem, lemonItem, limeItem, mangoItem, oliveItem, orangeItem, papayaItem, peachItem, pecanItem, peppercornItem, persimmonItem, pistachioItem, pomegranateItem, starfruitItem, vanillabeanItem};
         PamLogFruits = new Item[]{cinnamonItem, maplesyrupItem, Items.paper};
-
-        // Workaround
-        PamAllItems = new ArrayList<Item>();
-        PamAllItems.addAll(Arrays.asList(PamCropItems));
-        PamAllItems.addAll(Arrays.asList(PamSeeds));
-        PamAllItems.addAll(Arrays.asList(PamWarmFruits));
-        PamAllItems.addAll(Arrays.asList(avocadoItem, cherryItem, chestnutItem, nutmegItem, pearItem, plumItem, walnutItem, gooseberryItem));
     }
 }

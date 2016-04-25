@@ -1,16 +1,8 @@
 package com.pam.harvestcraft.worldgen;
 
-import java.util.Random;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockCocoa;
-import net.minecraft.block.BlockLeaves;
-import net.minecraft.block.BlockOldLeaf;
-import net.minecraft.block.BlockOldLog;
-import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.BlockSapling;
-import net.minecraft.block.BlockVine;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
@@ -18,111 +10,84 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
-public class LogFruitTreeGen extends WorldGenAbstractTree
-{
-	private static final IBlockState field_181653_a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.OAK);
-    private static final IBlockState field_181654_b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+import java.util.Random;
+
+public class LogFruitTreeGen extends WorldGenAbstractTree {
     private final int minTreeHeight;
-    private final boolean vinesGrow;
     private final IBlockState metaWood;
     private final IBlockState metaLeaves;
     private final IBlockState fruitType;
- 
-	public LogFruitTreeGen(boolean p_i46446_1_, int p_i46446_2_, IBlockState p_i46446_3_, IBlockState p_i46446_4_, boolean p_i46446_5_, IBlockState fruittype)
-	{
-		super(p_i46446_1_);
-        this.minTreeHeight = p_i46446_2_;
-        this.metaWood = p_i46446_3_;
-        this.metaLeaves = p_i46446_4_;
-        this.vinesGrow = p_i46446_5_;
-        this.fruitType = fruittype;
-	}
+
+    public LogFruitTreeGen(boolean notify, int minTreeHeight, IBlockState metaWood, IBlockState metaLeaves, boolean doVinesGrow, IBlockState fruitType) {
+        super(notify);
+        this.minTreeHeight = minTreeHeight;
+        this.metaWood = metaWood;
+        this.metaLeaves = metaLeaves;
+        this.fruitType = fruitType;
+    }
 
     @Override
-	public boolean generate(World worldIn, Random rand, BlockPos position)
-    {
-		int i = rand.nextInt(3) + this.minTreeHeight;
-        boolean flag = true;
+    public boolean generate(World worldIn, Random rand, BlockPos blockPos) {
+        int treeHeight = rand.nextInt(3) + this.minTreeHeight;
+        int treeTopPos = blockPos.getY() + treeHeight;
 
-        if (position.getY() >= 1 && position.getY() + i + 1 <= 256)
-        {
-            for (int j = position.getY(); j <= position.getY() + 1 + i; ++j)
-            {
+        boolean canGenerate = true;
+
+        BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
+        if (blockPos.getY() >= 1 && treeTopPos <= 255) {
+            for (int iPosY = blockPos.getY(); iPosY <= treeTopPos + 1; ++iPosY) {
                 int k = 1;
 
-                if (j == position.getY())
-                {
+                if (iPosY == blockPos.getY()) {
                     k = 0;
                 }
 
-                if (j >= position.getY() + 1 + i - 2)
-                {
+                if (iPosY >= treeTopPos - 1) {
                     k = 2;
                 }
 
-                BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
-
-                for (int l = position.getX() - k; l <= position.getX() + k && flag; ++l)
-                {
-                    for (int i1 = position.getZ() - k; i1 <= position.getZ() + k && flag; ++i1)
-                    {
-                        if (j >= 0 && j < 256)
-                        {
-                            if (!this.isReplaceable(worldIn,blockpos$mutableblockpos.set(l, j, i1)))
-                            {
-                                flag = false;
+                for (int xStart = blockPos.getX() - k, xEnd = blockPos.getX() + k; xStart <= xEnd && canGenerate; ++xStart) {
+                    for (int zStart = blockPos.getZ() - k, zEnd = blockPos.getZ() + k; zStart <= zEnd && canGenerate; ++zStart) {
+                        if (iPosY >= 0 && iPosY < 256) {
+                            if (!this.isReplaceable(worldIn, mutableBlockPos.set(xStart, iPosY, zStart))) {
+                                canGenerate = false;
                             }
-                        }
-                        else
-                        {
-                            flag = false;
+                        } else {
+                            canGenerate = false;
                         }
                     }
                 }
             }
 
-            if (!flag)
-            {
+            if (!canGenerate) {
                 return false;
-            }
-            else
-            {
-                BlockPos down = position.down();
-                IBlockState blockState1 = worldIn.getBlockState(down);
-                Block block1 = blockState1.getBlock();
-                boolean isSoil = block1.canSustainPlant(blockState1, worldIn, down, EnumFacing.UP, (BlockSapling)Blocks.sapling);
+            } else {
+                BlockPos blockPosDown = blockPos.down();
+                IBlockState blockStateDown = worldIn.getBlockState(blockPosDown);
+                Block blockDown = blockStateDown.getBlock();
+                boolean isSoil = blockDown.canSustainPlant(blockStateDown, worldIn, blockPosDown, EnumFacing.UP, (BlockSapling) Blocks.sapling);
 
-                if (isSoil && position.getY() < 256 - i - 1)
-                {
-                    block1.onPlantGrow(blockState1, worldIn, down, position);
-                    int k2 = 3;
-                    int l2 = 0;
+                if (isSoil && treeTopPos < 255) {
+                    blockDown.onPlantGrow(blockStateDown, worldIn, blockPosDown, blockPos);
 
-                    for (int i3 = position.getY() - k2 + i; i3 <= position.getY() + i; ++i3)
-                    {
-                        int i4 = i3 - (position.getY() + i);
-                        int j1 = l2 + 1 - i4 / 2;
+                    for (int iPosY = blockPos.getY() - 3 + treeHeight; iPosY <= treeTopPos; ++iPosY) {
+                        int distanceToTop = iPosY - treeTopPos;
+                        int margin = 1 - distanceToTop / 2;
 
-                        for (int k1 = position.getX() - j1; k1 <= position.getX() + j1; ++k1)
-                        {
-                            int l1 = k1 - position.getX();
+                        for (int xStart = blockPos.getX() - margin, xEnd = blockPos.getX() + margin; xStart <= xEnd; ++xStart) {
+                            int currentMarginX = Math.abs(xStart - blockPos.getX());
 
-                            for (int i2 = position.getZ() - j1; i2 <= position.getZ() + j1; ++i2)
-                            {
-                                int j2 = i2 - position.getZ();
+                            for (int zStart = blockPos.getZ() - margin, zEnd = blockPos.getZ() + margin; zStart <= zEnd; ++zStart) {
+                                int currentMarginZ = Math.abs(zStart - blockPos.getZ());
 
-                                if (Math.abs(l1) != j1 || Math.abs(j2) != j1 || rand.nextInt(2) != 0 && i4 != 0)
-                                {
-                                    BlockPos blockpos = new BlockPos(k1, i3, i2);
-                                    BlockPos blockpos2 = new BlockPos(k1, i3 - 1, i2);
-                                    BlockPos blockpos3 = new BlockPos(k1, i3 - 2, i2);
+                                if (currentMarginX != margin || currentMarginZ != margin || rand.nextInt(2) != 0 && distanceToTop != 0) {
+                                    BlockPos blockpos = new BlockPos(xStart, iPosY, zStart);
 
-                                    IBlockState blockState = worldIn.getBlockState(blockpos);
-                                    Block block = blockState.getBlock();
+                                    IBlockState leavesBlockState = worldIn.getBlockState(blockpos);
+                                    Block leavesBlock = leavesBlockState.getBlock();
 
-                                    if (block.isAir(blockState, worldIn, blockpos) || block.isLeaves(blockState, worldIn, blockpos)
-                                            || block.getMaterial(blockState) == Material.vine)
-                                    {
+                                    if (leavesBlock.isAir(leavesBlockState, worldIn, blockpos) || leavesBlock.isLeaves(leavesBlockState, worldIn, blockpos)
+                                            || leavesBlock.getMaterial(leavesBlockState) == Material.vine) {
                                         this.setBlockAndNotifyAdequately(worldIn, blockpos, this.metaLeaves);
 
                                     }
@@ -131,41 +96,31 @@ public class LogFruitTreeGen extends WorldGenAbstractTree
                         }
                     }
 
-                    for (int j3 = 0; j3 < i; ++j3)
-                    {
-                        BlockPos upN = position.up(j3);
-                        IBlockState blockState2 = worldIn.getBlockState(upN);
-                        Block block2 = blockState2.getBlock();
+                    for (int i = 0; i < treeHeight; ++i) {
+                        BlockPos upN = blockPos.up(i);
+                        IBlockState blockStateUp = worldIn.getBlockState(upN);
+                        Block blockUp = blockStateUp.getBlock();
 
-                        if (block2.isAir(blockState2, worldIn, upN))
-                        {
-                        		this.setBlockAndNotifyAdequately(worldIn, position.up(j3), this.fruitType);
+                        if (blockUp.isAir(blockStateUp, worldIn, upN)) {
+                            this.setBlockAndNotifyAdequately(worldIn, blockPos.up(i), this.fruitType);
                         }
-                        if (block2.isLeaves(blockState2, worldIn, upN))
-                        {
-                        	this.setBlockAndNotifyAdequately(worldIn, position.up(j3), this.metaWood);
+                        if (blockUp.isLeaves(blockStateUp, worldIn, upN)) {
+                            this.setBlockAndNotifyAdequately(worldIn, blockPos.up(i), this.metaWood);
                         }
 
                     }
-                    
-
-                    
 
 
                     return true;
-                }
-                else
-                {
+                } else {
                     return false;
                 }
             }
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
 
-   
+
 }
 
