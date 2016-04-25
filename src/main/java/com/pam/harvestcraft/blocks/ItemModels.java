@@ -24,17 +24,17 @@ public class ItemModels {
     }
 
     private static void defineItemModels() {
-        registerItemModels(getItem(BlockRegistry.AridGardenBlock), new ItemModelList("gardens/")
+        registerItemModels(getItem(BlockRegistry.aridGardenBlock), new ItemModelList("gardens/")
                 .add(0, "aridgarden"));
-        registerItemModels(getItem(BlockRegistry.FrostGardenBlock), new ItemModelList("gardens/")
+        registerItemModels(getItem(BlockRegistry.frostGardenBlock), new ItemModelList("gardens/")
                 .add(0, "frostgarden"));
-        registerItemModels(getItem(BlockRegistry.ShadedGardenBlock), new ItemModelList("gardens/")
+        registerItemModels(getItem(BlockRegistry.shadedGardenBlock), new ItemModelList("gardens/")
                 .add(0, "shadedgarden"));
-        registerItemModels(getItem(BlockRegistry.SoggyGardenBlock), new ItemModelList("gardens/")
+        registerItemModels(getItem(BlockRegistry.soggyGardenBlock), new ItemModelList("gardens/")
                 .add(0, "soggygarden"));
-        registerItemModels(getItem(BlockRegistry.TropicalGardenBlock), new ItemModelList("gardens/")
+        registerItemModels(getItem(BlockRegistry.tropicalGardenBlock), new ItemModelList("gardens/")
                 .add(0, "tropicalgarden"));
-        registerItemModels(getItem(BlockRegistry.WindyGardenBlock), new ItemModelList("gardens/")
+        registerItemModels(getItem(BlockRegistry.windyGardenBlock), new ItemModelList("gardens/")
                 .add(0, "windygarden"));
         registerItemModels(getItem(BlockRegistry.pamblackberryCrop), new ItemModelList("crops/")
                 .add(0, "blackberry_stage0")

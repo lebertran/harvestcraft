@@ -61,7 +61,7 @@ public class LogFruitTreeWorldGen implements IWorldGenerator {
             int posZ = (z + random.nextInt(8)) - random.nextInt(8);
             BlockPos pos = new BlockPos(posX, posY, posZ);
             if (world.isAirBlock(pos) && Blocks.cactus.canBlockStay(world, pos)) {
-                world.setBlockState(pos, BlockRegistry.AridGardenBlock.getDefaultState(), 2);
+                world.setBlockState(pos, BlockRegistry.aridGardenBlock.getDefaultState(), 2);
             }
         }
 
@@ -75,7 +75,7 @@ public class LogFruitTreeWorldGen implements IWorldGenerator {
             int posZ = (z + random.nextInt(8)) - random.nextInt(8);
             BlockPos pos = new BlockPos(posX, posY, posZ);
             if (world.isAirBlock(pos) && Blocks.yellow_flower.canBlockStay(world, pos, world.getBlockState(pos))) {
-                world.setBlockState(pos, BlockRegistry.FrostGardenBlock.getDefaultState(), 2);
+                world.setBlockState(pos, BlockRegistry.frostGardenBlock.getDefaultState(), 2);
             }
         }
 
@@ -89,7 +89,7 @@ public class LogFruitTreeWorldGen implements IWorldGenerator {
             int posZ = (z + random.nextInt(8)) - random.nextInt(8);
             BlockPos pos = new BlockPos(posX, posY, posZ);
             if (world.isAirBlock(pos) && Blocks.yellow_flower.canBlockStay(world, pos, world.getBlockState(pos))) {
-                world.setBlockState(pos, BlockRegistry.ShadedGardenBlock.getDefaultState(), 2);
+                world.setBlockState(pos, BlockRegistry.shadedGardenBlock.getDefaultState(), 2);
             }
         }
 
@@ -103,7 +103,7 @@ public class LogFruitTreeWorldGen implements IWorldGenerator {
             int posZ = (z + random.nextInt(8)) - random.nextInt(8);
             BlockPos pos = new BlockPos(posX, posY, posZ);
             if (world.isAirBlock(pos) && Blocks.yellow_flower.canBlockStay(world, pos, world.getBlockState(pos))) {
-                world.setBlockState(pos, BlockRegistry.SoggyGardenBlock.getDefaultState(), 2);
+                world.setBlockState(pos, BlockRegistry.soggyGardenBlock.getDefaultState(), 2);
             }
         }
 
@@ -117,7 +117,7 @@ public class LogFruitTreeWorldGen implements IWorldGenerator {
             int posZ = (z + random.nextInt(8)) - random.nextInt(8);
             BlockPos pos = new BlockPos(posX, posY, posZ);
             if (world.isAirBlock(pos) && Blocks.yellow_flower.canBlockStay(world, pos, world.getBlockState(pos))) {
-                world.setBlockState(pos, BlockRegistry.TropicalGardenBlock.getDefaultState(), 2);
+                world.setBlockState(pos, BlockRegistry.tropicalGardenBlock.getDefaultState(), 2);
             }
         }
 
@@ -131,7 +131,7 @@ public class LogFruitTreeWorldGen implements IWorldGenerator {
             int posZ = (z + random.nextInt(8)) - random.nextInt(8);
             BlockPos pos = new BlockPos(posX, posY, posZ);
             if (world.isAirBlock(pos) && Blocks.yellow_flower.canBlockStay(world, pos, world.getBlockState(pos))) {
-                world.setBlockState(pos, BlockRegistry.WindyGardenBlock.getDefaultState(), 2);
+                world.setBlockState(pos, BlockRegistry.windyGardenBlock.getDefaultState(), 2);
             }
         }
 

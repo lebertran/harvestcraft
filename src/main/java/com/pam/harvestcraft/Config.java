@@ -34,10 +34,10 @@ public class Config {
     private Map<String, String[]> dropConfig = new HashMap<String, String[]>();
 
     public void load(FMLPreInitializationEvent event) {
-        Configuration config = new Configuration(event.getSuggestedConfigurationFile());
+        final Configuration config = new Configuration(event.getSuggestedConfigurationFile());
         config.load();
-        BlockRegistry.initBlocks(event, config);
-        ItemRegistry.initItems(event, config);
+        BlockRegistry.initBlockConfig(config);
+        ItemRegistry.initItems(config);
 
         dropConfig.put("aridGarden", config.getStringList("aridGarden", "drops",
                 new String[]{"harvestcraft:cactusfruitItem"}, ""));

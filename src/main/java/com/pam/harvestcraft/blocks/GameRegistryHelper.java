@@ -2,6 +2,7 @@ package com.pam.harvestcraft.blocks;
 
 import com.pam.harvestcraft.HarvestCraft;
 import net.minecraft.block.Block;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
