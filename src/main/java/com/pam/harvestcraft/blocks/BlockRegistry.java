@@ -413,7 +413,7 @@ public final class BlockRegistry {
     }
 
     private static Block registerBlockCrop(String registerName) {
-        final Block pamCrop = new BlockPamCrop();
+        final Block pamCrop = new BlockPamCrop(registerName);
         final ItemBlock itemBlock = new ItemBlockFruit(pamCrop);
 
         return registerBlock(registerName, itemBlock, pamCrop);
