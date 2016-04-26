@@ -1,6 +1,7 @@
 package com.pam.harvestcraft.blocks;
 
 import com.pam.harvestcraft.HarvestCraft;
+import com.pam.harvestcraft.item.ItemRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
@@ -19,6 +20,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.FMLLog;
 
 import java.util.List;
 import java.util.Random;
@@ -36,6 +38,7 @@ public class BlockPamLogFruit extends Block implements IGrowable {
     }
 
 
+    @Override
     public int quantityDropped(Random random) {
         return 0;
     }
@@ -49,7 +52,6 @@ public class BlockPamLogFruit extends Block implements IGrowable {
     public IBlockState getStateFromMeta(int meta) {
         return this.getDefaultState().withProperty(AGE, meta);
     }
-
 
     @Override
     public int getMetaFromState(IBlockState state) {
@@ -109,13 +111,14 @@ public class BlockPamLogFruit extends Block implements IGrowable {
             Block currentBlock = worldIn.getBlockState(pos).getBlock();
 
             if (currentBlock == BlockRegistry.pamCinnamon) {
-                savedStack = new ItemStack(Items.apple);
+                savedStack = new ItemStack(ItemRegistry.cinnamonItem);
             } else if (currentBlock == BlockRegistry.pamMaple) {
-                savedStack = new ItemStack(Items.apple);
+                savedStack = new ItemStack(ItemRegistry.maplesyrupItem);
             } else if (currentBlock == BlockRegistry.pamPaperbark) {
                 savedStack = new ItemStack(Items.paper);
             } else {
                 savedStack = new ItemStack(Items.wheat);
+                FMLLog.bigWarning("currentBlock is not cinnamon, maple or paperbark. This should not happen. Dropping wheat.");
             }
 
             worldIn.setBlockState(pos, state.withProperty(AGE, 0), 3);
