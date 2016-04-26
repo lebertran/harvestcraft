@@ -1,13 +1,11 @@
 package com.pam.harvestcraft.item;
 
 import com.pam.harvestcraft.HarvestCraft;
-import net.minecraft.init.PotionTypes;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.*;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.datafix.fixes.PotionItems;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 
 public class ItemPamPotionFood extends ItemFood {
     public ItemPamPotionFood(int amount, float saturation, boolean isWolfFood) {

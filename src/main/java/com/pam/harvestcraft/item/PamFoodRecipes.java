@@ -5,6 +5,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
@@ -12,14 +13,40 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 public class PamFoodRecipes {
     public static String[] cropName = {"cropAsparagus", "cropBarley", "cropBean", "cropBeet", "cropBroccoli", "cropCauliflower", "cropCelery", "cropCranberry", "cropGarlic", "cropGinger", "cropLeek", "cropLettuce", "cropOats", "cropOnion", "cropParsnip", "cropPeanut", "cropPineapple", "cropRadish", "cropRice", "cropRutabaga", "cropRye", "cropScallion", "cropSoybean", "cropSpiceleaf", "cropSweetpotato", "cropTea", "cropTurnip", "cropWhitemushroom", "cropArtichoke", "cropBellpepper", "cropBlackberry", "cropBlueberry", "cropBrusselsprout", "cropCabbage", "cropCactusfruit", "cropCandleberry", "cropCantaloupe", "cropChilipepper", "cropCoffee", "cropCorn", "cropCotton", "cropCucumber", "cropEggplant", "cropGrape", "cropKiwi", "cropMustard", "cropOkra", "cropPeas", "cropRaspberry", "cropRhubarb", "cropSeaweed", "cropStrawberry", "cropTomato", "cropWintersquash", "cropZucchini", "cropBambooshoot", "cropSpinach", "cropCurryleaf", "cropSesame", "cropWaterchestnut"};
 
+    public static void registerRecipe(IRecipe recipe) {
+        CraftingManager.getInstance().getRecipeList().add(recipe);
+    }
+
+
     public static void getRecipes() {
-        for (int i = 0; i < 9; i++) {
-            CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(BlockRegistry.PamTemperateSaplings[i], ItemRegistry.PamTemperateFruits[i], ItemRegistry.PamTemperateFruits[i], ItemRegistry.PamTemperateFruits[i], new ItemStack(Blocks.sapling, 1, 0)));
+
+        // Sapling recipes
+        for (int i = 0, length = BlockRegistry.PamTemperateSaplings.length; i < length; i++) { registerRecipe(
+                    new ShapelessOreRecipe(
+                            BlockRegistry.PamTemperateSaplings[i],
+                            ItemRegistry.PamTemperateFruits[i],
+                            ItemRegistry.PamTemperateFruits[i],
+                            new ItemStack(Blocks.sapling, 1, 0))
+            );
         }
-        for (int i = 0; i < 24; i++) {
-            CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(BlockRegistry.PamWarmSaplings[i], ItemRegistry.PamWarmFruits[i], ItemRegistry.PamWarmFruits[i], ItemRegistry.PamWarmFruits[i], new ItemStack(Blocks.sapling, 1, 3)));
+        for (int i = 0, length = BlockRegistry.PamWarmSaplings.length; i < length; i++) {
+            registerRecipe(new ShapelessOreRecipe(
+                            BlockRegistry.PamWarmSaplings[i],
+                            ItemRegistry.PamWarmFruits[i],
+                            ItemRegistry.PamWarmFruits[i],
+                            ItemRegistry.PamWarmFruits[i],
+                            new ItemStack(Blocks.sapling, 1, 3))
+            );
         }
-        CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(BlockRegistry.pamcinnamonSapling, ItemRegistry.cinnamonItem, ItemRegistry.cinnamonItem, ItemRegistry.cinnamonItem, new ItemStack(Blocks.sapling, 1, 3)));
+
+        registerRecipe(new ShapelessOreRecipe(
+                BlockRegistry.pamcinnamonSapling,
+                ItemRegistry.cinnamonItem,
+                ItemRegistry.cinnamonItem,
+                ItemRegistry.cinnamonItem,
+                new ItemStack(Blocks.sapling, 1, 3)
+        ));
+
         CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(BlockRegistry.pampaperbarkSapling, Items.paper, Items.paper, Items.paper, new ItemStack(Blocks.sapling, 1, 3)));
         CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(BlockRegistry.pammapleSapling, ItemRegistry.maplesyrupItem, ItemRegistry.maplesyrupItem, ItemRegistry.maplesyrupItem, new ItemStack(Blocks.sapling, 1, 1)));
         if (ItemRegistry.enablecroptoseedRecipe) {

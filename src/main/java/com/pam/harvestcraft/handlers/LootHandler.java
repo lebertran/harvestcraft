@@ -1,10 +1,8 @@
 package com.pam.harvestcraft.handlers;
 
 import com.pam.harvestcraft.item.LootHelper;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.storage.loot.LootPool;
-import net.minecraft.world.storage.loot.LootTable;
-import net.minecraft.world.storage.loot.LootTableManager;
+import net.minecraft.world.storage.loot.*;
+import net.minecraft.world.storage.loot.conditions.LootCondition;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -26,11 +24,12 @@ public class LootHandler {
             if (lootTableManager == reference) return;
             reference = lootTableManager;
 
-            for (ResourceLocation key : LootHelper.additionalLoot.keySet()) {
-                LootTable vanillaLootTable = lootTableManager.getLootTableFromLocation(key);
+            for (CustomLootPool customLootPool : LootHelper.addtionalLootPools) {
+                final LootTable vanillaLootTable =
+                        lootTableManager.getLootTableFromLocation(customLootPool.getResourceLocation());
 
                 try {
-                    addPoolsToLootTable(vanillaLootTable, LootHelper.additionalLoot.get(key));
+                    addPoolsToLootTable(vanillaLootTable, customLootPool);
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 } catch (NoSuchFieldException e) {
@@ -54,18 +53,77 @@ public class LootHandler {
 
         throw new NoSuchFieldException("Could not find LootPool[] field in LootTable");
     }
+    private static LootEntry[] getVanillaLootEntries(LootPool[] vanillaLootPools) throws IllegalAccessException,
+            NoSuchFieldException{
+        // We now assume that there is only one LootPool (element 0) so that loots are added to that LootPool.
+        // Other LootPools are just appended it the new LootPools array
 
-    public static void addPoolsToLootTable(LootTable lootTable, LootPool lootPool)
+        Field[] fields = LootPool.class.getDeclaredFields();
+
+        for (Field field : fields) {
+            if (field.getType().isArray() && field.getType().getComponentType().isAssignableFrom(LootPool.class)) {
+                field.setAccessible(true);
+
+                return (LootEntry[]) field.get(vanillaLootPools[0]);
+            }
+        }
+
+        throw new NoSuchFieldException("Could not find LootPool[] field in LootTable");
+
+    }
+
+    private static LootPool mergeLootPools(final LootPool basePool, final LootEntryItem[] lootEntries) throws IllegalAccessException {
+        final Field[] fields = LootPool.class.getDeclaredFields();
+
+        List<LootEntry> baseLootEntries = new ArrayList<LootEntry>();
+        LootCondition[] baseLootConditions = new LootCondition[] {};
+        RandomValueRange baseRolls = new RandomValueRange(1);
+        RandomValueRange baseBonusRolls = new RandomValueRange(0);
+
+        for (Field field : fields) {
+            if (field.getType().isArray()) {
+                if (field.getType().isAssignableFrom(LootEntry.class)) {
+                    field.setAccessible(true);
+                    baseLootEntries = Arrays.asList((LootEntry[]) field.get(basePool));
+                } else if (field.getType().isAssignableFrom(LootCondition.class)) {
+                    field.setAccessible(true);
+                    baseLootConditions = (LootCondition[]) field.get(basePool);
+                }
+            } else {
+                if (field.getType().isAssignableFrom(RandomValueRange.class)) {
+                    if (field.getName().equals("rolls")) {
+                        field.setAccessible(true);
+                        baseRolls = (RandomValueRange) field.get(basePool);
+                    } else if (field.getName().equals("bonusRolls")) {
+                        field.setAccessible(true);
+                        baseBonusRolls = (RandomValueRange) field.get(basePool);
+                    }
+                }
+            }
+        }
+
+        baseLootEntries.addAll(Arrays.asList(lootEntries));
+
+        return new LootPool(baseLootEntries.toArray(new LootEntry[baseLootEntries.size()]), baseLootConditions, baseRolls, baseBonusRolls);
+    }
+
+
+    public static void addPoolsToLootTable(LootTable lootTable, CustomLootPool lootPool)
             throws IllegalAccessException, NoSuchFieldException {
-        LootPool[] vanillaLootPools = getPoolsFromLootTable(lootTable);
+        final LootPool[] vanillaLootPools = getPoolsFromLootTable(lootTable);
 
-        List<LootPool> newLootPoolsList = new ArrayList<LootPool>();
+        final ArrayList<LootPool> newLootPoolsList = new ArrayList<LootPool>();
         newLootPoolsList.addAll(Arrays.asList(vanillaLootPools));
-        newLootPoolsList.add(lootPool);
 
-        LootPool[] newLootPools = newLootPoolsList.toArray(new LootPool[newLootPoolsList.size()]);
+        if (lootPool.isSeperateLootPool()) {
+            newLootPoolsList.add(lootPool.createDefaultLootPool());
+        } else {
+            newLootPoolsList.set(0, mergeLootPools(vanillaLootPools[0], lootPool.getLootEntries()));
+        }
 
-        Field[] fields = LootTable.class.getDeclaredFields();
+        final LootPool[] newLootPools = newLootPoolsList.toArray(new LootPool[newLootPoolsList.size()]);
+
+        final Field[] fields = LootTable.class.getDeclaredFields();
 
         for (Field field : fields) {
             if (field.getType().isArray() &&

@@ -10,6 +10,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class WorldLoadEventHandler {
 
     @SuppressWarnings("unused")
+    @SubscribeEvent
     public void onWorldLoad(WorldEvent.Load event) {
         if (event.getWorld() == null || event.getWorld().isRemote) return;
 
