@@ -27,6 +27,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -93,13 +94,18 @@ public class BlockPamCrop extends Block implements IGrowable, net.minecraftforge
         return f;
     }
 
+    // For some reason, this is correct. It appears the methods were misnamed
+    // see http://www.minecraftforge.net/forum/index.php?topic=37657.0
     @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB p_185477_4_, List<AxisAlignedBB> p_185477_5_, Entity p_185477_6_) {
+    public AxisAlignedBB getSelectedBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
+        return new AxisAlignedBB(0, 0, 0, 0, 0, 0);
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
         float f = 0.5F;
 
-        AxisAlignedBB aabb = new AxisAlignedBB(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.25F, 0.5F + f);
-        addCollisionBoxToList(pos, p_185477_4_, p_185477_5_, aabb);
-        super.addCollisionBoxToList(state, worldIn, pos, p_185477_4_, p_185477_5_, p_185477_6_);
+        return new AxisAlignedBB(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.25F, 0.5F + f);
     }
 
     @Override
@@ -325,9 +331,12 @@ public class BlockPamCrop extends Block implements IGrowable, net.minecraftforge
                 savedStack = new ItemStack(ItemRegistry.sesameseedsItem);
             } else if (currentBlock == BlockRegistry.pamwaterchestnutCrop) {
                 savedStack = new ItemStack(ItemRegistry.waterchestnutItem);
-            } else
-                savedStack = new ItemStack(Items.wheat);
-
+            } else if (currentBlock == BlockRegistry.pamwhitemushroomCrop) {
+                savedStack = new ItemStack(ItemRegistry.whitemushroomItem);
+            } else {
+                FMLLog.bigWarning("The crop %s has no registered correspondent item. Please report on mod page.", currentBlock.getRegistryName());
+                return true;
+            }
 
             worldIn.setBlockState(pos, state.withProperty(AGE, 0), 3);
             EntityItem entityItem = new EntityItem(worldIn, playerIn.posX, playerIn.posY - 1D, playerIn.posZ, savedStack);
