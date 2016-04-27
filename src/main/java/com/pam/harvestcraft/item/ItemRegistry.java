@@ -11,7 +11,6 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemSeedFood;
 import net.minecraft.item.ItemSeeds;
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import java.util.HashMap;
@@ -1094,7 +1093,7 @@ public final class ItemRegistry {
         seaweedItem = registerSeedFood("seaweedItem", BlockRegistry.pamseaweedCrop, false);
         waterchestnutItem = registerSeedFood("waterchestnutItem", BlockRegistry.pamwaterchestnutCrop, false);
         blackberryseedItem = registerSeeds("blackberryseedItem", BlockRegistry.pamblackberryCrop);
-        cottonItem = registerSeeds("cottonItem", BlockRegistry.pamcottonCrop);
+        cottonItem = registerSeedFood("cottonItem", BlockRegistry.pamcottonCrop, false);
         blueberryseedItem = registerSeeds("blueberryseedItem", BlockRegistry.pamblueberryCrop);
         candleberryseedItem = registerSeeds("candleberryseedItem", BlockRegistry.pamcandleberryCrop);
         raspberryseedItem = registerSeeds("raspberryseedItem", BlockRegistry.pamraspberryCrop);

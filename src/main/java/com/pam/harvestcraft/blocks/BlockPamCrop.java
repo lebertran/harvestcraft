@@ -106,7 +106,7 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable {
 
     @Override
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-        super.updateTick(worldIn, pos, state, rand);
+        this.checkAndDropBlock(worldIn, pos, state);
 
         if (worldIn.getLightFromNeighbors(pos.up()) >= 9) {
             int i = this.getMetaFromState(state);
@@ -148,10 +148,10 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable {
                 return true;
             }
 
-            ItemStack savedStack = new ItemStack(getHarvestedItem());
+            final ItemStack savedStack = new ItemStack(getHarvestedItem());
 
             worldIn.setBlockState(pos, state.withProperty(AGE, 0), 3);
-            EntityItem entityItem = new EntityItem(worldIn, pos.getX(), pos.getY() - 1D, pos.getZ(), savedStack);
+            final EntityItem entityItem = new EntityItem(worldIn, pos.getX(), pos.getY() + 1D, pos.getZ(), savedStack);
             worldIn.spawnEntityInWorld(entityItem);
             entityItem.onCollideWithPlayer(playerIn);
             return true;
