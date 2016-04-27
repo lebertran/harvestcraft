@@ -13,7 +13,7 @@ public class SoggyGardenBlock extends BlockBaseGarden {
 
     public SoggyGardenBlock() {
         super("soggyGarden", Material.grass);
-        GameRegistryHelper.registerBlock(this, name);
+        BlockRegistry.registerBlock(name, this);
     }
 
     @Override

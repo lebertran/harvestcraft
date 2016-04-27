@@ -13,7 +13,7 @@ public class AridGardenBlock extends BlockBaseGarden {
 
     public AridGardenBlock() {
         super("aridGarden", Material.grass);
-        GameRegistryHelper.registerBlock(this, name);
+        BlockRegistry.registerBlock(name, this);
     }
 
     @Override

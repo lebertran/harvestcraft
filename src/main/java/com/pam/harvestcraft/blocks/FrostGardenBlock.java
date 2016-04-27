@@ -13,7 +13,7 @@ public class FrostGardenBlock extends BlockBaseGarden {
 
     public FrostGardenBlock() {
         super("frostGarden", Material.grass);
-        GameRegistryHelper.registerBlock(this, name);
+        BlockRegistry.registerBlock(name, this);
     }
 
     @Override

@@ -151,7 +151,7 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable {
             final ItemStack savedStack = new ItemStack(getHarvestedItem());
 
             worldIn.setBlockState(pos, state.withProperty(AGE, 0), 3);
-            final EntityItem entityItem = new EntityItem(worldIn, pos.getX(), pos.getY() + 1D, pos.getZ(), savedStack);
+            final EntityItem entityItem = new EntityItem(worldIn, playerIn.posX, playerIn.posY - 1D, playerIn.posZ, savedStack);
             worldIn.spawnEntityInWorld(entityItem);
             entityItem.onCollideWithPlayer(playerIn);
             return true;

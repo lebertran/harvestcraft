@@ -13,7 +13,7 @@ public class WindyGardenBlock extends BlockBaseGarden {
 
     public WindyGardenBlock() {
         super("windyGarden", Material.grass);
-        GameRegistryHelper.registerBlock(this, name);
+        BlockRegistry.registerBlock(name, this);
     }
 
     @Override

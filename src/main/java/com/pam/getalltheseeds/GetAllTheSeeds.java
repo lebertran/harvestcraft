@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
         version = GetAllTheSeeds.version)
 public class GetAllTheSeeds {
     public static final String modid = "getalltheseeds";
-    public static final String version = "1.9a";
+    public static final String version = "1.9";
 
     static int pumpkinseedRarity;
     static int melonseedRarity;

@@ -12,11 +12,10 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
-@SuppressWarnings("unused")
 @Mod(modid = SimpleRecipes.modid, name = "Pam's Simple Recipes", version = SimpleRecipes.version)
 public class SimpleRecipes {
     public static final String modid = "simplerecipes";
-    public static final String version = "1.9a";
+    public static final String version = "1.9";
 
     public static int saplingstickamount;
     public static int flintamount;

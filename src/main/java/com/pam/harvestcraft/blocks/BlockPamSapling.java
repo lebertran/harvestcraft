@@ -4,7 +4,6 @@ import com.pam.harvestcraft.worldgen.FruitTreeGen;
 import com.pam.harvestcraft.worldgen.LogFruitTreeGen;
 import net.minecraft.block.*;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -12,7 +11,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import java.util.List;
 import java.util.Random;
 
 public class BlockPamSapling extends BlockBush implements IGrowable {
@@ -23,7 +21,7 @@ public class BlockPamSapling extends BlockBush implements IGrowable {
 
     public BlockPamSapling(String name) {
         super();
-        GameRegistryHelper.registerBlock(this, name);
+        BlockRegistry.registerBlock(name, this);
         this.setStepSound(SoundType.PLANT);
         this.setHardness(0.0F);
     }

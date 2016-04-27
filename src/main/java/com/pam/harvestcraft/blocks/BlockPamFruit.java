@@ -119,7 +119,7 @@ public class BlockPamFruit extends Block implements IGrowable {
     }
 
     public void grow(World worldIn, BlockPos pos, IBlockState state) {
-        int i = state.getValue(AGE) + MathHelper.getRandomIntegerInRange(worldIn.rand, 2, 5);
+        int i = state.getValue(AGE) + MathHelper.getRandomIntegerInRange(worldIn.rand, 1, 2);
         if (i > 2) {
             i = 2;
         }
@@ -224,7 +224,7 @@ public class BlockPamFruit extends Block implements IGrowable {
             }
 
             worldIn.setBlockState(pos, state.withProperty(AGE, 0), 3);
-            EntityItem entityItem = new EntityItem(worldIn, playerIn.posX, playerIn.posY - 1D, playerIn.posZ, savedStack);
+            final EntityItem entityItem = new EntityItem(worldIn, playerIn.posX, playerIn.posY - 1D, playerIn.posZ, savedStack);
             worldIn.spawnEntityInWorld(entityItem);
             entityItem.onCollideWithPlayer(playerIn);
             return true;

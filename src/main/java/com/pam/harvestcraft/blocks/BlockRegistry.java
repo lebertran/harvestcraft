@@ -438,15 +438,15 @@ public final class BlockRegistry {
         block.setUnlocalizedName(registerName);
 
         GameRegistry.register(block);
-        try {
-            itemBlock.setRegistryName(registerName);
 
-            GameRegistry.register(itemBlock);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        itemBlock.setRegistryName(registerName);
+        GameRegistry.register(itemBlock);
 
         return block;
     }
 
+    public static Block registerBlock(String registerName, Block block) {
+        final ItemBlock itemBlock = new ItemBlock(block);
+        return registerBlock(registerName, itemBlock, block);
+    }
 }
