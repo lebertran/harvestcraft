@@ -16,7 +16,7 @@ sink_3.name=Brick Well
 harvestcraft.tile.salt.name=Salt Ore
 harvestcraft.tile.pamcompressedsaltBlock.name=Compressed Salt Block
 
-harvestcraft.tile.market.name=Market
+tile.market.name=Market
 
 harvestcraft.tile.oven.name=Oven
 

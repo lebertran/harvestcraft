@@ -1,5 +1,6 @@
 package com.pam.harvestcraft.item;
 
+import com.pam.harvestcraft.blocks.BlockRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -771,6 +772,8 @@ public final class ItemRenderRegister {
         register(ItemRegistry.toadintheholeItem);
         register(ItemRegistry.tunapotatoItem);
         register(ItemRegistry.yorkshirepuddingItem);
+
+        register(BlockRegistry.marketItemBlock);
     }
 
     public static void register(final Item item) {

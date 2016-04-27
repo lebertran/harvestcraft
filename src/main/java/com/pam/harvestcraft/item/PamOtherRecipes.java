@@ -10,50 +10,70 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import static com.pam.harvestcraft.item.GeneralOreRegistry.*;
-
+import static com.pam.harvestcraft.item.PamFoodOreDictionaryRegistry.*;
 
 public class PamOtherRecipes {
 
     @SuppressWarnings("unchecked")
     public static void getRecipes() {
 
-        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ItemRegistry.potItem, true, 
+        // Market recipes
+        if (BlockRegistry.marketblockrecipeItem == 0) {
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockRegistry.pamMarket, 1), "XOX", "OEO", "XOX", 'X', "plankWood", 'O', Blocks.wool, 'E', Items.emerald));
+        }
+        if (BlockRegistry.marketblockrecipeItem == 1) {
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockRegistry.pamMarket, 1), "XOX", "OEO", "XOX", 'X', "plankWood", 'O', Blocks.wool, 'E', Items.diamond));
+        }
+        if (BlockRegistry.marketblockrecipeItem == 2) {
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockRegistry.pamMarket, 1), "XOX", "OEO", "XOX", 'X', "plankWood", 'O', Blocks.wool, 'E', Items.gold_ingot));
+        }
+        if (BlockRegistry.marketblockrecipeItem == 3) {
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockRegistry.pamMarket, 1), "XOX", "OEO", "XOX", 'X', "plankWood", 'O', Blocks.wool, 'E', Items.gold_nugget));
+        }
+        if (BlockRegistry.marketblockrecipeItem == 4) {
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockRegistry.pamMarket, 1), "XOX", "OEO", "XOX", 'X', "plankWood", 'O', Blocks.wool, 'E', Items.iron_ingot));
+        }
+        if (BlockRegistry.marketblockrecipeItem == 5) {
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockRegistry.pamMarket, 1), "XOX", "OEO", "XOX", 'X', "plankWood", 'O', Blocks.wool, 'E', Items.apple));
+        }
+
+        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ItemRegistry.potItem, true,
                 "X@@", " @@", '@', ingotIron, 'X', stickWood));
-        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ItemRegistry.skilletItem, true, 
+        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ItemRegistry.skilletItem, true,
                 "@  ", " @ ", "  X", '@', ingotIron, 'X', stickWood));
-        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ItemRegistry.saucepanItem, true, 
+        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ItemRegistry.saucepanItem, true,
                 "@ ", "X ", '@', ingotIron, 'X', stickWood));
-        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ItemRegistry.bakewareItem, true, 
+        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ItemRegistry.bakewareItem, true,
                 "@@@", "@ @", "@@@", '@', ingotBrick));
-        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ItemRegistry.cuttingboardItem, true, 
+        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ItemRegistry.cuttingboardItem, true,
                 "@  ", " X ", "  O", '@', ingotIron, 'X', stickWood, 'O', plankWood));
-        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ItemRegistry.mortarandpestleItem, true, 
+        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ItemRegistry.mortarandpestleItem, true,
                 "X@X", " X ", '@', stickWood, 'X', stone));
-        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ItemRegistry.mixingbowlItem, true, 
+        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ItemRegistry.mixingbowlItem, true,
                 "X@X", " X ", '@', stickWood, 'X', plankWood));
-        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ItemRegistry.juicerItem, true, 
+        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ItemRegistry.juicerItem, true,
                 "@ ", "X ", '@', stone, 'X', Blocks.stone_pressure_plate));
 
         //Copper Tools
-        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ItemRegistry.potItem, true, 
+        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ItemRegistry.potItem, true,
                 "X@@", " @@", '@', ingotCopper, 'X', stickWood));
-        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ItemRegistry.skilletItem, true, 
+        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ItemRegistry.skilletItem, true,
                 "@  ", " @ ", "  X", '@', ingotCopper, 'X', stickWood));
-        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ItemRegistry.saucepanItem, true, 
+        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ItemRegistry.saucepanItem, true,
                 "@  ", "X  ", '@', ingotCopper, 'X', stickWood));
-        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ItemRegistry.cuttingboardItem, true, 
+        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ItemRegistry.cuttingboardItem, true,
                 "@  ", " X ", "  O", '@', ingotCopper, 'X', stickWood, 'O', plankWood));
         //Steel Tools
-        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ItemRegistry.potItem, true, 
+        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ItemRegistry.potItem, true,
                 "X@@", " @@", '@', ingotSteel, 'X', stickWood));
-        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ItemRegistry.skilletItem, true, 
+        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ItemRegistry.skilletItem, true,
                 "@  ", " @ ", "  X", '@', ingotSteel, 'X', stickWood));
-        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ItemRegistry.saucepanItem, true, 
+        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ItemRegistry.saucepanItem, true,
                 "@  ", "X  ", '@', ingotSteel, 'X', stickWood));
-        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ItemRegistry.cuttingboardItem, true, 
+        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ItemRegistry.cuttingboardItem, true,
                 "@  ", " X ", "  O", '@', ingotSteel, 'X', stickWood, 'O', plankWood));
         //Nether Brick Bakeware
-        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ItemRegistry.bakewareItem, true, 
+        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ItemRegistry.bakewareItem, true,
                 "@@@", "@ @", "@@@", '@', ingotBrickNether));
 
 
@@ -76,9 +96,11 @@ public class PamOtherRecipes {
 
         CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(ItemRegistry.candleberryseedItem, ItemRegistry.candleberryItem));
 
+        // Random Recipes
+        CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(new ItemStack(Items.slime_ball, 1), foodJellyfishraw));
 
         //Pumpkin Lanterns
-        CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(new ItemStack(Blocks.lit_pumpkin, 1), cropPumpkin, blockTorch));
+        CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(new ItemStack(Blocks.lit_pumpkin, 1), GeneralOreRegistry.cropPumpkin, blockTorch));
 
         //Logs
         GameRegistry.addShapedRecipe(new ItemStack(Blocks.planks, 4, 1), "L", 'L', new ItemStack(BlockRegistry.pamMaple));

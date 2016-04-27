@@ -568,7 +568,7 @@ public class ItemModels {
             Collection<String> registrations = entry.getValue().getRegistrations().values();
 
             for (String registration : registrations) {
-                if (item == null || registration == null) continue; //TODO: why?
+                if (item == null || registration == null) continue;
                 ModelBakery.registerItemVariants(item, new ResourceLocation(registration));
             }
         }

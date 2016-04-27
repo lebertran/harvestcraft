@@ -1,11 +1,16 @@
 package com.pam.harvestcraft.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public final class BlockRegistry {
+
+    // Market blocks
+    public static Block pamMarket;
+
     // Garden blocks
     public static Block aridGardenBlock;
     public static Block frostGardenBlock;
@@ -155,6 +160,8 @@ public final class BlockRegistry {
     public static Block pamWalnut;
     public static Block pamwalnutSapling;
 
+    public static ItemBlock marketItemBlock;
+
     // Block configuration variables
     public static int gardenRarity;
     public static int gardendropAmount;
@@ -209,6 +216,38 @@ public final class BlockRegistry {
     public static boolean rightclickharvestFruit;
     public static boolean enablecropspecialplanting;
 
+    // Market configuration
+    public static boolean marketsellSeeds;
+    public static boolean marketselltemperateSaplings;
+    public static boolean marketselltropicalSaplings;
+    public static boolean marketsellconiferousSaplings;
+    public static boolean marketsellPig;
+    public static boolean marketsellSheep;
+    public static boolean marketsellCow;
+    public static boolean marketsellChicken;
+    public static boolean marketsellHorse;
+    public static boolean marketsellBonemeal;
+    public static int marketblockrecipeItem;
+    public static int marketseedPrice;
+    public static int marketsaplingPrice;
+    public static int marketpigPrice;
+    public static int marketsheepPrice;
+    public static int marketcowPrice;
+    public static int marketchickenPrice;
+    public static int markethorsePrice;
+    public static int marketbonemealPrice;
+    public static int marketcurrencySeeds;
+    public static int marketcurrencytemperateSaplings;
+    public static int marketcurrencytropicalSaplings;
+    public static int marketcurrencyconiferousSaplings;
+    public static int marketcurrencyPig;
+    public static int marketcurrencySheep;
+    public static int marketcurrencyCow;
+    public static int marketcurrencyChicken;
+    public static int marketcurrencyHorse;
+    public static int marketcurrencyBonemeal;
+
+
     public static void initBlockConfig(Configuration config) {
         gardenRarity = config.get("gardens", "gardenRarity", 2).getInt();
         gardendropAmount = config.get("gardens", "gardendropAmount", 3).getInt();
@@ -262,9 +301,45 @@ public final class BlockRegistry {
         rightclickharvestCrop = config.get("crops", "rightclickharvestCrop", true).getBoolean(true);
         rightclickharvestFruit = config.get("fruit trees", "rightclickharvestFruit", true).getBoolean(true);
         enablecropspecialplanting = config.get("crops", "enablecropspecialplanting", true).getBoolean(true);
+
+        marketselltemperateSaplings = config.get("market sales", "marketselltemperateSaplings", true).getBoolean(true);
+        marketselltropicalSaplings = config.get("market sales", "marketselltropicalSaplings", true).getBoolean(true);
+        marketsellconiferousSaplings = config.get("market sales", "marketsellconiferousSaplings", true).getBoolean(true);
+        marketsellPig = config.get("market sales", "marketsellPig", true).getBoolean(true);
+        marketsellSheep = config.get("market sales", "marketsellSheep", true).getBoolean(true);
+        marketsellCow = config.get("market sales", "marketsellCow", true).getBoolean(true);
+        marketsellChicken = config.get("market sales", "marketsellChicken", true).getBoolean(true);
+        marketsellHorse = config.get("market sales", "marketsellHorse", true).getBoolean(true);
+        marketsellBonemeal = config.get("market sales", "marketsellBonemeal", true).getBoolean(true);
+        marketblockrecipeItem = config.get("miscellaneous recipes", "marketblockrecipeItem", 0).getInt();
+        marketseedPrice = config.get("market prices", "marketseedPrice", 1).getInt();
+        marketsaplingPrice = config.get("market prices", "marketsaplingPrice", 3).getInt();
+        marketpigPrice = config.get("market prices", "marketpigPrice", 6).getInt();
+        marketsheepPrice = config.get("market prices", "marketsheepPrice", 6).getInt();
+        marketcowPrice = config.get("market prices", "marketcowPrice", 9).getInt();
+        marketchickenPrice = config.get("market prices", "marketchickenPrice", 3).getInt();
+        markethorsePrice = config.get("market prices", "markethorsePrice", 12).getInt();
+        marketbonemealPrice = config.get("market prices", "marketbonemealPrice", 3).getInt();
+        marketcurrencySeeds = config.get("market currency", "marketcurrencySeeds", 0).getInt();
+        marketcurrencytemperateSaplings = config.get("market currency", "marketcurrencytemperateSaplings", 0).getInt();
+        marketcurrencytropicalSaplings = config.get("market currency", "marketcurrencytropicalSaplings", 0).getInt();
+        marketcurrencyconiferousSaplings = config.get("market currency", "marketcurrencyconiferousSaplings", 0).getInt();
+        marketcurrencyPig = config.get("market currency", "marketcurrencyPig", 0).getInt();
+        marketcurrencySheep = config.get("market currency", "marketcurrencySheep", 0).getInt();
+        marketcurrencyCow = config.get("market currency", "marketcurrencyCow", 0).getInt();
+        marketcurrencyChicken = config.get("market currency", "marketcurrencyChicken", 0).getInt();
+        marketcurrencyHorse = config.get("market currency", "marketcurrencyHorse", 0).getInt();
+        marketcurrencyBonemeal = config.get("market currency", "marketcurrencyBonemeal", 0).getInt();
     }
 
     public static void loadBlockRegistry() {
+
+        // Market block
+        pamMarket = new BlockPamMarket(Material.wood).setHardness(1.0F).setResistance(1.0F);
+        marketItemBlock = new ItemBlock(pamMarket);
+
+        registerBlock("market", marketItemBlock, pamMarket);
+
         aridGardenBlock = new AridGardenBlock();
         frostGardenBlock = new FrostGardenBlock();
         tropicalGardenBlock = new TropicalGardenBlock();
@@ -440,6 +515,7 @@ public final class BlockRegistry {
         GameRegistry.register(block);
 
         itemBlock.setRegistryName(registerName);
+        itemBlock.setUnlocalizedName(registerName);
         GameRegistry.register(itemBlock);
 
         return block;
