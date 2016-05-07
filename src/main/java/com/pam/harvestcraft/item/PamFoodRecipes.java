@@ -31,6 +31,7 @@ public class PamFoodRecipes {
                             BlockRegistry.PamTemperateSaplings[i],
                             ItemRegistry.PamTemperateFruits[i],
                             ItemRegistry.PamTemperateFruits[i],
+                            ItemRegistry.PamTemperateFruits[i],
                             new ItemStack(Blocks.sapling, 1, 0))
             );
         }
@@ -51,6 +52,22 @@ public class PamFoodRecipes {
                 ItemRegistry.cinnamonItem,
                 new ItemStack(Blocks.sapling, 1, 3)
         ));
+        
+        registerRecipe(new ShapelessOreRecipe(
+                BlockRegistry.pampaperbarkSapling,
+                Items.paper,
+                Items.paper,
+                Items.paper,
+                new ItemStack(Blocks.sapling, 1, 3)
+        ));
+        
+        registerRecipe(new ShapelessOreRecipe(
+                BlockRegistry.pammapleSapling,
+                ItemRegistry.maplesyrupItem,
+                ItemRegistry.maplesyrupItem,
+                ItemRegistry.maplesyrupItem,
+                new ItemStack(Blocks.sapling, 1, 1)
+        ));
 
         CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(BlockRegistry.pampaperbarkSapling, Items.paper, Items.paper, Items.paper, new ItemStack(Blocks.sapling, 1, 3)));
         CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(BlockRegistry.pammapleSapling, ItemRegistry.maplesyrupItem, ItemRegistry.maplesyrupItem, ItemRegistry.maplesyrupItem, new ItemStack(Blocks.sapling, 1, 1)));
@@ -69,6 +86,8 @@ public class PamFoodRecipes {
             CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(ItemRegistry.saltItem, toolPot, listAllwater));
         }
         CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(ItemRegistry.freshwaterItem, listAllwater));
+        
+        CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(ItemRegistry.bubblywaterItem, toolPot, ItemRegistry.freshwaterItem));
         CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(Items.sugar, toolPot, foodHoneydrop));
         CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(Items.sugar, toolPot, dropHoney));
         CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(Items.fish, listAllfishraw));

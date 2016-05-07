@@ -1,5 +1,6 @@
 package com.pam.harvestcraft.blocks;
 
+import com.pam.harvestcraft.HarvestCraft;
 import com.pam.harvestcraft.worldgen.FruitTreeGen;
 import com.pam.harvestcraft.worldgen.LogFruitTreeGen;
 import net.minecraft.block.*;
@@ -24,6 +25,7 @@ public class BlockPamSapling extends BlockBush implements IGrowable {
         BlockRegistry.registerBlock(name, this);
         this.setStepSound(SoundType.PLANT);
         this.setHardness(0.0F);
+        this.setCreativeTab(HarvestCraft.modTab);
     }
 
     @Override

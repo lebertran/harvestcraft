@@ -816,6 +816,7 @@ public class PamFoodOreDictionaryRegistry {
         OreDictionary.registerOre(listAllmushroom, ItemRegistry.whitemushroomItem);
         OreDictionary.registerOre(cropApple, Items.apple);
         OreDictionary.registerOre(listAllfruit, Items.apple);
+        OreDictionary.registerOre(listAllfruit, Items.chorus_fruit);
         OreDictionary.registerOre(listAllmeatraw, Items.beef);
         OreDictionary.registerOre(listAllmeatraw, Items.chicken);
         OreDictionary.registerOre(listAllmeatraw, Items.porkchop);
@@ -922,6 +923,7 @@ public class PamFoodOreDictionaryRegistry {
         if (ItemRegistry.enabletofuasmeatinRecipes) {
             OreDictionary.registerOre(listAllrabbitcooked, ItemRegistry.firmtofuItem);
         }
+        
         OreDictionary.registerOre(listAllvenisonraw, ItemRegistry.venisonrawItem);
         if (ItemRegistry.enabletofuasmeatinRecipes) {
             OreDictionary.registerOre(listAllvenisonraw, ItemRegistry.firmtofuItem);
@@ -967,8 +969,12 @@ public class PamFoodOreDictionaryRegistry {
         OreDictionary.registerOre(listAllseed, ItemRegistry.beanseedItem);
         OreDictionary.registerOre(cropBeet, ItemRegistry.beetItem);
         OreDictionary.registerOre(listAllveggie, ItemRegistry.beetItem);
+        OreDictionary.registerOre(cropBeet, Items.beetroot);
+        OreDictionary.registerOre(listAllveggie, Items.beetroot);
         OreDictionary.registerOre(seedBeet, ItemRegistry.beetseedItem);
         OreDictionary.registerOre(listAllseed, ItemRegistry.beetseedItem);
+        OreDictionary.registerOre(seedBeet, Items.beetroot_seeds);
+        OreDictionary.registerOre(listAllseed, Items.beetroot_seeds);
         OreDictionary.registerOre(cropBroccoli, ItemRegistry.broccoliItem);
         OreDictionary.registerOre(listAllveggie, ItemRegistry.broccoliItem);
         OreDictionary.registerOre(listAllgreenveggie, ItemRegistry.broccoliItem);

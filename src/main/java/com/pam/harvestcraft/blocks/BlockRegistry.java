@@ -302,6 +302,7 @@ public final class BlockRegistry {
         rightclickharvestFruit = config.get("fruit trees", "rightclickharvestFruit", true).getBoolean(true);
         enablecropspecialplanting = config.get("crops", "enablecropspecialplanting", true).getBoolean(true);
 
+        marketsellSeeds = config.get("market sales", "marketsellSeeds", true).getBoolean(true);
         marketselltemperateSaplings = config.get("market sales", "marketselltemperateSaplings", true).getBoolean(true);
         marketselltropicalSaplings = config.get("market sales", "marketselltropicalSaplings", true).getBoolean(true);
         marketsellconiferousSaplings = config.get("market sales", "marketsellconiferousSaplings", true).getBoolean(true);

@@ -11,6 +11,8 @@ import net.minecraft.world.World;
 
 import java.util.*;
 
+import com.pam.harvestcraft.HarvestCraft;
+
 public abstract class BlockBaseGarden extends BlockBush {
     public static Map<String, List<ItemStack>> drops = new HashMap<String, List<ItemStack>>();
     private final String type;
@@ -18,6 +20,7 @@ public abstract class BlockBaseGarden extends BlockBush {
     public BlockBaseGarden(String type, Material grass) {
         super(grass);
         this.type = type;
+        this.setCreativeTab(HarvestCraft.modTab);
     }
 
     @Override

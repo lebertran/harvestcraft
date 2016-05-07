@@ -29,7 +29,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class HarvestCraft {
 
     @Instance(Reference.MODID)
-    @SuppressWarnings("unused")
     public static HarvestCraft instance;
 
     @SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
@@ -42,7 +41,6 @@ public class HarvestCraft {
     };
 
     @EventHandler
-    @SuppressWarnings("unused")
     public void preInit(FMLPreInitializationEvent event) {
         Config.instance.load(event);
         proxy.preInit(event);
@@ -72,7 +70,6 @@ public class HarvestCraft {
     }
 
     @EventHandler
-    @SuppressWarnings("unused")
     public void postInit(FMLPostInitializationEvent event) {
         proxy.postInit(event);
     }
