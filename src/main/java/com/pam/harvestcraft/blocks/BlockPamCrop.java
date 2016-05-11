@@ -109,13 +109,13 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable {
         this.checkAndDropBlock(worldIn, pos, state);
 
         if (worldIn.getLightFromNeighbors(pos.up()) >= 9) {
-            int i = this.getMetaFromState(state);
+            int currentGrowthLevel = getMetaFromState(state);
 
-            if (i < this.getHarvestReadyAge()) {
+            if (currentGrowthLevel < getHarvestReadyAge()) {
                 float f = getGrowthChance(this, worldIn, pos);
 
-                if (rand.nextInt((int) (25.0F / f) + 1) == 0) {
-                    worldIn.setBlockState(pos, this.getStateFromMeta(i + 1), 2);
+                if (rand.nextInt((int) (50.0F / f) + 1) == 0) {
+                    worldIn.setBlockState(pos, this.getStateFromMeta(currentGrowthLevel + 1), 2);
                 }
             }
         }
