@@ -2,7 +2,6 @@ package com.pam.harvestcraft.blocks;
 
 import com.pam.harvestcraft.HarvestCraft;
 import com.pam.harvestcraft.tileentity.TileEntityMarket;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;

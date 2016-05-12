@@ -1,4 +1,4 @@
-package com.pam.harvestcraft.blocks;
+package com.pam.harvestcraft.blocks.growables;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;

@@ -1,5 +1,6 @@
-package com.pam.harvestcraft.blocks;
+package com.pam.harvestcraft.blocks.gardens;
 
+import com.pam.harvestcraft.blocks.BlockRegistry;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;

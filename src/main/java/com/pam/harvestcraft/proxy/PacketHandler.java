@@ -1,13 +1,12 @@
 package com.pam.harvestcraft.proxy;
-        import com.pam.harvestcraft.Reference;
-        import com.pam.harvestcraft.gui.MessageMarketBrowse;
-        import com.pam.harvestcraft.gui.MessageMarketBuy;
-        import com.pam.harvestcraft.gui.MessageMarketClosed;
 
-
-        import net.minecraftforge.fml.common.network.NetworkRegistry;
-        import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-        import net.minecraftforge.fml.relauncher.Side;
+import com.pam.harvestcraft.Reference;
+import com.pam.harvestcraft.gui.MessageMarketBrowse;
+import com.pam.harvestcraft.gui.MessageMarketBuy;
+import com.pam.harvestcraft.gui.MessageMarketClosed;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import net.minecraftforge.fml.relauncher.Side;
 
 
 public class PacketHandler  {

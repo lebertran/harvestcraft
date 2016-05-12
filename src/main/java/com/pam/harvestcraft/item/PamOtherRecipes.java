@@ -10,7 +10,7 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import static com.pam.harvestcraft.item.GeneralOreRegistry.*;
-import static com.pam.harvestcraft.item.PamFoodOreDictionaryRegistry.*;
+import static com.pam.harvestcraft.item.PamFoodOreDictionaryRegistry.foodJellyfishraw;
 
 public class PamOtherRecipes {
 

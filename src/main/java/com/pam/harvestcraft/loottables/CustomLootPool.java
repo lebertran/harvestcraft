@@ -1,10 +1,12 @@
-package com.pam.harvestcraft.handlers;
+package com.pam.harvestcraft.loottables;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootEntryItem;
 import net.minecraft.world.storage.loot.LootPool;
 import net.minecraft.world.storage.loot.RandomValueRange;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 
 import java.util.List;
 
@@ -33,6 +35,6 @@ public class CustomLootPool {
     }
 
     public LootPool createDefaultLootPool() {
-        return new LootPool(lootEntries, new LootCondition[] {}, new RandomValueRange(1), new RandomValueRange(0));
+        return new LootPool(lootEntries, new LootCondition[] {}, new RandomValueRange(1), new RandomValueRange(0), LootHandler.VANILLA_LOOT_POOL_ID);
     }
 }

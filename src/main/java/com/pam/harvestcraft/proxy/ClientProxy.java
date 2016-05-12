@@ -3,7 +3,6 @@ package com.pam.harvestcraft.proxy;
 import com.pam.harvestcraft.addons.Waila;
 import com.pam.harvestcraft.blocks.ItemModels;
 import com.pam.harvestcraft.item.ItemRenderRegister;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.FMLClientHandler;

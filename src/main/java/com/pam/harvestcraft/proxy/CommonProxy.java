@@ -1,12 +1,10 @@
 package com.pam.harvestcraft.proxy;
 
 import com.pam.harvestcraft.Config;
-import com.pam.harvestcraft.addons.Waila;
 import com.pam.harvestcraft.blocks.BlockRegistry;
-import com.pam.harvestcraft.gui.GuiHandler;
 import com.pam.harvestcraft.gui.MarketItems;
-import com.pam.harvestcraft.handlers.WorldLoadEventHandler;
 import com.pam.harvestcraft.item.*;
+import com.pam.harvestcraft.loottables.LootTableLoadEventHandler;
 import com.pam.harvestcraft.tileentity.TileEntityMarket;
 import com.pam.harvestcraft.worldgen.BushWorldWorldGen;
 import com.pam.harvestcraft.worldgen.FruitTreeWorldGen;
@@ -16,7 +14,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class CommonProxy {
@@ -39,7 +36,7 @@ public class CommonProxy {
 
         GameRegistry.registerTileEntity(TileEntityMarket.class, "PamMarket");
 
-        MinecraftForge.EVENT_BUS.register(new WorldLoadEventHandler());
+        MinecraftForge.EVENT_BUS.register(new LootTableLoadEventHandler());
     }
 
     public void init(FMLInitializationEvent e) {

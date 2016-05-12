@@ -1,3 +1,7 @@
+/**
+ * Pam's HarvestCraft - build.gradle
+ */
+
 buildscript {
     repositories {
         jcenter()
@@ -11,18 +15,28 @@ buildscript {
     }
 }
 
-apply plugin: "maven"
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.9a"
-group= "com.pam.harvestcraft"
-archivesBaseName = "harvestcraft"
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+ext.configFile = file('build.properties')
+ext.config = parseConfig(configFile)
+
+version = config.version
+group="com.pam.harvestcraft"
+archivesBaseName = "${config.mod_id}"
 
 minecraft {
-    version = "1.9-12.16.0.1865-1.9"
+    version = config.forge_version
     runDir = "run"
     
-    mappings = "snapshot_20160312"
+    mappings = config.mc_mappings
+
+    replace 'PROP:ID', config.mod_id
+    replace 'PROP:NAME', config.mod_name
+    replace 'PROP:VERSION', config.version
+
     useDepAts = true
 }
 
@@ -30,40 +44,31 @@ repositories {
     maven {
         url "http://mobiusstrip.eu/maven"
     }
-
 }
 
 dependencies {
     deobfCompile "mcp.mobius.waila:Waila:1.7.0-B2_1.9"
 }
 
-sourceSets.main{
-    java {
-        srcDirs 'java', 'apis'
-    }
-    resources {
-        srcDirs 'resources'
-    }
-}
-
-processResources
-{
-    // this will ensure that this task is redone when the versions change.
+processResources {
     inputs.property "version", project.version
     inputs.property "mcversion", project.minecraft.version
 
-    // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
                 
-        // replace version and mcversion
         expand 'version':project.version, 'mcversion':project.minecraft.version
     }
         
-    // copy everything else, thats not the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
 }
 
-idea { module { inheritOutputDirs = true } }
+def parseConfig(File config) {
+    config.withReader {
+        def prop = new Properties()
+        prop.load(it)
+        return (new ConfigSlurper().parse(prop))
+    }
+}

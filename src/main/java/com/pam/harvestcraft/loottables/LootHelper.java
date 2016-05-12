@@ -1,6 +1,6 @@
-package com.pam.harvestcraft.item;
+package com.pam.harvestcraft.loottables;
 
-import com.pam.harvestcraft.handlers.CustomLootPool;
+import com.pam.harvestcraft.item.ItemRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.world.storage.loot.LootEntryItem;
 import net.minecraft.world.storage.loot.LootTableList;
@@ -13,19 +13,19 @@ import net.minecraft.world.storage.loot.functions.SetCount;
 import java.util.ArrayList;
 
 public class LootHelper {
-    public static final ArrayList<CustomLootPool> addtionalLootPools = new ArrayList<CustomLootPool>();
+    public static final ArrayList<CustomLootPool> additionalLootPools = new ArrayList<>();
 
     static {
         // LootTable for GAMEPLAY_FISHING_JUNK
-        final ArrayList<LootEntryItem> gameplayFishingJunkEntries = new ArrayList<LootEntryItem>();
+        final ArrayList<LootEntryItem> gameplayFishingJunkEntries = new ArrayList<>();
         gameplayFishingJunkEntries.add(createLootEntryItem(ItemRegistry.seaweedItem, 10, 0));
 
-        addtionalLootPools.add(new CustomLootPool(
+        additionalLootPools.add(new CustomLootPool(
                 LootTableList.GAMEPLAY_FISHING_JUNK,
                 gameplayFishingJunkEntries, false));
 
         // LootTable for GAMEPLAY_FISHING_FISH
-        final ArrayList<LootEntryItem> gameplayFishingFishEntries = new ArrayList<LootEntryItem>();
+        final ArrayList<LootEntryItem> gameplayFishingFishEntries = new ArrayList<>();
         gameplayFishingFishEntries.add(createLootEntryItem(ItemRegistry.anchovyrawItem, 25, 0));
         gameplayFishingFishEntries.add(createLootEntryItem(ItemRegistry.bassrawItem, 25, 0));
         gameplayFishingFishEntries.add(createLootEntryItem(ItemRegistry.carprawItem, 25, 0));
@@ -45,27 +45,27 @@ public class LootHelper {
         gameplayFishingFishEntries.add(createLootEntryItem(ItemRegistry.tunarawItem, 25, 0));
         gameplayFishingFishEntries.add(createLootEntryItem(ItemRegistry.walleyerawItem, 25, 0));
 
-        addtionalLootPools.add(new CustomLootPool(
+        additionalLootPools.add(new CustomLootPool(
                 LootTableList.GAMEPLAY_FISHING_FISH,
                 gameplayFishingFishEntries, false));
 
         // LootTable for SQUIDS
-        final ArrayList<LootEntryItem> squidEntries = new ArrayList<LootEntryItem>();
+        final ArrayList<LootEntryItem> squidEntries = new ArrayList<>();
         squidEntries.add(createLootEntryItem(ItemRegistry.calamarirawItem, 50, 0,
-                new LootFunction[]{new SetCount(new LootCondition[]{}, new RandomValueRange(1,2))},
+                new LootFunction[]{new SetCount(new LootCondition[]{}, new RandomValueRange(1, 2))},
                 new KilledByPlayer(false)));
 
-        addtionalLootPools.add(new CustomLootPool(
+        additionalLootPools.add(new CustomLootPool(
                 LootTableList.ENTITIES_SQUID,
                 squidEntries, true));
     }
 
 
     private static LootEntryItem createLootEntryItem(Item item, int weight, int quality) {
-        return createLootEntryItem(item, weight, quality, new LootFunction[]{}, new LootCondition[] {});
+        return createLootEntryItem(item, weight, quality, new LootFunction[]{});
     }
 
     private static LootEntryItem createLootEntryItem(Item item, int weight, int quality, LootFunction[] lootFunctions, LootCondition... lootConditions) {
-        return new LootEntryItem(item, weight, quality, lootFunctions, lootConditions);
+        return new LootEntryItem(item, weight, quality, lootFunctions, lootConditions, "harvestcraft." + item.getUnlocalizedName());
     }
 }

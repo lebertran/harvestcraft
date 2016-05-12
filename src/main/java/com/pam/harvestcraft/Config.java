@@ -1,7 +1,7 @@
 package com.pam.harvestcraft;
 
-import com.pam.harvestcraft.blocks.BlockBaseGarden;
 import com.pam.harvestcraft.blocks.BlockRegistry;
+import com.pam.harvestcraft.blocks.gardens.BlockBaseGarden;
 import com.pam.harvestcraft.item.ItemRegistry;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;

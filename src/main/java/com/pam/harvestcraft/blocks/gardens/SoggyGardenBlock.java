@@ -1,5 +1,6 @@
-package com.pam.harvestcraft.blocks;
+package com.pam.harvestcraft.blocks.gardens;
 
+import com.pam.harvestcraft.blocks.BlockRegistry;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -8,11 +9,11 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 
-public class ShadedGardenBlock extends BlockBaseGarden {
-    private final String name = "shadedgarden";
+public class SoggyGardenBlock extends BlockBaseGarden {
+    private final String name = "soggygarden";
 
-    public ShadedGardenBlock() {
-        super("shadedGarden", Material.grass);
+    public SoggyGardenBlock() {
+        super("soggyGarden", Material.grass);
         BlockRegistry.registerBlock(name, this);
     }
 

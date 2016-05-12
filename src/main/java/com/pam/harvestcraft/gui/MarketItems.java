@@ -253,11 +253,11 @@ public class MarketItems {
 
 
         if (side.isClient()) {
-            ItemMonsterPlacer.applyEntityIdToItemStack(pigegg, EntityList.classToStringMapping.get(EntityPig.class));
-            ItemMonsterPlacer.applyEntityIdToItemStack(sheepegg, EntityList.classToStringMapping.get(EntitySheep.class));
-            ItemMonsterPlacer.applyEntityIdToItemStack(cowegg, EntityList.classToStringMapping.get(EntityCow.class));
-            ItemMonsterPlacer.applyEntityIdToItemStack(chickenegg, EntityList.classToStringMapping.get(EntityChicken.class));
-            ItemMonsterPlacer.applyEntityIdToItemStack(horseegg, EntityList.classToStringMapping.get(EntityHorse.class));
+            ItemMonsterPlacer.func_185078_a(pigegg, EntityList.classToStringMapping.get(EntityPig.class));
+            ItemMonsterPlacer.func_185078_a(sheepegg, EntityList.classToStringMapping.get(EntitySheep.class));
+            ItemMonsterPlacer.func_185078_a(cowegg, EntityList.classToStringMapping.get(EntityCow.class));
+            ItemMonsterPlacer.func_185078_a(chickenegg, EntityList.classToStringMapping.get(EntityChicken.class));
+            ItemMonsterPlacer.func_185078_a(horseegg, EntityList.classToStringMapping.get(EntityHorse.class));
         }
 
         if (BlockRegistry.marketsellPig) {
