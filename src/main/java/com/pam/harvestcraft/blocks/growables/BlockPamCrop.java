@@ -9,9 +9,15 @@ import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Enchantments;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -22,6 +28,7 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fml.common.FMLLog;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -156,12 +163,9 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
             }
         }
     }
-
     /**
-     * Commenting out this method as right click harvesting may conflict with GentleHarvest mod.
-     * The use of that mod for right click harvesting is preferred.
+     * TODO: Move this to a separate file, maybe enabling right-click harvesting also for vanilla crops?
      */
-    /*
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (isHarvestReady(state)) {
@@ -169,16 +173,38 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
                 return true;
             }
 
-            final ItemStack savedStack = new ItemStack(getCrop());
+            final ItemStack cropItem = new ItemStack(getCrop(), 1);
+            final int fortune = EnchantmentHelper.getEnchantmentLevel(Enchantments.fortune, heldItem);
+            final List<ItemStack> drops = getDrops(worldIn, pos, state, fortune);
+
+            // This removes exactly one seed from drops in order to make this more fair compared to vanilla
+            // as one seed stays planted.
+            for (Iterator<ItemStack> iterator = drops.iterator(); iterator.hasNext();) {
+                final ItemStack drop = iterator.next();
+                if (drop.getItem().getClass().equals(getSeed().getClass())) {
+                    iterator.remove();
+                    break;
+                }
+            }
 
             worldIn.setBlockState(pos, state.withProperty(AGE, 0), 3);
-            final EntityItem entityItem = new EntityItem(worldIn, playerIn.posX, playerIn.posY - 1D, playerIn.posZ, savedStack);
-            worldIn.spawnEntityInWorld(entityItem);
-            entityItem.onCollideWithPlayer(playerIn);
+
+            for (ItemStack drop : drops) {
+                dropItem(drop, worldIn, pos, playerIn);
+            }
+
+            dropItem(cropItem, worldIn, pos, playerIn);
+
             return true;
         }
         return false;
-    }*/
+    }
+
+    private void dropItem(ItemStack itemStack, World world, BlockPos pos, EntityPlayer player) {
+        final EntityItem entityItem = new EntityItem(world, pos.getX(), pos.getY() - 1D, pos.getZ(), itemStack);
+        world.spawnEntityInWorld(entityItem);
+        entityItem.onCollideWithPlayer(player);
+    }
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     @Override
