@@ -1,5 +1,6 @@
 package com.pam.harvestcraft.proxy;
 
+import com.pam.harvestcraft.addons.Waila;
 import com.pam.harvestcraft.blocks.ItemModels;
 import com.pam.harvestcraft.item.ItemRenderRegister;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -16,6 +17,8 @@ public class ClientProxy extends CommonProxy {
     public void preInit(FMLPreInitializationEvent e) {
         super.preInit(e);
         ItemModels.preInit();
+
+        Waila.init();
     }
 
     @Override
@@ -30,13 +33,13 @@ public class ClientProxy extends CommonProxy {
         super.postInit(e);
     }
 
-    public void registerRenderInformation(FMLPreInitializationEvent event)
-    {
-       // TileEntityHandler.registerTileEntityRenderers(); //@TODO: What should this do?
+    @Override
+    public void registerRenderInformation(FMLPreInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(new EventHandler());
     }
-    public World getClientWorld()
-    {
+
+    @Override
+    public World getClientWorld() {
         return FMLClientHandler.instance().getClient().theWorld;
     }
 }

@@ -1,6 +1,7 @@
-package com.pam.harvestcraft.blocks;
+package com.pam.harvestcraft.blocks.growables;
 
 import com.pam.harvestcraft.HarvestCraft;
+import com.pam.harvestcraft.blocks.BlockRegistry;
 import com.pam.harvestcraft.item.ItemRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
@@ -25,9 +26,11 @@ import net.minecraftforge.fml.common.FMLLog;
 import java.util.List;
 import java.util.Random;
 
-public class BlockPamLogFruit extends Block implements IGrowable {
+public class BlockPamLogFruit extends Block implements IGrowable, PamGrowable {
 
-    public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 2);
+    private static final int MATURE_AGE = 2;
+
+    public static final PropertyInteger AGE = PropertyInteger.create("age", 0, MATURE_AGE);
 
     public BlockPamLogFruit() {
         super(Material.plants);
@@ -37,6 +40,10 @@ public class BlockPamLogFruit extends Block implements IGrowable {
         this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, 0));
     }
 
+    @Override
+    public int getMatureAge() {
+        return MATURE_AGE;
+    }
 
     @Override
     public int quantityDropped(Random random) {
@@ -67,7 +74,7 @@ public class BlockPamLogFruit extends Block implements IGrowable {
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
         int i = state.getValue(AGE);
 
-        if (i < 2 && rand.nextInt(25) == 0) {
+        if (i < MATURE_AGE && rand.nextInt(25) == 0) {
             state = state.withProperty(AGE, i + 1);
             worldIn.setBlockState(pos, state, 2);
         }
@@ -77,7 +84,7 @@ public class BlockPamLogFruit extends Block implements IGrowable {
 
     public void grow(World worldIn, BlockPos pos, IBlockState state) {
         int i = state.getValue(AGE) + MathHelper.getRandomIntegerInRange(worldIn.rand, 2, 5);
-        if (i > 2) {
+        if (i > MATURE_AGE) {
             i = 2;
         }
         worldIn.setBlockState(pos, state.withProperty(AGE, i), 2);
@@ -101,7 +108,7 @@ public class BlockPamLogFruit extends Block implements IGrowable {
 
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
-        if (state.getValue(AGE) == 2) {
+        if (state.getValue(AGE) == MATURE_AGE) {
             if (worldIn.isRemote) {
                 return true;
             }
@@ -134,9 +141,9 @@ public class BlockPamLogFruit extends Block implements IGrowable {
     @SuppressWarnings({"unchecked", "rawtypes"})
     @Override
     public void getSubBlocks(Item itemIn, CreativeTabs tab, List list) {
-        list.add(new ItemStack(itemIn, 1, 0));
-        list.add(new ItemStack(itemIn, 1, 1));
-        list.add(new ItemStack(itemIn, 1, 2));
+        for (int i = 0; i <= MATURE_AGE; i++) {
+            list.add(new ItemStack(itemIn, 1, i));
+        }
     }
 
 

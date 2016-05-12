@@ -811,7 +811,7 @@ public class PamFoodOreDictionaryRegistry {
         OreDictionary.registerOre(cropCarrot, Items.carrot);
         OreDictionary.registerOre(cropPotato, Items.potato);
         OreDictionary.registerOre(cropPumpkin, Blocks.pumpkin);
-                                OreDictionary.registerOre(listAllgrain, Items.wheat);
+        OreDictionary.registerOre(listAllgrain, Items.wheat);
         OreDictionary.registerOre(flourEqualswheat, Items.wheat);
         OreDictionary.registerOre(flourEqualswheat, ItemRegistry.flourItem);
         OreDictionary.registerOre(listAllmushroom, Blocks.red_mushroom);
@@ -829,6 +829,8 @@ public class PamFoodOreDictionaryRegistry {
         OreDictionary.registerOre(listAllmeatraw, ItemRegistry.venisonrawItem);
         if (ItemRegistry.enabletofuasmeatinRecipes) {
             OreDictionary.registerOre(listAllmeatraw, ItemRegistry.firmtofuItem);
+            OreDictionary.registerOre(listAllmeatcooked, ItemRegistry.firmtofuItem);
+
         }
         OreDictionary.registerOre(listAllmeatcooked, Items.cooked_beef);
         OreDictionary.registerOre(listAllmeatcooked, Items.cooked_chicken);
@@ -837,9 +839,6 @@ public class PamFoodOreDictionaryRegistry {
         OreDictionary.registerOre(listAllmeatcooked, ItemRegistry.turkeycookedItem);
         OreDictionary.registerOre(listAllmeatcooked, Items.cooked_rabbit);
         OreDictionary.registerOre(listAllmeatcooked, ItemRegistry.venisoncookedItem);
-        if (ItemRegistry.enabletofuasmeatinRecipes) {
-            OreDictionary.registerOre(listAllmeatcooked, ItemRegistry.firmtofuItem);
-        }
         OreDictionary.registerOre(listAllfishraw, Items.fish);
         OreDictionary.registerOre(listAllfishraw, new ItemStack(Items.fish, 1, 1));
         OreDictionary.registerOre(listAllfishraw, new ItemStack(Items.fish, 1, 2));

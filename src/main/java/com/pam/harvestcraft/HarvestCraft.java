@@ -1,5 +1,6 @@
 package com.pam.harvestcraft;
 
+import com.pam.harvestcraft.addons.Waila;
 import com.pam.harvestcraft.gui.GuiHandler;
 import com.pam.harvestcraft.gui.MarketItems;
 import com.pam.harvestcraft.handlers.WorldLoadEventHandler;
@@ -42,31 +43,14 @@ public class HarvestCraft {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        Config.instance.load(event);
         proxy.preInit(event);
-        Config.instance.configureGardenDrops();
 
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
-
-        PamFoodRecipes.getRecipes();
-        PamOtherRecipes.getRecipes();
-        PamFoodOreDictionaryRegistry.getRegistry();
-        PamOtherOreDictionaryRegistry.getRegistry();
-        PamCropSeedDropRegistry.getSeedDrops();
-        MarketItems.registerItems();
-        PacketHandler.init();
-
-        GameRegistry.registerTileEntity(TileEntityMarket.class, "PamMarket");
-
-        MinecraftForge.EVENT_BUS.register(new WorldLoadEventHandler());
     }
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
         proxy.init(event);
-        GameRegistry.registerWorldGenerator(new BushWorldWorldGen(), 0);
-        GameRegistry.registerWorldGenerator(new FruitTreeWorldGen(), 0);
-        GameRegistry.registerWorldGenerator(new LogFruitTreeWorldGen(), 0);
     }
 
     @EventHandler
