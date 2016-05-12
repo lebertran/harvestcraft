@@ -1,6 +1,7 @@
 package com.pam.harvestcraft.blocks.gardens;
 
 import com.pam.harvestcraft.blocks.BlockRegistry;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -19,7 +20,8 @@ public class ShadedGardenBlock extends BlockBaseGarden {
 
     @Override
     public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
-        return worldIn.getBlockState(pos).getBlock() == Blocks.grass;
+        final Block soilBlock = worldIn.getBlockState(pos.down()).getBlock();
+        return soilBlock.isReplaceable(worldIn, pos) && (soilBlock == Blocks.grass || soilBlock == Blocks.dirt);
     }
 
     public String getName() {

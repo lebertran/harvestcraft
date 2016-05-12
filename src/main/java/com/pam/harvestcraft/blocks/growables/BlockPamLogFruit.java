@@ -47,7 +47,15 @@ public class BlockPamLogFruit extends Block implements IGrowable, PamGrowable {
 
     @Override
     public int quantityDropped(Random random) {
-        return 0;
+        return 1;
+    }
+
+    @Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+        if (getMetaFromState(state) >= MATURE_AGE) {
+            return getCrop(state.getBlock());
+        }
+        return null;
     }
 
     @Override
@@ -113,20 +121,9 @@ public class BlockPamLogFruit extends Block implements IGrowable, PamGrowable {
                 return true;
             }
 
-            ItemStack savedStack;
+            final Block currentBlock = worldIn.getBlockState(pos).getBlock();
 
-            Block currentBlock = worldIn.getBlockState(pos).getBlock();
-
-            if (currentBlock == BlockRegistry.pamCinnamon) {
-                savedStack = new ItemStack(ItemRegistry.cinnamonItem);
-            } else if (currentBlock == BlockRegistry.pamMaple) {
-                savedStack = new ItemStack(ItemRegistry.maplesyrupItem);
-            } else if (currentBlock == BlockRegistry.pamPaperbark) {
-                savedStack = new ItemStack(Items.paper);
-            } else {
-                savedStack = new ItemStack(Items.wheat);
-                FMLLog.bigWarning("currentBlock is not cinnamon, maple or paperbark. This should not happen. Dropping wheat.");
-            }
+            final ItemStack savedStack = new ItemStack(getCrop(currentBlock));
 
             worldIn.setBlockState(pos, state.withProperty(AGE, 0), 3);
             EntityItem entityItem = new EntityItem(worldIn, playerIn.posX, playerIn.posY - 1D, playerIn.posZ, savedStack);
@@ -135,6 +132,19 @@ public class BlockPamLogFruit extends Block implements IGrowable, PamGrowable {
             return true;
         }
         return false;
+    }
+
+    private Item getCrop(Block currentBlock) {
+        if (currentBlock == BlockRegistry.pamCinnamon) {
+            return ItemRegistry.cinnamonItem;
+        } else if (currentBlock == BlockRegistry.pamMaple) {
+            return ItemRegistry.maplesyrupItem;
+        } else if (currentBlock == BlockRegistry.pamPaperbark) {
+            return Items.paper;
+        } else {
+            FMLLog.bigWarning("currentBlock is not cinnamon, maple or paperbark. This should not happen. Returning wheat.");
+            return Items.wheat;
+        }
     }
 
 

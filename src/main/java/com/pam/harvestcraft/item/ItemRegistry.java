@@ -989,9 +989,9 @@ public final class ItemRegistry {
     public static Item registerSeedFood(String registryName, Block crop, boolean isSeed) {
         Item item = new ItemSeedFood(cropfoodRestore, cropsaturationRestore, crop, Blocks.farmland);
 
-        if (isSeed) {
+        if (isSeed && crop != null) {
             seedsMap.put((BlockPamCrop) crop, item);
-        } else {
+        } else if (crop != null) {
             harvestedItemMap.put((BlockPamCrop) crop, item);
         }
 
@@ -1062,7 +1062,7 @@ public final class ItemRegistry {
         garlicItem = registerSeedFood("garlicItem", BlockRegistry.pamgarlicCrop, false);
         gingerItem = registerSeedFood("gingerItem", BlockRegistry.pamgingerCrop, false);
         spiceleafItem = registerSeedFood("spiceleafItem", BlockRegistry.pamspiceleafCrop, false);
-        ediblerootItem = registerSeedFood("ediblerootItem", BlockRegistry.pamspiceleafCrop, false);
+        ediblerootItem = registerItemFood("ediblerootItem", cropfoodRestore, cropsaturationRestore); 
         tealeafItem = registerSeedFood("tealeafItem", BlockRegistry.pamtealeafCrop, false);
         coffeebeanItem = registerSeedFood("coffeebeanItem", BlockRegistry.pamcoffeebeanCrop, false);
         mustardseedsItem = registerSeedFood("mustardseedsItem", BlockRegistry.pammustardseedsCrop, false);

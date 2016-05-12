@@ -5,11 +5,19 @@ import com.pam.harvestcraft.blocks.BlockRegistry;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Enchantments;
 import net.minecraft.item.ItemStack;
+import net.minecraft.stats.StatList;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.event.ForgeEventFactory;
 
 import java.util.*;
 
@@ -33,12 +41,39 @@ public abstract class BlockBaseGarden extends BlockBush {
         return NULL_AABB;
     }
 
+    /**
+     * Overriding this in order to allow dropping the garden when sneaking.
+     */
+    @Override
+    public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te, ItemStack stack) {
+        player.triggerAchievement(StatList.func_188055_a(this));
+        player.addExhaustion(0.025F);
+
+        if (player.isSneaking() || canSilkHarvest(worldIn, pos, state, player) && EnchantmentHelper.getEnchantmentLevel(Enchantments.silkTouch, stack) > 0) {
+            List<ItemStack> items = new ArrayList<>();
+            ItemStack itemstack = createStackedBlock(state);
+
+            if (itemstack != null) {
+                items.add(itemstack);
+            }
+
+            ForgeEventFactory.fireBlockHarvesting(items, worldIn, pos, state, 0, 1.0f, true, player);
+            for (ItemStack item : items) {
+                spawnAsEntity(worldIn, pos, item);
+            }
+        } else {
+            harvesters.set(player);
+            final int i = EnchantmentHelper.getEnchantmentLevel(Enchantments.fortune, stack);
+            dropBlockAsItem(worldIn, pos, state, i);
+            harvesters.set(null);
+        }
+    }
+
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-        List<ItemStack> newStack = new ArrayList<ItemStack>();
+        List<ItemStack> newStack = new ArrayList<>();
         List<ItemStack> ourDrops = drops.get(type);
         Collections.shuffle(ourDrops);
 
-        // Optimize so we're not calling this every time through the for loop...
         int len = Math.min(BlockRegistry.gardendropAmount, ourDrops.size());
 
         for (int i = 0; i < len; i++) {
@@ -55,4 +90,5 @@ public abstract class BlockBaseGarden extends BlockBush {
         }
         return newStack;
     }
+
 }
