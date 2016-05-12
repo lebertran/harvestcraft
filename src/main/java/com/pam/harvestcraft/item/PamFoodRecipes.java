@@ -738,7 +738,7 @@ public class PamFoodRecipes {
         CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(ItemRegistry.gooseberrymilkshakeItem, toolJuicer, listAllmilk, cropGooseberry, Items.snowball));
         CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(ItemRegistry.gooseberrypieItem, toolBakeware, cropGooseberry, listAllsugar, foodDough));
         CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(ItemRegistry.gooseberrysmoothieItem, toolJuicer, cropGooseberry, Items.snowball));
-        CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(ItemRegistry.pineappleyogurtItem, cropGooseberry, foodPlainyogurt));
+        CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(ItemRegistry.gooseberryyogurtItem, cropGooseberry, foodPlainyogurt));
         CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(ItemRegistry.hamsweetpicklesandwichItem, toolCuttingboard, foodSweetpickle, Items.bread, listAllporkcooked, foodMayo));
         CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(ItemRegistry.hushpuppiesItem, toolPot, foodCornmeal, listAllegg, cropOnion, foodOliveoil));
         CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(ItemRegistry.kimchiItem, toolPot, foodSalt, cropCabbage, cropGarlic, cropGinger, cropRadish, cropScallion, listAllspice, cropSesame));
