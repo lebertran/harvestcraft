@@ -1,6 +1,5 @@
 package com.pam.harvestcraft.addons;
 
-import com.pam.harvestcraft.Reference;
 import com.pam.harvestcraft.blocks.growables.BlockPamCrop;
 import com.pam.harvestcraft.blocks.growables.BlockPamFruit;
 import com.pam.harvestcraft.blocks.growables.BlockPamLogFruit;
@@ -10,18 +9,18 @@ import mcp.mobius.waila.api.IWailaDataAccessor;
 import mcp.mobius.waila.api.IWailaDataProvider;
 import mcp.mobius.waila.api.IWailaRegistrar;
 import mcp.mobius.waila.cbcore.LangUtil;
+import net.minecraft.block.BlockBeetroot;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.FMLLog;
 
 import java.util.List;
 
 
-public class WailaHandler implements IWailaDataProvider {
+public class WailaPamHandler implements IWailaDataProvider {
     @Override
     public ItemStack getWailaStack(IWailaDataAccessor accessor, IWailaConfigHandler config) {
         return null;
@@ -34,12 +33,10 @@ public class WailaHandler implements IWailaDataProvider {
 
     @Override
     public List<String> getWailaBody(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
-        if (!config.getConfig("general.showcrop")) return currenttip;
-
-        if (accessor.getBlock() == null || !(accessor.getBlock() instanceof PamGrowable)) {
-            FMLLog.info(Reference.LOG_PREFIX + "Crop block is not of instance PamGrowable.");
+        if (!config.getConfig("general.showcrop") || accessor.getBlock() == null || !(accessor.getBlock() instanceof PamGrowable) ) {
             return currenttip;
         }
+
         currenttip.clear();
 
         float matureAge = ((PamGrowable) accessor.getBlock()).getMatureAge();
@@ -72,8 +69,8 @@ public class WailaHandler implements IWailaDataProvider {
 
     @SuppressWarnings("unused")
     public static void callbackRegister(IWailaRegistrar registrar) {
-        registrar.registerBodyProvider(new WailaHandler(), BlockPamCrop.class);
-        registrar.registerBodyProvider(new WailaHandler(), BlockPamFruit.class);
-        registrar.registerBodyProvider(new WailaHandler(), BlockPamLogFruit.class);
+        registrar.registerBodyProvider(new WailaPamHandler(), BlockPamCrop.class);
+        registrar.registerBodyProvider(new WailaPamHandler(), BlockPamFruit.class);
+        registrar.registerBodyProvider(new WailaPamHandler(), BlockPamLogFruit.class);
     }
 }

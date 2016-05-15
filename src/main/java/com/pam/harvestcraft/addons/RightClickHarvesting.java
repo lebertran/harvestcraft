@@ -4,7 +4,9 @@ import com.pam.harvestcraft.HarvestCraft;
 import com.pam.harvestcraft.blocks.growables.BlockPamFruit;
 import com.pam.harvestcraft.blocks.growables.BlockPamLogFruit;
 import com.pam.harvestcraft.blocks.growables.PamGrowable;
+import net.minecraft.block.BlockCarrot;
 import net.minecraft.block.BlockCrops;
+import net.minecraft.block.BlockPotato;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -75,7 +77,8 @@ public class RightClickHarvesting {
             for (Iterator<ItemStack> iterator = drops.iterator(); iterator.hasNext();) {
                 final ItemStack drop = iterator.next();
                 // Remove a seed, then break.
-                if (! drop.getItem().getClass().equals(crops.getItemDropped(blockState, world.rand, fortune).getClass())) {
+                if (! drop.getItem().getClass().equals(crops.getItemDropped(blockState, world.rand, fortune).getClass())
+                        || crops instanceof BlockCarrot || crops instanceof BlockPotato) {
                     iterator.remove();
                     break;
                 }
@@ -135,7 +138,19 @@ public class RightClickHarvesting {
             return result;
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
-            FMLLog.bigWarning("Error getting crop by reflection");
+            FMLLog.warning("Error getting crop by reflection, next try with superclass.");
+        }
+
+        try {
+            final Method dropMethod = crops.getClass().getSuperclass().getDeclaredMethod("getAge");
+            dropMethod.setAccessible(true);
+
+            final PropertyInteger result = (PropertyInteger) dropMethod.invoke(crops);
+            ageCache.put(crops.getRegistryName().toString(), result);
+            return result;
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+            FMLLog.bigWarning("Final error getting crop by reflection.");
         }
 
         return null;
