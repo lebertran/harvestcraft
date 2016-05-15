@@ -21,9 +21,11 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLLog;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -31,19 +33,41 @@ public class BlockPamLogFruit extends Block implements IGrowable, PamGrowable {
 
     private static final int MATURE_AGE = 2;
     private final BlockPamSapling sapling;
+    private String fruit;
+    private Item fruitItem;
 
     public static final PropertyInteger AGE = PropertyInteger.create("age", 0, MATURE_AGE);
     public String BASE_STAGE_ID = null;
 
-    public BlockPamLogFruit(BlockPamSapling sapling) {
+    public BlockPamLogFruit(BlockPamSapling sapling, String fruit) {
         super(Material.plants);
-        this.setCreativeTab(HarvestCraft.modTab);
         this.setHardness(5);
         this.setTickRandomly(true);
         this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, 0));
         this.sapling = sapling;
+        this.fruit = fruit;
     }
 
+    public BlockPamLogFruit(BlockPamSapling sapling, Item fruit) {
+        super(Material.plants);
+        this.setHardness(5);
+        this.setTickRandomly(true);
+        this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, 0));
+        this.sapling = sapling;
+        this.fruitItem = fruit;
+    }
+
+    public Item getFruit() {
+        if (fruitItem == null) {
+            fruitItem = ItemRegistry.items.containsKey(fruit) ? ItemRegistry.items.get(fruit) : null;
+        }
+
+        if (fruit == null && fruitItem == null) {
+            FMLLog.bigWarning("Cannot get fruit %s.", getUnlocalizedName());
+        }
+
+        return fruitItem;
+    }
     public BlockPamSapling getSapling() {
         return sapling;
     }
@@ -62,14 +86,19 @@ public class BlockPamLogFruit extends Block implements IGrowable, PamGrowable {
     }
 
     @Override
+    public boolean isMature(IBlockState state) {
+        return getMetaFromState(state) >= getMatureAge();
+    }
+
+    @Override
     public int quantityDropped(Random random) {
         return 1;
     }
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        if (getMetaFromState(state) >= MATURE_AGE) {
-            return getCrop(state.getBlock());
+        if (isMature(state)) {
+            return getFruit();
         }
         return null;
     }
@@ -115,8 +144,18 @@ public class BlockPamLogFruit extends Block implements IGrowable, PamGrowable {
     }
 
     @Override
+    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+        final List<ItemStack> drops = new ArrayList<>();
+        if (getMetaFromState(state) >= MATURE_AGE) {
+            drops.add(new ItemStack(getFruit(), 1));
+            drops.add(new ItemStack(getFruit(), 1));
+        }
+        return drops;
+    }
+
+    @Override
     public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient) {
-        return state.getValue(AGE) < 2;
+        return !isMature(state);
     }
 
     @Override
@@ -128,51 +167,5 @@ public class BlockPamLogFruit extends Block implements IGrowable, PamGrowable {
     public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state) {
         this.grow(worldIn, pos, state);
     }
-
-
-    @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
-        if (!HarvestCraft.config.rightclickharvestFruit) return false;
-
-        if (state.getValue(AGE) == MATURE_AGE) {
-            if (worldIn.isRemote) {
-                return true;
-            }
-
-            final Block currentBlock = worldIn.getBlockState(pos).getBlock();
-
-            final ItemStack savedStack = new ItemStack(getCrop(currentBlock));
-
-            worldIn.setBlockState(pos, state.withProperty(AGE, 0), 3);
-            EntityItem entityItem = new EntityItem(worldIn, playerIn.posX, playerIn.posY - 1D, playerIn.posZ, savedStack);
-            worldIn.spawnEntityInWorld(entityItem);
-            entityItem.onCollideWithPlayer(playerIn);
-            return true;
-        }
-        return false;
-    }
-
-    private Item getCrop(Block currentBlock) {
-        if (currentBlock == BlockRegistry.pamCinnamon) {
-            return ItemRegistry.cinnamonItem;
-        } else if (currentBlock == BlockRegistry.pamMaple) {
-            return ItemRegistry.maplesyrupItem;
-        } else if (currentBlock == BlockRegistry.pamPaperbark) {
-            return Items.paper;
-        } else {
-            FMLLog.bigWarning("currentBlock is not cinnamon, maple or paperbark. This should not happen. Returning wheat.");
-            return Items.wheat;
-        }
-    }
-
-
-    @SuppressWarnings({"unchecked", "rawtypes"})
-    @Override
-    public void getSubBlocks(Item itemIn, CreativeTabs tab, List list) {
-        for (int i = 0; i <= MATURE_AGE; i++) {
-            list.add(new ItemStack(itemIn, 1, i));
-        }
-    }
-
 
 }

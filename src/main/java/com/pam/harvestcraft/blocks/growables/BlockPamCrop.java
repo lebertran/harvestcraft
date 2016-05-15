@@ -9,15 +9,9 @@ import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Enchantments;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -28,7 +22,6 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fml.common.FMLLog;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -49,7 +42,6 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
         this.registerName = registerName;
 
         this.setDefaultState(blockState.getBaseState().withProperty(getAge(), 0));
-        this.setCreativeTab(HarvestCraft.modTab);
     }
 
     public String getStageId(int stage) {
@@ -71,7 +63,7 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
     }
 
     @Override
-    protected PropertyInteger getAge() {
+    public PropertyInteger getAge() {
         return AGE;
     }
 
@@ -80,7 +72,7 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
         return MATURE_AGE;
     }
 
-    public boolean isHarvestReady(IBlockState state) {
+    public boolean isMature(IBlockState state) {
         return state.getValue(getAge()) >= MATURE_AGE;
     }
 
@@ -103,7 +95,7 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
 
     @Override
     public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient) {
-        return !isHarvestReady(state);
+        return !isMature(state);
     }
 
     @Override
@@ -141,7 +133,7 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        if (!isHarvestReady(state)) {
+        if (!isMature(state)) {
             return getSeed();
         } else {
             return getCrop();
@@ -172,60 +164,6 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
             }
         }
     }
-    /**
-     * TODO: Move this to a separate file, maybe enabling right-click harvesting also for vanilla crops?
-     */
-    @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
-
-        if (!HarvestCraft.config.rightclickharvestCrop) return false;
-
-        if (isHarvestReady(state)) {
-            if (worldIn.isRemote) {
-                return true;
-            }
-
-            final ItemStack cropItem = new ItemStack(getCrop(), 1);
-            final int fortune = EnchantmentHelper.getEnchantmentLevel(Enchantments.fortune, heldItem);
-            final List<ItemStack> drops = getDrops(worldIn, pos, state, fortune);
-
-            // This removes exactly one seed from drops in order to make this more fair compared to vanilla
-            // as one seed stays planted.
-            for (Iterator<ItemStack> iterator = drops.iterator(); iterator.hasNext();) {
-                final ItemStack drop = iterator.next();
-                if (drop.getItem().getClass().equals(getSeed().getClass())) {
-                    iterator.remove();
-                    break;
-                }
-            }
-
-            worldIn.setBlockState(pos, state.withProperty(AGE, 0), 3);
-
-            for (ItemStack drop : drops) {
-                dropItem(drop, worldIn, pos, playerIn);
-            }
-
-            dropItem(cropItem, worldIn, pos, playerIn);
-
-            return true;
-        }
-        return false;
-    }
-
-    private void dropItem(ItemStack itemStack, World world, BlockPos pos, EntityPlayer player) {
-        final EntityItem entityItem = new EntityItem(world, pos.getX(), pos.getY() - 1D, pos.getZ(), itemStack);
-        world.spawnEntityInWorld(entityItem);
-        entityItem.onCollideWithPlayer(player);
-    }
-
-    @SuppressWarnings({"unchecked", "rawtypes"})
-    @Override
-    public void getSubBlocks(Item itemIn, CreativeTabs tab, List list) {
-        for (int i = 0; i <= MATURE_AGE; i++) {
-            list.add(new ItemStack(itemIn, 1, i));
-        }
-    }
-
 
     @Override
     public EnumPlantType getPlantType(IBlockAccess world, BlockPos pos) {
@@ -320,7 +258,7 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
 
     @Override
     public boolean func_185525_y(IBlockState state) {
-        return isHarvestReady(state);
+        return isMature(state);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.pam.harvestcraft.proxy;
 
 import com.pam.harvestcraft.HarvestCraft;
+import com.pam.harvestcraft.addons.RightClickHarvesting;
 import com.pam.harvestcraft.blocks.BlockRegistry;
 import com.pam.harvestcraft.market.MarketItems;
 import com.pam.harvestcraft.item.*;
@@ -45,5 +46,6 @@ public class CommonProxy {
         GameRegistry.registerTileEntity(TileEntityMarket.class, "PamMarket");
 
         MinecraftForge.EVENT_BUS.register(new LootTableLoadEventHandler());
+        RightClickHarvesting.instance.register();
     }
 }

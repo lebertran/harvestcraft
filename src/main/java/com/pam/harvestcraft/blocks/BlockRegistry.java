@@ -7,6 +7,8 @@ import com.pam.harvestcraft.blocks.growables.BlockPamLogFruit;
 import com.pam.harvestcraft.blocks.growables.ItemBlockFruit;
 import com.pam.harvestcraft.item.ItemRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -136,6 +138,7 @@ public final class BlockRegistry {
     public static BlockPamFruit pamWalnut;
 
     public static ItemBlock marketItemBlock;
+    public static final String marketItemName = "market";
 
     public static void loadBlockRegistry() {
         registerMarket();
@@ -147,9 +150,9 @@ public final class BlockRegistry {
     private static void registerMarket() {
         pamMarket = new BlockPamMarket().setHardness(1.0F).setResistance(1.0F);
         marketItemBlock = new ItemBlock(pamMarket);
-        ItemRegistry.items.add(marketItemBlock);
+        ItemRegistry.items.put(marketItemName, marketItemBlock);
 
-        registerBlock("market", marketItemBlock, pamMarket);
+        registerBlock(marketItemName, marketItemBlock, pamMarket);
     }
 
     private static void registerGardens() {
@@ -227,42 +230,42 @@ public final class BlockRegistry {
     }
 
     private static void registerFruitAndSaplings() {
-        pamApple = registerBlockFruit("pamApple", "apple_sapling", BlockPamSapling.SaplingType.TEMPERATE);
-        pamAlmond = registerBlockFruit("pamAlmond", "almond_sapling", BlockPamSapling.SaplingType.WARM);
-        pamApricot = registerBlockFruit("pamApricot", "apricot_sapling", BlockPamSapling.SaplingType.WARM);
-        pamAvocado = registerBlockFruit("pamAvocado", "avocado_sapling", BlockPamSapling.SaplingType.TEMPERATE);
-        pamBanana = registerBlockFruit("pamBanana", "banana_sapling", BlockPamSapling.SaplingType.WARM);
-        pamCashew = registerBlockFruit("pamCashew", "cashew_sapling", BlockPamSapling.SaplingType.WARM);
-        pamCherry = registerBlockFruit("pamCherry", "cherry_sapling", BlockPamSapling.SaplingType.TEMPERATE);
-        pamChestnut = registerBlockFruit("pamChestnut", "chestnut_sapling", BlockPamSapling.SaplingType.TEMPERATE);
-        pamCinnamon = registerBlockLogFruit("pamCinnamon", "cinnamon_sapling", BlockPamSapling.SaplingType.WARM);
-        pamCoconut = registerBlockFruit("pamCoconut", "coconut_sapling", BlockPamSapling.SaplingType.WARM);
-        pamDate = registerBlockFruit("pamDate", "date_sapling", BlockPamSapling.SaplingType.WARM);
-        pamDragonfruit = registerBlockFruit("pamDragonfruit", "dragonfruit_sapling", BlockPamSapling.SaplingType.WARM);
-        pamDurian = registerBlockFruit("pamDurian", "durian_sapling", BlockPamSapling.SaplingType.WARM);
-        pamFig = registerBlockFruit("pamFig", "fig_sapling", BlockPamSapling.SaplingType.WARM);
-        pamGooseberry = registerBlockFruit("pamGooseberry", "gooseberry_sapling", BlockPamSapling.SaplingType.TEMPERATE);
-        pamGrapefruit = registerBlockFruit("pamGrapefruit", "grapefruit_sapling", BlockPamSapling.SaplingType.WARM);
-        pamLemon = registerBlockFruit("pamLemon", "lemon_sapling", BlockPamSapling.SaplingType.WARM);
-        pamLime = registerBlockFruit("pamLime", "lime_sapling", BlockPamSapling.SaplingType.WARM);
-        pamMaple = registerBlockLogFruit("pamMaple", "maple_sapling", BlockPamSapling.SaplingType.COLD);
-        pamMango = registerBlockFruit("pamMango", "mango_sapling", BlockPamSapling.SaplingType.WARM);
-        pamNutmeg = registerBlockFruit("pamNutmeg", "nutmeg_sapling", BlockPamSapling.SaplingType.TEMPERATE);
-        pamOlive = registerBlockFruit("pamOlive", "olive_sapling", BlockPamSapling.SaplingType.WARM);
-        pamOrange = registerBlockFruit("pamOrange", "orange_sapling", BlockPamSapling.SaplingType.WARM);
-        pamPapaya = registerBlockFruit("pamPapaya", "papaya_sapling", BlockPamSapling.SaplingType.WARM);
-        pamPaperbark = registerBlockLogFruit("pamPaperbark", "paperbark_sapling", BlockPamSapling.SaplingType.WARM);
-        pamPeach = registerBlockFruit("pamPeach", "peach_sapling", BlockPamSapling.SaplingType.WARM);
-        pamPear = registerBlockFruit("pamPear", "pear_sapling", BlockPamSapling.SaplingType.TEMPERATE);
-        pamPecan = registerBlockFruit("pamPecan", "pecan_sapling", BlockPamSapling.SaplingType.WARM);
-        pamPeppercorn = registerBlockFruit("pamPeppercorn", "peppercorn_sapling", BlockPamSapling.SaplingType.WARM);
-        pamPersimmon = registerBlockFruit("pamPersimmon", "persimmon_sapling", BlockPamSapling.SaplingType.WARM);
-        pamPistachio = registerBlockFruit("pamPistachio", "pistachio_sapling", BlockPamSapling.SaplingType.WARM);
-        pamPlum = registerBlockFruit("pamPlum", "plum_sapling", BlockPamSapling.SaplingType.TEMPERATE);
-        pamPomegranate = registerBlockFruit("pamPomegranate", "pomegranate_sapling", BlockPamSapling.SaplingType.WARM);
-        pamStarfruit = registerBlockFruit("pamStarfruit", "starfruit_sapling", BlockPamSapling.SaplingType.WARM);
-        pamVanillabean = registerBlockFruit("pamVanillabean", "vanillabean_sapling", BlockPamSapling.SaplingType.WARM);
-        pamWalnut = registerBlockFruit("pamWalnut", "walnut_sapling", BlockPamSapling.SaplingType.TEMPERATE);
+        pamCinnamon = registerBlockLogFruit("pamCinnamon", "cinnamon_sapling", BlockPamSapling.SaplingType.WARM, "cinnamonItem");
+        pamMaple = registerBlockLogFruit("pamMaple", "maple_sapling", BlockPamSapling.SaplingType.COLD, "maplesyrupItem");
+        pamPaperbark = registerBlockLogFruit("pamPaperbark", "paperbark_sapling", BlockPamSapling.SaplingType.WARM, Items.paper);
+        pamApple = registerBlockFruit("pamApple", "apple_sapling", BlockPamSapling.SaplingType.TEMPERATE, Items.apple);
+        pamAlmond = registerBlockFruit("pamAlmond", "almond_sapling", BlockPamSapling.SaplingType.WARM, "almondItem");
+        pamApricot = registerBlockFruit("pamApricot", "apricot_sapling", BlockPamSapling.SaplingType.WARM, "apricotItem");
+        pamAvocado = registerBlockFruit("pamAvocado", "avocado_sapling", BlockPamSapling.SaplingType.TEMPERATE, "avocadoItem");
+        pamBanana = registerBlockFruit("pamBanana", "banana_sapling", BlockPamSapling.SaplingType.WARM, "bananaItem");
+        pamCashew = registerBlockFruit("pamCashew", "cashew_sapling", BlockPamSapling.SaplingType.WARM, "cashewItem");
+        pamCherry = registerBlockFruit("pamCherry", "cherry_sapling", BlockPamSapling.SaplingType.TEMPERATE, "cherryItem");
+        pamChestnut = registerBlockFruit("pamChestnut", "chestnut_sapling", BlockPamSapling.SaplingType.TEMPERATE, "chestnutItem");
+        pamCoconut = registerBlockFruit("pamCoconut", "coconut_sapling", BlockPamSapling.SaplingType.WARM, "coconutItem");
+        pamDate = registerBlockFruit("pamDate", "date_sapling", BlockPamSapling.SaplingType.WARM, "dateItem");
+        pamDragonfruit = registerBlockFruit("pamDragonfruit", "dragonfruit_sapling", BlockPamSapling.SaplingType.WARM, "dragonfruitItem");
+        pamDurian = registerBlockFruit("pamDurian", "durian_sapling", BlockPamSapling.SaplingType.WARM, "durianItem");
+        pamFig = registerBlockFruit("pamFig", "fig_sapling", BlockPamSapling.SaplingType.WARM, "figItem");
+        pamGooseberry = registerBlockFruit("pamGooseberry", "gooseberry_sapling", BlockPamSapling.SaplingType.TEMPERATE, "gooseberryItem");
+        pamGrapefruit = registerBlockFruit("pamGrapefruit", "grapefruit_sapling", BlockPamSapling.SaplingType.WARM, "grapefruitItem");
+        pamLemon = registerBlockFruit("pamLemon", "lemon_sapling", BlockPamSapling.SaplingType.WARM, "lemonItem");
+        pamLime = registerBlockFruit("pamLime", "lime_sapling", BlockPamSapling.SaplingType.WARM, "limeItem");
+        pamMango = registerBlockFruit("pamMango", "mango_sapling", BlockPamSapling.SaplingType.WARM, "mangoItem");
+        pamNutmeg = registerBlockFruit("pamNutmeg", "nutmeg_sapling", BlockPamSapling.SaplingType.TEMPERATE, "nutmegItem");
+        pamOlive = registerBlockFruit("pamOlive", "olive_sapling", BlockPamSapling.SaplingType.WARM, "oliveItem");
+        pamOrange = registerBlockFruit("pamOrange", "orange_sapling", BlockPamSapling.SaplingType.WARM, "orangeItem");
+        pamPapaya = registerBlockFruit("pamPapaya", "papaya_sapling", BlockPamSapling.SaplingType.WARM, "papayaItem");
+        pamPeach = registerBlockFruit("pamPeach", "peach_sapling", BlockPamSapling.SaplingType.WARM, "peachItem");
+        pamPear = registerBlockFruit("pamPear", "pear_sapling", BlockPamSapling.SaplingType.TEMPERATE, "pearItem");
+        pamPecan = registerBlockFruit("pamPecan", "pecan_sapling", BlockPamSapling.SaplingType.WARM, "pecanItem");
+        pamPeppercorn = registerBlockFruit("pamPeppercorn", "peppercorn_sapling", BlockPamSapling.SaplingType.WARM, "peppercornItem");
+        pamPersimmon = registerBlockFruit("pamPersimmon", "persimmon_sapling", BlockPamSapling.SaplingType.WARM, "persimmonItem");
+        pamPistachio = registerBlockFruit("pamPistachio", "pistachio_sapling", BlockPamSapling.SaplingType.WARM, "pistachioItem");
+        pamPlum = registerBlockFruit("pamPlum", "plum_sapling", BlockPamSapling.SaplingType.TEMPERATE, "plumItem");
+        pamPomegranate = registerBlockFruit("pamPomegranate", "pomegranate_sapling", BlockPamSapling.SaplingType.WARM, "pomegranateItem");
+        pamStarfruit = registerBlockFruit("pamStarfruit", "starfruit_sapling", BlockPamSapling.SaplingType.WARM, "starfruitItem");
+        pamVanillabean = registerBlockFruit("pamVanillabean", "vanillabean_sapling", BlockPamSapling.SaplingType.WARM, "vanillabeanItem");
+        pamWalnut = registerBlockFruit("pamWalnut", "walnut_sapling", BlockPamSapling.SaplingType.TEMPERATE, "walnutItem");
 
         saplings.addAll(logSaplings);
         saplings.addAll(temperateSaplings);
@@ -278,7 +281,7 @@ public final class BlockRegistry {
         return registerBlock(registerName, itemBlock, pamCrop);
     }
 
-    private static BlockPamFruit registerBlockFruit(String registerName, String sapling_name, BlockPamSapling.SaplingType saplingType) {
+    private static BlockPamFruit registerBlockFruit(String registerName, String sapling_name, BlockPamSapling.SaplingType saplingType, String fruit) {
         final BlockPamSapling pamSapling = new BlockPamSapling(sapling_name, saplingType);
         BlockRegistry.registerBlock(sapling_name, pamSapling);
 
@@ -288,7 +291,7 @@ public final class BlockRegistry {
             warmSaplings.add(pamSapling);
         }
 
-        final BlockPamFruit pamFruit = new BlockPamFruit(pamSapling);
+        final BlockPamFruit pamFruit = new BlockPamFruit(pamSapling, fruit);
         final ItemBlock itemBlock = new ItemBlockFruit(pamFruit);
 
         pamSapling.setFruit(pamFruit);
@@ -298,15 +301,56 @@ public final class BlockRegistry {
         return (BlockPamFruit) registerBlock(registerName, itemBlock, pamFruit);
     }
 
-    private static BlockPamLogFruit registerBlockLogFruit(String registerName, String saplingName, BlockPamSapling.SaplingType saplingType) {
+    /**
+     * Only use these for vanilla items.
+     */
+    private static BlockPamFruit registerBlockFruit(String registerName, String sapling_name, BlockPamSapling.SaplingType saplingType, Item fruit) {
+        final BlockPamSapling pamSapling = new BlockPamSapling(sapling_name, saplingType);
+        BlockRegistry.registerBlock(sapling_name, pamSapling);
+
+        if (saplingType.equals(BlockPamSapling.SaplingType.TEMPERATE)) {
+            temperateSaplings.add(pamSapling);
+        } else if (saplingType.equals(BlockPamSapling.SaplingType.WARM)) {
+            warmSaplings.add(pamSapling);
+        }
+
+        final BlockPamFruit pamFruit = new BlockPamFruit(pamSapling, fruit);
+        final ItemBlock itemBlock = new ItemBlockFruit(pamFruit);
+
+        pamSapling.setFruit(pamFruit);
+        fruits.add(pamFruit);
+
+
+        return (BlockPamFruit) registerBlock(registerName, itemBlock, pamFruit);
+    }
+
+    private static BlockPamLogFruit registerBlockLogFruit(String registerName, String saplingName, BlockPamSapling.SaplingType saplingType, String fruit) {
         final BlockPamSapling pamSapling = new BlockPamSapling(saplingName, saplingType);
         BlockRegistry.registerBlock(saplingName, pamSapling);
         logSaplings.add(pamSapling);
 
-        final BlockPamLogFruit pamLogFruit = new BlockPamLogFruit(pamSapling);
+        final BlockPamLogFruit pamLogFruit = new BlockPamLogFruit(pamSapling, fruit);
         final ItemBlock itemBlock = new ItemBlockFruit(pamLogFruit);
 
         logFruits.add(pamLogFruit);
+        pamSapling.setFruit(pamLogFruit);
+
+        return (BlockPamLogFruit) registerBlock(registerName, itemBlock, pamLogFruit);
+    }
+
+    /**
+     * Only use these for vanilla items.
+     */
+    private static BlockPamLogFruit registerBlockLogFruit(String registerName, String saplingName, BlockPamSapling.SaplingType saplingType, Item fruit) {
+        final BlockPamSapling pamSapling = new BlockPamSapling(saplingName, saplingType);
+        BlockRegistry.registerBlock(saplingName, pamSapling);
+        logSaplings.add(pamSapling);
+
+        final BlockPamLogFruit pamLogFruit = new BlockPamLogFruit(pamSapling, fruit);
+        final ItemBlock itemBlock = new ItemBlockFruit(pamLogFruit);
+
+        logFruits.add(pamLogFruit);
+        pamSapling.setFruit(pamLogFruit);
 
         return (BlockPamLogFruit) registerBlock(registerName, itemBlock, pamLogFruit);
     }

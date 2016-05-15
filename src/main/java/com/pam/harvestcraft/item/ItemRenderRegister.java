@@ -7,7 +7,7 @@ import net.minecraft.item.Item;
 public final class ItemRenderRegister {
 
     public static void registerItemRenderer() {
-        for (Item item : ItemRegistry.items) {
+        for (Item item : ItemRegistry.items.values()) {
             register(item);
         }
     }

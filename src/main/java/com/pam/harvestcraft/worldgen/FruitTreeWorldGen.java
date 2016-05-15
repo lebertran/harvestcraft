@@ -223,7 +223,9 @@ public class FruitTreeWorldGen implements IWorldGenerator {
         if ((BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.SNOWY))
                 || (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.MOUNTAIN))
                 || (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.CONIFEROUS))) {
-            generateFruitTree(world, blockPos, BlockRegistry.pamMaple);
+            if (config.mapletreeGeneration) {
+                generateFruitTree(world, blockPos, BlockRegistry.pamMaple);
+            }
         }
 
     }

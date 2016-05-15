@@ -33,7 +33,7 @@ public class LogFruitTreeGen extends WorldGenAbstractTree {
 
         boolean canGenerate = true;
 
-        BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
+        final BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
         if (blockPos.getY() >= 1 && treeTopPos <= 255) {
             for (int iPosY = blockPos.getY(); iPosY <= treeTopPos + 1; ++iPosY) {
                 int k = 1;

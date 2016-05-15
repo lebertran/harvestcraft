@@ -26,7 +26,7 @@ public final class ItemRegistry {
 
     public static final HashMap<BlockPamCrop, Item> seedsMap = new HashMap<>();
     public static final HashMap<BlockPamCrop, Item> harvestedItemMap = new HashMap<>();
-    public static final List<Item> items = new ArrayList<>();
+    public static final HashMap<String, Item> items = new HashMap<>();
 
     // Items
     public static Item cuttingboardItem;
@@ -1585,7 +1585,7 @@ public final class ItemRegistry {
         item.setRegistryName(registryName);
         item.setUnlocalizedName(registryName);
 
-        items.add(item);
+        items.put(registryName, item);
 
         return GameRegistry.register(item);
     }

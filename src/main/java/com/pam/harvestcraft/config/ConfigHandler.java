@@ -68,6 +68,7 @@ public class ConfigHandler {
     // Block configuration variables
     public int gardenRarity;
     public int gardendropAmount;
+    public int gardenSpreadMax;
     public boolean enablegardenSpread;
     public int gardenspreadRate;
     public boolean enablearidgardenGeneration;
@@ -115,8 +116,6 @@ public class ConfigHandler {
     public boolean vanillabeantreeGeneration;
     public boolean walnuttreeGeneration;
     public boolean gooseberrytreeGeneration;
-    public boolean rightclickharvestCrop;
-    public boolean rightclickharvestFruit;
     public boolean enablecropspecialplanting;
 
     // Market configuration
@@ -149,6 +148,7 @@ public class ConfigHandler {
     public int marketcurrencyChicken;
     public int marketcurrencyHorse;
     public int marketcurrencyBonemeal;
+    public boolean enableEasyHarvest;
 
 
     public ConfigHandler(Configuration config) {
@@ -175,6 +175,7 @@ public class ConfigHandler {
 
     private void initGeneralSettings() {
         squiddropCalamari = config.get(CATEGORY_GENERAL, "squiddropCalamari", true).getBoolean();
+        enableEasyHarvest = config.getBoolean("enableEasyHarvest", CATEGORY_GENERAL, true, "Enables harvesting by right-clicking.");
     }
 
     private void initCropSettings() {
@@ -183,7 +184,6 @@ public class ConfigHandler {
         snacksaturation = (float) config.get(CATEGORY_CROPS, "snacksaturation", defaultSaturationSmall).getDouble();
         mealsaturation = (float) config.get(CATEGORY_CROPS, "mealsaturation", defaultSaturationMeal).getDouble();
         meatymealsaturation = (float) config.get(CATEGORY_CROPS, "meatymealsaturation", defaultSaturationMeatyMeal).getDouble();
-        rightclickharvestCrop = config.get(CATEGORY_CROPS, "rightclickharvestCrop", true).getBoolean();
         enablecropspecialplanting = config.get(CATEGORY_CROPS, "enablecropspecialplanting", true).getBoolean();
     }
 
@@ -227,14 +227,14 @@ public class ConfigHandler {
         vanillabeantreeGeneration = config.get(CATEGORY_FRUIT_TREES, "vanillabeantreeGeneration", true).getBoolean();
         walnuttreeGeneration = config.get(CATEGORY_FRUIT_TREES, "walnuttreeGeneration", true).getBoolean();
         gooseberrytreeGeneration = config.get(CATEGORY_FRUIT_TREES, "gooseberrytreeGeneration", true).getBoolean();
-        rightclickharvestFruit = config.get(CATEGORY_FRUIT_TREES, "rightclickharvestFruit", true).getBoolean();
     }
 
     private void initGardenSettings() {
         gardenRarity = config.get(CATEGORY_GARDENS, "gardenRarity", 2).getInt();
         gardendropAmount = config.get(CATEGORY_GARDENS, "gardendropAmount", 3).getInt();
         enablegardenSpread = config.get(CATEGORY_GARDENS, "enablegardenSpread", true).getBoolean();
-        gardenspreadRate = config.get(CATEGORY_GARDENS, "gardenspreadRate", 100).getInt();
+        gardenspreadRate = config.getInt("gardenSpreadRate", CATEGORY_GARDENS, 80, 1, 100, "Garden spread rate. 100 means a garden spawns every tick. 1 means a garden spawns with a probability of 1% per tick.");
+        gardenSpreadMax = config.get(CATEGORY_GARDENS, "gardenspreadMax", 10).getInt();
         enablearidgardenGeneration = config.get(CATEGORY_GARDENS, "enablearidgardenGeneration", true).getBoolean();
         enablefrostgardenGeneration = config.get(CATEGORY_GARDENS, "enablefrostgardenGeneration", true).getBoolean();
         enabletropicalgardenGeneration = config.get(CATEGORY_GARDENS, "enabletropicalgardenGeneration", true).getBoolean();

@@ -2,7 +2,9 @@ package com.pam.harvestcraft.blocks;
 
 import com.pam.harvestcraft.HarvestCraft;
 import com.pam.harvestcraft.blocks.growables.BlockPamFruit;
+import com.pam.harvestcraft.blocks.growables.BlockPamLogFruit;
 import com.pam.harvestcraft.worldgen.FruitTreeGen;
+import com.pam.harvestcraft.worldgen.LogFruitTreeGen;
 import net.minecraft.block.*;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -20,7 +22,7 @@ public class BlockPamSapling extends BlockBush implements IGrowable {
 
     public final String name;
     protected static final AxisAlignedBB SAPLING_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
-    private BlockPamFruit fruit;
+    private Block fruit;
     private final SaplingType saplingType;
 
     public BlockPamSapling(String name, SaplingType saplingType) {
@@ -92,7 +94,6 @@ public class BlockPamSapling extends BlockBush implements IGrowable {
     }
 
     public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-
         if (!TerrainGen.saplingGrowTree(worldIn, rand, pos)) {
             return;
         }
@@ -116,8 +117,15 @@ public class BlockPamSapling extends BlockBush implements IGrowable {
         final IBlockState leaves = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, planks)
                 .withProperty(BlockLeaves.CHECK_DECAY, false);
         final IBlockState fruit = getFruit().getDefaultState();
-        if (!new FruitTreeGen(5, log, leaves, false, fruit).generate(worldIn, rand, pos)) {
-            worldIn.setBlockState(pos, state); //Re-add the sapling if the tree failed to grow
+        if (getFruit() instanceof BlockPamFruit) {
+            if (!new FruitTreeGen(5, log, leaves, false, fruit).generate(worldIn, rand, pos)) {
+                worldIn.setBlockState(pos, state); //Re-add the sapling if the tree failed to grow
+            }
+        } else if (getFruit() instanceof BlockPamLogFruit) {
+            if (!new LogFruitTreeGen(5, log, leaves, fruit).generate(worldIn, rand, pos)) {
+                worldIn.setBlockState(pos, state);
+
+            }
         }
     }
 
@@ -149,11 +157,11 @@ public class BlockPamSapling extends BlockBush implements IGrowable {
     }
 
 
-    public void setFruit(BlockPamFruit fruit) {
+    public void setFruit(Block fruit) {
         this.fruit = fruit;
     }
 
-    public BlockPamFruit getFruit() {
+    public Block getFruit() {
         if (fruit == null) {
             FMLLog.bigWarning("Fruit for sapling %s not found.", getUnlocalizedName());
             return null;

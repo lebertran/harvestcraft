@@ -3,10 +3,12 @@ package com.pam.harvestcraft.blocks.gardens;
 import com.pam.harvestcraft.HarvestCraft;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
+import net.minecraft.block.BlockFlower;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
@@ -29,6 +31,39 @@ public abstract class BlockBaseGarden extends BlockBush {
         super(Material.grass);
         this.type = type;
         this.setCreativeTab(HarvestCraft.modTab);
+        this.setTickRandomly(true);
+    }
+
+    @Override
+    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+        super.updateTick(worldIn, pos, state, rand);
+
+        if (config.enablegardenSpread && rand.nextInt(100 - config.gardenspreadRate) == 0) {
+            int amount = config.gardenSpreadMax;
+
+            for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-4, -1, -4), pos.add(4, 1, 4))) {
+                if (worldIn.getBlockState(blockpos).getBlock() == this) {
+                    --amount;
+
+                    if (amount <= 0) return;
+                }
+            }
+
+            BlockPos newGardenPos = pos.add(rand.nextInt(3) - 1, rand.nextInt(2) - rand.nextInt(2), rand.nextInt(3) - 1);
+
+            for (int k = 0; k < 4; ++k) {
+                if (worldIn.isAirBlock(newGardenPos) && canBlockStay(worldIn, newGardenPos, getDefaultState())) {
+                    pos = newGardenPos;
+                }
+
+                newGardenPos = pos.add(rand.nextInt(3) - 1, rand.nextInt(2) - rand.nextInt(2), rand.nextInt(3) - 1);
+            }
+
+            if (worldIn.getBlockState(newGardenPos).getBlock().isReplaceable(worldIn, newGardenPos) &&
+                    canBlockStay(worldIn, newGardenPos, getDefaultState())) {
+                worldIn.setBlockState(newGardenPos, getDefaultState(), 2);
+            }
+        }
     }
 
     @Override
