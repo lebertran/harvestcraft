@@ -41,6 +41,7 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
     private static final AxisAlignedBB[] CROPS_AABB = new AxisAlignedBB[]{new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.25D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.375D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.625D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.75D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.875D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D)};
 
     public final String registerName;
+    public String BASE_STAGE_ID = null;
 
     public BlockPamCrop(String registerName) {
         super();
@@ -49,6 +50,14 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
 
         this.setDefaultState(blockState.getBaseState().withProperty(getAge(), 0));
         this.setCreativeTab(HarvestCraft.modTab);
+    }
+
+    public String getStageId(int stage) {
+        if (BASE_STAGE_ID == null) {
+            BASE_STAGE_ID = registerName.replaceFirst("pam", "").replace("Crop", "") + "_stage";
+        }
+
+        return BASE_STAGE_ID + stage;
     }
 
     @Override
@@ -168,6 +177,9 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
      */
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+
+        if (!HarvestCraft.config.rightclickharvestCrop) return false;
+
         if (isHarvestReady(state)) {
             if (worldIn.isRemote) {
                 return true;
@@ -258,7 +270,7 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
     @Override
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
 
-        final List<ItemStack> ret = new java.util.ArrayList<ItemStack>();
+        final List<ItemStack> ret = new java.util.ArrayList<>();
 
         final Random rand = world instanceof World ? ((World) world).rand : new Random();
 

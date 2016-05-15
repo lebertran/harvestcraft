@@ -12,6 +12,6 @@ public class ItemBlockFruit extends ItemBlock {
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return ("" + I18n.translateToLocal("harvestcraft." + this.getUnlocalizedNameInefficiently(stack) + ".name")).trim();
+        return (I18n.translateToLocal("harvestcraft." + this.getUnlocalizedNameInefficiently(stack) + ".name")).trim();
     }
 }

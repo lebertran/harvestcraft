@@ -1,7 +1,7 @@
 package com.pam.harvestcraft.blocks.gardens;
 
 import com.pam.harvestcraft.HarvestCraft;
-import com.pam.harvestcraft.blocks.BlockRegistry;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -11,8 +11,6 @@ import net.minecraft.init.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -21,14 +19,21 @@ import net.minecraftforge.event.ForgeEventFactory;
 
 import java.util.*;
 
+import static com.pam.harvestcraft.HarvestCraft.config;
+
 public abstract class BlockBaseGarden extends BlockBush {
-    public static Map<String, List<ItemStack>> drops = new HashMap<String, List<ItemStack>>();
+    public static final Map<String, List<ItemStack>> drops = new HashMap<>();
     private final String type;
 
-    public BlockBaseGarden(String type, Material grass) {
-        super(grass);
+    public BlockBaseGarden(String type) {
+        super(Material.grass);
         this.type = type;
         this.setCreativeTab(HarvestCraft.modTab);
+    }
+
+    @Override
+    public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
+        return worldIn.getBlockState(pos).getBlock().isReplaceable(worldIn, pos);
     }
 
     @Override
@@ -40,6 +45,8 @@ public abstract class BlockBaseGarden extends BlockBush {
     public AxisAlignedBB getSelectedBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
         return NULL_AABB;
     }
+
+    public abstract String getName();
 
     /**
      * Overriding this in order to allow dropping the garden when sneaking.
@@ -69,12 +76,13 @@ public abstract class BlockBaseGarden extends BlockBush {
         }
     }
 
+    @Override
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
         List<ItemStack> newStack = new ArrayList<>();
         List<ItemStack> ourDrops = drops.get(type);
         Collections.shuffle(ourDrops);
 
-        int len = Math.min(BlockRegistry.gardendropAmount, ourDrops.size());
+        int len = Math.min(config.gardendropAmount, ourDrops.size());
 
         for (int i = 0; i < len; i++) {
             ItemStack drop = ourDrops.get(i);
@@ -91,4 +99,10 @@ public abstract class BlockBaseGarden extends BlockBush {
         return newStack;
     }
 
+    @Override
+    public IBlockState getPlant(IBlockAccess world, BlockPos pos) {
+        IBlockState state = world.getBlockState(pos);
+        if (state.getBlock() != this) return getDefaultState();
+        return state;
+    }
 }

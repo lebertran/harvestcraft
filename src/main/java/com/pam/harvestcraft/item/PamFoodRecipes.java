@@ -13,31 +13,33 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 import static com.pam.harvestcraft.item.GeneralOreRegistry.*;
 import static com.pam.harvestcraft.item.PamFoodOreDictionaryRegistry.*;
 import static com.pam.harvestcraft.item.PamOtherOreDictionaryRegistry.*;
+import static com.pam.harvestcraft.HarvestCraft.config;
 
 public class PamFoodRecipes {
-    public static String[] cropName = {"cropAsparagus", "cropBarley", "cropBean", "cropBeet", "cropBroccoli", "cropCauliflower", "cropCelery", "cropCranberry", "cropGarlic", "cropGinger", "cropLeek", "cropLettuce", "cropOats", "cropOnion", "cropParsnip", "cropPeanut", "cropPineapple", "cropRadish", "cropRice", "cropRutabaga", "cropRye", "cropScallion", "cropSoybean", "cropSpiceleaf", "cropSweetpotato", "cropTea", "cropTurnip", "cropWhitemushroom", "cropArtichoke", "cropBellpepper", "cropBlackberry", "cropBlueberry", "cropBrusselsprout", "cropCabbage", "cropCactusfruit", "cropCandleberry", "cropCantaloupe", "cropChilipepper", "cropCoffee", "cropCorn", "cropCotton", "cropCucumber", "cropEggplant", "cropGrape", "cropKiwi", "cropMustard", "cropOkra", "cropPeas", "cropRaspberry", "cropRhubarb", "cropSeaweed", "cropStrawberry", "cropTomato", "cropWintersquash", "cropZucchini", "cropBambooshoot", "cropSpinach", "cropCurryleaf", "cropSesame", "cropWaterchestnut"};
+    public static final String[] cropName = {"cropAsparagus", "cropBarley", "cropBean", "cropBeet", "cropBroccoli", "cropCauliflower", "cropCelery", "cropCranberry", "cropGarlic", "cropGinger", "cropLeek", "cropLettuce", "cropOats", "cropOnion", "cropParsnip", "cropPeanut", "cropPineapple", "cropRadish", "cropRice", "cropRutabaga", "cropRye", "cropScallion", "cropSoybean", "cropSpiceleaf", "cropSweetpotato", "cropTea", "cropTurnip", "cropWhitemushroom", "cropArtichoke", "cropBellpepper", "cropBlackberry", "cropBlueberry", "cropBrusselsprout", "cropCabbage", "cropCactusfruit", "cropCandleberry", "cropCantaloupe", "cropChilipepper", "cropCoffee", "cropCorn", "cropCotton", "cropCucumber", "cropEggplant", "cropGrape", "cropKiwi", "cropMustard", "cropOkra", "cropPeas", "cropRaspberry", "cropRhubarb", "cropSeaweed", "cropStrawberry", "cropTomato", "cropWintersquash", "cropZucchini", "cropBambooshoot", "cropSpinach", "cropCurryleaf", "cropSesame", "cropWaterchestnut"};
 
     public static void registerRecipe(IRecipe recipe) {
         CraftingManager.getInstance().getRecipeList().add(recipe);
     }
 
 
-    public static void getRecipes() {
+    public static void registerRecipes() {
 
         // Sapling recipes
-        for (int i = 0, length = BlockRegistry.PamTemperateSaplings.length; i < length; i++) {
+        for (int i = 0, length = BlockRegistry.temperateSaplings.size(); i < length; i++) {
             registerRecipe(
                     new ShapelessOreRecipe(
-                            BlockRegistry.PamTemperateSaplings[i],
+                            BlockRegistry.temperateSaplings.get(i),
                             ItemRegistry.PamTemperateFruits[i],
                             ItemRegistry.PamTemperateFruits[i],
                             ItemRegistry.PamTemperateFruits[i],
                             new ItemStack(Blocks.sapling, 1, 0))
             );
         }
-        for (int i = 0, length = BlockRegistry.PamWarmSaplings.length; i < length; i++) {
+
+        for (int i = 0, length = BlockRegistry.warmSaplings.size(); i < length; i++) {
             registerRecipe(new ShapelessOreRecipe(
-                    BlockRegistry.PamWarmSaplings[i],
+                    BlockRegistry.warmSaplings.get(i),
                     ItemRegistry.PamWarmFruits[i],
                     ItemRegistry.PamWarmFruits[i],
                     ItemRegistry.PamWarmFruits[i],
@@ -45,35 +47,21 @@ public class PamFoodRecipes {
             );
         }
 
-        registerRecipe(new ShapelessOreRecipe(
-                BlockRegistry.pamcinnamonSapling,
-                ItemRegistry.cinnamonItem,
-                ItemRegistry.cinnamonItem,
-                ItemRegistry.cinnamonItem,
-                new ItemStack(Blocks.sapling, 1, 3)
-        ));
-        
-        registerRecipe(new ShapelessOreRecipe(
-                BlockRegistry.pampaperbarkSapling,
-                Items.paper,
-                Items.paper,
-                Items.paper,
-                new ItemStack(Blocks.sapling, 1, 3)
-        ));
-        
-        registerRecipe(new ShapelessOreRecipe(
-                BlockRegistry.pammapleSapling,
-                ItemRegistry.maplesyrupItem,
-                ItemRegistry.maplesyrupItem,
-                ItemRegistry.maplesyrupItem,
-                new ItemStack(Blocks.sapling, 1, 1)
-        ));
+        for (int i = 0, length = BlockRegistry.logSaplings.size(); i < length; i++) {
+            registerRecipe(new ShapelessOreRecipe(
+                    BlockRegistry.logSaplings.get(i),
+                    ItemRegistry.PamLogFruits[i],
+                    ItemRegistry.PamLogFruits[i],
+                    ItemRegistry.PamLogFruits[i],
+                    new ItemStack(Blocks.sapling, 1, 3)
+            ));
+        }
 
-        CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(BlockRegistry.pampaperbarkSapling, Items.paper, Items.paper, Items.paper, new ItemStack(Blocks.sapling, 1, 3)));
-        CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(BlockRegistry.pammapleSapling, ItemRegistry.maplesyrupItem, ItemRegistry.maplesyrupItem, ItemRegistry.maplesyrupItem, new ItemStack(Blocks.sapling, 1, 1)));
-        if (ItemRegistry.enablecroptoseedRecipe) {
+        CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(BlockRegistry.pamPaperbark.getSapling(), Items.paper, Items.paper, Items.paper, new ItemStack(Blocks.sapling, 1, 3)));
+        CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(BlockRegistry.pamMaple.getSapling(), ItemRegistry.maplesyrupItem, ItemRegistry.maplesyrupItem, ItemRegistry.maplesyrupItem, new ItemStack(Blocks.sapling, 1, 1)));
+        if (config.enablecroptoseedRecipe) {
             for (int i = 0, length = ItemRegistry.PamCropItems.length; i < length; i++) {
-                if ((!BlockRegistry.enablecropspecialplanting) || ((ItemRegistry.PamCropItems[i] != ItemRegistry.cranberryItem) && (ItemRegistry.PamCropItems[i] != ItemRegistry.riceItem) && (ItemRegistry.PamCropItems[i] != ItemRegistry.seaweedItem))) {
+                if ((!config.enablecropspecialplanting) || ((ItemRegistry.PamCropItems[i] != ItemRegistry.cranberryItem) && (ItemRegistry.PamCropItems[i] != ItemRegistry.riceItem) && (ItemRegistry.PamCropItems[i] != ItemRegistry.seaweedItem))) {
                     CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(ItemRegistry.PamSeeds[i], ItemRegistry.PamCropItems[i]));
                 }
             }
@@ -82,7 +70,7 @@ public class PamFoodRecipes {
             CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(new ItemStack(ItemRegistry.PamCropItems[i], 2), cropName[i], cropName[i]));
         }
         CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(new ItemStack(ItemRegistry.sunflowerseedsItem, 2, 0), new ItemStack(Blocks.double_plant, 1, 0), new ItemStack(Blocks.double_plant, 1, 0)));
-        if (ItemRegistry.enablesaltfromwaterbucketrecipe) {
+        if (config.enablesaltfromwaterbucketrecipe) {
             CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(ItemRegistry.saltItem, toolPot, listAllwater));
         }
         CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(ItemRegistry.freshwaterItem, listAllwater));
@@ -91,8 +79,8 @@ public class PamFoodRecipes {
         CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(Items.sugar, toolPot, foodHoneydrop));
         CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(Items.sugar, toolPot, dropHoney));
         CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(Items.fish, listAllfishraw));
-        CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(new ItemStack(ItemRegistry.freshwaterItem, ItemRegistry.freshwaterfrombucket), Items.water_bucket));
-        CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(new ItemStack(ItemRegistry.freshmilkItem, ItemRegistry.freshmilkfrombucket), Items.milk_bucket));
+        CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(new ItemStack(ItemRegistry.freshwaterItem, config.freshwaterfrombucket), Items.water_bucket));
+        CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(new ItemStack(ItemRegistry.freshmilkItem, config.freshmilkfrombucket), Items.milk_bucket));
         CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(Items.cake, 1), "AAA", "BEB", "CCC", 'A', listAllmilk, 'B', listAllsugar, 'C',
                 flourEqualswheat, 'E', listAllegg));
         CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(Items.mushroom_stew, Items.bowl, listAllmushroom, listAllmushroom));

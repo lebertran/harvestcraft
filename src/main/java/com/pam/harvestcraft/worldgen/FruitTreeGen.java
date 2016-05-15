@@ -23,8 +23,8 @@ public class FruitTreeGen extends WorldGenAbstractTree {
     private final IBlockState fruitType;
 
 
-    public FruitTreeGen(boolean notify, int minTreeHeight, IBlockState metaWood, IBlockState metaLeaves, boolean doVinesGrow, IBlockState fruitType) {
-        super(notify);
+    public FruitTreeGen(int minTreeHeight, IBlockState metaWood, IBlockState metaLeaves, boolean doVinesGrow, IBlockState fruitType) {
+        super(true);
         this.minTreeHeight = minTreeHeight;
         this.metaWood = metaWood;
         this.metaLeaves = metaLeaves;

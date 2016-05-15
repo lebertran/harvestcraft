@@ -18,8 +18,8 @@ public class LogFruitTreeGen extends WorldGenAbstractTree {
     private final IBlockState metaLeaves;
     private final IBlockState fruitType;
 
-    public LogFruitTreeGen(boolean notify, int minTreeHeight, IBlockState metaWood, IBlockState metaLeaves, boolean doVinesGrow, IBlockState fruitType) {
-        super(notify);
+    public LogFruitTreeGen(int minTreeHeight, IBlockState metaWood, IBlockState metaLeaves, IBlockState fruitType) {
+        super(true);
         this.minTreeHeight = minTreeHeight;
         this.metaWood = metaWood;
         this.metaLeaves = metaLeaves;

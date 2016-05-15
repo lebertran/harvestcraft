@@ -1,11 +1,14 @@
 package com.pam.harvestcraft.gui;
 
+import com.pam.harvestcraft.market.MarketData;
+import com.pam.harvestcraft.market.MarketItems;
+import com.pam.harvestcraft.market.messages.MessageMarketBuy;
+import com.pam.harvestcraft.market.messages.MessageMarketClosed;
 import com.pam.harvestcraft.proxy.PacketHandler;
 import com.pam.harvestcraft.tileentity.TileEntityMarket;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -16,14 +19,9 @@ import org.lwjgl.opengl.GL12;
 public class GuiMarket extends GuiContainer {
     private static final ResourceLocation gui = new ResourceLocation("harvestcraft:textures/gui/market.png");
 
-    private GuiButton left, right;
-    private GuiButton button_buy;
-
     private int itemNum;
 
-    private ItemStack buySlot;
-    private TileEntityMarket tileEntityMarket;
-    private EntityPlayer player;
+    private final TileEntityMarket tileEntityMarket;
 
     public GuiMarket(InventoryPlayer inventoryplayer, TileEntityMarket tileEntityMarket) {
         super(new ContainerMarket(inventoryplayer, tileEntityMarket));
@@ -40,9 +38,9 @@ public class GuiMarket extends GuiContainer {
         int posX = width / 2 - 48;
         int posY = height / 2 - 48;
 
-        left = new GuiButton(0, posX, posY - 21, 15, 20, "<");
-        right = new GuiButton(1, posX + 16, posY - 21, 15, 20, ">");
-        button_buy = new GuiButton(2, posX, posY + 1, 55, 20, "Buy");
+        GuiButton left = new GuiButton(0, posX, posY - 21, 15, 20, "<");
+        GuiButton right = new GuiButton(1, posX + 16, posY - 21, 15, 20, ">");
+        GuiButton button_buy = new GuiButton(2, posX, posY + 1, 55, 20, "Buy");
 
         buttonList.add(left);
         buttonList.add(right);
@@ -71,7 +69,7 @@ public class GuiMarket extends GuiContainer {
             this.tileEntityMarket.setBrowsingInfo(itemNum);
         }
         if (guibutton.id == 2) {
-            this.buySlot = this.tileEntityMarket.getStackInSlot(0);
+            ItemStack buySlot = this.tileEntityMarket.getStackInSlot(0);
             if (buySlot != null) {
                 MarketData data = MarketItems.getData(itemNum);
                 if (buySlot.getItem() == data.getCurrency().getItem()) {

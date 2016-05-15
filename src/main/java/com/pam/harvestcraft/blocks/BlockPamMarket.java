@@ -27,8 +27,8 @@ public class BlockPamMarket extends BlockContainer {
         return EnumBlockRenderType.MODEL;
     }
 
-    public BlockPamMarket(Material par2Material) {
-        super(par2Material);
+    public BlockPamMarket() {
+        super(Material.wood);
         setStepSound(SoundType.WOOD);
         this.setCreativeTab(HarvestCraft.modTab);
     }
@@ -39,7 +39,7 @@ public class BlockPamMarket extends BlockContainer {
         if ((tile == null) || (playerIn.isSneaking())) {
             return false;
         }
-        System.out.println("Trying to open");
+
         playerIn.openGui(HarvestCraft.instance, 0, worldIn, pos.getX(), pos.getY(), pos.getZ());
         return true;
     }

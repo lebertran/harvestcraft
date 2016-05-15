@@ -30,7 +30,7 @@ public class ContainerMarket extends Container {
 
     public ItemStack transferStackInSlot(EntityPlayer entityPlayer, int slotIndex) {
         ItemStack itemStack = null;
-        Slot slot = (Slot) this.inventorySlots.get(slotIndex);
+        Slot slot = inventorySlots.get(slotIndex);
         if ((slot != null) && (slot.getHasStack())) {
             ItemStack slotStack = slot.getStack();
             itemStack = slotStack.copy();
@@ -65,10 +65,5 @@ public class ContainerMarket extends Container {
         }
 
         return itemStack;
-    }
-
-
-    public void onContainerClosed(EntityPlayer par1EntityPlayer) {
-        super.onContainerClosed(par1EntityPlayer);
     }
 }

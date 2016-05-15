@@ -1,5 +1,6 @@
 package com.pam.harvestcraft.loottables;
 
+import com.pam.harvestcraft.HarvestCraft;
 import com.pam.harvestcraft.item.ItemRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.world.storage.loot.LootEntryItem;
@@ -50,14 +51,16 @@ public class LootHelper {
                 gameplayFishingFishEntries, false));
 
         // LootTable for SQUIDS
-        final ArrayList<LootEntryItem> squidEntries = new ArrayList<>();
-        squidEntries.add(createLootEntryItem(ItemRegistry.calamarirawItem, 50, 0,
-                new LootFunction[]{new SetCount(new LootCondition[]{}, new RandomValueRange(1, 2))},
-                new KilledByPlayer(false)));
+        if (HarvestCraft.config.squiddropCalamari) {
+            final ArrayList<LootEntryItem> squidEntries = new ArrayList<>();
+            squidEntries.add(createLootEntryItem(ItemRegistry.calamarirawItem, 50, 0,
+                    new LootFunction[]{new SetCount(new LootCondition[]{}, new RandomValueRange(1, 2))},
+                    new KilledByPlayer(false)));
 
-        additionalLootPools.add(new CustomLootPool(
-                LootTableList.ENTITIES_SQUID,
-                squidEntries, true));
+            additionalLootPools.add(new CustomLootPool(
+                    LootTableList.ENTITIES_SQUID,
+                    squidEntries, true));
+        }
     }
 
 

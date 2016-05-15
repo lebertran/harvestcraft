@@ -1,11 +1,11 @@
-package com.pam.harvestcraft.gui;
+package com.pam.harvestcraft.market;
 
 import net.minecraft.item.ItemStack;
 
 public class MarketData {
-    final ItemStack item;
-    final ItemStack currency;
-    final int price;
+    private final ItemStack item;
+    private final ItemStack currency;
+    private final int price;
 
     public MarketData(ItemStack item, ItemStack currency, int price) {
         this.item = item;
@@ -14,14 +14,14 @@ public class MarketData {
     }
 
     public ItemStack getItem() {
-        return this.item;
+        return item;
     }
 
     public ItemStack getCurrency() {
-        return this.currency;
+        return currency;
     }
 
     public int getPrice() {
-        return this.price;
+        return price;
     }
 }

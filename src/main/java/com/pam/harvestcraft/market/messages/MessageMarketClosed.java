@@ -1,4 +1,4 @@
-package com.pam.harvestcraft.gui;
+package com.pam.harvestcraft.market.messages;
 
 import com.pam.harvestcraft.tileentity.TileEntityMarket;
 import io.netty.buffer.ByteBuf;
@@ -15,9 +15,11 @@ public class MessageMarketClosed implements IMessage, IMessageHandler<MessageMar
     private int y;
     private int z;
 
+    @SuppressWarnings("unused")
     public MessageMarketClosed() {
     }
 
+    @SuppressWarnings("unused")
     public MessageMarketClosed(int x, int y, int z) {
         this.x = x;
         this.y = y;

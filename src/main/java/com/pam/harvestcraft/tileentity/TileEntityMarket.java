@@ -13,10 +13,10 @@ import java.util.ArrayList;
 public class TileEntityMarket extends TileEntity implements IInventory {
     public int stockNum = 0;
     private ItemStack paySlot = null;
-    private boolean isTrading = false;
 
     //TODO: What?
-    private ArrayList<Integer> something = new ArrayList<Integer>();
+    @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
+    private final ArrayList<Integer> something = new ArrayList<>();
 /* Interface */
     @Override
     public int getFieldCount() {
@@ -54,9 +54,7 @@ public class TileEntityMarket extends TileEntity implements IInventory {
     }
 
     @Override
-    public void clear() {
-
-    }
+    public void clear() {}
 
     @Override
     public ITextComponent getDisplayName() {
@@ -64,15 +62,10 @@ public class TileEntityMarket extends TileEntity implements IInventory {
     }
 
     @Override
-    public void openInventory(EntityPlayer player) {
-
-    }
+    public void openInventory(EntityPlayer player) {}
 
     @Override
-    public void setField(int id, int value) {
-
-    }
-    /* Interface */
+    public void setField(int id, int value) {}
 
     @Override
     public int getSizeInventory() {
@@ -149,14 +142,11 @@ public class TileEntityMarket extends TileEntity implements IInventory {
         this.stockNum = stockNum;
     }
 
-    public boolean isTrading() {
-        return isTrading;
-    }
-
     public void setTrading(boolean isUsing) {
-        this.isTrading = isUsing;
+        boolean isTrading = isUsing;
     }
 
+    @Override
     public int getInventoryStackLimit() {
         return 64;
     }
@@ -165,11 +155,6 @@ public class TileEntityMarket extends TileEntity implements IInventory {
     public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer) {
         return worldObj.getTileEntity(getPos()) == this
                 && par1EntityPlayer.getDistanceSq(getPos().getX() + 0.5D, getPos().getY() + 0.5D, getPos().getZ() + 0.5D) <= 64.0D;
-    }
-
-    @Override
-    public void updateContainingBlockInfo() {
-        super.updateContainingBlockInfo();
     }
 
     @Override

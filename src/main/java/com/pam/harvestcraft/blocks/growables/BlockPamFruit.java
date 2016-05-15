@@ -1,6 +1,7 @@
 package com.pam.harvestcraft.blocks.growables;
 
 import com.pam.harvestcraft.HarvestCraft;
+import com.pam.harvestcraft.blocks.BlockPamSapling;
 import com.pam.harvestcraft.blocks.BlockRegistry;
 import com.pam.harvestcraft.item.ItemRegistry;
 import net.minecraft.block.Block;
@@ -35,14 +36,34 @@ public class BlockPamFruit extends Block implements IGrowable, PamGrowable {
 
     private static final int MATURE_AGE = 2;
 
-    public static final PropertyInteger AGE = PropertyInteger.create("age", 0, MATURE_AGE);
+    private final BlockPamSapling sapling;
 
-    public BlockPamFruit() {
+    public static final PropertyInteger AGE = PropertyInteger.create("age", 0, MATURE_AGE);
+    public String BASE_STAGE_ID = null;
+
+    public BlockPamFruit(BlockPamSapling sapling) {
         super(Material.plants);
         this.setCreativeTab(HarvestCraft.modTab);
         this.setHardness(5);
         this.setTickRandomly(true);
         this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, 0));
+        this.sapling = sapling;
+    }
+
+    public BlockPamSapling getSapling() {
+        if (sapling == null) {
+            FMLLog.bigWarning("Cannot get sapling for fruit %s.", getUnlocalizedName());
+        }
+
+        return sapling;
+    }
+
+    public String getStageId(int stage) {
+        if (BASE_STAGE_ID == null) {
+            BASE_STAGE_ID = getUnlocalizedName().replaceFirst("pam", "").replaceFirst("tile.", "").toLowerCase() + "_stage";
+        }
+
+        return BASE_STAGE_ID + stage;
     }
 
     @Override
@@ -150,6 +171,8 @@ public class BlockPamFruit extends Block implements IGrowable, PamGrowable {
 
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+        if (!HarvestCraft.config.rightclickharvestFruit) return false;
+
         if (state.getValue(AGE) == MATURE_AGE) {
             if (worldIn.isRemote) {
                 return true;

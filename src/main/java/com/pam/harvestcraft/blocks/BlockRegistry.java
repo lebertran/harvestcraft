@@ -5,11 +5,13 @@ import com.pam.harvestcraft.blocks.growables.BlockPamCrop;
 import com.pam.harvestcraft.blocks.growables.BlockPamFruit;
 import com.pam.harvestcraft.blocks.growables.BlockPamLogFruit;
 import com.pam.harvestcraft.blocks.growables.ItemBlockFruit;
+import com.pam.harvestcraft.item.ItemRegistry;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemBlock;
-import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public final class BlockRegistry {
 
@@ -17,17 +19,21 @@ public final class BlockRegistry {
     public static Block pamMarket;
 
     // Garden blocks
-    public static Block aridGardenBlock;
-    public static Block frostGardenBlock;
-    public static Block tropicalGardenBlock;
-    public static Block windyGardenBlock;
-    public static Block shadedGardenBlock;
-    public static Block soggyGardenBlock;
+    public static AridGardenBlock aridGardenBlock;
+    public static FrostGardenBlock frostGardenBlock;
+    public static TropicalGardenBlock tropicalGardenBlock;
+    public static WindyGardenBlock windyGardenBlock;
+    public static ShadedGardenBlock shadedGardenBlock;
+    public static SoggyGardenBlock soggyGardenBlock;
 
-    // Sapling lists
-    public static Block[] PamTemperateSaplings;
-    public static Block[] PamWarmSaplings;
-    public static Block[] PamLogSaplings;
+    public static final ArrayList<BlockPamSapling> temperateSaplings = new ArrayList<>();
+    public static final ArrayList<BlockPamSapling> warmSaplings = new ArrayList<>();
+    public static final ArrayList<BlockPamSapling> logSaplings = new ArrayList<>();
+    public static final ArrayList<BlockPamSapling> saplings = new ArrayList<>();
+    public static final ArrayList<BlockBaseGarden> gardens = new ArrayList<>();
+    public static final ArrayList<BlockPamCrop> crops = new ArrayList<>();
+    public static final ArrayList<BlockPamFruit> fruits = new ArrayList<>();
+    public static final ArrayList<BlockPamLogFruit> logFruits = new ArrayList<>();
 
     // Crops
     public static Block pamblackberryCrop;
@@ -91,261 +97,62 @@ public final class BlockRegistry {
     public static Block pamsesameseedsCrop;
     public static Block pamwaterchestnutCrop;
 
-    // Tree fruits and saplings
-    public static Block pamApple;
-    public static Block pamappleSapling;
-    public static Block pamAlmond;
-    public static Block pamalmondSapling;
-    public static Block pamApricot;
-    public static Block pamapricotSapling;
-    public static Block pamAvocado;
-    public static Block pamavocadoSapling;
-    public static Block pamBanana;
-    public static Block pambananaSapling;
-    public static Block pamCashew;
-    public static Block pamcashewSapling;
-    public static Block pamCherry;
-    public static Block pamcherrySapling;
-    public static Block pamChestnut;
-    public static Block pamchestnutSapling;
-    public static Block pamCinnamon;
-    public static Block pamcinnamonSapling;
-    public static Block pamCoconut;
-    public static Block pamcoconutSapling;
-    public static Block pamDate;
-    public static Block pamdateSapling;
-    public static Block pamDragonfruit;
-    public static Block pamdragonfruitSapling;
-    public static Block pamDurian;
-    public static Block pamdurianSapling;
-    public static Block pamFig;
-    public static Block pamfigSapling;
-    public static Block pamGooseberry;
-    public static Block pamgooseberrySapling;
-    public static Block pamGrapefruit;
-    public static Block pamgrapefruitSapling;
-    public static Block pamLemon;
-    public static Block pamlemonSapling;
-    public static Block pamLime;
-    public static Block pamlimeSapling;
-    public static Block pamMaple;
-    public static Block pammapleSapling;
-    public static Block pamMango;
-    public static Block pammangoSapling;
-    public static Block pamNutmeg;
-    public static Block pamnutmegSapling;
-    public static Block pamOlive;
-    public static Block pamoliveSapling;
-    public static Block pamOrange;
-    public static Block pamorangeSapling;
-    public static Block pamPapaya;
-    public static Block pampapayaSapling;
-    public static Block pamPaperbark;
-    public static Block pampaperbarkSapling;
-    public static Block pamPeach;
-    public static Block pampeachSapling;
-    public static Block pamPear;
-    public static Block pampearSapling;
-    public static Block pamPecan;
-    public static Block pampecanSapling;
-    public static Block pamPeppercorn;
-    public static Block pampeppercornSapling;
-    public static Block pamPersimmon;
-    public static Block pampersimmonSapling;
-    public static Block pamPistachio;
-    public static Block pampistachioSapling;
-    public static Block pamPlum;
-    public static Block pamplumSapling;
-    public static Block pamPomegranate;
-    public static Block pampomegranateSapling;
-    public static Block pamStarfruit;
-    public static Block pamstarfruitSapling;
-    public static Block pamVanillabean;
-    public static Block pamvanillabeanSapling;
-    public static Block pamWalnut;
-    public static Block pamwalnutSapling;
+    // Tree fruits
+    public static BlockPamFruit pamApple;
+    public static BlockPamFruit pamAlmond;
+    public static BlockPamFruit pamApricot;
+    public static BlockPamFruit pamAvocado;
+    public static BlockPamFruit pamBanana;
+    public static BlockPamFruit pamCashew;
+    public static BlockPamFruit pamCherry;
+    public static BlockPamFruit pamChestnut;
+    public static BlockPamLogFruit pamCinnamon;
+    public static BlockPamFruit pamCoconut;
+    public static BlockPamFruit pamDate;
+    public static BlockPamFruit pamDragonfruit;
+    public static BlockPamFruit pamDurian;
+    public static BlockPamFruit pamFig;
+    public static BlockPamFruit pamGooseberry;
+    public static BlockPamFruit pamGrapefruit;
+    public static BlockPamFruit pamLemon;
+    public static BlockPamFruit pamLime;
+    public static BlockPamLogFruit pamMaple;
+    public static BlockPamFruit pamMango;
+    public static BlockPamFruit pamNutmeg;
+    public static BlockPamFruit pamOlive;
+    public static BlockPamFruit pamOrange;
+    public static BlockPamFruit pamPapaya;
+    public static BlockPamLogFruit pamPaperbark;
+    public static BlockPamFruit pamPeach;
+    public static BlockPamFruit pamPear;
+    public static BlockPamFruit pamPecan;
+    public static BlockPamFruit pamPeppercorn;
+    public static BlockPamFruit pamPersimmon;
+    public static BlockPamFruit pamPistachio;
+    public static BlockPamFruit pamPlum;
+    public static BlockPamFruit pamPomegranate;
+    public static BlockPamFruit pamStarfruit;
+    public static BlockPamFruit pamVanillabean;
+    public static BlockPamFruit pamWalnut;
 
     public static ItemBlock marketItemBlock;
 
-    // Block configuration variables
-    public static int gardenRarity;
-    public static int gardendropAmount;
-    public static boolean enablegardenSpread;
-    public static int gardenspreadRate;
-    public static boolean enablearidgardenGeneration;
-    public static boolean enablefrostgardenGeneration;
-    public static boolean enabletropicalgardenGeneration;
-    public static boolean enablewindygardenGeneration;
-    public static boolean enableshadedgardenGeneration;
-    public static boolean enablesoggygardenGeneration;
-    public static int temperatefruittreeRarity;
-    public static int tropicalfruittreeRarity;
-    public static int coniferousfruittreeRarity;
-    public static boolean appletreeGeneration;
-    public static boolean almondtreeGeneration;
-    public static boolean apricottreeGeneration;
-    public static boolean avocadotreeGeneration;
-    public static boolean bananatreeGeneration;
-    public static boolean cashewtreeGeneration;
-    public static boolean cherrytreeGeneration;
-    public static boolean chestnuttreeGeneration;
-    public static boolean cinnamontreeGeneration;
-    public static boolean coconuttreeGeneration;
-    public static boolean datetreeGeneration;
-    public static boolean dragonfruittreeGeneration;
-    public static boolean duriantreeGeneration;
-    public static boolean figtreeGeneration;
-    public static boolean grapefruittreeGeneration;
-    public static boolean lemontreeGeneration;
-    public static boolean limetreeGeneration;
-    public static boolean mapletreeGeneration;
-    public static boolean mangotreeGeneration;
-    public static boolean nutmegtreeGeneration;
-    public static boolean olivetreeGeneration;
-    public static boolean orangetreeGeneration;
-    public static boolean papayatreeGeneration;
-    public static boolean paperbarktreeGeneration;
-    public static boolean peachtreeGeneration;
-    public static boolean peartreeGeneration;
-    public static boolean pecantreeGeneration;
-    public static boolean peppercorntreeGeneration;
-    public static boolean persimmontreeGeneration;
-    public static boolean pistachiotreeGeneration;
-    public static boolean plumtreeGeneration;
-    public static boolean pomegranatetreeGeneration;
-    public static boolean starfruittreeGeneration;
-    public static boolean vanillabeantreeGeneration;
-    public static boolean walnuttreeGeneration;
-    public static boolean gooseberrytreeGeneration;
-    public static boolean rightclickharvestCrop;
-    public static boolean rightclickharvestFruit;
-    public static boolean enablecropspecialplanting;
-
-    // Market configuration
-    public static boolean marketsellSeeds;
-    public static boolean marketselltemperateSaplings;
-    public static boolean marketselltropicalSaplings;
-    public static boolean marketsellconiferousSaplings;
-    public static boolean marketsellPig;
-    public static boolean marketsellSheep;
-    public static boolean marketsellCow;
-    public static boolean marketsellChicken;
-    public static boolean marketsellHorse;
-    public static boolean marketsellBonemeal;
-    public static int marketblockrecipeItem;
-    public static int marketseedPrice;
-    public static int marketsaplingPrice;
-    public static int marketpigPrice;
-    public static int marketsheepPrice;
-    public static int marketcowPrice;
-    public static int marketchickenPrice;
-    public static int markethorsePrice;
-    public static int marketbonemealPrice;
-    public static int marketcurrencySeeds;
-    public static int marketcurrencytemperateSaplings;
-    public static int marketcurrencytropicalSaplings;
-    public static int marketcurrencyconiferousSaplings;
-    public static int marketcurrencyPig;
-    public static int marketcurrencySheep;
-    public static int marketcurrencyCow;
-    public static int marketcurrencyChicken;
-    public static int marketcurrencyHorse;
-    public static int marketcurrencyBonemeal;
-
-
-    public static void initBlockConfig(Configuration config) {
-        gardenRarity = config.get("gardens", "gardenRarity", 2).getInt();
-        gardendropAmount = config.get("gardens", "gardendropAmount", 3).getInt();
-        enablegardenSpread = config.get("gardens", "enablegardenSpread", true).getBoolean(true);
-        gardenspreadRate = config.get("gardens", "gardenspreadRate", 100).getInt();
-        enablearidgardenGeneration = config.get("gardens", "enablearidgardenGeneration", true).getBoolean(true);
-        enablefrostgardenGeneration = config.get("gardens", "enablefrostgardenGeneration", true).getBoolean(true);
-        enabletropicalgardenGeneration = config.get("gardens", "enabletropicalgardenGeneration", true).getBoolean(true);
-        enablewindygardenGeneration = config.get("gardens", "enablewindygardenGeneration", true).getBoolean(true);
-        enableshadedgardenGeneration = config.get("gardens", "enableshadedgardenGeneration", true).getBoolean(true);
-        enablesoggygardenGeneration = config.get("gardens", "enablesoggygardenGeneration", true).getBoolean(true);
-        temperatefruittreeRarity = config.get("fruit trees", "temperatefruittreeRarity", 24).getInt();
-        tropicalfruittreeRarity = config.get("fruit trees", "tropicalfruittreeRarity", 32).getInt();
-        coniferousfruittreeRarity = config.get("fruit trees", "coniferousfruittreeRarity", 24).getInt();
-        appletreeGeneration = config.get("fruit trees", "appletreeGeneration", true).getBoolean(true);
-        almondtreeGeneration = config.get("fruit trees", "almondtreeGeneration", true).getBoolean(true);
-        apricottreeGeneration = config.get("fruit trees", "apricottreeGeneration", true).getBoolean(true);
-        avocadotreeGeneration = config.get("fruit trees", "avocadotreeGeneration", true).getBoolean(true);
-        bananatreeGeneration = config.get("fruit trees", "bananatreeGeneration", true).getBoolean(true);
-        cashewtreeGeneration = config.get("fruit trees", "cashewtreeGeneration", true).getBoolean(true);
-        cherrytreeGeneration = config.get("fruit trees", "cherrytreeGeneration", true).getBoolean(true);
-        chestnuttreeGeneration = config.get("fruit trees", "chestnuttreeGeneration", true).getBoolean(true);
-        cinnamontreeGeneration = config.get("fruit trees", "cinnamontreeGeneration", true).getBoolean(true);
-        coconuttreeGeneration = config.get("fruit trees", "coconuttreeGeneration", true).getBoolean(true);
-        datetreeGeneration = config.get("fruit trees", "datetreeGeneration", true).getBoolean(true);
-        dragonfruittreeGeneration = config.get("fruit trees", "dragonfruittreeGeneration", true).getBoolean(true);
-        duriantreeGeneration = config.get("fruit trees", "duriantreeGeneration", true).getBoolean(true);
-        figtreeGeneration = config.get("fruit trees", "figtreeGeneration", true).getBoolean(true);
-        grapefruittreeGeneration = config.get("fruit trees", "grapefruittreeGeneration", true).getBoolean(true);
-        lemontreeGeneration = config.get("fruit trees", "lemontreeGeneration", true).getBoolean(true);
-        limetreeGeneration = config.get("fruit trees", "limetreeGeneration", true).getBoolean(true);
-        mapletreeGeneration = config.get("fruit trees", "mapletreeGeneration", true).getBoolean(true);
-        mangotreeGeneration = config.get("fruit trees", "mangotreeGeneration", true).getBoolean(true);
-        nutmegtreeGeneration = config.get("fruit trees", "nutmegtreeGeneration", true).getBoolean(true);
-        olivetreeGeneration = config.get("fruit trees", "olivetreeGeneration", true).getBoolean(true);
-        orangetreeGeneration = config.get("fruit trees", "orangetreeGeneration", true).getBoolean(true);
-        papayatreeGeneration = config.get("fruit trees", "papayatreeGeneration", true).getBoolean(true);
-        paperbarktreeGeneration = config.get("fruit trees", "paperbarktreeGeneration", true).getBoolean(true);
-        peachtreeGeneration = config.get("fruit trees", "peachtreeGeneration", true).getBoolean(true);
-        peartreeGeneration = config.get("fruit trees", "peartreeGeneration", true).getBoolean(true);
-        pecantreeGeneration = config.get("fruit trees", "pecantreeGeneration", true).getBoolean(true);
-        peppercorntreeGeneration = config.get("fruit trees", "peppercorntreeGeneration", true).getBoolean(true);
-        persimmontreeGeneration = config.get("fruit trees", "persimmontreeGeneration", true).getBoolean(true);
-        pistachiotreeGeneration = config.get("fruit trees", "pistachiotreeGeneration", true).getBoolean(true);
-        plumtreeGeneration = config.get("fruit trees", "plumtreeGeneration", true).getBoolean(true);
-        pomegranatetreeGeneration = config.get("fruit trees", "pomegranatetreeGeneration", true).getBoolean(true);
-        starfruittreeGeneration = config.get("fruit trees", "starfruittreeGeneration", true).getBoolean(true);
-        vanillabeantreeGeneration = config.get("fruit trees", "vanillabeantreeGeneration", true).getBoolean(true);
-        walnuttreeGeneration = config.get("fruit trees", "walnuttreeGeneration", true).getBoolean(true);
-        gooseberrytreeGeneration = config.get("fruit trees", "gooseberrytreeGeneration", true).getBoolean(true);
-        rightclickharvestCrop = config.get("crops", "rightclickharvestCrop", true).getBoolean(true);
-        rightclickharvestFruit = config.get("fruit trees", "rightclickharvestFruit", true).getBoolean(true);
-        enablecropspecialplanting = config.get("crops", "enablecropspecialplanting", true).getBoolean(true);
-
-        marketsellSeeds = config.get("market sales", "marketsellSeeds", true).getBoolean(true);
-        marketselltemperateSaplings = config.get("market sales", "marketselltemperateSaplings", true).getBoolean(true);
-        marketselltropicalSaplings = config.get("market sales", "marketselltropicalSaplings", true).getBoolean(true);
-        marketsellconiferousSaplings = config.get("market sales", "marketsellconiferousSaplings", true).getBoolean(true);
-        marketsellPig = config.get("market sales", "marketsellPig", true).getBoolean(true);
-        marketsellSheep = config.get("market sales", "marketsellSheep", true).getBoolean(true);
-        marketsellCow = config.get("market sales", "marketsellCow", true).getBoolean(true);
-        marketsellChicken = config.get("market sales", "marketsellChicken", true).getBoolean(true);
-        marketsellHorse = config.get("market sales", "marketsellHorse", true).getBoolean(true);
-        marketsellBonemeal = config.get("market sales", "marketsellBonemeal", true).getBoolean(true);
-        marketblockrecipeItem = config.get("miscellaneous recipes", "marketblockrecipeItem", 0).getInt();
-        marketseedPrice = config.get("market prices", "marketseedPrice", 1).getInt();
-        marketsaplingPrice = config.get("market prices", "marketsaplingPrice", 3).getInt();
-        marketpigPrice = config.get("market prices", "marketpigPrice", 6).getInt();
-        marketsheepPrice = config.get("market prices", "marketsheepPrice", 6).getInt();
-        marketcowPrice = config.get("market prices", "marketcowPrice", 9).getInt();
-        marketchickenPrice = config.get("market prices", "marketchickenPrice", 3).getInt();
-        markethorsePrice = config.get("market prices", "markethorsePrice", 12).getInt();
-        marketbonemealPrice = config.get("market prices", "marketbonemealPrice", 3).getInt();
-        marketcurrencySeeds = config.get("market currency", "marketcurrencySeeds", 0).getInt();
-        marketcurrencytemperateSaplings = config.get("market currency", "marketcurrencytemperateSaplings", 0).getInt();
-        marketcurrencytropicalSaplings = config.get("market currency", "marketcurrencytropicalSaplings", 0).getInt();
-        marketcurrencyconiferousSaplings = config.get("market currency", "marketcurrencyconiferousSaplings", 0).getInt();
-        marketcurrencyPig = config.get("market currency", "marketcurrencyPig", 0).getInt();
-        marketcurrencySheep = config.get("market currency", "marketcurrencySheep", 0).getInt();
-        marketcurrencyCow = config.get("market currency", "marketcurrencyCow", 0).getInt();
-        marketcurrencyChicken = config.get("market currency", "marketcurrencyChicken", 0).getInt();
-        marketcurrencyHorse = config.get("market currency", "marketcurrencyHorse", 0).getInt();
-        marketcurrencyBonemeal = config.get("market currency", "marketcurrencyBonemeal", 0).getInt();
+    public static void loadBlockRegistry() {
+        registerMarket();
+        registerGardens();
+        registerCrops();
+        registerFruitAndSaplings();
     }
 
-    public static void loadBlockRegistry() {
-
-        // Market block
-        pamMarket = new BlockPamMarket(Material.wood).setHardness(1.0F).setResistance(1.0F);
+    private static void registerMarket() {
+        pamMarket = new BlockPamMarket().setHardness(1.0F).setResistance(1.0F);
         marketItemBlock = new ItemBlock(pamMarket);
+        ItemRegistry.items.add(marketItemBlock);
 
         registerBlock("market", marketItemBlock, pamMarket);
+    }
 
+    private static void registerGardens() {
         aridGardenBlock = new AridGardenBlock();
         frostGardenBlock = new FrostGardenBlock();
         tropicalGardenBlock = new TropicalGardenBlock();
@@ -353,6 +160,10 @@ public final class BlockRegistry {
         shadedGardenBlock = new ShadedGardenBlock();
         soggyGardenBlock = new SoggyGardenBlock();
 
+        addGardens(aridGardenBlock, frostGardenBlock, tropicalGardenBlock, windyGardenBlock, shadedGardenBlock, soggyGardenBlock);
+    }
+
+    private static void registerCrops() {
         pamblackberryCrop = registerBlockCrop("pamblackberryCrop");
         pamblueberryCrop = registerBlockCrop("pamblueberryCrop");
         pamcandleberryCrop = registerBlockCrop("pamcandleberryCrop");
@@ -413,105 +224,91 @@ public final class BlockRegistry {
         pamcurryleafCrop = registerBlockCrop("pamcurryleafCrop");
         pamsesameseedsCrop = registerBlockCrop("pamsesameseedsCrop");
         pamwaterchestnutCrop = registerBlockCrop("pamwaterchestnutCrop");
+    }
 
-        pamApple = registerBlockFruit("pamApple");
-        pamappleSapling = new BlockPamSapling("apple_sapling");
-        pamAlmond = registerBlockFruit("pamAlmond");
-        pamalmondSapling = new BlockPamSapling("almond_sapling");
-        pamApricot = registerBlockFruit("pamApricot");
-        pamapricotSapling = new BlockPamSapling("apricot_sapling");
-        pamAvocado = registerBlockFruit("pamAvocado");
-        pamavocadoSapling = new BlockPamSapling("avocado_sapling");
-        pamBanana = registerBlockFruit("pamBanana");
-        pambananaSapling = new BlockPamSapling("banana_sapling");
-        pamCashew = registerBlockFruit("pamCashew");
-        pamcashewSapling = new BlockPamSapling("cashew_sapling");
-        pamCherry = registerBlockFruit("pamCherry");
-        pamcherrySapling = new BlockPamSapling("cherry_sapling");
-        pamChestnut = registerBlockFruit("pamChestnut");
-        pamchestnutSapling = new BlockPamSapling("chestnut_sapling");
-        pamCinnamon = registerBlockLogFruit("pamCinnamon");
-        pamcinnamonSapling = new BlockPamSapling("cinnamon_sapling");
-        pamCoconut = registerBlockFruit("pamCoconut");
-        pamcoconutSapling = new BlockPamSapling("coconut_sapling");
-        pamDate = registerBlockFruit("pamDate");
-        pamdateSapling = new BlockPamSapling("date_sapling");
-        pamDragonfruit = registerBlockFruit("pamDragonfruit");
-        pamdragonfruitSapling = new BlockPamSapling("dragonfruit_sapling");
-        pamDurian = registerBlockFruit("pamDurian");
-        pamdurianSapling = new BlockPamSapling("durian_sapling");
-        pamFig = registerBlockFruit("pamFig");
-        pamfigSapling = new BlockPamSapling("fig_sapling");
-        pamGooseberry = registerBlockFruit("pamGooseberry");
-        pamgooseberrySapling = new BlockPamSapling("gooseberry_sapling");
-        pamGrapefruit = registerBlockFruit("pamGrapefruit");
-        pamgrapefruitSapling = new BlockPamSapling("grapefruit_sapling");
-        pamLemon = registerBlockFruit("pamLemon");
-        pamlemonSapling = new BlockPamSapling("lemon_sapling");
-        pamLime = registerBlockFruit("pamLime");
-        pamlimeSapling = new BlockPamSapling("lime_sapling");
-        pamMaple = registerBlockLogFruit("pamMaple");
-        pammapleSapling = new BlockPamSapling("maple_sapling");
-        pamMango = registerBlockFruit("pamMango");
-        pammangoSapling = new BlockPamSapling("mango_sapling");
-        pamNutmeg = registerBlockFruit("pamNutmeg");
-        pamnutmegSapling = new BlockPamSapling("nutmeg_sapling");
-        pamOlive = registerBlockFruit("pamOlive");
-        pamoliveSapling = new BlockPamSapling("olive_sapling");
-        pamOrange = registerBlockFruit("pamOrange");
-        pamorangeSapling = new BlockPamSapling("orange_sapling");
-        pamPapaya = registerBlockFruit("pamPapaya");
-        pampapayaSapling = new BlockPamSapling("papaya_sapling");
-        pamPaperbark = registerBlockLogFruit("pamPaperbark");
-        pampaperbarkSapling = new BlockPamSapling("paperbark_sapling");
-        pamPeach = registerBlockFruit("pamPeach");
-        pampeachSapling = new BlockPamSapling("peach_sapling");
-        pamPear = registerBlockFruit("pamPear");
-        pampearSapling = new BlockPamSapling("pear_sapling");
-        pamPecan = registerBlockFruit("pamPecan");
-        pampecanSapling = new BlockPamSapling("pecan_sapling");
-        pamPeppercorn = registerBlockFruit("pamPeppercorn");
-        pampeppercornSapling = new BlockPamSapling("peppercorn_sapling");
-        pamPersimmon = registerBlockFruit("pamPersimmon");
-        pampersimmonSapling = new BlockPamSapling("persimmon_sapling");
-        pamPistachio = registerBlockFruit("pamPistachio");
-        pampistachioSapling = new BlockPamSapling("pistachio_sapling");
-        pamPlum = registerBlockFruit("pamPlum");
-        pamplumSapling = new BlockPamSapling("plum_sapling");
-        pamPomegranate = registerBlockFruit("pamPomegranate");
-        pampomegranateSapling = new BlockPamSapling("pomegranate_sapling");
-        pamStarfruit = registerBlockFruit("pamStarfruit");
-        pamstarfruitSapling = new BlockPamSapling("starfruit_sapling");
-        pamVanillabean = registerBlockFruit("pamVanillabean");
-        pamvanillabeanSapling = new BlockPamSapling("vanillabean_sapling");
-        pamWalnut = registerBlockFruit("pamWalnut");
-        pamwalnutSapling = new BlockPamSapling("walnut_sapling");
+    private static void registerFruitAndSaplings() {
+        pamApple = registerBlockFruit("pamApple", "apple_sapling", BlockPamSapling.SaplingType.TEMPERATE);
+        pamAlmond = registerBlockFruit("pamAlmond", "almond_sapling", BlockPamSapling.SaplingType.WARM);
+        pamApricot = registerBlockFruit("pamApricot", "apricot_sapling", BlockPamSapling.SaplingType.WARM);
+        pamAvocado = registerBlockFruit("pamAvocado", "avocado_sapling", BlockPamSapling.SaplingType.TEMPERATE);
+        pamBanana = registerBlockFruit("pamBanana", "banana_sapling", BlockPamSapling.SaplingType.WARM);
+        pamCashew = registerBlockFruit("pamCashew", "cashew_sapling", BlockPamSapling.SaplingType.WARM);
+        pamCherry = registerBlockFruit("pamCherry", "cherry_sapling", BlockPamSapling.SaplingType.TEMPERATE);
+        pamChestnut = registerBlockFruit("pamChestnut", "chestnut_sapling", BlockPamSapling.SaplingType.TEMPERATE);
+        pamCinnamon = registerBlockLogFruit("pamCinnamon", "cinnamon_sapling", BlockPamSapling.SaplingType.WARM);
+        pamCoconut = registerBlockFruit("pamCoconut", "coconut_sapling", BlockPamSapling.SaplingType.WARM);
+        pamDate = registerBlockFruit("pamDate", "date_sapling", BlockPamSapling.SaplingType.WARM);
+        pamDragonfruit = registerBlockFruit("pamDragonfruit", "dragonfruit_sapling", BlockPamSapling.SaplingType.WARM);
+        pamDurian = registerBlockFruit("pamDurian", "durian_sapling", BlockPamSapling.SaplingType.WARM);
+        pamFig = registerBlockFruit("pamFig", "fig_sapling", BlockPamSapling.SaplingType.WARM);
+        pamGooseberry = registerBlockFruit("pamGooseberry", "gooseberry_sapling", BlockPamSapling.SaplingType.TEMPERATE);
+        pamGrapefruit = registerBlockFruit("pamGrapefruit", "grapefruit_sapling", BlockPamSapling.SaplingType.WARM);
+        pamLemon = registerBlockFruit("pamLemon", "lemon_sapling", BlockPamSapling.SaplingType.WARM);
+        pamLime = registerBlockFruit("pamLime", "lime_sapling", BlockPamSapling.SaplingType.WARM);
+        pamMaple = registerBlockLogFruit("pamMaple", "maple_sapling", BlockPamSapling.SaplingType.COLD);
+        pamMango = registerBlockFruit("pamMango", "mango_sapling", BlockPamSapling.SaplingType.WARM);
+        pamNutmeg = registerBlockFruit("pamNutmeg", "nutmeg_sapling", BlockPamSapling.SaplingType.TEMPERATE);
+        pamOlive = registerBlockFruit("pamOlive", "olive_sapling", BlockPamSapling.SaplingType.WARM);
+        pamOrange = registerBlockFruit("pamOrange", "orange_sapling", BlockPamSapling.SaplingType.WARM);
+        pamPapaya = registerBlockFruit("pamPapaya", "papaya_sapling", BlockPamSapling.SaplingType.WARM);
+        pamPaperbark = registerBlockLogFruit("pamPaperbark", "paperbark_sapling", BlockPamSapling.SaplingType.WARM);
+        pamPeach = registerBlockFruit("pamPeach", "peach_sapling", BlockPamSapling.SaplingType.WARM);
+        pamPear = registerBlockFruit("pamPear", "pear_sapling", BlockPamSapling.SaplingType.TEMPERATE);
+        pamPecan = registerBlockFruit("pamPecan", "pecan_sapling", BlockPamSapling.SaplingType.WARM);
+        pamPeppercorn = registerBlockFruit("pamPeppercorn", "peppercorn_sapling", BlockPamSapling.SaplingType.WARM);
+        pamPersimmon = registerBlockFruit("pamPersimmon", "persimmon_sapling", BlockPamSapling.SaplingType.WARM);
+        pamPistachio = registerBlockFruit("pamPistachio", "pistachio_sapling", BlockPamSapling.SaplingType.WARM);
+        pamPlum = registerBlockFruit("pamPlum", "plum_sapling", BlockPamSapling.SaplingType.TEMPERATE);
+        pamPomegranate = registerBlockFruit("pamPomegranate", "pomegranate_sapling", BlockPamSapling.SaplingType.WARM);
+        pamStarfruit = registerBlockFruit("pamStarfruit", "starfruit_sapling", BlockPamSapling.SaplingType.WARM);
+        pamVanillabean = registerBlockFruit("pamVanillabean", "vanillabean_sapling", BlockPamSapling.SaplingType.WARM);
+        pamWalnut = registerBlockFruit("pamWalnut", "walnut_sapling", BlockPamSapling.SaplingType.TEMPERATE);
 
-        // Assign saplings to arrays
-        PamTemperateSaplings = new Block[]{pamappleSapling, pamavocadoSapling, pamcherrySapling, pamchestnutSapling, pamnutmegSapling, pampearSapling, pamplumSapling, pamwalnutSapling, pamgooseberrySapling};
-        PamWarmSaplings = new Block[]{pamalmondSapling, pamapricotSapling, pambananaSapling, pamcashewSapling, pamcoconutSapling, pamdateSapling, pamdragonfruitSapling, pamdurianSapling, pamfigSapling, pamgrapefruitSapling, pamlemonSapling, pamlimeSapling, pammangoSapling, pamoliveSapling, pamorangeSapling, pampapayaSapling, pampeachSapling, pampecanSapling, pampeppercornSapling, pampersimmonSapling, pampistachioSapling, pampomegranateSapling, pamstarfruitSapling, pamvanillabeanSapling};
-        PamLogSaplings = new Block[]{pamcinnamonSapling, pammapleSapling, pampaperbarkSapling};
+        saplings.addAll(logSaplings);
+        saplings.addAll(temperateSaplings);
+        saplings.addAll(warmSaplings);
     }
 
     private static Block registerBlockCrop(String registerName) {
-        final Block pamCrop = new BlockPamCrop(registerName);
+        final BlockPamCrop pamCrop = new BlockPamCrop(registerName);
         final ItemBlock itemBlock = new ItemBlockFruit(pamCrop);
+
+        crops.add(pamCrop);
 
         return registerBlock(registerName, itemBlock, pamCrop);
     }
 
-    private static Block registerBlockFruit(String registerName) {
-        final Block pamFruit = new BlockPamFruit();
+    private static BlockPamFruit registerBlockFruit(String registerName, String sapling_name, BlockPamSapling.SaplingType saplingType) {
+        final BlockPamSapling pamSapling = new BlockPamSapling(sapling_name, saplingType);
+        BlockRegistry.registerBlock(sapling_name, pamSapling);
+
+        if (saplingType.equals(BlockPamSapling.SaplingType.TEMPERATE)) {
+            temperateSaplings.add(pamSapling);
+        } else if (saplingType.equals(BlockPamSapling.SaplingType.WARM)) {
+            warmSaplings.add(pamSapling);
+        }
+
+        final BlockPamFruit pamFruit = new BlockPamFruit(pamSapling);
         final ItemBlock itemBlock = new ItemBlockFruit(pamFruit);
 
-        return registerBlock(registerName, itemBlock, pamFruit);
+        pamSapling.setFruit(pamFruit);
+        fruits.add(pamFruit);
+
+
+        return (BlockPamFruit) registerBlock(registerName, itemBlock, pamFruit);
     }
 
-    private static Block registerBlockLogFruit(String registerName) {
-        final Block pamLogFruit = new BlockPamLogFruit();
+    private static BlockPamLogFruit registerBlockLogFruit(String registerName, String saplingName, BlockPamSapling.SaplingType saplingType) {
+        final BlockPamSapling pamSapling = new BlockPamSapling(saplingName, saplingType);
+        BlockRegistry.registerBlock(saplingName, pamSapling);
+        logSaplings.add(pamSapling);
+
+        final BlockPamLogFruit pamLogFruit = new BlockPamLogFruit(pamSapling);
         final ItemBlock itemBlock = new ItemBlockFruit(pamLogFruit);
 
-        return registerBlock(registerName, itemBlock, pamLogFruit);
+        logFruits.add(pamLogFruit);
+
+        return (BlockPamLogFruit) registerBlock(registerName, itemBlock, pamLogFruit);
     }
 
     private static Block registerBlock(String registerName, ItemBlock itemBlock, Block block) {
@@ -527,8 +324,12 @@ public final class BlockRegistry {
         return block;
     }
 
-    public static Block registerBlock(String registerName, Block block) {
+    public static void registerBlock(String registerName, Block block) {
         final ItemBlock itemBlock = new ItemBlock(block);
-        return registerBlock(registerName, itemBlock, block);
+        registerBlock(registerName, itemBlock, block);
+    }
+
+    public static void addGardens(BlockBaseGarden... gardensToAdd) {
+        gardens.addAll(Arrays.asList(gardensToAdd));
     }
 }

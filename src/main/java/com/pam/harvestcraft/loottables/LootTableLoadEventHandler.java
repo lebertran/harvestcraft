@@ -1,7 +1,6 @@
 package com.pam.harvestcraft.loottables;
 
 import net.minecraftforge.event.LootTableLoadEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class LootTableLoadEventHandler {
