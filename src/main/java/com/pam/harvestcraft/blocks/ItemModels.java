@@ -33,26 +33,26 @@ public class ItemModels {
             registerItemModels(getItem(garden), new ItemModelList("gardens/").add(0, garden.getName()));
         }
 
-        for (BlockPamCrop crop : BlockRegistry.crops) {
+        for (BlockPamCrop crop : CropRegistry.getCrops().values()) {
             registerItemModels(getItem(crop), new ItemModelList("crops/")
                     .add(0, crop.getStageId(0))
                     .add(1, crop.getStageId(1))
                     .add(2, crop.getStageId(2))
                     .add(3, crop.getStageId(3)));
         }
-        for (BlockPamSapling sapling : BlockRegistry.saplings) {
+        for (BlockPamSapling sapling : FruitRegistry.getSaplings()) {
             registerItemModels(getItem(sapling), new ItemModelList("saplings/")
                     .add(0, sapling.getName()));
         }
 
-        for (BlockPamFruit fruit : BlockRegistry.fruits) {
+        for (BlockPamFruit fruit : FruitRegistry.fruits) {
             registerItemModels(getItem(fruit), new ItemModelList("fruits/")
                     .add(0, fruit.getStageId(0))
                     .add(1, fruit.getStageId(1))
                     .add(2, fruit.getStageId(2)));
         }
 
-        for (BlockPamLogFruit fruit : BlockRegistry.logFruits) {
+        for (BlockPamLogFruit fruit : FruitRegistry.logFruits.values()) {
             registerItemModels(getItem(fruit), new ItemModelList("fruits/")
                     .add(0, fruit.getStageId(0))
                     .add(1, fruit.getStageId(1))

@@ -1,6 +1,7 @@
 package com.pam.harvestcraft.item;
 
-import com.pam.harvestcraft.blocks.BlockRegistry;
+import com.pam.harvestcraft.blocks.CropRegistry;
+import com.pam.harvestcraft.blocks.FruitRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -47,13 +48,13 @@ public class PamOtherOreDictionaryRegistry {
         OreDictionary.registerOre(toolMixingbowl,  ItemRegistry.mixingbowlItem);
         OreDictionary.registerOre(toolJuicer,  ItemRegistry.juicerItem);
 
-        OreDictionary.registerOre(cropCotton,  ItemRegistry.cottonItem);
-        OreDictionary.registerOre(seedCotton,  ItemRegistry.cottonseedItem);
+        OreDictionary.registerOre(cropCotton, CropRegistry.getFood(CropRegistry.COTTON));
+        OreDictionary.registerOre(seedCotton,  CropRegistry.getSeed(CropRegistry.COTTON));
         OreDictionary.registerOre(materialCloth,  ItemRegistry.wovencottonItem);
 
-        OreDictionary.registerOre(cropCandle,  ItemRegistry.candleberryItem);
-        OreDictionary.registerOre(cropCandleberry,  ItemRegistry.candleberryItem);
-        OreDictionary.registerOre(seedCandleberry,  ItemRegistry.candleberryseedItem);
+        OreDictionary.registerOre(cropCandle,   CropRegistry.getFood(CropRegistry.CANDLEBERRY));
+        OreDictionary.registerOre(cropCandleberry,  CropRegistry.getFood(CropRegistry.CANDLEBERRY));
+        OreDictionary.registerOre(seedCandleberry,  CropRegistry.getSeed(CropRegistry.CANDLEBERRY));
 
         OreDictionary.registerOre(dustSalt,  ItemRegistry.saltItem);
         OreDictionary.registerOre(itemSalt,  ItemRegistry.saltItem);
@@ -65,8 +66,8 @@ public class PamOtherOreDictionaryRegistry {
         OreDictionary.registerOre(flowerYellow,  Blocks.yellow_flower);
 
         OreDictionary.registerOre(blockTorch,  Blocks.torch);
-        OreDictionary.registerOre(logWood,  BlockRegistry.pamMaple);
-        OreDictionary.registerOre(logWood,  BlockRegistry.pamPaperbark);
-        OreDictionary.registerOre(logWood,  BlockRegistry.pamCinnamon);
+        OreDictionary.registerOre(logWood, FruitRegistry.getLogFruit(FruitRegistry.MAPLE));
+        OreDictionary.registerOre(logWood, FruitRegistry.getLogFruit(FruitRegistry.PAPERBARK));
+        OreDictionary.registerOre(logWood, FruitRegistry.getLogFruit(FruitRegistry.CINNAMON));
     }
 }

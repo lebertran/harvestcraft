@@ -2,7 +2,7 @@ package com.pam.harvestcraft.market.messages;
 
 import com.pam.harvestcraft.market.MarketData;
 import com.pam.harvestcraft.market.MarketItems;
-import com.pam.harvestcraft.tileentity.TileEntityMarket;
+import com.pam.harvestcraft.market.TileEntityMarket;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -62,7 +62,7 @@ public class MessageMarketBuy implements IMessage, IMessageHandler<MessageMarket
             if (message.shouldClear) {
                 tileEntityMarket.clearInventory();
             } else {
-                tileEntityMarket.takeEmeraldFromSlot(price);
+                tileEntityMarket.takeCurrencyFromSlot(price);
             }
 
             final EntityItem var14 = new EntityItem(player.worldObj, player.posX, player.posY + 1.0D, player.posZ, data.getItem().copy());

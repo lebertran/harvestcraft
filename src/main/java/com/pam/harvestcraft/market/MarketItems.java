@@ -1,8 +1,8 @@
 package com.pam.harvestcraft.market;
 
 import com.pam.harvestcraft.HarvestCraft;
-import com.pam.harvestcraft.blocks.BlockRegistry;
-import com.pam.harvestcraft.item.ItemRegistry;
+import com.pam.harvestcraft.blocks.CropRegistry;
+import com.pam.harvestcraft.blocks.FruitRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.passive.*;
@@ -111,18 +111,18 @@ public class MarketItems {
     private static void registerConiferousSaplings() {
         final ItemStack currency = getCurrency(HarvestCraft.config.marketcurrencyconiferousSaplings, CurrencyType.SAPLING);
 
-        registerItems(new MarketData(new ItemStack(BlockRegistry.pamMaple.getSapling(), 1), currency, HarvestCraft.config.marketsaplingPrice));
+        registerItems(new MarketData(new ItemStack(FruitRegistry.getSapling(FruitRegistry.MAPLE), 1), currency, HarvestCraft.config.marketsaplingPrice));
         registerItems(new MarketData(new ItemStack(Blocks.sapling, 1, 1), currency, HarvestCraft.config.marketsaplingPrice));
     }
 
     private static void registerTropicalSaplings() {
         final ItemStack currency = getCurrency(HarvestCraft.config.marketcurrencytropicalSaplings, CurrencyType.SAPLING);
 
-        for (Block sapling : BlockRegistry.warmSaplings) {
+        for (Block sapling : FruitRegistry.warmSaplings.values()) {
             registerItems(new MarketData(new ItemStack(sapling, 1), currency, HarvestCraft.config.marketsaplingPrice));
         }
-        registerItems(new MarketData(new ItemStack(BlockRegistry.pamCinnamon.getSapling(), 1), currency, HarvestCraft.config.marketsaplingPrice));
-        registerItems(new MarketData(new ItemStack(BlockRegistry.pamPaperbark.getSapling(), 1), currency, HarvestCraft.config.marketsaplingPrice));
+        registerItems(new MarketData(new ItemStack(FruitRegistry.getSapling(FruitRegistry.CINNAMON), 1), currency, HarvestCraft.config.marketsaplingPrice));
+        registerItems(new MarketData(new ItemStack(FruitRegistry.getSapling(FruitRegistry.PAPERBARK), 1), currency, HarvestCraft.config.marketsaplingPrice));
         registerItems(new MarketData(new ItemStack(Blocks.sapling, 1, 3), currency, HarvestCraft.config.marketsaplingPrice));
         registerItems(new MarketData(new ItemStack(Blocks.sapling, 1, 4), currency, HarvestCraft.config.marketsaplingPrice));
     }
@@ -130,7 +130,7 @@ public class MarketItems {
     private static void registerTemperateSaplings() {
         final ItemStack currency = getCurrency(HarvestCraft.config.marketcurrencytemperateSaplings, CurrencyType.SAPLING);
 
-        for (Block sapling : BlockRegistry.temperateSaplings) {
+        for (Block sapling : FruitRegistry.temperateSaplings.values()) {
             registerItems(new MarketData(new ItemStack(sapling, 1), currency, HarvestCraft.config.marketsaplingPrice));
         }
 
@@ -142,7 +142,7 @@ public class MarketItems {
     private static void registerSeeds() {
         final ItemStack currency = getCurrency(HarvestCraft.config.marketcurrencySeeds, CurrencyType.SEEDS);
 
-        for (Item seed : ItemRegistry.PamSeeds) {
+        for (Item seed : CropRegistry.getSeeds().values()) {
             registerItems(new MarketData(new ItemStack(seed), currency, HarvestCraft.config.marketseedPrice));
 
         }

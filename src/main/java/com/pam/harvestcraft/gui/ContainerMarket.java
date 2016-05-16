@@ -1,6 +1,6 @@
 package com.pam.harvestcraft.gui;
 
-import com.pam.harvestcraft.tileentity.TileEntityMarket;
+import com.pam.harvestcraft.market.TileEntityMarket;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;

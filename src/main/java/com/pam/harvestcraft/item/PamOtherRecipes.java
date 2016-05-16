@@ -1,6 +1,8 @@
 package com.pam.harvestcraft.item;
 
 import com.pam.harvestcraft.blocks.BlockRegistry;
+import com.pam.harvestcraft.blocks.CropRegistry;
+import com.pam.harvestcraft.blocks.FruitRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -84,8 +86,7 @@ public class PamOtherRecipes {
 
 
         //Cotton Seed & Switch Recipes
-        GameRegistry.addRecipe(new ShapelessOreRecipe(ItemRegistry.cottonseedItem, ItemRegistry.cottonItem));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ItemRegistry.cottonItem, 2), cropCotton, cropCotton));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(CropRegistry.getCrop(CropRegistry.COTTON), 2), cropCotton, cropCotton));
 
         //Woven Cloth Recipes
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Items.string, 2), cropCotton, cropCotton, cropCotton));
@@ -100,7 +101,7 @@ public class PamOtherRecipes {
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.leather_leggings, 1), "XXX", "X X", "X X", 'X', ItemRegistry.wovencottonItem));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.leather_boots, 1), "X X", "X X", 'X', ItemRegistry.wovencottonItem));
 
-        GameRegistry.addRecipe(new ShapelessOreRecipe(ItemRegistry.candleberryseedItem, ItemRegistry.candleberryItem));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(CropRegistry.getSeed(CropRegistry.CANDLEBERRY), CropRegistry.getFood(CropRegistry.CANDLEBERRY)));
 
         // Random Recipes
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Items.slime_ball, 1), foodJellyfishraw));
@@ -109,9 +110,9 @@ public class PamOtherRecipes {
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Blocks.lit_pumpkin, 1), GeneralOreRegistry.cropPumpkin, blockTorch));
 
         //Logs
-        GameRegistry.addShapedRecipe(new ItemStack(Blocks.planks, 4, 1), "L", 'L', new ItemStack(BlockRegistry.pamMaple));
-        GameRegistry.addShapedRecipe(new ItemStack(Blocks.planks, 4, 3), "L", 'L', new ItemStack(BlockRegistry.pamPaperbark));
-        GameRegistry.addShapedRecipe(new ItemStack(Blocks.planks, 4, 3), "L", 'L', new ItemStack(BlockRegistry.pamCinnamon));
+        GameRegistry.addShapedRecipe(new ItemStack(Blocks.planks, 4, 1), "L", 'L', new ItemStack(FruitRegistry.getFood(FruitRegistry.MAPLE)));
+        GameRegistry.addShapedRecipe(new ItemStack(Blocks.planks, 4, 3), "L", 'L', new ItemStack(FruitRegistry.getFood(FruitRegistry.PAPERBARK)));
+        GameRegistry.addShapedRecipe(new ItemStack(Blocks.planks, 4, 3), "L", 'L', new ItemStack(FruitRegistry.getFood(FruitRegistry.CINNAMON)));
     }
 
 }

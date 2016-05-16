@@ -124,32 +124,29 @@ public class RightClickHarvesting {
 
     // Reflection :(
     private PropertyInteger getAge(BlockCrops crops) {
-
         if (ageCache.containsKey(crops.getRegistryName().toString())) {
             return ageCache.get(crops.getRegistryName().toString());
         }
 
         try {
-            final Method dropMethod = crops.getClass().getDeclaredMethod("getAge");
+            final Method dropMethod = crops.getClass().getDeclaredMethod("func_185524_e");
             dropMethod.setAccessible(true);
 
             final PropertyInteger result = (PropertyInteger) dropMethod.invoke(crops);
             ageCache.put(crops.getRegistryName().toString(), result);
             return result;
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
-            FMLLog.warning("Error getting crop by reflection, next try with superclass.");
+            FMLLog.info("Error getting crop by reflection, next try with superclass.");
         }
 
         try {
-            final Method dropMethod = crops.getClass().getSuperclass().getDeclaredMethod("getAge");
+            final Method dropMethod = crops.getClass().getSuperclass().getDeclaredMethod("func_185524_e");
             dropMethod.setAccessible(true);
 
             final PropertyInteger result = (PropertyInteger) dropMethod.invoke(crops);
             ageCache.put(crops.getRegistryName().toString(), result);
             return result;
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
             FMLLog.bigWarning("Final error getting crop by reflection.");
         }
 

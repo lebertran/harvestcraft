@@ -41,8 +41,11 @@ minecraft {
     replace 'PROP:NAME', config.mod_name
     replace 'PROP:VERSION', config.version
 
-    useDepAts = true
+    //useDepAts = true
+
+    //ats ('harvestcraft_at.cfg')
 }
+
 
 repositories {
     maven {

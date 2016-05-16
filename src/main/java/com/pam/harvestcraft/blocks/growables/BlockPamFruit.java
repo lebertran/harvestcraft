@@ -1,6 +1,5 @@
 package com.pam.harvestcraft.blocks.growables;
 
-import com.pam.harvestcraft.HarvestCraft;
 import com.pam.harvestcraft.blocks.BlockPamSapling;
 import com.pam.harvestcraft.item.ItemRegistry;
 import net.minecraft.block.Block;
@@ -9,7 +8,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

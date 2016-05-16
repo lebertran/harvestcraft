@@ -1,8 +1,5 @@
 package com.pam.harvestcraft.addons;
 
-import com.pam.harvestcraft.blocks.growables.BlockPamCrop;
-import com.pam.harvestcraft.blocks.growables.BlockPamFruit;
-import com.pam.harvestcraft.blocks.growables.BlockPamLogFruit;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import mcp.mobius.waila.api.IWailaDataProvider;

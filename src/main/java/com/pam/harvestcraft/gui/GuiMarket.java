@@ -5,7 +5,7 @@ import com.pam.harvestcraft.market.MarketItems;
 import com.pam.harvestcraft.market.messages.MessageMarketBuy;
 import com.pam.harvestcraft.market.messages.MessageMarketClosed;
 import com.pam.harvestcraft.proxy.PacketHandler;
-import com.pam.harvestcraft.tileentity.TileEntityMarket;
+import com.pam.harvestcraft.market.TileEntityMarket;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.RenderHelper;
@@ -35,12 +35,12 @@ public class GuiMarket extends GuiContainer {
 
         buttonList.clear();
 
-        int posX = width / 2 - 48;
-        int posY = height / 2 - 48;
+        final int posX = width / 2 - 48;
+        final int posY = height / 2 - 48;
 
-        GuiButton left = new GuiButton(0, posX, posY - 21, 15, 20, "<");
-        GuiButton right = new GuiButton(1, posX + 16, posY - 21, 15, 20, ">");
-        GuiButton button_buy = new GuiButton(2, posX, posY + 1, 55, 20, "Buy");
+        final GuiButton left = new GuiButton(0, posX, posY - 21, 15, 20, "<");
+        final GuiButton right = new GuiButton(1, posX + 16, posY - 21, 15, 20, ">");
+        final GuiButton button_buy = new GuiButton(2, posX, posY + 1, 55, 20, "Buy");
 
         buttonList.add(left);
         buttonList.add(right);
@@ -71,7 +71,7 @@ public class GuiMarket extends GuiContainer {
         if (guibutton.id == 2) {
             ItemStack buySlot = this.tileEntityMarket.getStackInSlot(0);
             if (buySlot != null) {
-                MarketData data = MarketItems.getData(itemNum);
+                final MarketData data = MarketItems.getData(itemNum);
                 if (buySlot.getItem() == data.getCurrency().getItem()) {
                     if (buySlot.getItemDamage() == data.getCurrency().getItemDamage()) {
                         int price = data.getPrice();

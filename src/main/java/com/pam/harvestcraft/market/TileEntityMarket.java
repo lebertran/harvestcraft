@@ -1,4 +1,4 @@
-package com.pam.harvestcraft.tileentity;
+package com.pam.harvestcraft.market;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -14,13 +14,9 @@ public class TileEntityMarket extends TileEntity implements IInventory {
     public int stockNum = 0;
     private ItemStack paySlot = null;
 
-    //TODO: What?
-    @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
-    private final ArrayList<Integer> something = new ArrayList<>();
-/* Interface */
     @Override
     public int getFieldCount() {
-        return something.size();
+        return 0;
     }
 
     @Override
@@ -45,13 +41,11 @@ public class TileEntityMarket extends TileEntity implements IInventory {
 
     @Override
     public int getField(int id) {
-        return something.get(id);
+        return 0;
     }
 
     @Override
-    public void closeInventory(EntityPlayer player) {
-        setTrading(false);
-    }
+    public void closeInventory(EntityPlayer player) {}
 
     @Override
     public void clear() {}
@@ -111,7 +105,7 @@ public class TileEntityMarket extends TileEntity implements IInventory {
         this.markDirty();
     }
 
-    public void takeEmeraldFromSlot(int price) {
+    public void takeCurrencyFromSlot(int price) {
         if (this.paySlot != null) {
             this.paySlot.stackSize -= price;
         }
@@ -140,10 +134,6 @@ public class TileEntityMarket extends TileEntity implements IInventory {
 
     public void setBrowsingInfo(int stockNum) {
         this.stockNum = stockNum;
-    }
-
-    public void setTrading(boolean isUsing) {
-        boolean isTrading = isUsing;
     }
 
     @Override

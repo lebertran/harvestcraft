@@ -1,6 +1,7 @@
 package com.pam.harvestcraft.loottables;
 
 import com.pam.harvestcraft.HarvestCraft;
+import com.pam.harvestcraft.blocks.CropRegistry;
 import com.pam.harvestcraft.item.ItemRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.world.storage.loot.LootEntryItem;
@@ -19,7 +20,7 @@ public class LootHelper {
     static {
         // LootTable for GAMEPLAY_FISHING_JUNK
         final ArrayList<LootEntryItem> gameplayFishingJunkEntries = new ArrayList<>();
-        gameplayFishingJunkEntries.add(createLootEntryItem(ItemRegistry.seaweedItem, 10, 0));
+        gameplayFishingJunkEntries.add(createLootEntryItem(CropRegistry.getFood(CropRegistry.SEAWEED), 10, 0));
 
         additionalLootPools.add(new CustomLootPool(
                 LootTableList.GAMEPLAY_FISHING_JUNK,

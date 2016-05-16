@@ -3,10 +3,12 @@ package com.pam.harvestcraft.proxy;
 import com.pam.harvestcraft.HarvestCraft;
 import com.pam.harvestcraft.addons.RightClickHarvesting;
 import com.pam.harvestcraft.blocks.BlockRegistry;
+import com.pam.harvestcraft.blocks.CropRegistry;
+import com.pam.harvestcraft.blocks.FruitRegistry;
 import com.pam.harvestcraft.market.MarketItems;
 import com.pam.harvestcraft.item.*;
 import com.pam.harvestcraft.loottables.LootTableLoadEventHandler;
-import com.pam.harvestcraft.tileentity.TileEntityMarket;
+import com.pam.harvestcraft.market.TileEntityMarket;
 import com.pam.harvestcraft.worldgen.BushWorldWorldGen;
 import com.pam.harvestcraft.worldgen.FruitTreeWorldGen;
 import net.minecraftforge.common.MinecraftForge;
@@ -18,6 +20,9 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class CommonProxy {
 
     public void preInit(FMLPreInitializationEvent e) {
+        CropRegistry.registerCrops();
+        FruitRegistry.registerFruits();
+
         BlockRegistry.loadBlockRegistry();
         ItemRegistry.loadItemRegistry();
 

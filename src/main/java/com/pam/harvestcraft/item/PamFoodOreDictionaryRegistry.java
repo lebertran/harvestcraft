@@ -1,6 +1,8 @@
 package com.pam.harvestcraft.item;
 
 import com.pam.harvestcraft.HarvestCraft;
+import com.pam.harvestcraft.blocks.CropRegistry;
+import com.pam.harvestcraft.blocks.FruitRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -803,7 +805,7 @@ public class PamFoodOreDictionaryRegistry {
 
     public static void getRegistry() {
 
-        for (Item seed: ItemRegistry.PamSeeds) {
+        for (Item seed: CropRegistry.getSeeds().values()) {
             OreDictionary.registerOre(listAllseed, seed);
         }
 
@@ -845,41 +847,41 @@ public class PamFoodOreDictionaryRegistry {
                 Items.carrot,
                 Items.potato,
                 Blocks.pumpkin,
-                ItemRegistry.asparagusItem,
-                ItemRegistry.beanItem,
-                ItemRegistry.beetItem,
+                CropRegistry.getFood(CropRegistry.ASPARAGUS),
+                CropRegistry.getFood(CropRegistry.BEAN),
+                CropRegistry.getFood(CropRegistry.BEET),
                 Items.beetroot, 
-                ItemRegistry.broccoliItem, 
-                ItemRegistry.cauliflowerItem, 
-                ItemRegistry.celeryItem, 
-                ItemRegistry.leekItem, 
-                ItemRegistry.lettuceItem, 
-                ItemRegistry.onionItem, 
-                ItemRegistry.parsnipItem, 
-                ItemRegistry.radishItem, 
-                ItemRegistry.rutabagaItem, 
-                ItemRegistry.scallionItem, 
-                ItemRegistry.soybeanItem, 
-                ItemRegistry.sweetpotatoItem, 
-                ItemRegistry.turnipItem, 
-                ItemRegistry.whitemushroomItem, 
-                ItemRegistry.artichokeItem, 
-                ItemRegistry.bellpepperItem, 
-                ItemRegistry.brusselsproutItem, 
-                ItemRegistry.cabbageItem, 
-                ItemRegistry.cornItem, 
-                ItemRegistry.cucumberItem, 
-                ItemRegistry.eggplantItem, 
-                ItemRegistry.okraItem, 
-                ItemRegistry.peasItem, 
-                ItemRegistry.rhubarbItem, 
-                ItemRegistry.seaweedItem, 
-                ItemRegistry.tomatoItem, 
-                ItemRegistry.wintersquashItem, 
-                ItemRegistry.zucchiniItem, 
-                ItemRegistry.bambooshootItem, 
-                ItemRegistry.spinachItem, 
-                ItemRegistry.waterchestnutItem);
+                CropRegistry.getFood(CropRegistry.BROCCOLI), 
+                CropRegistry.getFood(CropRegistry.CAULIFLOWER), 
+                CropRegistry.getFood(CropRegistry.CELERY), 
+                CropRegistry.getFood(CropRegistry.LEEK), 
+                CropRegistry.getFood(CropRegistry.LETTUCE), 
+                CropRegistry.getFood(CropRegistry.ONION), 
+                CropRegistry.getFood(CropRegistry.PARSNIP), 
+                CropRegistry.getFood(CropRegistry.RADISH), 
+                CropRegistry.getFood(CropRegistry.RUTABAGA), 
+                CropRegistry.getFood(CropRegistry.SCALLION), 
+                CropRegistry.getFood(CropRegistry.SOYBEAN), 
+                CropRegistry.getFood(CropRegistry.SWEETPOTATO), 
+                CropRegistry.getFood(CropRegistry.TURNIP), 
+                CropRegistry.getFood(CropRegistry.WHITEMUSHROOM), 
+                CropRegistry.getFood(CropRegistry.ARTICHOKE), 
+                CropRegistry.getFood(CropRegistry.BELLPEPPER), 
+                CropRegistry.getFood(CropRegistry.BRUSSELSPROUT), 
+                CropRegistry.getFood(CropRegistry.CABBAGE), 
+                CropRegistry.getFood(CropRegistry.CORN), 
+                CropRegistry.getFood(CropRegistry.CUCUMBER), 
+                CropRegistry.getFood(CropRegistry.EGGPLANT), 
+                CropRegistry.getFood(CropRegistry.OKRA), 
+                CropRegistry.getFood(CropRegistry.PEAS), 
+                CropRegistry.getFood(CropRegistry.RHUBARB), 
+                CropRegistry.getFood(CropRegistry.SEAWEED), 
+                CropRegistry.getFood(CropRegistry.TOMATO), 
+                CropRegistry.getFood(CropRegistry.WINTERSQUASH), 
+                CropRegistry.getFood(CropRegistry.ZUCCHINI), 
+                CropRegistry.getFood(CropRegistry.BAMBOOSHOOT), 
+                CropRegistry.getFood(CropRegistry.SPINACH), 
+                CropRegistry.getFood(CropRegistry.WATERCHESTNUT));
 
         OreDictionary.registerOre(listAllchickenraw, Items.chicken);
         OreDictionary.registerOre(listAllegg, Items.egg);
@@ -911,7 +913,7 @@ public class PamFoodOreDictionaryRegistry {
         OreDictionary.registerOre(flourEqualswheat, ItemRegistry.flourItem);
         OreDictionary.registerOre(listAllmushroom, Blocks.red_mushroom);
         OreDictionary.registerOre(listAllmushroom, Blocks.brown_mushroom);
-        OreDictionary.registerOre(listAllmushroom, ItemRegistry.whitemushroomItem);
+        OreDictionary.registerOre(listAllmushroom, CropRegistry.getFood(CropRegistry.WHITEMUSHROOM));
         OreDictionary.registerOre(cropApple, Items.apple);
         OreDictionary.registerOre(listAllfruit, Items.apple);
         OreDictionary.registerOre(listAllfruit, Items.chorus_fruit);
@@ -965,277 +967,274 @@ public class PamFoodOreDictionaryRegistry {
         OreDictionary.registerOre(listAllsugar, Items.sugar);
         OreDictionary.registerOre(listAllsugar, ItemRegistry.honeyItem);
 
-        OreDictionary.registerOre(listAllgreenveggie, ItemRegistry.asparagusItem);
-        OreDictionary.registerOre(cropAsparagus, ItemRegistry.asparagusItem);
-        OreDictionary.registerOre(seedAsparagus, ItemRegistry.asparagusseedItem);
-                OreDictionary.registerOre(foodGrilledasparagus, ItemRegistry.grilledasparagusItem);
-        OreDictionary.registerOre(listAllgrain, ItemRegistry.barleyItem);
-        OreDictionary.registerOre(cropBarley, ItemRegistry.barleyItem);
-        OreDictionary.registerOre(seedBarley, ItemRegistry.barleyseedItem);
-                OreDictionary.registerOre(cropBean, ItemRegistry.beanItem);
-
-        OreDictionary.registerOre(seedBean, ItemRegistry.beanseedItem);
-                OreDictionary.registerOre(cropBeet, ItemRegistry.beetItem);
-
+        OreDictionary.registerOre(listAllgreenveggie, CropRegistry.getFood(CropRegistry.ASPARAGUS));
+        OreDictionary.registerOre(cropAsparagus, CropRegistry.getFood(CropRegistry.ASPARAGUS));
+        OreDictionary.registerOre(seedAsparagus, CropRegistry.getSeed(CropRegistry.ASPARAGUS));
+        OreDictionary.registerOre(foodGrilledasparagus, ItemRegistry.grilledasparagusItem);
+        OreDictionary.registerOre(listAllgrain, CropRegistry.getFood(CropRegistry.BARLEY));
+        OreDictionary.registerOre(cropBarley, CropRegistry.getFood(CropRegistry.BARLEY));
+        OreDictionary.registerOre(seedBarley, CropRegistry.getSeed(CropRegistry.BARLEY));
+        OreDictionary.registerOre(cropBean, CropRegistry.getFood(CropRegistry.BEAN));
+        OreDictionary.registerOre(seedBean, CropRegistry.getSeed(CropRegistry.BEAN));
+        OreDictionary.registerOre(cropBeet, CropRegistry.getFood(CropRegistry.BEET));
         OreDictionary.registerOre(cropBeet, Items.beetroot);
-
-        OreDictionary.registerOre(seedBeet, ItemRegistry.beetseedItem);
+        OreDictionary.registerOre(seedBeet, CropRegistry.getSeed(CropRegistry.BEET));
                 OreDictionary.registerOre(seedBeet, Items.beetroot_seeds);
-                OreDictionary.registerOre(cropBroccoli, ItemRegistry.broccoliItem);
+                OreDictionary.registerOre(cropBroccoli, CropRegistry.getFood(CropRegistry.BROCCOLI));
 
-        OreDictionary.registerOre(listAllgreenveggie, ItemRegistry.broccoliItem);
-        OreDictionary.registerOre(seedBroccoli, ItemRegistry.broccoliseedItem);
-                OreDictionary.registerOre(cropCauliflower, ItemRegistry.cauliflowerItem);
+        OreDictionary.registerOre(listAllgreenveggie, CropRegistry.getFood(CropRegistry.BROCCOLI));
+        OreDictionary.registerOre(seedBroccoli, CropRegistry.getSeed(CropRegistry.BROCCOLI));
+                OreDictionary.registerOre(cropCauliflower, CropRegistry.getFood(CropRegistry.CAULIFLOWER));
 
-        OreDictionary.registerOre(seedCauliflower, ItemRegistry.cauliflowerseedItem);
-                OreDictionary.registerOre(cropCelery, ItemRegistry.celeryItem);
+        OreDictionary.registerOre(seedCauliflower, CropRegistry.getSeed(CropRegistry.CAULIFLOWER));
+                OreDictionary.registerOre(cropCelery, CropRegistry.getFood(CropRegistry.CELERY));
 
-        OreDictionary.registerOre(listAllgreenveggie, ItemRegistry.celeryItem);
-        OreDictionary.registerOre(seedCelery, ItemRegistry.celeryseedItem);
-                OreDictionary.registerOre(listAllberry, ItemRegistry.cranberryItem);
-        OreDictionary.registerOre(listAllfruit, ItemRegistry.cranberryItem);
-        OreDictionary.registerOre(cropCranberry, ItemRegistry.cranberryItem);
-        OreDictionary.registerOre(seedCranberry, ItemRegistry.cranberryseedItem);
-                OreDictionary.registerOre(cropGarlic, ItemRegistry.garlicItem);
-        OreDictionary.registerOre(listAllherb, ItemRegistry.garlicItem);
-        OreDictionary.registerOre(seedGarlic, ItemRegistry.garlicseedItem);
-                OreDictionary.registerOre(cropGinger, ItemRegistry.gingerItem);
-        OreDictionary.registerOre(listAllspice, ItemRegistry.gingerItem);
-        OreDictionary.registerOre(seedGinger, ItemRegistry.gingerseedItem);
-                OreDictionary.registerOre(cropLeek, ItemRegistry.leekItem);
+        OreDictionary.registerOre(listAllgreenveggie, CropRegistry.getFood(CropRegistry.CELERY));
+        OreDictionary.registerOre(seedCelery, CropRegistry.getSeed(CropRegistry.CELERY));
+                OreDictionary.registerOre(listAllberry, CropRegistry.getFood(CropRegistry.CRANBERRY));
+        OreDictionary.registerOre(listAllfruit, CropRegistry.getFood(CropRegistry.CRANBERRY));
+        OreDictionary.registerOre(cropCranberry, CropRegistry.getFood(CropRegistry.CRANBERRY));
+        OreDictionary.registerOre(seedCranberry, CropRegistry.getSeed(CropRegistry.CRANBERRY));
+                OreDictionary.registerOre(cropGarlic, CropRegistry.getFood(CropRegistry.GARLIC));
+        OreDictionary.registerOre(listAllherb, CropRegistry.getFood(CropRegistry.GARLIC));
+        OreDictionary.registerOre(seedGarlic, CropRegistry.getSeed(CropRegistry.GARLIC));
+                OreDictionary.registerOre(cropGinger, CropRegistry.getFood(CropRegistry.GINGER));
+        OreDictionary.registerOre(listAllspice, CropRegistry.getFood(CropRegistry.GINGER));
+        OreDictionary.registerOre(seedGinger, CropRegistry.getSeed(CropRegistry.GINGER));
+                OreDictionary.registerOre(cropLeek, CropRegistry.getFood(CropRegistry.LEEK));
 
-        OreDictionary.registerOre(seedLeek, ItemRegistry.leekseedItem);
-                OreDictionary.registerOre(cropLettuce, ItemRegistry.lettuceItem);
+        OreDictionary.registerOre(seedLeek, CropRegistry.getSeed(CropRegistry.LEEK));
+                OreDictionary.registerOre(cropLettuce, CropRegistry.getFood(CropRegistry.LETTUCE));
 
-        OreDictionary.registerOre(listAllgreenveggie, ItemRegistry.lettuceItem);
-        OreDictionary.registerOre(seedLettuce, ItemRegistry.lettuceseedItem);
-                OreDictionary.registerOre(cropOats, ItemRegistry.oatsItem);
-        OreDictionary.registerOre(listAllgrain, ItemRegistry.oatsItem);
-        OreDictionary.registerOre(seedOats, ItemRegistry.oatsseedItem);
-                OreDictionary.registerOre(cropOnion, ItemRegistry.onionItem);
+        OreDictionary.registerOre(listAllgreenveggie, CropRegistry.getFood(CropRegistry.LETTUCE));
+        OreDictionary.registerOre(seedLettuce, CropRegistry.getSeed(CropRegistry.LETTUCE));
+                OreDictionary.registerOre(cropOats, CropRegistry.getFood(CropRegistry.OATS));
+        OreDictionary.registerOre(listAllgrain, CropRegistry.getFood(CropRegistry.OATS));
+        OreDictionary.registerOre(seedOats, CropRegistry.getSeed(CropRegistry.OATS));
+                OreDictionary.registerOre(cropOnion, CropRegistry.getFood(CropRegistry.ONION));
 
-        OreDictionary.registerOre(seedOnion, ItemRegistry.onionseedItem);
-                OreDictionary.registerOre(cropParsnip, ItemRegistry.parsnipItem);
+        OreDictionary.registerOre(seedOnion, CropRegistry.getSeed(CropRegistry.ONION));
+                OreDictionary.registerOre(cropParsnip, CropRegistry.getFood(CropRegistry.PARSNIP));
 
-        OreDictionary.registerOre(listAllrootveggie, ItemRegistry.parsnipItem);
-        OreDictionary.registerOre(seedParsnip, ItemRegistry.parsnipseedItem);
-                OreDictionary.registerOre(listAllnut, ItemRegistry.peanutItem);
-        OreDictionary.registerOre(cropPeanut, ItemRegistry.peanutItem);
-        OreDictionary.registerOre(seedPeanut, ItemRegistry.peanutseedItem);
-                OreDictionary.registerOre(cropPineapple, ItemRegistry.pineappleItem);
-        OreDictionary.registerOre(listAllfruit, ItemRegistry.pineappleItem);
-        OreDictionary.registerOre(seedPineapple, ItemRegistry.pineappleseedItem);
-                OreDictionary.registerOre(cropRadish, ItemRegistry.radishItem);
+        OreDictionary.registerOre(listAllrootveggie, CropRegistry.getFood(CropRegistry.PARSNIP));
+        OreDictionary.registerOre(seedParsnip, CropRegistry.getSeed(CropRegistry.PARSNIP));
+                OreDictionary.registerOre(listAllnut, CropRegistry.getFood(CropRegistry.PEANUT));
+        OreDictionary.registerOre(cropPeanut, CropRegistry.getFood(CropRegistry.PEANUT));
+        OreDictionary.registerOre(seedPeanut, CropRegistry.getSeed(CropRegistry.PEANUT));
+                OreDictionary.registerOre(cropPineapple, CropRegistry.getFood(CropRegistry.PINEAPPLE));
+        OreDictionary.registerOre(listAllfruit, CropRegistry.getFood(CropRegistry.PINEAPPLE));
+        OreDictionary.registerOre(seedPineapple, CropRegistry.getSeed(CropRegistry.PINEAPPLE));
+                OreDictionary.registerOre(cropRadish, CropRegistry.getFood(CropRegistry.RADISH));
 
-        OreDictionary.registerOre(listAllrootveggie, ItemRegistry.radishItem);
-        OreDictionary.registerOre(seedRadish, ItemRegistry.radishseedItem);
-                OreDictionary.registerOre(cropRice, ItemRegistry.riceItem);
-        OreDictionary.registerOre(seedRice, ItemRegistry.riceseedItem);
+        OreDictionary.registerOre(listAllrootveggie, CropRegistry.getFood(CropRegistry.RADISH));
+        OreDictionary.registerOre(seedRadish, CropRegistry.getSeed(CropRegistry.RADISH));
+                OreDictionary.registerOre(cropRice, CropRegistry.getFood(CropRegistry.RICE));
+        OreDictionary.registerOre(seedRice, CropRegistry.getSeed(CropRegistry.RICE));
                 OreDictionary.registerOre(foodRicecake, ItemRegistry.ricecakeItem);
-        OreDictionary.registerOre(cropRutabaga, ItemRegistry.rutabagaItem);
+        OreDictionary.registerOre(cropRutabaga, CropRegistry.getFood(CropRegistry.RUTABAGA));
 
-        OreDictionary.registerOre(listAllrootveggie, ItemRegistry.rutabagaItem);
-        OreDictionary.registerOre(seedRutabaga, ItemRegistry.rutabagaseedItem);
-                OreDictionary.registerOre(cropRye, ItemRegistry.ryeItem);
-        OreDictionary.registerOre(listAllgrain, ItemRegistry.ryeItem);
-        OreDictionary.registerOre(seedRye, ItemRegistry.ryeseedItem);
-                OreDictionary.registerOre(cropScallion, ItemRegistry.scallionItem);
+        OreDictionary.registerOre(listAllrootveggie, CropRegistry.getFood(CropRegistry.RUTABAGA));
+        OreDictionary.registerOre(seedRutabaga, CropRegistry.getSeed(CropRegistry.RUTABAGA));
+                OreDictionary.registerOre(cropRye, CropRegistry.getFood(CropRegistry.RYE));
+        OreDictionary.registerOre(listAllgrain, CropRegistry.getFood(CropRegistry.RYE));
+        OreDictionary.registerOre(seedRye, CropRegistry.getSeed(CropRegistry.RYE));
+                OreDictionary.registerOre(cropScallion, CropRegistry.getFood(CropRegistry.SCALLION));
 
-        OreDictionary.registerOre(seedScallion, ItemRegistry.scallionseedItem);
-                OreDictionary.registerOre(cropSoybean, ItemRegistry.soybeanItem);
+        OreDictionary.registerOre(seedScallion, CropRegistry.getSeed(CropRegistry.SCALLION));
+                OreDictionary.registerOre(cropSoybean, CropRegistry.getFood(CropRegistry.SOYBEAN));
 
-        OreDictionary.registerOre(seedSoybean, ItemRegistry.soybeanseedItem);
-                OreDictionary.registerOre(listAllgreenveggie, ItemRegistry.spiceleafItem);
-        OreDictionary.registerOre(listAllspice, ItemRegistry.spiceleafItem);
-        OreDictionary.registerOre(cropSpiceleaf, ItemRegistry.spiceleafItem);
-        OreDictionary.registerOre(seedSpiceleaf, ItemRegistry.spiceleafseedItem);
+        OreDictionary.registerOre(seedSoybean, CropRegistry.getSeed(CropRegistry.SOYBEAN));
+                OreDictionary.registerOre(listAllgreenveggie, CropRegistry.getFood(CropRegistry.SPICELEAF));
+        OreDictionary.registerOre(listAllspice, CropRegistry.getFood(CropRegistry.SPICELEAF));
+        OreDictionary.registerOre(cropSpiceleaf, CropRegistry.getFood(CropRegistry.SPICELEAF));
+        OreDictionary.registerOre(seedSpiceleaf, CropRegistry.getSeed(CropRegistry.SPICELEAF));
                         OreDictionary.registerOre(cropSunflower, ItemRegistry.sunflowerseedsItem);
-        OreDictionary.registerOre(cropSweetpotato, ItemRegistry.sweetpotatoItem);
+        OreDictionary.registerOre(cropSweetpotato, CropRegistry.getFood(CropRegistry.SWEETPOTATO));
 
-        OreDictionary.registerOre(listAllrootveggie, ItemRegistry.sweetpotatoItem);
-        OreDictionary.registerOre(seedSweetpotato, ItemRegistry.sweetpotatoseedItem);
-                OreDictionary.registerOre(cropTea, ItemRegistry.tealeafItem);
-        OreDictionary.registerOre(seedTea, ItemRegistry.teaseedItem);
+        OreDictionary.registerOre(listAllrootveggie, CropRegistry.getFood(CropRegistry.SWEETPOTATO));
+        OreDictionary.registerOre(seedSweetpotato, CropRegistry.getSeed(CropRegistry.SWEETPOTATO));
+                OreDictionary.registerOre(cropTea, CropRegistry.getFood(CropRegistry.TEALEAF));
+        OreDictionary.registerOre(seedTea, CropRegistry.getSeed(CropRegistry.TEALEAF));
                 OreDictionary.registerOre(foodTea, ItemRegistry.teaItem);
-        OreDictionary.registerOre(cropTurnip, ItemRegistry.turnipItem);
+        OreDictionary.registerOre(cropTurnip, CropRegistry.getFood(CropRegistry.TURNIP));
 
-        OreDictionary.registerOre(listAllrootveggie, ItemRegistry.turnipItem);
-        OreDictionary.registerOre(seedTurnip, ItemRegistry.turnipseedItem);
+        OreDictionary.registerOre(listAllrootveggie, CropRegistry.getFood(CropRegistry.TURNIP));
+        OreDictionary.registerOre(seedTurnip, CropRegistry.getSeed(CropRegistry.TURNIP));
 
-        OreDictionary.registerOre(listAllmushroom, ItemRegistry.whitemushroomItem);
-        OreDictionary.registerOre(cropWhitemushroom, ItemRegistry.whitemushroomItem);
-        OreDictionary.registerOre(seedWhitemushroom, ItemRegistry.whitemushroomseedItem);
-                OreDictionary.registerOre(cropArtichoke, ItemRegistry.artichokeItem);
+        OreDictionary.registerOre(listAllmushroom, CropRegistry.getFood(CropRegistry.WHITEMUSHROOM));
+        OreDictionary.registerOre(cropWhitemushroom, CropRegistry.getFood(CropRegistry.WHITEMUSHROOM));
+        OreDictionary.registerOre(seedWhitemushroom, CropRegistry.getSeed(CropRegistry.WHITEMUSHROOM));
+                OreDictionary.registerOre(cropArtichoke, CropRegistry.getFood(CropRegistry.ARTICHOKE));
 
-        OreDictionary.registerOre(listAllgreenveggie, ItemRegistry.artichokeItem);
-        OreDictionary.registerOre(seedArtichoke, ItemRegistry.artichokeseedItem);
-        OreDictionary.registerOre(cropBellpepper, ItemRegistry.bellpepperItem);
-        OreDictionary.registerOre(listAllpepper, ItemRegistry.bellpepperItem);
+        OreDictionary.registerOre(listAllgreenveggie, CropRegistry.getFood(CropRegistry.ARTICHOKE));
+        OreDictionary.registerOre(seedArtichoke, CropRegistry.getSeed(CropRegistry.ARTICHOKE));
+        OreDictionary.registerOre(cropBellpepper, CropRegistry.getFood(CropRegistry.BELLPEPPER));
+        OreDictionary.registerOre(listAllpepper, CropRegistry.getFood(CropRegistry.BELLPEPPER));
 
-        OreDictionary.registerOre(seedBellpepper, ItemRegistry.bellpepperseedItem);
-                OreDictionary.registerOre(listAllberry, ItemRegistry.blackberryItem);
-        OreDictionary.registerOre(listAllfruit, ItemRegistry.blackberryItem);
-        OreDictionary.registerOre(cropBlackberry, ItemRegistry.blackberryItem);
-        OreDictionary.registerOre(seedBlackberry, ItemRegistry.blackberryseedItem);
-                OreDictionary.registerOre(listAllberry, ItemRegistry.blueberryItem);
-        OreDictionary.registerOre(listAllfruit, ItemRegistry.blueberryItem);
-        OreDictionary.registerOre(cropBlueberry, ItemRegistry.blueberryItem);
-        OreDictionary.registerOre(seedBlueberry, ItemRegistry.blueberryseedItem);
-                OreDictionary.registerOre(cropBrusselsprout, ItemRegistry.brusselsproutItem);
+        OreDictionary.registerOre(seedBellpepper, CropRegistry.getSeed(CropRegistry.BELLPEPPER));
+                OreDictionary.registerOre(listAllberry, CropRegistry.getFood(CropRegistry.BLACKBERRY));
+        OreDictionary.registerOre(listAllfruit, CropRegistry.getFood(CropRegistry.BLACKBERRY));
+        OreDictionary.registerOre(cropBlackberry, CropRegistry.getFood(CropRegistry.BLACKBERRY));
+        OreDictionary.registerOre(seedBlackberry, CropRegistry.getSeed(CropRegistry.BLACKBERRY));
+                OreDictionary.registerOre(listAllberry, CropRegistry.getFood(CropRegistry.BLUEBERRY));
+        OreDictionary.registerOre(listAllfruit, CropRegistry.getFood(CropRegistry.BLUEBERRY));
+        OreDictionary.registerOre(cropBlueberry, CropRegistry.getFood(CropRegistry.BLUEBERRY));
+        OreDictionary.registerOre(seedBlueberry, CropRegistry.getSeed(CropRegistry.BLUEBERRY));
+                OreDictionary.registerOre(cropBrusselsprout, CropRegistry.getFood(CropRegistry.BRUSSELSPROUT));
 
-        OreDictionary.registerOre(listAllgreenveggie, ItemRegistry.brusselsproutItem);
-        OreDictionary.registerOre(seedBrusselsprout, ItemRegistry.brusselsproutseedItem);
-        OreDictionary.registerOre(cropCabbage, ItemRegistry.cabbageItem);
+        OreDictionary.registerOre(listAllgreenveggie, CropRegistry.getFood(CropRegistry.BRUSSELSPROUT));
+        OreDictionary.registerOre(seedBrusselsprout, CropRegistry.getSeed(CropRegistry.BRUSSELSPROUT));
+        OreDictionary.registerOre(cropCabbage, CropRegistry.getFood(CropRegistry.CABBAGE));
 
-        OreDictionary.registerOre(listAllgreenveggie, ItemRegistry.cabbageItem);
-        OreDictionary.registerOre(seedCabbage, ItemRegistry.cabbageseedItem);
-        OreDictionary.registerOre(listAllfruit, ItemRegistry.cactusfruitItem);
-        OreDictionary.registerOre(cropCactusfruit, ItemRegistry.cactusfruitItem);
-        OreDictionary.registerOre(seedCactusfruit, ItemRegistry.cactusfruitseedItem);
-                OreDictionary.registerOre(cropCantaloupe, ItemRegistry.cantaloupeItem);
-        OreDictionary.registerOre(listAllfruit, ItemRegistry.cantaloupeItem);
-        OreDictionary.registerOre(seedCantaloupe, ItemRegistry.cantaloupeseedItem);
-                OreDictionary.registerOre(cropChilipepper, ItemRegistry.chilipepperItem);
-        OreDictionary.registerOre(listAllpepper, ItemRegistry.chilipepperItem);
-        OreDictionary.registerOre(seedChilipepper, ItemRegistry.chilipepperseedItem);
-                OreDictionary.registerOre(cropCoffee, ItemRegistry.coffeebeanItem);
-        OreDictionary.registerOre(seedCoffee, ItemRegistry.coffeeseedItem);
+        OreDictionary.registerOre(listAllgreenveggie, CropRegistry.getFood(CropRegistry.CABBAGE));
+        OreDictionary.registerOre(seedCabbage, CropRegistry.getSeed(CropRegistry.CABBAGE));
+        OreDictionary.registerOre(listAllfruit, CropRegistry.getFood(CropRegistry.CACTUSFRUIT));
+        OreDictionary.registerOre(cropCactusfruit, CropRegistry.getFood(CropRegistry.CACTUSFRUIT));
+        OreDictionary.registerOre(seedCactusfruit, CropRegistry.getSeed(CropRegistry.CACTUSFRUIT));
+                OreDictionary.registerOre(cropCantaloupe, CropRegistry.getFood(CropRegistry.CANTALOUPE));
+        OreDictionary.registerOre(listAllfruit, CropRegistry.getFood(CropRegistry.CANTALOUPE));
+        OreDictionary.registerOre(seedCantaloupe, CropRegistry.getSeed(CropRegistry.CANTALOUPE));
+                OreDictionary.registerOre(cropChilipepper, CropRegistry.getFood(CropRegistry.CHILIPEPPER));
+        OreDictionary.registerOre(listAllpepper, CropRegistry.getFood(CropRegistry.CHILIPEPPER));
+        OreDictionary.registerOre(seedChilipepper, CropRegistry.getSeed(CropRegistry.CHILIPEPPER));
+                OreDictionary.registerOre(cropCoffee, CropRegistry.getFood(CropRegistry.COFFEE));
+        OreDictionary.registerOre(seedCoffee, CropRegistry.getSeed(CropRegistry.COFFEE));
                 OreDictionary.registerOre(foodCoffee, ItemRegistry.coffeeItem);
-        OreDictionary.registerOre(cropCorn, ItemRegistry.cornItem);
+        OreDictionary.registerOre(cropCorn, CropRegistry.getFood(CropRegistry.CORN));
 
-        OreDictionary.registerOre(seedCorn, ItemRegistry.cornseedItem);
-                OreDictionary.registerOre(cropCucumber, ItemRegistry.cucumberItem);
+        OreDictionary.registerOre(seedCorn, CropRegistry.getSeed(CropRegistry.CORN));
+                OreDictionary.registerOre(cropCucumber, CropRegistry.getFood(CropRegistry.CUCUMBER));
 
-        OreDictionary.registerOre(listAllgreenveggie, ItemRegistry.cucumberItem);
-        OreDictionary.registerOre(seedCucumber, ItemRegistry.cucumberseedItem);
-                OreDictionary.registerOre(cropEggplant, ItemRegistry.eggplantItem);
+        OreDictionary.registerOre(listAllgreenveggie, CropRegistry.getFood(CropRegistry.CUCUMBER));
+        OreDictionary.registerOre(seedCucumber, CropRegistry.getSeed(CropRegistry.CUCUMBER));
+                OreDictionary.registerOre(cropEggplant, CropRegistry.getFood(CropRegistry.EGGPLANT));
 
-        OreDictionary.registerOre(seedEggplant, ItemRegistry.eggplantseedItem);
+        OreDictionary.registerOre(seedEggplant, CropRegistry.getSeed(CropRegistry.EGGPLANT));
                 OreDictionary.registerOre(foodGrilledeggplant, ItemRegistry.grilledeggplantItem);
-        OreDictionary.registerOre(listAllfruit, ItemRegistry.grapeItem);
-        OreDictionary.registerOre(cropGrape, ItemRegistry.grapeItem);
-        OreDictionary.registerOre(seedGrape, ItemRegistry.grapeseedItem);
+        OreDictionary.registerOre(listAllfruit, CropRegistry.getFood(CropRegistry.GRAPE));
+        OreDictionary.registerOre(cropGrape, CropRegistry.getFood(CropRegistry.GRAPE));
+        OreDictionary.registerOre(seedGrape, CropRegistry.getSeed(CropRegistry.GRAPE));
                 OreDictionary.registerOre(foodRaisins, ItemRegistry.raisinsItem);
-        OreDictionary.registerOre(listAllfruit, ItemRegistry.kiwiItem);
-        OreDictionary.registerOre(cropKiwi, ItemRegistry.kiwiItem);
-        OreDictionary.registerOre(seedKiwi, ItemRegistry.kiwiseedItem);
-                OreDictionary.registerOre(cropMustard, ItemRegistry.mustardseedsItem);
-        OreDictionary.registerOre(listAllspice, ItemRegistry.mustardseedsItem);
-        OreDictionary.registerOre(seedMustard, ItemRegistry.mustardseedItem);
-                OreDictionary.registerOre(cropOkra, ItemRegistry.okraItem);
+        OreDictionary.registerOre(listAllfruit, CropRegistry.getFood(CropRegistry.KIWI));
+        OreDictionary.registerOre(cropKiwi, CropRegistry.getFood(CropRegistry.KIWI));
+        OreDictionary.registerOre(seedKiwi, CropRegistry.getSeed(CropRegistry.KIWI));
+                OreDictionary.registerOre(cropMustard, CropRegistry.getSeed(CropRegistry.MUSTARD));
+        OreDictionary.registerOre(listAllspice, CropRegistry.getSeed(CropRegistry.MUSTARD));
+        OreDictionary.registerOre(seedMustard, CropRegistry.getSeed(CropRegistry.MUSTARD));
+                OreDictionary.registerOre(cropOkra, CropRegistry.getFood(CropRegistry.OKRA));
 
-        OreDictionary.registerOre(listAllgreenveggie, ItemRegistry.okraItem);
-        OreDictionary.registerOre(seedOkra, ItemRegistry.okraseedItem);
-        OreDictionary.registerOre(cropPeas, ItemRegistry.peasItem);
+        OreDictionary.registerOre(listAllgreenveggie, CropRegistry.getFood(CropRegistry.OKRA));
+        OreDictionary.registerOre(seedOkra, CropRegistry.getSeed(CropRegistry.OKRA));
+        OreDictionary.registerOre(cropPeas, CropRegistry.getFood(CropRegistry.PEAS));
 
-        OreDictionary.registerOre(listAllgreenveggie, ItemRegistry.peasItem);
-        OreDictionary.registerOre(seedPeas, ItemRegistry.peasseedItem);
-                OreDictionary.registerOre(listAllberry, ItemRegistry.raspberryItem);
-        OreDictionary.registerOre(listAllfruit, ItemRegistry.raspberryItem);
-        OreDictionary.registerOre(cropRaspberry, ItemRegistry.raspberryItem);
-        OreDictionary.registerOre(seedRaspberry, ItemRegistry.raspberryseedItem);
-                OreDictionary.registerOre(cropRhubarb, ItemRegistry.rhubarbItem);
+        OreDictionary.registerOre(listAllgreenveggie, CropRegistry.getFood(CropRegistry.PEAS));
+        OreDictionary.registerOre(seedPeas, CropRegistry.getSeed(CropRegistry.PEAS));
+                OreDictionary.registerOre(listAllberry, CropRegistry.getFood(CropRegistry.RASPBERRY));
+        OreDictionary.registerOre(listAllfruit, CropRegistry.getFood(CropRegistry.RASPBERRY));
+        OreDictionary.registerOre(cropRaspberry, CropRegistry.getFood(CropRegistry.RASPBERRY));
+        OreDictionary.registerOre(seedRaspberry, CropRegistry.getSeed(CropRegistry.RASPBERRY));
+                OreDictionary.registerOre(cropRhubarb, CropRegistry.getFood(CropRegistry.RHUBARB));
 
-        OreDictionary.registerOre(seedRhubarb, ItemRegistry.rhubarbseedItem);
-                OreDictionary.registerOre(cropSeaweed, ItemRegistry.seaweedItem);
+        OreDictionary.registerOre(seedRhubarb, CropRegistry.getSeed(CropRegistry.RHUBARB));
+                OreDictionary.registerOre(cropSeaweed, CropRegistry.getFood(CropRegistry.SEAWEED));
 
-        OreDictionary.registerOre(listAllgreenveggie, ItemRegistry.seaweedItem);
-        OreDictionary.registerOre(seedSeaweed, ItemRegistry.seaweedseedItem);
-                OreDictionary.registerOre(listAllfruit, ItemRegistry.strawberryItem);
-        OreDictionary.registerOre(listAllberry, ItemRegistry.strawberryItem);
-        OreDictionary.registerOre(cropStrawberry, ItemRegistry.strawberryItem);
-        OreDictionary.registerOre(seedStrawberry, ItemRegistry.strawberryseedItem);
-                OreDictionary.registerOre(cropTomato, ItemRegistry.tomatoItem);
+        OreDictionary.registerOre(listAllgreenveggie, CropRegistry.getFood(CropRegistry.SEAWEED));
+        OreDictionary.registerOre(seedSeaweed, CropRegistry.getSeed(CropRegistry.SEAWEED));
+                OreDictionary.registerOre(listAllfruit, CropRegistry.getFood(CropRegistry.STRAWBERRY));
+        OreDictionary.registerOre(listAllberry, CropRegistry.getFood(CropRegistry.STRAWBERRY));
+        OreDictionary.registerOre(cropStrawberry, CropRegistry.getFood(CropRegistry.STRAWBERRY));
+        OreDictionary.registerOre(seedStrawberry, CropRegistry.getSeed(CropRegistry.STRAWBERRY));
+                OreDictionary.registerOre(cropTomato, CropRegistry.getFood(CropRegistry.TOMATO));
 
-        OreDictionary.registerOre(seedTomato, ItemRegistry.tomatoseedItem);
-                OreDictionary.registerOre(cropWintersquash, ItemRegistry.wintersquashItem);
+        OreDictionary.registerOre(seedTomato, CropRegistry.getSeed(CropRegistry.TOMATO));
+                OreDictionary.registerOre(cropWintersquash, CropRegistry.getFood(CropRegistry.WINTERSQUASH));
 
-        OreDictionary.registerOre(seedWintersquash, ItemRegistry.wintersquashseedItem);
-                OreDictionary.registerOre(cropZucchini, ItemRegistry.zucchiniItem);
+        OreDictionary.registerOre(seedWintersquash, CropRegistry.getSeed(CropRegistry.WINTERSQUASH));
+                OreDictionary.registerOre(cropZucchini, CropRegistry.getFood(CropRegistry.ZUCCHINI));
 
-        OreDictionary.registerOre(listAllgreenveggie, ItemRegistry.zucchiniItem);
-        OreDictionary.registerOre(seedZucchini, ItemRegistry.zucchiniseedItem);
-                OreDictionary.registerOre(cropBambooshoot, ItemRegistry.bambooshootItem);
+        OreDictionary.registerOre(listAllgreenveggie, CropRegistry.getFood(CropRegistry.ZUCCHINI));
+        OreDictionary.registerOre(seedZucchini, CropRegistry.getSeed(CropRegistry.ZUCCHINI));
+                OreDictionary.registerOre(cropBambooshoot, CropRegistry.getFood(CropRegistry.BAMBOOSHOOT));
 
-        OreDictionary.registerOre(seedBambooshoot, ItemRegistry.bambooshootseedItem);
-                OreDictionary.registerOre(cropSpinach, ItemRegistry.spinachItem);
+        OreDictionary.registerOre(seedBambooshoot, CropRegistry.getSeed(CropRegistry.BAMBOOSHOOT));
+                OreDictionary.registerOre(cropSpinach, CropRegistry.getFood(CropRegistry.SPINACH));
 
-        OreDictionary.registerOre(listAllgreenveggie, ItemRegistry.spinachItem);
-        OreDictionary.registerOre(seedSpinach, ItemRegistry.spinachseedItem);
-                OreDictionary.registerOre(cropCurryleaf, ItemRegistry.curryleafItem);
+        OreDictionary.registerOre(listAllgreenveggie, CropRegistry.getFood(CropRegistry.SPINACH));
+        OreDictionary.registerOre(seedSpinach, CropRegistry.getSeed(CropRegistry.SPINACH));
+                OreDictionary.registerOre(cropCurryleaf, CropRegistry.getFood(CropRegistry.CURRYLEAF));
         OreDictionary.registerOre(listAllspice, ItemRegistry.currypowderItem);
-        OreDictionary.registerOre(seedCurryleaf, ItemRegistry.curryleafseedItem);
-                OreDictionary.registerOre(cropSesame, ItemRegistry.sesameseedsItem);
-        OreDictionary.registerOre(seedSesameseed, ItemRegistry.sesameseedsseedItem);
-                OreDictionary.registerOre(cropWaterchestnut, ItemRegistry.waterchestnutItem);
+        OreDictionary.registerOre(seedCurryleaf, CropRegistry.getSeed(CropRegistry.CURRYLEAF));
+                OreDictionary.registerOre(cropSesame, CropRegistry.getSeed(CropRegistry.SESAME));
+        OreDictionary.registerOre(seedSesameseed, CropRegistry.getSeed(CropRegistry.SESAME));
+                OreDictionary.registerOre(cropWaterchestnut, CropRegistry.getFood(CropRegistry.WATERCHESTNUT));
 
-        OreDictionary.registerOre(seedWaterchestnut, ItemRegistry.waterchestnutseedItem);
-                OreDictionary.registerOre(cropAvocado, ItemRegistry.avocadoItem);
-        OreDictionary.registerOre(cropBanana, ItemRegistry.bananaItem);
-        OreDictionary.registerOre(listAllfruit, ItemRegistry.bananaItem);
-        OreDictionary.registerOre(cropCherry, ItemRegistry.cherryItem);
-        OreDictionary.registerOre(listAllfruit, ItemRegistry.cherryItem);
-        OreDictionary.registerOre(cropCinnamon, ItemRegistry.cinnamonItem);
-        OreDictionary.registerOre(cropCoconut, ItemRegistry.coconutItem);
+        OreDictionary.registerOre(seedWaterchestnut, CropRegistry.getSeed(CropRegistry.WATERCHESTNUT));
+                OreDictionary.registerOre(cropAvocado, FruitRegistry.getFood(FruitRegistry.AVOCADO));
+        OreDictionary.registerOre(cropBanana, FruitRegistry.getFood(FruitRegistry.BANANA));
+        OreDictionary.registerOre(listAllfruit, FruitRegistry.getFood(FruitRegistry.BANANA));
+        OreDictionary.registerOre(cropCherry, FruitRegistry.getFood(FruitRegistry.CHERRY));
+        OreDictionary.registerOre(listAllfruit, FruitRegistry.getFood(FruitRegistry.CHERRY));
+        OreDictionary.registerOre(cropCinnamon, FruitRegistry.getFood(FruitRegistry.CINNAMON));
+        OreDictionary.registerOre(cropCoconut, FruitRegistry.getFood(FruitRegistry.COCONUT));
         OreDictionary.registerOre(foodToastedcoconut, ItemRegistry.toastedcoconutItem);
-        OreDictionary.registerOre(cropDragonfruit, ItemRegistry.dragonfruitItem);
-        OreDictionary.registerOre(listAllfruit, ItemRegistry.dragonfruitItem);
-        OreDictionary.registerOre(cropLemon, ItemRegistry.lemonItem);
-        OreDictionary.registerOre(listAllfruit, ItemRegistry.lemonItem);
-        OreDictionary.registerOre(listAllcitrus, ItemRegistry.lemonItem);
-        OreDictionary.registerOre(cropLime, ItemRegistry.limeItem);
-        OreDictionary.registerOre(listAllfruit, ItemRegistry.limeItem);
-        OreDictionary.registerOre(listAllcitrus, ItemRegistry.limeItem);
-        OreDictionary.registerOre(cropMango, ItemRegistry.mangoItem);
-        OreDictionary.registerOre(listAllfruit, ItemRegistry.mangoItem);
-        OreDictionary.registerOre(cropNutmeg, ItemRegistry.nutmegItem);
-        OreDictionary.registerOre(cropOlive, ItemRegistry.oliveItem);
-        OreDictionary.registerOre(cropOrange, ItemRegistry.orangeItem);
-        OreDictionary.registerOre(listAllfruit, ItemRegistry.orangeItem);
-        OreDictionary.registerOre(listAllcitrus, ItemRegistry.orangeItem);
-        OreDictionary.registerOre(cropPapaya, ItemRegistry.papayaItem);
-        OreDictionary.registerOre(listAllfruit, ItemRegistry.papayaItem);
-        OreDictionary.registerOre(cropPeach, ItemRegistry.peachItem);
-        OreDictionary.registerOre(listAllfruit, ItemRegistry.peachItem);
-        OreDictionary.registerOre(cropPear, ItemRegistry.pearItem);
-        OreDictionary.registerOre(listAllfruit, ItemRegistry.pearItem);
-        OreDictionary.registerOre(cropPeppercorn, ItemRegistry.peppercornItem);
-        OreDictionary.registerOre(cropPlum, ItemRegistry.plumItem);
-        OreDictionary.registerOre(listAllfruit, ItemRegistry.plumItem);
-        OreDictionary.registerOre(cropPomegranate, ItemRegistry.pomegranateItem);
-        OreDictionary.registerOre(listAllfruit, ItemRegistry.pomegranateItem);
-        OreDictionary.registerOre(cropStarfruit, ItemRegistry.starfruitItem);
-        OreDictionary.registerOre(listAllfruit, ItemRegistry.starfruitItem);
-        OreDictionary.registerOre(cropVanillabean, ItemRegistry.vanillabeanItem);
+        OreDictionary.registerOre(cropDragonfruit, FruitRegistry.getFood(FruitRegistry.DRAGONFRUIT));
+        OreDictionary.registerOre(listAllfruit, FruitRegistry.getFood(FruitRegistry.DRAGONFRUIT));
+        OreDictionary.registerOre(cropLemon, FruitRegistry.getFood(FruitRegistry.LEMON));
+        OreDictionary.registerOre(listAllfruit, FruitRegistry.getFood(FruitRegistry.LEMON));
+        OreDictionary.registerOre(listAllcitrus, FruitRegistry.getFood(FruitRegistry.LEMON));
+        OreDictionary.registerOre(cropLime, FruitRegistry.getFood(FruitRegistry.LIME));
+        OreDictionary.registerOre(listAllfruit, FruitRegistry.getFood(FruitRegistry.LIME));
+        OreDictionary.registerOre(listAllcitrus, FruitRegistry.getFood(FruitRegistry.LIME));
+        OreDictionary.registerOre(cropMango, FruitRegistry.getFood(FruitRegistry.MANGO));
+        OreDictionary.registerOre(listAllfruit, FruitRegistry.getFood(FruitRegistry.MANGO));
+        OreDictionary.registerOre(cropNutmeg, FruitRegistry.getFood(FruitRegistry.NUTMEG));
+        OreDictionary.registerOre(cropOlive, FruitRegistry.getFood(FruitRegistry.OLIVE));
+        OreDictionary.registerOre(cropOrange, FruitRegistry.getFood(FruitRegistry.ORANGE));
+        OreDictionary.registerOre(listAllfruit, FruitRegistry.getFood(FruitRegistry.ORANGE));
+        OreDictionary.registerOre(listAllcitrus, FruitRegistry.getFood(FruitRegistry.ORANGE));
+        OreDictionary.registerOre(cropPapaya, FruitRegistry.getFood(FruitRegistry.PAPAYA));
+        OreDictionary.registerOre(listAllfruit, FruitRegistry.getFood(FruitRegistry.PAPAYA));
+        OreDictionary.registerOre(cropPeach, FruitRegistry.getFood(FruitRegistry.PEACH));
+        OreDictionary.registerOre(listAllfruit, FruitRegistry.getFood(FruitRegistry.PEACH));
+        OreDictionary.registerOre(cropPear, FruitRegistry.getFood(FruitRegistry.PEAR));
+        OreDictionary.registerOre(listAllfruit, FruitRegistry.getFood(FruitRegistry.PEAR));
+        OreDictionary.registerOre(cropPeppercorn, FruitRegistry.getFood(FruitRegistry.PEPPERCORN));
+        OreDictionary.registerOre(cropPlum, FruitRegistry.getFood(FruitRegistry.PLUM));
+        OreDictionary.registerOre(listAllfruit, FruitRegistry.getFood(FruitRegistry.PLUM));
+        OreDictionary.registerOre(cropPomegranate, FruitRegistry.getFood(FruitRegistry.POMEGRANATE));
+        OreDictionary.registerOre(listAllfruit, FruitRegistry.getFood(FruitRegistry.POMEGRANATE));
+        OreDictionary.registerOre(cropStarfruit, FruitRegistry.getFood(FruitRegistry.STARFRUIT));
+        OreDictionary.registerOre(listAllfruit, FruitRegistry.getFood(FruitRegistry.STARFRUIT));
+        OreDictionary.registerOre(cropVanillabean, FruitRegistry.getFood(FruitRegistry.VANILLABEAN));
         OreDictionary.registerOre(foodVanilla, ItemRegistry.vanillaItem);
-        OreDictionary.registerOre(cropWalnut, ItemRegistry.walnutItem);
-        OreDictionary.registerOre(listAllnut, ItemRegistry.walnutItem);
-        OreDictionary.registerOre(cropGooseberry, ItemRegistry.gooseberryItem);
-        OreDictionary.registerOre(listAllberry, ItemRegistry.gooseberryItem);
-        OreDictionary.registerOre(listAllfruit, ItemRegistry.gooseberryItem);
-        OreDictionary.registerOre(cropAlmond, ItemRegistry.almondItem);
-        OreDictionary.registerOre(listAllnut, ItemRegistry.almondItem);
-        OreDictionary.registerOre(cropApricot, ItemRegistry.apricotItem);
-        OreDictionary.registerOre(listAllfruit, ItemRegistry.apricotItem);
-        OreDictionary.registerOre(cropCashew, ItemRegistry.cashewItem);
-        OreDictionary.registerOre(listAllnut, ItemRegistry.cashewItem);
-        OreDictionary.registerOre(cropChestnut, ItemRegistry.chestnutItem);
-        OreDictionary.registerOre(listAllnut, ItemRegistry.chestnutItem);
-        OreDictionary.registerOre(cropDate, ItemRegistry.dateItem);
-        OreDictionary.registerOre(listAllfruit, ItemRegistry.dateItem);
-        OreDictionary.registerOre(cropDurian, ItemRegistry.durianItem);
-        OreDictionary.registerOre(cropFig, ItemRegistry.figItem);
-        OreDictionary.registerOre(listAllfruit, ItemRegistry.figItem);
-        OreDictionary.registerOre(cropGrapefruit, ItemRegistry.grapefruitItem);
-        OreDictionary.registerOre(listAllfruit, ItemRegistry.grapefruitItem);
-        OreDictionary.registerOre(listAllcitrus, ItemRegistry.grapefruitItem);
-        OreDictionary.registerOre(cropMaplesyrup, ItemRegistry.maplesyrupItem);
-        OreDictionary.registerOre(cropPecan, ItemRegistry.pecanItem);
-        OreDictionary.registerOre(listAllnut, ItemRegistry.pecanItem);
-        OreDictionary.registerOre(cropPersimmon, ItemRegistry.persimmonItem);
-        OreDictionary.registerOre(listAllfruit, ItemRegistry.persimmonItem);
-        OreDictionary.registerOre(cropPistachio, ItemRegistry.pistachioItem);
-        OreDictionary.registerOre(listAllnut, ItemRegistry.pistachioItem);
+        OreDictionary.registerOre(cropWalnut, FruitRegistry.getFood(FruitRegistry.WALNUT));
+        OreDictionary.registerOre(listAllnut, FruitRegistry.getFood(FruitRegistry.WALNUT));
+        OreDictionary.registerOre(cropGooseberry, FruitRegistry.getFood(FruitRegistry.GOOSEBERRY));
+        OreDictionary.registerOre(listAllberry, FruitRegistry.getFood(FruitRegistry.GOOSEBERRY));
+        OreDictionary.registerOre(listAllfruit, FruitRegistry.getFood(FruitRegistry.GOOSEBERRY));
+        OreDictionary.registerOre(cropAlmond, FruitRegistry.getFood(FruitRegistry.ALMOND));
+        OreDictionary.registerOre(listAllnut, FruitRegistry.getFood(FruitRegistry.ALMOND));
+        OreDictionary.registerOre(cropApricot, FruitRegistry.getFood(FruitRegistry.APRICOT));
+        OreDictionary.registerOre(listAllfruit, FruitRegistry.getFood(FruitRegistry.APRICOT));
+        OreDictionary.registerOre(cropCashew, FruitRegistry.getFood(FruitRegistry.CASHEW));
+        OreDictionary.registerOre(listAllnut, FruitRegistry.getFood(FruitRegistry.CASHEW));
+        OreDictionary.registerOre(cropChestnut, FruitRegistry.getFood(FruitRegistry.CHESTNUT));
+        OreDictionary.registerOre(listAllnut, FruitRegistry.getFood(FruitRegistry.CHESTNUT));
+        OreDictionary.registerOre(cropDate, FruitRegistry.getFood(FruitRegistry.DATE));
+        OreDictionary.registerOre(listAllfruit, FruitRegistry.getFood(FruitRegistry.DATE));
+        OreDictionary.registerOre(cropDurian, FruitRegistry.getFood(FruitRegistry.DURIAN));
+        OreDictionary.registerOre(cropFig, FruitRegistry.getFood(FruitRegistry.FIG));
+        OreDictionary.registerOre(listAllfruit, FruitRegistry.getFood(FruitRegistry.FIG));
+        OreDictionary.registerOre(cropGrapefruit, FruitRegistry.getFood(FruitRegistry.GRAPEFRUIT));
+        OreDictionary.registerOre(listAllfruit, FruitRegistry.getFood(FruitRegistry.GRAPEFRUIT));
+        OreDictionary.registerOre(listAllcitrus, FruitRegistry.getFood(FruitRegistry.GRAPEFRUIT));
+        OreDictionary.registerOre(cropMaplesyrup, FruitRegistry.getFood(FruitRegistry.MAPLE));
+        OreDictionary.registerOre(cropPecan, FruitRegistry.getFood(FruitRegistry.PECAN));
+        OreDictionary.registerOre(listAllnut, FruitRegistry.getFood(FruitRegistry.PECAN));
+        OreDictionary.registerOre(cropPersimmon, FruitRegistry.getFood(FruitRegistry.PERSIMMON));
+        OreDictionary.registerOre(listAllfruit, FruitRegistry.getFood(FruitRegistry.PERSIMMON));
+        OreDictionary.registerOre(cropPistachio, FruitRegistry.getFood(FruitRegistry.PISTACHIO));
+        OreDictionary.registerOre(listAllnut, FruitRegistry.getFood(FruitRegistry.PISTACHIO));
         OreDictionary.registerOre(foodSalt, ItemRegistry.saltItem);
         OreDictionary.registerOre(foodFlour, ItemRegistry.flourItem);
         OreDictionary.registerOre(foodDough, ItemRegistry.doughItem);

@@ -1,31 +1,13 @@
 package com.pam.harvestcraft.item;
 
 import com.pam.harvestcraft.HarvestCraft;
-import com.pam.harvestcraft.blocks.BlockRegistry;
-import com.pam.harvestcraft.blocks.growables.BlockPamCrop;
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
-import net.minecraft.item.ItemSeedFood;
-import net.minecraft.item.ItemSeeds;
-import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public final class ItemRegistry {
-    public static Item[] PamCropItems;
-    public static Item[] PamSeeds;
-    public static Item[] PamTemperateFruits;
-    public static Item[] PamWarmFruits;
-    public static Item[] PamLogFruits;
-
-    public static final HashMap<BlockPamCrop, Item> seedsMap = new HashMap<>();
-    public static final HashMap<BlockPamCrop, Item> harvestedItemMap = new HashMap<>();
     public static final HashMap<String, Item> items = new HashMap<>();
 
     // Items
@@ -44,163 +26,7 @@ public final class ItemRegistry {
     public static Item freshmilkItem;
     public static Item calamarirawItem;
     public static Item calamaricookedItem;
-    public static Item sunflowerseedsItem;
-    public static Item blackberryItem;
-    public static Item blueberryItem;
-    public static Item candleberryItem;
-    public static Item raspberryItem;
-    public static Item strawberryItem;
-    public static Item grapeItem;
-    public static Item cactusfruitItem;
-    public static Item asparagusItem;
-    public static Item barleyItem;
-    public static Item oatsItem;
-    public static Item ryeItem;
-    public static Item cornItem;
-    public static Item bambooshootItem;
-    public static Item cantaloupeItem;
-    public static Item cucumberItem;
-    public static Item wintersquashItem;
-    public static Item zucchiniItem;
-    public static Item beetItem;
-    public static Item onionItem;
-    public static Item parsnipItem;
-    public static Item peanutItem;
-    public static Item radishItem;
-    public static Item rutabagaItem;
-    public static Item sweetpotatoItem;
-    public static Item turnipItem;
-    public static Item rhubarbItem;
-    public static Item celeryItem;
-    public static Item garlicItem;
-    public static Item gingerItem;
-    public static Item spiceleafItem;
-    public static Item ediblerootItem;
-    public static Item tealeafItem;
-    public static Item coffeebeanItem;
-    public static Item mustardseedsItem;
-    public static Item broccoliItem;
-    public static Item cauliflowerItem;
-    public static Item leekItem;
-    public static Item lettuceItem;
-    public static Item scallionItem;
-    public static Item artichokeItem;
-    public static Item brusselsproutItem;
-    public static Item cabbageItem;
-    public static Item spinachItem;
-    public static Item whitemushroomItem;
-    public static Item beanItem;
-    public static Item soybeanItem;
-    public static Item bellpepperItem;
-    public static Item chilipepperItem;
-    public static Item eggplantItem;
-    public static Item okraItem;
-    public static Item peasItem;
-    public static Item tomatoItem;
-    public static Item cottonItem;
-    public static Item pineappleItem;
-    public static Item kiwiItem;
-    public static Item sesameseedsItem;
-    public static Item curryleafItem;
-    public static Item cranberryItem;
-    public static Item riceItem;
-    public static Item seaweedItem;
-    public static Item waterchestnutItem;
-    public static Item cottonseedItem;
-    public static Item asparagusseedItem;
-    public static Item barleyseedItem;
-    public static Item beanseedItem;
-    public static Item beetseedItem;
-    public static Item broccoliseedItem;
-    public static Item whitemushroomseedItem;
-    public static Item cauliflowerseedItem;
-    public static Item celeryseedItem;
-    public static Item cranberryseedItem;
-    public static Item garlicseedItem;
-    public static Item gingerseedItem;
-    public static Item leekseedItem;
-    public static Item lettuceseedItem;
-    public static Item oatsseedItem;
-    public static Item onionseedItem;
-    public static Item parsnipseedItem;
-    public static Item peanutseedItem;
-    public static Item pineappleseedItem;
-    public static Item radishseedItem;
-    public static Item riceseedItem;
-    public static Item rutabagaseedItem;
-    public static Item ryeseedItem;
-    public static Item scallionseedItem;
-    public static Item soybeanseedItem;
-    public static Item spiceleafseedItem;
-    public static Item sweetpotatoseedItem;
-    public static Item teaseedItem;
-    public static Item turnipseedItem;
-    public static Item artichokeseedItem;
-    public static Item bellpepperseedItem;
-    public static Item blackberryseedItem;
-    public static Item blueberryseedItem;
-    public static Item brusselsproutseedItem;
-    public static Item cabbageseedItem;
-    public static Item cactusfruitseedItem;
-    public static Item candleberryseedItem;
-    public static Item cantaloupeseedItem;
-    public static Item chilipepperseedItem;
-    public static Item coffeeseedItem;
-    public static Item cornseedItem;
-    public static Item cucumberseedItem;
-    public static Item eggplantseedItem;
-    public static Item grapeseedItem;
-    public static Item kiwiseedItem;
-    public static Item mustardseedItem;
-    public static Item okraseedItem;
-    public static Item peasseedItem;
-    public static Item raspberryseedItem;
-    public static Item rhubarbseedItem;
-    public static Item seaweedseedItem;
-    public static Item strawberryseedItem;
-    public static Item tomatoseedItem;
-    public static Item wintersquashseedItem;
-    public static Item zucchiniseedItem;
-    public static Item bambooshootseedItem;
-    public static Item spinachseedItem;
-    public static Item curryleafseedItem;
-    public static Item sesameseedsseedItem;
-    public static Item waterchestnutseedItem;
 
-    public static Item almondItem;
-    public static Item apricotItem;
-    public static Item avocadoItem;
-    public static Item bananaItem;
-    public static Item cashewItem;
-    public static Item cherryItem;
-    public static Item chestnutItem;
-    public static Item cinnamonItem;
-    public static Item coconutItem;
-    public static Item dateItem;
-    public static Item dragonfruitItem;
-    public static Item durianItem;
-    public static Item figItem;
-    public static Item grapefruitItem;
-    public static Item lemonItem;
-    public static Item limeItem;
-    public static Item maplesyrupItem;
-    public static Item mangoItem;
-    public static Item nutmegItem;
-    public static Item oliveItem;
-    public static Item orangeItem;
-    public static Item papayaItem;
-    public static Item peachItem;
-    public static Item pearItem;
-    public static Item pecanItem;
-    public static Item peppercornItem;
-    public static Item persimmonItem;
-    public static Item pistachioItem;
-    public static Item plumItem;
-    public static Item pomegranateItem;
-    public static Item starfruitItem;
-    public static Item vanillabeanItem;
-    public static Item walnutItem;
-    public static Item gooseberryItem;
     public static Item grilledasparagusItem;
     public static Item bakedsweetpotatoItem;
     public static Item teaItem;
@@ -793,6 +619,9 @@ public final class ItemRegistry {
     public static Item toadintheholeItem;
     public static Item tunapotatoItem;
     public static Item yorkshirepuddingItem;
+    public static Item ediblerootItem;
+    public static Item sunflowerseedsItem;
+
 
     public static boolean initialized = false;
 
@@ -805,6 +634,8 @@ public final class ItemRegistry {
         mortarandpestleItem = registerItemTool("mortarandpestleItem");
         mixingbowlItem = registerItemTool("mixingbowlItem");
         juicerItem = registerItemTool("juicerItem");
+        ediblerootItem = registerItemFood("ediblerootItem", HarvestCraft.config.cropfoodRestore, HarvestCraft.config.cropsaturationRestore);
+        sunflowerseedsItem = registerItemFood("sunflowerseedsItem", HarvestCraft.config.cropfoodRestore, HarvestCraft.config.cropsaturationRestore);
 
         honeyItem = registerItemFood("honeyItem", 4, 0.6F);
         calamarirawItem = registerItemFood("calamarirawItem", 2, HarvestCraft.config.snacksaturation);
@@ -814,164 +645,6 @@ public final class ItemRegistry {
         wovencottonItem = registerGenericItem("wovencottonItem");
         freshwaterItem = registerGenericItem("freshwaterItem");
         freshmilkItem = registerGenericItem("freshmilkItem");
-
-        sunflowerseedsItem = registerItemFood("sunflowerseedsItem", HarvestCraft.config.cropfoodRestore, HarvestCraft.config.cropsaturationRestore);
-        blackberryItem = registerSeedFood("blackberryItem", BlockRegistry.pamblackberryCrop, false);
-        blueberryItem = registerSeedFood("blueberryItem", BlockRegistry.pamblueberryCrop, false);
-        candleberryItem = registerSeedFood("candleberryItem", BlockRegistry.pamcandleberryCrop, false);
-        raspberryItem = registerSeedFood("raspberryItem", BlockRegistry.pamraspberryCrop, false);
-        strawberryItem = registerSeedFood("strawberryItem", BlockRegistry.pamstrawberryCrop, false);
-        grapeItem = registerSeedFood("grapeItem", BlockRegistry.pamgrapeCrop, false);
-        cactusfruitItem = registerSeedFood("cactusfruitItem", BlockRegistry.pamcactusfruitCrop, false);
-        asparagusItem = registerSeedFood("asparagusItem", BlockRegistry.pamasparagusCrop, false);
-        barleyItem = registerSeedFood("barleyItem", BlockRegistry.pambarleyCrop, false);
-        oatsItem = registerSeedFood("oatsItem", BlockRegistry.pamoatsCrop, false);
-        ryeItem = registerSeedFood("ryeItem", BlockRegistry.pamryeCrop, false);
-        cornItem = registerSeedFood("cornItem", BlockRegistry.pamcornCrop, false);
-        bambooshootItem = registerSeedFood("bambooshootItem", BlockRegistry.pambambooshootCrop, false);
-        cantaloupeItem = registerSeedFood("cantaloupeItem", BlockRegistry.pamcantaloupeCrop, false);
-        cucumberItem = registerSeedFood("cucumberItem", BlockRegistry.pamcucumberCrop, false);
-        wintersquashItem = registerSeedFood("wintersquashItem", BlockRegistry.pamwintersquashCrop, false);
-        zucchiniItem = registerSeedFood("zucchiniItem", BlockRegistry.pamzucchiniCrop, false);
-        beetItem = registerSeedFood("beetItem", BlockRegistry.pambeetCrop, false);
-        onionItem = registerSeedFood("onionItem", BlockRegistry.pamonionCrop, false);
-        parsnipItem = registerSeedFood("parsnipItem", BlockRegistry.pamparsnipCrop, false);
-        peanutItem = registerSeedFood("peanutItem", BlockRegistry.pampeanutCrop, false);
-        radishItem = registerSeedFood("radishItem", BlockRegistry.pamradishCrop, false);
-        rutabagaItem = registerSeedFood("rutabagaItem", BlockRegistry.pamrutabagaCrop, false);
-        sweetpotatoItem = registerSeedFood("sweetpotatoItem", BlockRegistry.pamsweetpotatoCrop, false);
-        turnipItem = registerSeedFood("turnipItem", BlockRegistry.pamturnipCrop, false);
-        rhubarbItem = registerSeedFood("rhubarbItem", BlockRegistry.pamrhubarbCrop, false);
-        celeryItem = registerSeedFood("celeryItem", BlockRegistry.pamceleryCrop, false);
-        garlicItem = registerSeedFood("garlicItem", BlockRegistry.pamgarlicCrop, false);
-        gingerItem = registerSeedFood("gingerItem", BlockRegistry.pamgingerCrop, false);
-        spiceleafItem = registerSeedFood("spiceleafItem", BlockRegistry.pamspiceleafCrop, false);
-        ediblerootItem = registerItemFood("ediblerootItem", HarvestCraft.config.cropfoodRestore, HarvestCraft.config.cropsaturationRestore);
-        tealeafItem = registerSeedFood("tealeafItem", BlockRegistry.pamtealeafCrop, false);
-        coffeebeanItem = registerSeedFood("coffeebeanItem", BlockRegistry.pamcoffeebeanCrop, false);
-        mustardseedsItem = registerSeedFood("mustardseedsItem", BlockRegistry.pammustardseedsCrop, false);
-        broccoliItem = registerSeedFood("broccoliItem", BlockRegistry.pambroccoliCrop, false);
-        cauliflowerItem = registerSeedFood("cauliflowerItem", BlockRegistry.pamcauliflowerCrop, false);
-        leekItem = registerSeedFood("leekItem", BlockRegistry.pamleekCrop, false);
-        lettuceItem = registerSeedFood("lettuceItem", BlockRegistry.pamlettuceCrop, false);
-        scallionItem = registerSeedFood("scallionItem", BlockRegistry.pamscallionCrop, false);
-        artichokeItem = registerSeedFood("artichokeItem", BlockRegistry.pamartichokeCrop, false);
-        brusselsproutItem = registerSeedFood("brusselsproutItem", BlockRegistry.pambrusselsproutCrop, false);
-        cabbageItem = registerSeedFood("cabbageItem", BlockRegistry.pamcabbageCrop, false);
-        spinachItem = registerSeedFood("spinachItem", BlockRegistry.pamspinachCrop, false);
-        whitemushroomItem = registerSeedFood("whitemushroomItem", BlockRegistry.pamwhitemushroomCrop, false);
-        beanItem = registerSeedFood("beanItem", BlockRegistry.pambeanCrop, false);
-        soybeanItem = registerSeedFood("soybeanItem", BlockRegistry.pamsoybeanCrop, false);
-        bellpepperItem = registerSeedFood("bellpepperItem", BlockRegistry.pambellpepperCrop, false);
-        chilipepperItem = registerSeedFood("chilipepperItem", BlockRegistry.pamchilipepperCrop, false);
-        eggplantItem = registerSeedFood("eggplantItem", BlockRegistry.pameggplantCrop, false);
-        okraItem = registerSeedFood("okraItem", BlockRegistry.pamokraCrop, false);
-        peasItem = registerSeedFood("peasItem", BlockRegistry.pampeasCrop, false);
-        tomatoItem = registerSeedFood("tomatoItem", BlockRegistry.pamtomatoCrop, false);
-        pineappleItem = registerSeedFood("pineappleItem", BlockRegistry.pampineappleCrop, false);
-        kiwiItem = registerSeedFood("kiwiItem", BlockRegistry.pamkiwiCrop, false);
-        sesameseedsItem = registerSeedFood("sesameseedsItem", BlockRegistry.pamsesameseedsCrop, false);
-        curryleafItem = registerSeedFood("curryleafItem", BlockRegistry.pamcurryleafCrop, false);
-        cranberryItem = registerSeedFood("cranberryItem", BlockRegistry.pamcranberryCrop, false);
-        riceItem = registerSeedFood("riceItem", BlockRegistry.pamriceCrop, false);
-        seaweedItem = registerSeedFood("seaweedItem", BlockRegistry.pamseaweedCrop, false);
-        waterchestnutItem = registerSeedFood("waterchestnutItem", BlockRegistry.pamwaterchestnutCrop, false);
-        blackberryseedItem = registerSeeds("blackberryseedItem", BlockRegistry.pamblackberryCrop);
-        cottonItem = registerSeedFood("cottonItem", BlockRegistry.pamcottonCrop, false);
-        blueberryseedItem = registerSeeds("blueberryseedItem", BlockRegistry.pamblueberryCrop);
-        candleberryseedItem = registerSeeds("candleberryseedItem", BlockRegistry.pamcandleberryCrop);
-        raspberryseedItem = registerSeeds("raspberryseedItem", BlockRegistry.pamraspberryCrop);
-        strawberryseedItem = registerSeeds("strawberryseedItem", BlockRegistry.pamstrawberryCrop);
-        grapeseedItem = registerSeedFood("grapeseedItem", BlockRegistry.pamgrapeCrop, true);
-        cactusfruitseedItem = registerSeedFood("cactusfruitseedItem", BlockRegistry.pamcactusfruitCrop, true);
-        asparagusseedItem = registerSeedFood("asparagusseedItem", BlockRegistry.pamasparagusCrop, true);
-        barleyseedItem = registerSeedFood("barleyseedItem", BlockRegistry.pambarleyCrop, true);
-        oatsseedItem = registerSeedFood("oatsseedItem", BlockRegistry.pamoatsCrop, true);
-        ryeseedItem = registerSeedFood("ryeseedItem", BlockRegistry.pamryeCrop, true);
-        cornseedItem = registerSeedFood("cornseedItem", BlockRegistry.pamcornCrop, true);
-        bambooshootseedItem = registerSeedFood("bambooshootseedItem", BlockRegistry.pambambooshootCrop, true);
-        cantaloupeseedItem = registerSeedFood("cantaloupeseedItem", BlockRegistry.pamcantaloupeCrop, true);
-        cucumberseedItem = registerSeedFood("cucumberseedItem", BlockRegistry.pamcucumberCrop, true);
-        wintersquashseedItem = registerSeedFood("wintersquashseedItem", BlockRegistry.pamwintersquashCrop, true);
-        zucchiniseedItem = registerSeedFood("zucchiniseedItem", BlockRegistry.pamzucchiniCrop, true);
-        beetseedItem = registerSeedFood("beetseedItem", BlockRegistry.pambeetCrop, true);
-        onionseedItem = registerSeedFood("onionseedItem", BlockRegistry.pamonionCrop, true);
-        parsnipseedItem = registerSeedFood("parsnipseedItem", BlockRegistry.pamparsnipCrop, true);
-        peanutseedItem = registerSeedFood("peanutseedItem", BlockRegistry.pampeanutCrop, true);
-        radishseedItem = registerSeedFood("radishseedItem", BlockRegistry.pamradishCrop, true);
-        rutabagaseedItem = registerSeedFood("rutabagaseedItem", BlockRegistry.pamrutabagaCrop, true);
-        sweetpotatoseedItem = registerSeedFood("sweetpotatoseedItem", BlockRegistry.pamsweetpotatoCrop, true);
-        turnipseedItem = registerSeedFood("turnipseedItem", BlockRegistry.pamturnipCrop, true);
-        rhubarbseedItem = registerSeedFood("rhubarbseedItem", BlockRegistry.pamrhubarbCrop, true);
-        celeryseedItem = registerSeedFood("celeryseedItem", BlockRegistry.pamceleryCrop, true);
-        garlicseedItem = registerSeedFood("garlicseedItem", BlockRegistry.pamgarlicCrop, true);
-        gingerseedItem = registerSeedFood("gingerseedItem", BlockRegistry.pamgingerCrop, true);
-        spiceleafseedItem = registerSeedFood("spiceleafseedItem", BlockRegistry.pamspiceleafCrop, true);
-        teaseedItem = registerSeedFood("teaseedItem", BlockRegistry.pamtealeafCrop, true);
-        coffeeseedItem = registerSeedFood("coffeeseedItem", BlockRegistry.pamcoffeebeanCrop, true);
-        mustardseedItem = registerSeedFood("mustardseedItem", BlockRegistry.pammustardseedsCrop, true);
-        broccoliseedItem = registerSeedFood("broccoliseedItem", BlockRegistry.pambroccoliCrop, true);
-        cauliflowerseedItem = registerSeedFood("cauliflowerseedItem", BlockRegistry.pamcauliflowerCrop, true);
-        leekseedItem = registerSeedFood("leekseedItem", BlockRegistry.pamleekCrop, true);
-        lettuceseedItem = registerSeedFood("lettuceseedItem", BlockRegistry.pamlettuceCrop, true);
-        scallionseedItem = registerSeedFood("scallionseedItem", BlockRegistry.pamscallionCrop, true);
-        artichokeseedItem = registerSeedFood("artichokeseedItem", BlockRegistry.pamartichokeCrop, true);
-        brusselsproutseedItem = registerSeedFood("brusselsproutseedItem", BlockRegistry.pambrusselsproutCrop, true);
-        cabbageseedItem = registerSeedFood("cabbageseedItem", BlockRegistry.pamcabbageCrop, true);
-        spinachseedItem = registerSeedFood("spinachseedItem", BlockRegistry.pamspinachCrop, true);
-        whitemushroomseedItem = registerSeedFood("whitemushroomseedItem", BlockRegistry.pamwhitemushroomCrop, true);
-        beanseedItem = registerSeedFood("beanseedItem", BlockRegistry.pambeanCrop, true);
-        soybeanseedItem = registerSeedFood("soybeanseedItem", BlockRegistry.pamsoybeanCrop, true);
-        bellpepperseedItem = registerSeedFood("bellpepperseedItem", BlockRegistry.pambellpepperCrop, true);
-        chilipepperseedItem = registerSeedFood("chilipepperseedItem", BlockRegistry.pamchilipepperCrop, true);
-        eggplantseedItem = registerSeedFood("eggplantseedItem", BlockRegistry.pameggplantCrop, true);
-        okraseedItem = registerSeedFood("okraseedItem", BlockRegistry.pamokraCrop, true);
-        peasseedItem = registerSeedFood("peasseedItem", BlockRegistry.pampeasCrop, true);
-        tomatoseedItem = registerSeedFood("tomatoseedItem", BlockRegistry.pamtomatoCrop, true);
-        cottonseedItem = registerSeedFood("cottonseedItem", BlockRegistry.pamcottonCrop, true);
-        pineappleseedItem = registerSeedFood("pineappleseedItem", BlockRegistry.pampineappleCrop, true);
-        curryleafseedItem = registerSeedFood("curryleafseedItem", BlockRegistry.pamcurryleafCrop, true);
-        sesameseedsseedItem = registerSeedFood("sesameseedsseedItem", BlockRegistry.pamsesameseedsCrop, true);
-        kiwiseedItem = registerSeedFood("kiwiseedItem", BlockRegistry.pamkiwiCrop, true);
-        cranberryseedItem = registerSeedFood("cranberryseedItem", BlockRegistry.pamcranberryCrop, true);
-        riceseedItem = registerSeedFood("riceseedItem", BlockRegistry.pamriceCrop, true);
-        seaweedseedItem = registerSeedFood("seaweedseedItem", BlockRegistry.pamseaweedCrop, true);
-        waterchestnutseedItem = registerSeedFood("waterchestnutseedItem", BlockRegistry.pamwaterchestnutCrop, true);
-
-        almondItem = registerItemFood("almondItem", HarvestCraft.config.cropfoodRestore);
-        apricotItem = registerItemFood("apricotItem", HarvestCraft.config.cropfoodRestore);
-        avocadoItem = registerItemFood("avocadoItem", HarvestCraft.config.cropfoodRestore);
-        bananaItem = registerItemFood("bananaItem", HarvestCraft.config.cropfoodRestore);
-        cashewItem = registerItemFood("cashewItem", HarvestCraft.config.cropfoodRestore);
-        cherryItem = registerItemFood("cherryItem", HarvestCraft.config.cropfoodRestore);
-        chestnutItem = registerItemFood("chestnutItem", HarvestCraft.config.cropfoodRestore);
-        cinnamonItem = registerItemFood("cinnamonItem", HarvestCraft.config.cropfoodRestore);
-        coconutItem = registerItemFood("coconutItem", HarvestCraft.config.cropfoodRestore);
-        dateItem = registerItemFood("dateItem", HarvestCraft.config.cropfoodRestore);
-        dragonfruitItem = registerItemFood("dragonfruitItem", HarvestCraft.config.cropfoodRestore);
-        durianItem = registerItemFood("durianItem", HarvestCraft.config.cropfoodRestore);
-        figItem = registerItemFood("figItem", HarvestCraft.config.cropfoodRestore);
-        grapefruitItem = registerItemFood("grapefruitItem", HarvestCraft.config.cropfoodRestore);
-        lemonItem = registerItemFood("lemonItem", HarvestCraft.config.cropfoodRestore);
-        limeItem = registerItemFood("limeItem", HarvestCraft.config.cropfoodRestore);
-        maplesyrupItem = registerItemFood("maplesyrupItem", HarvestCraft.config.cropfoodRestore);
-        mangoItem = registerItemFood("mangoItem", HarvestCraft.config.cropfoodRestore);
-        nutmegItem = registerItemFood("nutmegItem", HarvestCraft.config.cropfoodRestore);
-        oliveItem = registerItemFood("oliveItem", HarvestCraft.config.cropfoodRestore);
-        orangeItem = registerItemFood("orangeItem", HarvestCraft.config.cropfoodRestore);
-        papayaItem = registerItemFood("papayaItem", HarvestCraft.config.cropfoodRestore);
-        peachItem = registerItemFood("peachItem", HarvestCraft.config.cropfoodRestore);
-        pearItem = registerItemFood("pearItem", HarvestCraft.config.cropfoodRestore);
-        pecanItem = registerItemFood("pecanItem", HarvestCraft.config.cropfoodRestore);
-        peppercornItem = registerItemFood("peppercornItem", HarvestCraft.config.cropfoodRestore);
-        persimmonItem = registerItemFood("persimmonItem", HarvestCraft.config.cropfoodRestore);
-        pistachioItem = registerItemFood("pistachioItem", HarvestCraft.config.cropfoodRestore);
-        plumItem = registerItemFood("plumItem", HarvestCraft.config.cropfoodRestore);
-        pomegranateItem = registerItemFood("pomegranateItem", HarvestCraft.config.cropfoodRestore);
-        starfruitItem = registerItemFood("starfruitItem", HarvestCraft.config.cropfoodRestore);
-        vanillabeanItem = registerItemFood("vanillabeanItem", HarvestCraft.config.cropfoodRestore);
-        walnutItem = registerItemFood("walnutItem", HarvestCraft.config.cropfoodRestore);
-        gooseberryItem = registerItemFood("gooseberryItem", HarvestCraft.config.cropfoodRestore);
 
         grilledasparagusItem = registerItemFood("grilledasparagusItem", 4, HarvestCraft.config.mealsaturation);
         bakedsweetpotatoItem = registerItemFood("bakedsweetpotatoItem", 4, HarvestCraft.config.mealsaturation);
@@ -1570,24 +1243,7 @@ public final class ItemRegistry {
         potatoandleeksoupItem = registerItemFood("potatoandleeksoupItem", 6, HarvestCraft.config.mealsaturation);
         yorkshirepuddingItem = registerItemFood("yorkshirepuddingItem", 5, HarvestCraft.config.mealsaturation);
         toadintheholeItem = registerItemFood("toadintheholeItem", 10,HarvestCraft.config.meatymealsaturation);
-
-        PamCropItems = new Item[]{asparagusItem, barleyItem, beanItem, beetItem, broccoliItem, cauliflowerItem, celeryItem, cranberryItem, garlicItem, gingerItem, leekItem, lettuceItem, oatsItem, onionItem, parsnipItem, peanutItem, pineappleItem, radishItem, riceItem, rutabagaItem, ryeItem, scallionItem, soybeanItem, spiceleafItem, sweetpotatoItem, tealeafItem, turnipItem, whitemushroomItem, artichokeItem, bellpepperItem, blackberryItem, blueberryItem, brusselsproutItem, cabbageItem, cactusfruitItem, candleberryItem, cantaloupeItem, chilipepperItem, coffeebeanItem, cornItem, cottonItem, cucumberItem, eggplantItem, grapeItem, kiwiItem, mustardseedsItem, okraItem, peasItem, raspberryItem, rhubarbItem, seaweedItem, strawberryItem, tomatoItem, wintersquashItem, zucchiniItem, bambooshootItem, spinachItem, curryleafItem, sesameseedsItem, waterchestnutItem};
-        PamSeeds = new Item[]{asparagusseedItem, barleyseedItem, beanseedItem, beetseedItem, broccoliseedItem, cauliflowerseedItem, celeryseedItem, cranberryseedItem, garlicseedItem, gingerseedItem, leekseedItem, lettuceseedItem, oatsseedItem, onionseedItem, parsnipseedItem, peanutseedItem, pineappleseedItem, radishseedItem, riceseedItem, rutabagaseedItem, ryeseedItem, scallionseedItem, soybeanseedItem, spiceleafseedItem, sweetpotatoseedItem, teaseedItem, turnipseedItem, whitemushroomseedItem, artichokeseedItem, bellpepperseedItem, blackberryseedItem, blueberryseedItem, brusselsproutseedItem, cabbageseedItem, cactusfruitseedItem, candleberryseedItem, cantaloupeseedItem, chilipepperseedItem, coffeeseedItem, cornseedItem, cottonseedItem, cucumberseedItem, eggplantseedItem, grapeseedItem, kiwiseedItem, mustardseedItem, okraseedItem, peasseedItem, raspberryseedItem, rhubarbseedItem, seaweedseedItem, strawberryseedItem, tomatoseedItem, wintersquashseedItem, zucchiniseedItem, bambooshootseedItem, spinachseedItem, curryleafseedItem, sesameseedsseedItem, waterchestnutseedItem};
-        PamTemperateFruits = new Item[]{Items.apple, avocadoItem, cherryItem, chestnutItem, nutmegItem, pearItem, plumItem, walnutItem, gooseberryItem};
-        PamWarmFruits = new Item[]{almondItem, apricotItem, bananaItem, cashewItem, coconutItem, dateItem, dragonfruitItem, durianItem, figItem, grapefruitItem, lemonItem, limeItem, mangoItem, oliveItem, orangeItem, papayaItem, peachItem, pecanItem, peppercornItem, persimmonItem, pistachioItem, pomegranateItem, starfruitItem, vanillabeanItem};
-        PamLogFruits = new Item[]{cinnamonItem, maplesyrupItem, Items.paper};
-
         initialized = true;
-    }
-
-    private static Item registerItem(Item item, String registryName) {
-        item.setCreativeTab(HarvestCraft.modTab);
-        item.setRegistryName(registryName);
-        item.setUnlocalizedName(registryName);
-
-        items.put(registryName, item);
-
-        return GameRegistry.register(item);
     }
 
     public static Item registerItemTool(String registryName) {
@@ -1595,10 +1251,6 @@ public final class ItemRegistry {
         item.setContainerItem(item);
 
         return registerItem(item, registryName);
-    }
-
-    public static Item registerItemFood(String registryName, int amount) {
-        return registerItemFood(registryName, amount, 0.6F);
     }
 
     public static Item registerItemFood(String registryName, int amount, float saturation) {
@@ -1613,25 +1265,6 @@ public final class ItemRegistry {
         return registerItem(item, registryName);
     }
 
-    public static Item registerSeedFood(String registryName, Block crop, boolean isSeed) {
-        Item item = new ItemSeedFood(HarvestCraft.config.cropfoodRestore, HarvestCraft.config.cropsaturationRestore, crop, Blocks.farmland);
-
-        if (isSeed && crop != null) {
-            seedsMap.put((BlockPamCrop) crop, item);
-        } else if (crop != null) {
-            harvestedItemMap.put((BlockPamCrop) crop, item);
-        }
-
-        return registerItem(item, registryName);
-    }
-
-    public static Item registerSeeds(String registryName, Block crop) {
-        Item item = new ItemSeeds(crop, Blocks.farmland);
-
-        seedsMap.put((BlockPamCrop) crop, item);
-
-        return registerItem(item, registryName);
-    }
 
     public static ItemPamPotionFood registerPotionFood(String registryName, int amount, float saturation) {
         Item item = new ItemPamPotionFood(amount, saturation, false);
@@ -1639,20 +1272,13 @@ public final class ItemRegistry {
         return (ItemPamPotionFood) registerItem(item, registryName);
     }
 
-    public static Item getCropById(String registerId) {
-        if (!initialized) {
-            FMLLog.bigWarning("Invoked ItemRegistry.getCropById before initialization.");
-            return null;
-        }
+    public static Item registerItem(Item item, String registryName) {
+        item.setCreativeTab(HarvestCraft.modTab);
+        item.setRegistryName(registryName);
+        item.setUnlocalizedName(registryName);
 
-        for (Item item : PamCropItems) {
-            if (item.getUnlocalizedName().equals(registerId)) {
-                return item;
-            }
-        }
+        items.put(registryName, item);
 
-        FMLLog.bigWarning("Crop %s not found.", registerId);
-
-        return null;
+        return GameRegistry.register(item);
     }
 }

@@ -1,12 +1,9 @@
 package com.pam.harvestcraft.blocks.growables;
 
-import com.pam.harvestcraft.HarvestCraft;
-import com.pam.harvestcraft.item.ItemRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -34,6 +31,17 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
     public final String registerName;
     public String BASE_STAGE_ID = null;
 
+    private Item seed;
+    private Item food;
+
+    public void setSeed(Item seed) {
+        this.seed = seed;
+    }
+
+    public void setFood(Item food) {
+        this.food = food;
+    }
+
     public BlockPamCrop(String registerName) {
         super();
 
@@ -49,6 +57,8 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
 
         return BASE_STAGE_ID + stage;
     }
+
+
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
@@ -75,15 +85,13 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
     }
 
     @Override
-    protected Item getSeed() {
-        final Item seeds = ItemRegistry.seedsMap.get(this);
-
-        if (seeds == null) {
-            FMLLog.bigWarning("No seeds have been set up.");
+    public Item getSeed() {
+        if (seed == null) {
+            FMLLog.bigWarning("No seed have been set up for %s.", getUnlocalizedName());
             return new Item();
         }
 
-        return seeds;
+        return seed;
     }
 
     @Override
@@ -97,14 +105,13 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
     }
 
     @Override
-    protected Item getCrop() {
-        final Item harvestedItem = ItemRegistry.harvestedItemMap.get(this);
-        if (harvestedItem == null) {
-            FMLLog.bigWarning("No harvested item has been set up.");
+    public Item getCrop() {
+        if (food == null) {
+            FMLLog.bigWarning("No food has been set up for %s.", getUnlocalizedName());
             return new Item();
         }
 
-        return harvestedItem;
+        return food;
     }
 
     @Override
@@ -169,7 +176,7 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
     }
 
     @Override
-    protected BlockStateContainer createBlockState() {
+    public BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, AGE);
     }
 
@@ -235,7 +242,7 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
      * Equivalent methods
      */
     @Override
-    protected boolean func_185514_i(IBlockState state) {
+    public boolean func_185514_i(IBlockState state) {
         return isSuitableSoilBlock(state.getBlock());
     }
 
@@ -245,7 +252,7 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
     }
 
     @Override
-    protected int func_185527_x(IBlockState state) {
+    public int func_185527_x(IBlockState state) {
         return getMetaFromState(state);
     }
 
@@ -260,7 +267,7 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
     }
 
     @Override
-    protected int func_185529_b(World worldIn) {
+    public int func_185529_b(World worldIn) {
         return getRandomInt(worldIn);
     }
 }

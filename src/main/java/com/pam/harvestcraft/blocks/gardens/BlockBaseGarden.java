@@ -1,14 +1,11 @@
 package com.pam.harvestcraft.blocks.gardens;
 
 import com.pam.harvestcraft.HarvestCraft;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
-import net.minecraft.block.BlockFlower;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
@@ -59,7 +56,7 @@ public abstract class BlockBaseGarden extends BlockBush {
                 newGardenPos = pos.add(rand.nextInt(3) - 1, rand.nextInt(2) - rand.nextInt(2), rand.nextInt(3) - 1);
             }
 
-            if (worldIn.getBlockState(newGardenPos).getBlock().isReplaceable(worldIn, newGardenPos) &&
+            if (worldIn.isAirBlock(newGardenPos) &&
                     canBlockStay(worldIn, newGardenPos, getDefaultState())) {
                 worldIn.setBlockState(newGardenPos, getDefaultState(), 2);
             }
@@ -68,7 +65,7 @@ public abstract class BlockBaseGarden extends BlockBush {
 
     @Override
     public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
-        return worldIn.getBlockState(pos).getBlock().isReplaceable(worldIn, pos);
+        return worldIn.isAirBlock(pos);
     }
 
     @Override

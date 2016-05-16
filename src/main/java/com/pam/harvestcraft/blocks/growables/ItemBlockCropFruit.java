@@ -5,8 +5,8 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.translation.I18n;
 
-public class ItemBlockFruit extends ItemBlock {
-    public ItemBlockFruit(Block block) {
+public class ItemBlockCropFruit extends ItemBlock {
+    public ItemBlockCropFruit(Block block) {
         super(block);
     }
 

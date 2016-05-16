@@ -3,14 +3,12 @@ package com.pam.harvestcraft.worldgen;
 import com.pam.harvestcraft.HarvestCraft;
 import com.pam.harvestcraft.blocks.BlockRegistry;
 import com.pam.harvestcraft.blocks.gardens.BlockBaseGarden;
-import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
 import java.util.Random;
@@ -21,6 +19,7 @@ public class BushWorldWorldGen implements IWorldGenerator {
 
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
+
         final int xChunk = chunkX * 16 + 8, zChunk = chunkZ * 16 + 8;
         int xCh = chunkX * 16 + random.nextInt(16);
         int yCh = random.nextInt(128);
@@ -28,10 +27,10 @@ public class BushWorldWorldGen implements IWorldGenerator {
 
         final BiomeGenBase biome = world.getBiomeGenForCoords(new BlockPos(xChunk + 16, 0, zChunk + 16));
         final BlockPos blockPos = new BlockPos(xCh, yCh + 64, zCh);
-
         if (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.DEAD)) {
             return;
         }
+
 
         if (config.enablearidgardenGeneration && (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.SANDY)) || (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.MESA))) {
             generateGarden(BlockRegistry.aridGardenBlock, world, blockPos);
