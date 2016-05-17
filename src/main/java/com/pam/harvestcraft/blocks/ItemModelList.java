@@ -1,5 +1,7 @@
 package com.pam.harvestcraft.blocks;
 
+import com.pam.harvestcraft.Reference;
+
 import java.util.HashMap;
 
 public class ItemModelList {
@@ -12,11 +14,11 @@ public class ItemModelList {
             throw new RuntimeException("Resource root path must be relative! (end with '/')");
         }
 
-        this.rootDirectory = ResourceHelper.getResourcePath(resourceRoot);
+        this.rootDirectory = getResourcePath(resourceRoot);
     }
 
     public ItemModelList add(int meta, String path) {
-        this.registrations.put(meta, this.rootDirectory != null ? this.rootDirectory + path : ResourceHelper.getResourcePath(path));
+        this.registrations.put(meta, this.rootDirectory != null ? this.rootDirectory + path : getResourcePath(path));
 
         return this;
     }
@@ -24,5 +26,10 @@ public class ItemModelList {
     public HashMap<Integer, String> getRegistrations() {
         return this.registrations;
     }
+
+    public static String getResourcePath(String resource) {
+        return (Reference.MODID + ":") + resource;
+    }
+
 }
 

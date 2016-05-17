@@ -5,9 +5,12 @@ import com.pam.harvestcraft.addons.RightClickHarvesting;
 import com.pam.harvestcraft.blocks.BlockRegistry;
 import com.pam.harvestcraft.blocks.CropRegistry;
 import com.pam.harvestcraft.blocks.FruitRegistry;
-import com.pam.harvestcraft.market.MarketItems;
-import com.pam.harvestcraft.item.*;
+import com.pam.harvestcraft.item.GeneralOreRegistry;
+import com.pam.harvestcraft.item.ItemRegistry;
+import com.pam.harvestcraft.item.RecipeRegistry;
+import com.pam.harvestcraft.item.SeedDropRegistry;
 import com.pam.harvestcraft.loottables.LootTableLoadEventHandler;
+import com.pam.harvestcraft.market.MarketItems;
 import com.pam.harvestcraft.market.TileEntityMarket;
 import com.pam.harvestcraft.worldgen.BushWorldWorldGen;
 import com.pam.harvestcraft.worldgen.FruitTreeWorldGen;
@@ -22,8 +25,7 @@ public class CommonProxy {
     public void preInit(FMLPreInitializationEvent e) {
         CropRegistry.registerCrops();
         FruitRegistry.registerFruits();
-
-        BlockRegistry.loadBlockRegistry();
+        BlockRegistry.initBlockRegistry();
         ItemRegistry.loadItemRegistry();
 
         onBlocksAndItemsLoaded();
@@ -40,11 +42,11 @@ public class CommonProxy {
     public void onBlocksAndItemsLoaded() {
         HarvestCraft.config.configureGardenDrops();
 
-        PamFoodRecipes.registerRecipes();
-        PamOtherRecipes.getRecipes();
-        PamFoodOreDictionaryRegistry.getRegistry();
-        PamOtherOreDictionaryRegistry.getRegistry();
-        PamCropSeedDropRegistry.getSeedDrops();
+        GeneralOreRegistry.initOreRegistry();
+
+        RecipeRegistry.registerRecipes();
+        SeedDropRegistry.getSeedDrops();
+
         MarketItems.registerItems();
         PacketHandler.init();
 

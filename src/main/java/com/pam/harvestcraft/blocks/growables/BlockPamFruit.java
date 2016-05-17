@@ -1,7 +1,5 @@
 package com.pam.harvestcraft.blocks.growables;
 
-import com.pam.harvestcraft.blocks.BlockPamSapling;
-import com.pam.harvestcraft.item.ItemRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
@@ -25,25 +23,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class BlockPamFruit extends Block implements IGrowable, PamGrowable {
+public class BlockPamFruit extends Block implements IGrowable, PamCropGrowable {
 
     private static final int MATURE_AGE = 2;
 
     private final BlockPamSapling sapling;
-    private  String fruit;
 
-    private Item fruitItem;
+    private final Item fruitItem;
 
     public static final PropertyInteger AGE = PropertyInteger.create("age", 0, MATURE_AGE);
     public String BASE_STAGE_ID = null;
-
-    public BlockPamFruit(BlockPamSapling sapling, String fruit) {
-        super(Material.plants);
-        this.setTickRandomly(true);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, 0));
-        this.sapling = sapling;
-        this.fruit = fruit;
-    }
 
     public BlockPamFruit(BlockPamSapling sapling, Item fruit) {
         super(Material.plants);
@@ -55,10 +44,6 @@ public class BlockPamFruit extends Block implements IGrowable, PamGrowable {
 
     public Item getFruit() {
         if (fruitItem == null) {
-            fruitItem = ItemRegistry.items.containsKey(fruit) ? ItemRegistry.items.get(fruit) : null;
-        }
-
-        if (fruit == null) {
             FMLLog.bigWarning("Cannot get fruit %s.", getUnlocalizedName());
         }
 

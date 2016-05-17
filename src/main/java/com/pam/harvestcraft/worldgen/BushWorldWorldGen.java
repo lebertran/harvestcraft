@@ -1,8 +1,8 @@
 package com.pam.harvestcraft.worldgen;
 
 import com.pam.harvestcraft.HarvestCraft;
+import com.pam.harvestcraft.blocks.BlockBaseGarden;
 import com.pam.harvestcraft.blocks.BlockRegistry;
-import com.pam.harvestcraft.blocks.gardens.BlockBaseGarden;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -33,27 +33,27 @@ public class BushWorldWorldGen implements IWorldGenerator {
 
 
         if (config.enablearidgardenGeneration && (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.SANDY)) || (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.MESA))) {
-            generateGarden(BlockRegistry.aridGardenBlock, world, blockPos);
+            generateGarden(BlockRegistry.getGarden(BlockRegistry.aridGarden), world, blockPos);
         }
 
         if (config.enablefrostgardenGeneration && (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.SNOWY)) || (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.MOUNTAIN))) {
-            generateGarden(BlockRegistry.frostGardenBlock, world, blockPos);
+            generateGarden(BlockRegistry.getGarden(BlockRegistry.frostGarden), world, blockPos);
         }
 
         if (config.enableshadedgardenGeneration && (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.FOREST)) || (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.SPOOKY))) {
-            generateGarden(BlockRegistry.shadedGardenBlock, world, blockPos);
+            generateGarden(BlockRegistry.getGarden(BlockRegistry.shadedGarden), world, blockPos);
         }
 
         if (config.enablesoggygardenGeneration && (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.SWAMP)) || (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.RIVER))) {
-            generateGarden(BlockRegistry.soggyGardenBlock, world, blockPos);
+            generateGarden(BlockRegistry.getGarden(BlockRegistry.soggyGarden), world, blockPos);
         }
 
         if (config.enabletropicalgardenGeneration && (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.JUNGLE)) || (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.OCEAN))) {
-            generateGarden(BlockRegistry.tropicalGardenBlock, world, blockPos);
+            generateGarden(BlockRegistry.getGarden(BlockRegistry.tropicalGarden), world, blockPos);
         }
 
         if (config.enablewindygardenGeneration && (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.PLAINS)) || (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.SAVANNA))) {
-            generateGarden(BlockRegistry.windyGardenBlock, world, blockPos);
+            generateGarden(BlockRegistry.getGarden(BlockRegistry.windyGarden), world, blockPos);
         }
     }
 

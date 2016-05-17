@@ -7,7 +7,7 @@ import net.minecraft.world.IBlockAccess;
 
 import java.util.List;
 
-public interface PamGrowable {
+public interface PamCropGrowable {
     int getMatureAge();
     boolean isMature(IBlockState state);
     List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune);

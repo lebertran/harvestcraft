@@ -2,10 +2,10 @@ package com.pam.harvestcraft.gui;
 
 import com.pam.harvestcraft.market.MarketData;
 import com.pam.harvestcraft.market.MarketItems;
+import com.pam.harvestcraft.market.TileEntityMarket;
 import com.pam.harvestcraft.market.messages.MessageMarketBuy;
 import com.pam.harvestcraft.market.messages.MessageMarketClosed;
 import com.pam.harvestcraft.proxy.PacketHandler;
-import com.pam.harvestcraft.market.TileEntityMarket;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.RenderHelper;

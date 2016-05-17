@@ -1,7 +1,7 @@
 package com.pam.harvestcraft.worldgen;
 
-import com.pam.harvestcraft.blocks.BlockPamSapling;
 import com.pam.harvestcraft.blocks.FruitRegistry;
+import com.pam.harvestcraft.blocks.growables.BlockPamSapling;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -9,18 +9,19 @@ import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.common.IWorldGenerator;
-import static com.pam.harvestcraft.HarvestCraft.config;
 
 import java.util.Random;
+
+import static com.pam.harvestcraft.HarvestCraft.config;
 
 public class FruitTreeWorldGen implements IWorldGenerator {
 
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
         final int xChunk = chunkX * 16 + 8, zChunk = chunkZ * 16 + 8;
-        int xCh = chunkX * 16 + random.nextInt(16);
-        int yCh = random.nextInt(128) + 64;
-        int zCh = chunkZ * 16 + random.nextInt(16);
+        final int xCh = chunkX * 16 + random.nextInt(16);
+        final int yCh = random.nextInt(128) + 64;
+        final int zCh = chunkZ * 16 + random.nextInt(16);
 
         final BiomeGenBase biome = world.getBiomeGenForCoords(new BlockPos(xChunk + 16, 0, zChunk + 16));
         final BlockPos blockPos = new BlockPos(xCh, yCh, zCh);
@@ -230,15 +231,10 @@ public class FruitTreeWorldGen implements IWorldGenerator {
     }
 
     public void generateFruitTree(World world, BlockPos pos, String fruitName) {
-        int posX = (pos.getX() + world.rand.nextInt(8)) - world.rand.nextInt(8);
-        int posY = (pos.getY() + world.rand.nextInt(4)) - world.rand.nextInt(4);
-        int posZ = (pos.getZ() + world.rand.nextInt(8)) - world.rand.nextInt(8);
-        final BlockPos newPos = new BlockPos(posX, posY, posZ);
-
         final BlockPamSapling sapling = FruitRegistry.getSapling(fruitName);
         if (sapling == null) return;
 
-        sapling.generateTree(world, newPos, world.getBlockState(newPos), world.rand);
+        sapling.worldGenTrees(world, pos);
     }
 }
 

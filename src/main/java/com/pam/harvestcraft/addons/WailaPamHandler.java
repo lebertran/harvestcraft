@@ -2,8 +2,8 @@ package com.pam.harvestcraft.addons;
 
 import com.pam.harvestcraft.blocks.growables.BlockPamCrop;
 import com.pam.harvestcraft.blocks.growables.BlockPamFruit;
-import com.pam.harvestcraft.blocks.growables.BlockPamLogFruit;
-import com.pam.harvestcraft.blocks.growables.PamGrowable;
+import com.pam.harvestcraft.blocks.growables.BlockPamFruitLog;
+import com.pam.harvestcraft.blocks.growables.PamCropGrowable;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import mcp.mobius.waila.api.IWailaDataProvider;
@@ -32,13 +32,13 @@ public class WailaPamHandler implements IWailaDataProvider {
 
     @Override
     public List<String> getWailaBody(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
-        if (!config.getConfig("general.showcrop") || accessor.getBlock() == null || !(accessor.getBlock() instanceof PamGrowable) ) {
+        if (!config.getConfig("general.showcrop") || accessor.getBlock() == null || !(accessor.getBlock() instanceof PamCropGrowable) ) {
             return currenttip;
         }
 
         currenttip.clear();
 
-        float matureAge = ((PamGrowable) accessor.getBlock()).getMatureAge();
+        float matureAge = ((PamCropGrowable) accessor.getBlock()).getMatureAge();
         final int growthStage = accessor.getMetadata();
 
         final float growthValue = (growthStage / matureAge) * 100.0F;
@@ -70,6 +70,6 @@ public class WailaPamHandler implements IWailaDataProvider {
     public static void callbackRegister(IWailaRegistrar registrar) {
         registrar.registerBodyProvider(new WailaPamHandler(), BlockPamCrop.class);
         registrar.registerBodyProvider(new WailaPamHandler(), BlockPamFruit.class);
-        registrar.registerBodyProvider(new WailaPamHandler(), BlockPamLogFruit.class);
+        registrar.registerBodyProvider(new WailaPamHandler(), BlockPamFruitLog.class);
     }
 }

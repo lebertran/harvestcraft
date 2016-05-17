@@ -4,14 +4,12 @@ import com.pam.harvestcraft.HarvestCraft;
 import com.pam.harvestcraft.blocks.growables.BlockPamCrop;
 import com.pam.harvestcraft.blocks.growables.ItemBlockCropFruit;
 import com.pam.harvestcraft.item.ItemRegistry;
-import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemSeedFood;
 import net.minecraft.item.ItemSeeds;
 import net.minecraftforge.fml.common.FMLLog;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import java.text.MessageFormat;
 import java.util.HashMap;
@@ -145,13 +143,13 @@ public class CropRegistry {
             SESAME,
             WATERCHESTNUT
     };
-    public static final String[] cropWithNonConsumableSeed = new String[] {
-            BLACKBERRY,
-            BLUEBERRY,
-            CANDLEBERRY,
-            RASPBERRY,
-            STRAWBERRY
-    };
+
+    private static boolean isInitialized = false;
+
+    private static final HashMap<String, Item> seeds = new HashMap<>();
+    private static final HashMap<String, ItemSeedFood> foods = new HashMap<>();
+
+    private static final HashMap<String, BlockPamCrop> crops = new HashMap<>();
 
     public static HashMap<String, Item> getSeeds() {
         return seeds;
@@ -168,12 +166,6 @@ public class CropRegistry {
         }
         return crops;
     }
-
-    private static final HashMap<String, Item> seeds = new HashMap<>();
-    private static final HashMap<String, ItemSeedFood> foods = new HashMap<>();
-    private static final HashMap<String, BlockPamCrop> crops = new HashMap<>();
-
-    private static boolean isInitialized = false;
 
     public static boolean isInitialized() {
         return isInitialized;
@@ -236,18 +228,18 @@ public class CropRegistry {
 
     private static void registerCrop(String cropName) {
         final String registryName = MessageFormat.format(CROP_BLOCK_NAME, cropName);
-        final BlockPamCrop cropBlock = new BlockPamCrop(registryName);
+        final BlockPamCrop cropBlock = new BlockPamCrop(registryName, cropName);
         final ItemBlock cropItemBlock = new ItemBlockCropFruit(cropBlock);
 
-        registerBlock(registryName, cropItemBlock, cropBlock);
+        BlockRegistry.registerBlock(registryName, cropItemBlock, cropBlock);
 
         final ItemSeedFood item = createItem(cropBlock);
         ItemRegistry.registerItem(item, MessageFormat.format(ITEM_NAME, cropName));
         cropBlock.setFood(item);
 
-        final Item seedItem = createSeed(cropBlock, isConsumableSeed(cropName));
+        final Item seedItem = createSeed(cropBlock);
         ItemRegistry.registerItem(seedItem, getSeedName(cropName));
-        cropBlock.setSeed(item);
+        cropBlock.setSeed(seedItem);
 
         seeds.put(cropName, seedItem);
         foods.put(cropName, item);
@@ -274,35 +266,12 @@ public class CropRegistry {
         return MessageFormat.format(SEED_ITEM_NAME, cropName);
     }
 
-    private static boolean isConsumableSeed(String cropName) {
-        for (String name : cropWithNonConsumableSeed) {
-            if (name.equals(cropName)) return true;
-        }
-
-        return false;
-    }
 
     private static ItemSeedFood createItem(BlockPamCrop cropBlock) {
         return new ItemSeedFood(HarvestCraft.config.cropfoodRestore, HarvestCraft.config.cropsaturationRestore, cropBlock, Blocks.farmland);
     }
 
-    private static Item createSeed(BlockPamCrop cropBlock, boolean isFood) {
-        if (isFood) {
-            return new ItemSeedFood(HarvestCraft.config.cropfoodRestore, HarvestCraft.config.cropsaturationRestore, cropBlock, Blocks.farmland);
-        } else {
-            return new ItemSeeds(cropBlock, Blocks.farmland);
-
-        }
-    }
-
-    private static void registerBlock(String registerName, ItemBlock itemBlock, Block block) {
-        block.setRegistryName(registerName);
-        block.setUnlocalizedName(registerName);
-
-        GameRegistry.register(block);
-
-        itemBlock.setRegistryName(registerName);
-        itemBlock.setUnlocalizedName(registerName);
-        GameRegistry.register(itemBlock);
+    private static Item createSeed(BlockPamCrop cropBlock) {
+        return new ItemSeeds(cropBlock, Blocks.farmland);
     }
 }

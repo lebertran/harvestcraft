@@ -1,9 +1,9 @@
 package com.pam.harvestcraft.blocks.growables;
 
-import com.pam.harvestcraft.blocks.BlockPamSapling;
-import com.pam.harvestcraft.item.ItemRegistry;
+import com.pam.harvestcraft.HarvestCraft;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -21,40 +21,39 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class BlockPamLogFruit extends Block implements IGrowable, PamGrowable {
+public class BlockPamFruitLog extends Block implements IGrowable, PamCropGrowable {
 
     private static final int MATURE_AGE = 2;
     private final BlockPamSapling sapling;
-    private String fruit;
-    private Item fruitItem;
+    private final Item fruitItem;
 
     public static final PropertyInteger AGE = PropertyInteger.create("age", 0, MATURE_AGE);
     public String BASE_STAGE_ID = null;
 
-    public BlockPamLogFruit(BlockPamSapling sapling, String fruit) {
-        super(Material.plants);
-        this.setHardness(5);
+    public BlockPamFruitLog(BlockPamSapling sapling, Item fruit) {
+        super(Material.wood);
+        this.setHardness(2.0F);
         this.setTickRandomly(true);
         this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, 0));
-        this.sapling = sapling;
-        this.fruit = fruit;
-    }
-
-    public BlockPamLogFruit(BlockPamSapling sapling, Item fruit) {
-        super(Material.plants);
-        this.setHardness(5);
-        this.setTickRandomly(true);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, 0));
+        this.setCreativeTab(HarvestCraft.modTab);
+        this.setStepSound(SoundType.WOOD);
         this.sapling = sapling;
         this.fruitItem = fruit;
+
+    }
+
+    @Override
+    public boolean isWood(IBlockAccess world, BlockPos pos) {
+        return true;
+    }
+
+    @Override
+    public boolean canSustainLeaves(IBlockState state, IBlockAccess world, BlockPos pos) {
+        return true;
     }
 
     public Item getFruit() {
         if (fruitItem == null) {
-            fruitItem = ItemRegistry.items.containsKey(fruit) ? ItemRegistry.items.get(fruit) : null;
-        }
-
-        if (fruit == null && fruitItem == null) {
             FMLLog.bigWarning("Cannot get fruit %s.", getUnlocalizedName());
         }
 
@@ -80,11 +79,6 @@ public class BlockPamLogFruit extends Block implements IGrowable, PamGrowable {
     @Override
     public boolean isMature(IBlockState state) {
         return getMetaFromState(state) >= getMatureAge();
-    }
-
-    @Override
-    public int quantityDropped(Random random) {
-        return 1;
     }
 
     @Override
@@ -138,6 +132,7 @@ public class BlockPamLogFruit extends Block implements IGrowable, PamGrowable {
     @Override
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
         final List<ItemStack> drops = new ArrayList<>();
+        drops.add(new ItemStack(this, 1));
         if (getMetaFromState(state) >= MATURE_AGE) {
             drops.add(new ItemStack(getFruit(), 1));
             drops.add(new ItemStack(getFruit(), 1));

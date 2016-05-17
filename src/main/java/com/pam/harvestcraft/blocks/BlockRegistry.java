@@ -1,35 +1,49 @@
 package com.pam.harvestcraft.blocks;
 
-import com.pam.harvestcraft.blocks.gardens.*;
 import com.pam.harvestcraft.item.ItemRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
+import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
 
 public final class BlockRegistry {
 
     // Market blocks
+    public static final String marketItemName = "market";
     public static Block pamMarket;
+    public static ItemBlock marketItemBlock;
 
     // Garden blocks
-    public static AridGardenBlock aridGardenBlock;
-    public static FrostGardenBlock frostGardenBlock;
-    public static TropicalGardenBlock tropicalGardenBlock;
-    public static WindyGardenBlock windyGardenBlock;
-    public static ShadedGardenBlock shadedGardenBlock;
-    public static SoggyGardenBlock soggyGardenBlock;
+    public static final HashMap<String, BlockBaseGarden> gardens = new HashMap<>();
+    public static final String aridGarden = "aridGarden";
+    public static final String frostGarden = "frostGarden";
+    public static final String tropicalGarden = "tropicalGarden";
+    public static final String windyGarden = "windyGarden";
+    public static final String shadedGarden = "shadedGarden";
+    public static final String soggyGarden = "soggyGarden";
 
-    public static final ArrayList<BlockBaseGarden> gardens = new ArrayList<>();
+    private static boolean initialized = false;
 
-    public static ItemBlock marketItemBlock;
-    public static final String marketItemName = "market";
-
-    public static void loadBlockRegistry() {
+    public static void initBlockRegistry() {
         registerMarket();
         registerGardens();
+        initialized = true;
+    }
+
+    public static BlockBaseGarden getGarden(String gardenName) {
+        if (!initialized) {
+            FMLLog.bigWarning("BlockRegistry has not been initialized yet.");
+            return null;
+        }
+
+        if (!gardens.containsKey(gardenName)) {
+            FMLLog.bigWarning("Garden %s is not registered.", gardenName);
+            return null;
+        }
+
+        return gardens.get(gardenName);
     }
 
     private static void registerMarket() {
@@ -41,18 +55,22 @@ public final class BlockRegistry {
     }
 
     private static void registerGardens() {
-        aridGardenBlock = new AridGardenBlock();
-        frostGardenBlock = new FrostGardenBlock();
-        tropicalGardenBlock = new TropicalGardenBlock();
-        windyGardenBlock = new WindyGardenBlock();
-        shadedGardenBlock = new ShadedGardenBlock();
-        soggyGardenBlock = new SoggyGardenBlock();
-
-        addGardens(aridGardenBlock, frostGardenBlock, tropicalGardenBlock, windyGardenBlock, shadedGardenBlock, soggyGardenBlock);
+        addGarden(aridGarden, BlockBaseGarden.Region.DESERT);
+        addGarden(frostGarden, BlockBaseGarden.Region.PLAINS);
+        addGarden(shadedGarden, BlockBaseGarden.Region.PLAINS);
+        addGarden(soggyGarden, BlockBaseGarden.Region.PLAINS);
+        addGarden(tropicalGarden, BlockBaseGarden.Region.PLAINS);
+        addGarden(windyGarden, BlockBaseGarden.Region.PLAINS);
     }
 
 
-    private static void registerBlock(String registerName, ItemBlock itemBlock, Block block) {
+    private static void addGarden(String gardenName, BlockBaseGarden.Region region) {
+        final BlockBaseGarden garden = new BlockBaseGarden(gardenName, region);
+
+        gardens.put(gardenName, garden);
+    }
+
+    public static void registerBlock(String registerName, ItemBlock itemBlock, Block block) {
         block.setRegistryName(registerName);
         block.setUnlocalizedName(registerName);
 
@@ -66,9 +84,5 @@ public final class BlockRegistry {
     public static void registerBlock(String registerName, Block block) {
         final ItemBlock itemBlock = new ItemBlock(block);
         registerBlock(registerName, itemBlock, block);
-    }
-
-    public static void addGardens(BlockBaseGarden... gardensToAdd) {
-        gardens.addAll(Arrays.asList(gardensToAdd));
     }
 }

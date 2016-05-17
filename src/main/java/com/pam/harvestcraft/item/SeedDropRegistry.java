@@ -8,7 +8,7 @@ import net.minecraftforge.common.MinecraftForge;
 
 import java.util.Map;
 
-public class PamCropSeedDropRegistry {
+public class SeedDropRegistry {
 
     public static void getSeedDrops() {
         for (Map.Entry<String, Boolean> entry : HarvestCraft.config.seedDropFromGrass.entrySet()) {

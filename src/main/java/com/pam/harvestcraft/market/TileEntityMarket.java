@@ -8,8 +8,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 
-import java.util.ArrayList;
-
 public class TileEntityMarket extends TileEntity implements IInventory {
     public int stockNum = 0;
     private ItemStack paySlot = null;

@@ -1,6 +1,8 @@
 package com.pam.harvestcraft.item;
 
 import com.pam.harvestcraft.HarvestCraft;
+import com.pam.harvestcraft.item.items.ItemPamPotionFood;
+import com.pam.harvestcraft.item.items.ItemPamTool;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -686,7 +688,7 @@ public final class ItemRegistry {
         carrotsoupItem = registerItemFood("carrotsoupItem", 8,HarvestCraft.config.meatymealsaturation);
         glazedcarrotsItem = registerItemFood("glazedcarrotsItem", 7, HarvestCraft.config.mealsaturation);
         butteredpotatoItem = registerItemFood("butteredpotatoItem", 7, HarvestCraft.config.mealsaturation);
-        loadedbakedpotatoItem = registerItemFood("loadedbakedpotatoItem", 11,HarvestCraft.config.meatymealsaturation);
+        loadedbakedpotatoItem = registerItemFood("loadedbakedpotatoItem", 11, HarvestCraft.config.meatymealsaturation);
         mashedpotatoesItem = registerItemFood("mashedpotatoesItem", 9, HarvestCraft.config.mealsaturation);
         potatosaladItem = registerItemFood("potatosaladItem", 7,HarvestCraft.config.meatymealsaturation);
         potatosoupItem = registerItemFood("potatosoupItem", 6,HarvestCraft.config.meatymealsaturation);

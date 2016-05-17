@@ -13,9 +13,11 @@ import net.minecraft.world.storage.loot.functions.LootFunction;
 import net.minecraft.world.storage.loot.functions.SetCount;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class LootHelper {
-    public static final ArrayList<CustomLootPool> additionalLootPools = new ArrayList<>();
+    public static final Set<CustomLootPool> additionalLootPools = new HashSet<>();
 
     static {
         // LootTable for GAMEPLAY_FISHING_JUNK

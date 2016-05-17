@@ -1,4 +1,4 @@
-package com.pam.harvestcraft.item;
+package com.pam.harvestcraft.item.items;
 
 import net.minecraft.item.Item;
 

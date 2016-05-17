@@ -1,8 +1,6 @@
-package com.pam.harvestcraft.blocks;
+package com.pam.harvestcraft.blocks.growables;
 
 import com.pam.harvestcraft.HarvestCraft;
-import com.pam.harvestcraft.blocks.growables.BlockPamFruit;
-import com.pam.harvestcraft.blocks.growables.BlockPamLogFruit;
 import com.pam.harvestcraft.worldgen.FruitTreeGen;
 import com.pam.harvestcraft.worldgen.LogFruitTreeGen;
 import net.minecraft.block.*;
@@ -25,6 +23,12 @@ public class BlockPamSapling extends BlockBush implements IGrowable {
     private Block fruit;
     private final SaplingType saplingType;
 
+    // Caching information for sapling.
+    private final BlockPlanks.EnumType planks;
+    private final int rarity;
+    private final IBlockState logState;
+    private final IBlockState leavesState;
+
     public BlockPamSapling(String name, SaplingType saplingType) {
         super();
         this.setStepSound(SoundType.PLANT);
@@ -32,13 +36,33 @@ public class BlockPamSapling extends BlockBush implements IGrowable {
         this.setCreativeTab(HarvestCraft.modTab);
         this.saplingType = saplingType;
         this.name = name;
+
+        // Generating information for saplings
+        switch (saplingType) {
+            case WARM:
+                planks = BlockPlanks.EnumType.JUNGLE;
+                rarity = HarvestCraft.config.tropicalfruittreeRarity;
+                break;
+
+            case COLD:
+                planks = BlockPlanks.EnumType.SPRUCE;
+                rarity = HarvestCraft.config.coniferousfruittreeRarity;
+                break;
+            case TEMPERATE:
+            default:
+                planks = BlockPlanks.EnumType.OAK;
+                rarity = HarvestCraft.config.temperatefruittreeRarity;
+        }
+
+        logState = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, planks);
+        leavesState = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, planks)
+                .withProperty(BlockLeaves.CHECK_DECAY, false);
     }
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
         return SAPLING_AABB;
     }
-
 
     public String getName() {
         return name;
@@ -97,34 +121,34 @@ public class BlockPamSapling extends BlockBush implements IGrowable {
         if (!TerrainGen.saplingGrowTree(worldIn, rand, pos)) {
             return;
         }
-
-        final BlockPlanks.EnumType planks;
-
-        switch (saplingType) {
-            case WARM:
-                planks = BlockPlanks.EnumType.JUNGLE;
-                break;
-            case COLD:
-                planks = BlockPlanks.EnumType.SPRUCE;
-                break;
-            case TEMPERATE:
-            default:
-                planks = BlockPlanks.EnumType.OAK;
-        }
-
         worldIn.setBlockToAir(pos);
-        final IBlockState log = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, planks);
-        final IBlockState leaves = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, planks)
-                .withProperty(BlockLeaves.CHECK_DECAY, false);
-        final IBlockState fruit = getFruit().getDefaultState();
+
+        final IBlockState fruitState = getFruit().getDefaultState();;
+
         if (getFruit() instanceof BlockPamFruit) {
-            if (!new FruitTreeGen(5, log, leaves, false, fruit).generate(worldIn, rand, pos)) {
+            if (!new FruitTreeGen(5, logState, leavesState, false, fruitState).generate(worldIn, rand, pos)) {
                 worldIn.setBlockState(pos, state); //Re-add the sapling if the tree failed to grow
             }
-        } else if (getFruit() instanceof BlockPamLogFruit) {
-            if (!new LogFruitTreeGen(5, log, leaves, fruit).generate(worldIn, rand, pos)) {
+        } else if (getFruit() instanceof BlockPamFruitLog) {
+            if (!new LogFruitTreeGen(5, logState, leavesState, fruitState).generate(worldIn, rand, pos)) {
                 worldIn.setBlockState(pos, state);
+            }
+        }
+    }
 
+    public void worldGenTrees(World world, BlockPos pos) {
+        for (int tries = 0; tries < rarity; tries++) {
+            int posX = pos.getX() + world.rand.nextInt(8) - world.rand.nextInt(8);
+            int posY = pos.getY() + world.rand.nextInt(4) - world.rand.nextInt(4);
+            int posZ = pos.getZ() + world.rand.nextInt(8) - world.rand.nextInt(8);
+            final BlockPos newPos = new BlockPos(posX, posY, posZ);
+
+            final IBlockState fruitState = getFruit().getDefaultState();;
+
+            if (getFruit() instanceof BlockPamFruit) {
+                new FruitTreeGen(5, logState, leavesState, false, fruitState).generate(world, world.rand, newPos);
+            } else if (getFruit() instanceof BlockPamFruitLog) {
+                new LogFruitTreeGen(5, logState, leavesState, fruitState).generate(world, world.rand, newPos);
             }
         }
     }
@@ -136,7 +160,7 @@ public class BlockPamSapling extends BlockBush implements IGrowable {
 
     @Override
     public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state) {
-        return worldIn.rand.nextFloat() < 0.45D;
+        return rand.nextFloat() < 0.45D;
     }
 
     @Override

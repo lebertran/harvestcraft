@@ -1,9 +1,10 @@
 package com.pam.harvestcraft.config;
 
+import com.pam.harvestcraft.blocks.BlockBaseGarden;
 import com.pam.harvestcraft.blocks.CropRegistry;
-import com.pam.harvestcraft.blocks.gardens.BlockBaseGarden;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import java.util.ArrayList;
@@ -189,9 +190,9 @@ public class ConfigHandler {
     }
 
     private void initFoodTreesSettings() {
-        temperatefruittreeRarity = config.get(CATEGORY_FRUIT_TREES, "temperatefruittreeRarity", 24).getInt();
-        tropicalfruittreeRarity = config.get(CATEGORY_FRUIT_TREES, "tropicalfruittreeRarity", 32).getInt();
-        coniferousfruittreeRarity = config.get(CATEGORY_FRUIT_TREES, "coniferousfruittreeRarity", 24).getInt();
+        temperatefruittreeRarity = config.get(CATEGORY_FRUIT_TREES, "temperatefruittreeRarity", 48).getInt();
+        tropicalfruittreeRarity = config.get(CATEGORY_FRUIT_TREES, "tropicalfruittreeRarity", 64).getInt();
+        coniferousfruittreeRarity = config.get(CATEGORY_FRUIT_TREES, "coniferousfruittreeRarity", 48).getInt();
         appletreeGeneration = config.get(CATEGORY_FRUIT_TREES, "appletreeGeneration", true).getBoolean();
         almondtreeGeneration = config.get(CATEGORY_FRUIT_TREES, "almondtreeGeneration", true).getBoolean();
         apricottreeGeneration = config.get(CATEGORY_FRUIT_TREES, "apricottreeGeneration", true).getBoolean();
@@ -398,15 +399,15 @@ public class ConfigHandler {
         final Matcher ITEM_STACK_MATCHER = ITEM_STACK_PATTERN.matcher("");
 
         for (String garden : gardenDropConfig.keySet()) {
-            System.out.println("Registering drops for '" + garden + "'.");
+            FMLLog.info("Registering drops for %s.", garden);
 
-            List<ItemStack> drops = new ArrayList<>();
-            String[] itemNames = gardenDropConfig.get(garden);
+            final List<ItemStack> drops = new ArrayList<>();
+            final String[] itemNames = gardenDropConfig.get(garden);
 
             for (String baseItemName : itemNames) {
                 ITEM_STACK_MATCHER.reset(baseItemName);
                 if (ITEM_STACK_MATCHER.find()) {
-                    String itemName = ITEM_STACK_MATCHER.group(2);
+                    final String itemName = ITEM_STACK_MATCHER.group(2);
                     int metadata = 0;
                     if (ITEM_STACK_MATCHER.group(3) != null) {
                         metadata = Integer.parseInt(ITEM_STACK_MATCHER.group(3));
@@ -415,14 +416,14 @@ public class ConfigHandler {
                     if (ITEM_STACK_MATCHER.group(1) != null) {
                         stackSize = Integer.parseInt(ITEM_STACK_MATCHER.group(1));
                     }
-                    ItemStack drop = GameRegistry.makeItemStack(itemName, metadata, stackSize, null);
+                    final ItemStack drop = GameRegistry.makeItemStack(itemName, metadata, stackSize, null);
 
                     // Check to make sure we got a valid item
                     if (drop != null) {
                         drops.add(drop);
                     } else {
                         // Otherwise, let the user know about it...
-                        System.err.println("Unable to find item '" + baseItemName + "' to add to this garden.");
+                        FMLLog.severe("Unable to find item %s to add to this garden.", baseItemName);
                     }
                 }
             }

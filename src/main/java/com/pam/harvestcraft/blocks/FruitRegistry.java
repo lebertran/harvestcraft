@@ -1,18 +1,17 @@
 package com.pam.harvestcraft.blocks;
 
 import com.pam.harvestcraft.HarvestCraft;
-import com.pam.harvestcraft.blocks.BlockPamSapling.SaplingType;
 import com.pam.harvestcraft.blocks.growables.BlockPamFruit;
-import com.pam.harvestcraft.blocks.growables.BlockPamLogFruit;
+import com.pam.harvestcraft.blocks.growables.BlockPamFruitLog;
+import com.pam.harvestcraft.blocks.growables.BlockPamSapling;
+import com.pam.harvestcraft.blocks.growables.BlockPamSapling.SaplingType;
 import com.pam.harvestcraft.blocks.growables.ItemBlockCropFruit;
 import com.pam.harvestcraft.item.ItemRegistry;
-import net.minecraft.block.Block;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemFood;
 import net.minecraftforge.fml.common.FMLLog;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import java.text.MessageFormat;
 import java.util.HashMap;
@@ -116,7 +115,7 @@ public class FruitRegistry {
     private static final HashMap<String, BlockPamSapling> saplings = new HashMap<>();
 
     public static final HashSet<BlockPamFruit> fruits = new HashSet<>();
-    public static final HashMap<String, BlockPamLogFruit> logFruits = new HashMap<>();
+    public static final HashMap<String, BlockPamFruitLog> logs = new HashMap<>();
 
     public static final HashMap<String, Item> foodItems = new HashMap<>();
 
@@ -156,18 +155,18 @@ public class FruitRegistry {
         return foodItems.get(fruitName);
     }
 
-    public static BlockPamLogFruit getLogFruit(String fruitName) {
+    public static BlockPamFruitLog getLog(String fruitName) {
         if (!isInitialised) {
             FMLLog.bigWarning("FruitRegistry has not been initialised yet.");
             return null;
         }
 
-        if (!logFruits.containsKey(fruitName)) {
+        if (!logs.containsKey(fruitName)) {
             FMLLog.bigWarning("%s is not registered in log fruit map.", fruitName);
             return null;
         }
 
-        return logFruits.get(fruitName);
+        return logs.get(fruitName);
     }
 
     public static void registerFruits() {
@@ -193,7 +192,7 @@ public class FruitRegistry {
         final BlockPamSapling sapling = new BlockPamSapling(saplingName, saplingType);
         final ItemBlock saplingItemBlock = new ItemBlock(sapling);
         itemBlocks.add(saplingItemBlock);
-        registerBlock(saplingName, saplingItemBlock, sapling);
+        BlockRegistry.registerBlock(saplingName, saplingItemBlock, sapling);
 
         if (saplingType.equals(SaplingType.TEMPERATE)) {
             temperateSaplings.put(fruitName, sapling);
@@ -220,7 +219,7 @@ public class FruitRegistry {
 
         final ItemBlock itemBlock = new ItemBlockCropFruit(pamFruit);
 
-        registerBlock(getFruitBlockName(fruitName), itemBlock, pamFruit);
+        BlockRegistry.registerBlock(getFruitBlockName(fruitName), itemBlock, pamFruit);
     }
 
     private static String getFruitBlockName(String fruitName) {
@@ -240,7 +239,7 @@ public class FruitRegistry {
         final BlockPamSapling sapling = new BlockPamSapling(saplingName, saplingType);
         final ItemBlock saplingItemBlock = new ItemBlock(sapling);
         itemBlocks.add(saplingItemBlock);
-        registerBlock(saplingName, saplingItemBlock, sapling);
+        BlockRegistry.registerBlock(saplingName, saplingItemBlock, sapling);
 
         if (saplingType.equals(SaplingType.TEMPERATE)) {
             temperateSaplings.put(fruitName, sapling);
@@ -252,10 +251,10 @@ public class FruitRegistry {
 
         logSaplings.put(fruitName, sapling);
 
-        final BlockPamLogFruit pamFruit;
+        final BlockPamFruitLog logFruit;
         switch (fruitName) {
             case PAPERBARK:
-                pamFruit = new BlockPamLogFruit(sapling, Items.paper);
+                logFruit = new BlockPamFruitLog(sapling, Items.paper);
                 foodItems.put(fruitName, Items.paper);
                 break;
             default:
@@ -263,25 +262,14 @@ public class FruitRegistry {
                 foodItems.put(fruitName, item);
                 final Item fruit = ItemRegistry.registerItem(item, getItemName(fruitName));
 
-                pamFruit = new BlockPamLogFruit(sapling, fruit);
+                logFruit = new BlockPamFruitLog(sapling, fruit);
                 break;
         }
-        logFruits.put(fruitName, pamFruit);
-        sapling.setFruit(pamFruit);
+        logs.put(fruitName, logFruit);
+        sapling.setFruit(logFruit);
 
-        final ItemBlock itemBlock = new ItemBlockCropFruit(pamFruit);
+        final ItemBlock fruitItemBlock = new ItemBlockCropFruit(logFruit);
 
-        registerBlock(getFruitBlockName(fruitName), itemBlock, pamFruit);
-    }
-
-    private static void registerBlock(String registerName, ItemBlock itemBlock, Block block) {
-        block.setRegistryName(registerName);
-        block.setUnlocalizedName(registerName);
-
-        GameRegistry.register(block);
-
-        itemBlock.setRegistryName(registerName);
-        itemBlock.setUnlocalizedName(registerName);
-        GameRegistry.register(itemBlock);
+        BlockRegistry.registerBlock(getFruitBlockName(fruitName), fruitItemBlock, logFruit);
     }
 }

@@ -1,6 +1,8 @@
 package com.pam.harvestcraft.blocks.growables;
 
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockCrops;
+import net.minecraft.block.IGrowable;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -20,7 +22,7 @@ import net.minecraftforge.fml.common.FMLLog;
 import java.util.List;
 import java.util.Random;
 
-public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, PamGrowable {
+public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, PamCropGrowable {
 
     public static final int MATURE_AGE = 3;
 
@@ -29,6 +31,7 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
     private static final AxisAlignedBB[] CROPS_AABB = new AxisAlignedBB[]{new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.25D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.375D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.625D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.75D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.875D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D)};
 
     public final String registerName;
+    public final String name;
     public String BASE_STAGE_ID = null;
 
     private Item seed;
@@ -42,10 +45,11 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
         this.food = food;
     }
 
-    public BlockPamCrop(String registerName) {
+    public BlockPamCrop(String registerName, String name) {
         super();
 
         this.registerName = registerName;
+        this.name = name;
 
         this.setDefaultState(blockState.getBaseState().withProperty(getAge(), 0));
     }
@@ -57,8 +61,6 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
 
         return BASE_STAGE_ID + stage;
     }
-
-
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
@@ -172,7 +174,7 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
 
     @Override
     public EnumPlantType getPlantType(IBlockAccess world, BlockPos pos) {
-        return EnumPlantType.Crop;
+        return EnumPlantType.Plains;
     }
 
     @Override

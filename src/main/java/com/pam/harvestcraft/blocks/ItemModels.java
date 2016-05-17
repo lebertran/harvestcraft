@@ -1,9 +1,9 @@
 package com.pam.harvestcraft.blocks;
 
-import com.pam.harvestcraft.blocks.gardens.BlockBaseGarden;
 import com.pam.harvestcraft.blocks.growables.BlockPamCrop;
 import com.pam.harvestcraft.blocks.growables.BlockPamFruit;
-import com.pam.harvestcraft.blocks.growables.BlockPamLogFruit;
+import com.pam.harvestcraft.blocks.growables.BlockPamFruitLog;
+import com.pam.harvestcraft.blocks.growables.BlockPamSapling;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelBakery;
@@ -29,7 +29,7 @@ public class ItemModels {
 
     private static void defineItemModels() {
 
-        for (BlockBaseGarden garden : BlockRegistry.gardens) {
+        for (BlockBaseGarden garden : BlockRegistry.gardens.values()) {
             registerItemModels(getItem(garden), new ItemModelList("gardens/").add(0, garden.getName()));
         }
 
@@ -52,7 +52,7 @@ public class ItemModels {
                     .add(2, fruit.getStageId(2)));
         }
 
-        for (BlockPamLogFruit fruit : FruitRegistry.logFruits.values()) {
+        for (BlockPamFruitLog fruit : FruitRegistry.logs.values()) {
             registerItemModels(getItem(fruit), new ItemModelList("fruits/")
                     .add(0, fruit.getStageId(0))
                     .add(1, fruit.getStageId(1))
@@ -72,6 +72,7 @@ public class ItemModels {
 
             for (String registration : registrations) {
                 if (item == null || registration == null) continue;
+
                 ModelBakery.registerItemVariants(item, new ResourceLocation(registration));
             }
         }
@@ -94,9 +95,6 @@ public class ItemModels {
         }
     }
 
-    /**
-     * Shorthand utility method for Item.getItemFromBlock(block).
-     */
     private static Item getItem(Block block) {
         return Item.getItemFromBlock(block);
     }

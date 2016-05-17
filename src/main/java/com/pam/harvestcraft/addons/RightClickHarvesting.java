@@ -2,8 +2,8 @@ package com.pam.harvestcraft.addons;
 
 import com.pam.harvestcraft.HarvestCraft;
 import com.pam.harvestcraft.blocks.growables.BlockPamFruit;
-import com.pam.harvestcraft.blocks.growables.BlockPamLogFruit;
-import com.pam.harvestcraft.blocks.growables.PamGrowable;
+import com.pam.harvestcraft.blocks.growables.BlockPamFruitLog;
+import com.pam.harvestcraft.blocks.growables.PamCropGrowable;
 import net.minecraft.block.BlockCarrot;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.BlockPotato;
@@ -59,7 +59,7 @@ public class RightClickHarvesting {
             harvestCrops(blockState, event.getEntityPlayer(), event.getWorld(), event.getPos());
         }
 
-        if (blockState.getBlock() instanceof BlockPamFruit || blockState.getBlock() instanceof BlockPamLogFruit) {
+        if (blockState.getBlock() instanceof BlockPamFruit || blockState.getBlock() instanceof BlockPamFruitLog) {
             harvestFruit(blockState, event.getEntityPlayer(), event.getWorld(), event.getPos());
         }
     }
@@ -94,7 +94,7 @@ public class RightClickHarvesting {
     }
 
     public void harvestFruit(IBlockState blockState, EntityPlayer player, World world, BlockPos blockPos) {
-        final PamGrowable blockPamFruit =  (PamGrowable) blockState.getBlock();
+        final PamCropGrowable blockPamFruit =  (PamCropGrowable) blockState.getBlock();
 
         if (blockPamFruit.isMature(blockState)) {
             final ItemStack stack = player.getHeldItemMainhand();
@@ -106,7 +106,7 @@ public class RightClickHarvesting {
             if (drops.size() > 0) drops.remove(drops.size() - 1);
 
             // Both are identical now, but that can change in the future.
-            final PropertyInteger ageProperty = blockPamFruit instanceof BlockPamFruit ? BlockPamFruit.AGE : BlockPamLogFruit.AGE;
+            final PropertyInteger ageProperty = blockPamFruit instanceof BlockPamFruit ? BlockPamFruit.AGE : BlockPamFruitLog.AGE;
 
             world.setBlockState(blockPos, blockState.withProperty(ageProperty, 0), 3);
 
