@@ -1,6 +1,7 @@
 package com.pam.harvestcraft.item;
 
 import com.pam.harvestcraft.HarvestCraft;
+import com.pam.harvestcraft.item.items.ItemPamBee;
 import com.pam.harvestcraft.item.items.ItemPamPotionFood;
 import com.pam.harvestcraft.item.items.ItemPamTool;
 import net.minecraft.item.Item;
@@ -624,10 +625,30 @@ public final class ItemRegistry {
     public static Item ediblerootItem;
     public static Item sunflowerseedsItem;
 
+    public static Item queenbeeItem;
+    public static Item grubItem;
+    public static Item honeycombItem;
+    public static Item waxcombItem;
+    public static Item royaljellyItem;
 
     public static boolean initialized = false;
 
-    public static void loadItemRegistry() {
+    public static void registerItems() {
+        registerFoodItems();
+        registerBeesItems();
+
+        initialized = true;
+    }
+
+    private static void registerBeesItems() {
+        queenbeeItem = registerItem(new ItemPamBee(), "queenbeeItem");
+        grubItem = registerGenericItem("grubItem");
+        honeycombItem = registerGenericItem("honeycombItem");
+        waxcombItem = registerGenericItem("waxcombItem");
+        royaljellyItem = registerGenericItem("royaljellyItem");
+    }
+
+    private static void registerFoodItems() {
         cuttingboardItem = registerItemTool("cuttingboardItem");
         potItem = registerItemTool("potItem");
         skilletItem = registerItemTool("skilletItem");
@@ -1245,7 +1266,6 @@ public final class ItemRegistry {
         potatoandleeksoupItem = registerItemFood("potatoandleeksoupItem", 6, HarvestCraft.config.mealsaturation);
         yorkshirepuddingItem = registerItemFood("yorkshirepuddingItem", 5, HarvestCraft.config.mealsaturation);
         toadintheholeItem = registerItemFood("toadintheholeItem", 10,HarvestCraft.config.meatymealsaturation);
-        initialized = true;
     }
 
     public static Item registerItemTool(String registryName) {

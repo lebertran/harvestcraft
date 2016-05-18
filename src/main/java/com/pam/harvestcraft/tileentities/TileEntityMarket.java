@@ -1,4 +1,4 @@
-package com.pam.harvestcraft.market;
+package com.pam.harvestcraft.tileentities;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

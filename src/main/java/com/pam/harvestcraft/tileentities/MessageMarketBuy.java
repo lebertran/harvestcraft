@@ -1,8 +1,5 @@
-package com.pam.harvestcraft.market.messages;
+package com.pam.harvestcraft.tileentities;
 
-import com.pam.harvestcraft.market.MarketData;
-import com.pam.harvestcraft.market.MarketItems;
-import com.pam.harvestcraft.market.TileEntityMarket;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayerMP;

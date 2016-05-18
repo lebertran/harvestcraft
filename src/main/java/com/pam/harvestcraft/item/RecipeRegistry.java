@@ -25,6 +25,15 @@ public class RecipeRegistry {
     public static void registerRecipes() {
         registerFoodRecipes();
         registerOtherRecipes();
+        registerBeeRecipes();
+    }
+
+    private static void registerBeeRecipes() {
+        for (int i = 1; i < 18; i++) {
+            addShapelessOreRecipe(ItemRegistry.royaljellyItem, new ItemStack(ItemRegistry.queenbeeItem, 1, i));
+        }
+
+        addShapelessOreRecipe(ItemRegistry.queenbeeItem, ItemRegistry.grubItem, ItemRegistry.royaljellyItem);
     }
 
     private static void registerFoodRecipes() {

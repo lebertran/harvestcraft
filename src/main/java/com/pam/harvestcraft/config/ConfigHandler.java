@@ -152,6 +152,10 @@ public class ConfigHandler {
     public int marketcurrencyBonemeal;
     public boolean enableEasyHarvest;
 
+    // Beehive config
+    public boolean enableBeehiveGeneration;
+    public int beehiveRarity;
+
 
     public ConfigHandler(Configuration config) {
         this.config = config;
@@ -168,11 +172,17 @@ public class ConfigHandler {
         initFoodTreesSettings();
         initGardenSettings();
         initMarketSettings();
+        initBeesSettings();
         initMiscRecipesSettings();
 
         if (config.hasChanged()) {
             config.save();
         }
+    }
+
+    private void initBeesSettings() {
+        enableBeehiveGeneration = config.getBoolean(CATEGORY_BEE, "enableBeehiveGeneration", true, "Enable generation of beehives.");
+        beehiveRarity = config.getInt(CATEGORY_BEE, "beehiveRarity", 50, 0, Short.MAX_VALUE, "The higher the value, the more beehives are generated.");
     }
 
     private void initGeneralSettings() {

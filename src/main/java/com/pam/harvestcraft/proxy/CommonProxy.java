@@ -10,8 +10,10 @@ import com.pam.harvestcraft.item.ItemRegistry;
 import com.pam.harvestcraft.item.RecipeRegistry;
 import com.pam.harvestcraft.item.SeedDropRegistry;
 import com.pam.harvestcraft.loottables.LootTableLoadEventHandler;
-import com.pam.harvestcraft.market.MarketItems;
-import com.pam.harvestcraft.market.TileEntityMarket;
+import com.pam.harvestcraft.tileentities.MarketItems;
+import com.pam.harvestcraft.tileentities.TileEntityApiary;
+import com.pam.harvestcraft.tileentities.TileEntityMarket;
+import com.pam.harvestcraft.worldgen.BeehiveWorldGen;
 import com.pam.harvestcraft.worldgen.BushWorldWorldGen;
 import com.pam.harvestcraft.worldgen.FruitTreeWorldGen;
 import net.minecraftforge.common.MinecraftForge;
@@ -26,7 +28,7 @@ public class CommonProxy {
         CropRegistry.registerCrops();
         FruitRegistry.registerFruits();
         BlockRegistry.initBlockRegistry();
-        ItemRegistry.loadItemRegistry();
+        ItemRegistry.registerItems();
 
         onBlocksAndItemsLoaded();
     }
@@ -34,6 +36,7 @@ public class CommonProxy {
     public void init(FMLInitializationEvent e) {
         GameRegistry.registerWorldGenerator(new BushWorldWorldGen(), 0);
         GameRegistry.registerWorldGenerator(new FruitTreeWorldGen(), 0);
+        GameRegistry.registerWorldGenerator(new BeehiveWorldGen(), 0);
     }
 
     public void postInit(FMLPostInitializationEvent e) {
@@ -51,6 +54,7 @@ public class CommonProxy {
         PacketHandler.init();
 
         GameRegistry.registerTileEntity(TileEntityMarket.class, "PamMarket");
+        GameRegistry.registerTileEntity(TileEntityApiary.class, "PamApiary");
 
         MinecraftForge.EVENT_BUS.register(new LootTableLoadEventHandler());
         RightClickHarvesting.instance.register();

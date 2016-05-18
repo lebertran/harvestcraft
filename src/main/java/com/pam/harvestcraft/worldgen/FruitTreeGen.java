@@ -33,7 +33,7 @@ public class FruitTreeGen extends WorldGenAbstractTree {
     }
 
     public boolean generate(World worldIn, Random rand, BlockPos blockPos) {
-        BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
+        final BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
 
         int treeHeight = rand.nextInt(3) + this.minTreeHeight;
         boolean canGenerate = true;

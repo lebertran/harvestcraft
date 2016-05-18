@@ -1,5 +1,6 @@
 package com.pam.harvestcraft.blocks;
 
+import com.pam.harvestcraft.blocks.apiary.ApiaryBlock;
 import com.pam.harvestcraft.item.ItemRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
@@ -15,6 +16,13 @@ public final class BlockRegistry {
     public static Block pamMarket;
     public static ItemBlock marketItemBlock;
 
+    // Bee features
+    public static BeehiveBlock beehive;
+    public static ItemBlock beehiveItemBlock;
+
+    public static ApiaryBlock apiary;
+    public static ItemBlock apiaryItemBlock;
+
     // Garden blocks
     public static final HashMap<String, BlockBaseGarden> gardens = new HashMap<>();
     public static final String aridGarden = "aridGarden";
@@ -28,6 +36,7 @@ public final class BlockRegistry {
 
     public static void initBlockRegistry() {
         registerMarket();
+        registerBeeFeatures();
         registerGardens();
         initialized = true;
     }
@@ -44,6 +53,18 @@ public final class BlockRegistry {
         }
 
         return gardens.get(gardenName);
+    }
+
+    private static void registerBeeFeatures() {
+        beehive = new BeehiveBlock();
+        beehiveItemBlock = new ItemBlock(beehive);
+        ItemRegistry.items.put(BeehiveBlock.registryName, beehiveItemBlock);
+        registerBlock(BeehiveBlock.registryName, beehiveItemBlock, beehive);
+
+        apiary = new ApiaryBlock();
+        apiaryItemBlock = new ItemBlock(apiary);
+        ItemRegistry.items.put(ApiaryBlock.registryName, apiaryItemBlock);
+        registerBlock(ApiaryBlock.registryName, apiaryItemBlock, apiary);
     }
 
     private static void registerMarket() {

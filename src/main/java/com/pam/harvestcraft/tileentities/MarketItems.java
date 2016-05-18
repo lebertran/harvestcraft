@@ -1,4 +1,4 @@
-package com.pam.harvestcraft.market;
+package com.pam.harvestcraft.tileentities;
 
 import com.pam.harvestcraft.HarvestCraft;
 import com.pam.harvestcraft.blocks.CropRegistry;

@@ -1,9 +1,9 @@
 package com.pam.harvestcraft.proxy;
 
 import com.pam.harvestcraft.Reference;
-import com.pam.harvestcraft.market.messages.MessageMarketBrowse;
-import com.pam.harvestcraft.market.messages.MessageMarketBuy;
-import com.pam.harvestcraft.market.messages.MessageMarketClosed;
+import com.pam.harvestcraft.tileentities.MessageMarketBrowse;
+import com.pam.harvestcraft.tileentities.MessageMarketBuy;
+import com.pam.harvestcraft.tileentities.MessageMarketClosed;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;

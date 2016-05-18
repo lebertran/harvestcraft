@@ -1,4 +1,4 @@
-package com.pam.harvestcraft.market;
+package com.pam.harvestcraft.tileentities;
 
 import net.minecraft.item.ItemStack;
 
