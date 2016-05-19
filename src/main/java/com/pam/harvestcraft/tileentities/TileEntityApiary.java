@@ -1,7 +1,7 @@
 package com.pam.harvestcraft.tileentities;
 
-import com.pam.harvestcraft.blocks.BlockBaseGarden;
 import com.pam.harvestcraft.blocks.BlockRegistry;
+import com.pam.harvestcraft.blocks.blocks.BlockBaseGarden;
 import com.pam.harvestcraft.item.ItemRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;

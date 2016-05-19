@@ -26,6 +26,13 @@ public class RecipeRegistry {
         registerFoodRecipes();
         registerOtherRecipes();
         registerBeeRecipes();
+        registerPresserRecipe();
+    }
+
+    private static void registerPresserRecipe() {
+        addShapedOreRecipe(BlockRegistry.presser, "#O#", "# #", "#O#", '#', ingotIron, 'O', Blocks.piston);
+        addShapedOreRecipe(BlockRegistry.presser, "#O#", "# #", "#O#", '#', ingotCopper, 'O', Blocks.piston);
+        addShapedOreRecipe(BlockRegistry.presser, "#O#", "# #", "#O#", '#', ingotSteel, 'O', Blocks.piston);
     }
 
     private static void registerBeeRecipes() {
@@ -34,6 +41,7 @@ public class RecipeRegistry {
         }
 
         addShapelessOreRecipe(ItemRegistry.queenbeeItem, ItemRegistry.grubItem, ItemRegistry.royaljellyItem);
+        addShapedOreRecipe(BlockRegistry.apiary, "#O#", "#O#", "#O#",'#', plankWood, 'O', Items.item_frame);
     }
 
     private static void registerFoodRecipes() {

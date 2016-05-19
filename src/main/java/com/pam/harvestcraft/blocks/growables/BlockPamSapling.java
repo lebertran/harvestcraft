@@ -123,7 +123,7 @@ public class BlockPamSapling extends BlockBush implements IGrowable {
         }
         worldIn.setBlockToAir(pos);
 
-        final IBlockState fruitState = getFruit().getDefaultState();;
+        final IBlockState fruitState = getFruit().getDefaultState();
 
         if (getFruit() instanceof BlockPamFruit) {
             if (!new FruitTreeGen(5, logState, leavesState, false, fruitState).generate(worldIn, rand, pos)) {
@@ -143,7 +143,7 @@ public class BlockPamSapling extends BlockBush implements IGrowable {
             int posZ = pos.getZ() + world.rand.nextInt(8) - world.rand.nextInt(8);
             final BlockPos newPos = new BlockPos(posX, posY, posZ);
 
-            final IBlockState fruitState = getFruit().getDefaultState();;
+            final IBlockState fruitState = getFruit().getDefaultState();
 
             if (getFruit() instanceof BlockPamFruit) {
                 new FruitTreeGen(5, logState, leavesState, false, fruitState).generate(world, world.rand, newPos);

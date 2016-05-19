@@ -1,5 +1,6 @@
 package com.pam.harvestcraft.blocks;
 
+import com.pam.harvestcraft.blocks.blocks.BlockBaseGarden;
 import com.pam.harvestcraft.blocks.growables.BlockPamCrop;
 import com.pam.harvestcraft.blocks.growables.BlockPamFruit;
 import com.pam.harvestcraft.blocks.growables.BlockPamFruitLog;

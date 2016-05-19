@@ -1,6 +1,7 @@
-package com.pam.harvestcraft.blocks;
+package com.pam.harvestcraft.blocks.blocks;
 
 import com.pam.harvestcraft.HarvestCraft;
+import com.pam.harvestcraft.blocks.BlockRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.material.Material;

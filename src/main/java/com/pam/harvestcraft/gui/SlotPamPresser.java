@@ -4,14 +4,13 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class SlotPamResult extends Slot {
-
-    public SlotPamResult(IInventory inventory, int index, int x, int y) {
-        super(inventory, index, x, y);
+public class SlotPamPresser extends Slot {
+    public SlotPamPresser(IInventory inventory, int index, int xPos, int yPos) {
+        super(inventory, index, xPos, yPos);
     }
 
     @Override
     public boolean isItemValid(ItemStack stack) {
-        return false;
+        return true;
     }
 }

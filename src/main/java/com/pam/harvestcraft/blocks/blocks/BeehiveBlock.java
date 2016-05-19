@@ -1,4 +1,4 @@
-package com.pam.harvestcraft.blocks;
+package com.pam.harvestcraft.blocks.blocks;
 
 import com.pam.harvestcraft.HarvestCraft;
 import com.pam.harvestcraft.item.ItemRegistry;

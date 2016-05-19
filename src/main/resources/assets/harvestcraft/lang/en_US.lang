@@ -6,7 +6,7 @@ harvestcraft.tile.pot.name=Pot
 
 tile.beehive.name=Beehive
 tile.apiary.name=Apiary
-harvestcraft.tile.presser.name=Presser
+tile.presser.name=Presser
 
 sink_0.name=Water Barrel
 sink_1.name=Stone Basin

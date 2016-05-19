@@ -1,8 +1,7 @@
-package com.pam.harvestcraft.blocks.apiary;
+package com.pam.harvestcraft.blocks.blocks;
 
 import com.pam.harvestcraft.HarvestCraft;
 import com.pam.harvestcraft.tileentities.TileEntityApiary;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -11,7 +10,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
@@ -19,11 +17,10 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class ApiaryBlock extends BlockContainer {
+public class ApiaryBlock extends BlockContainerRotating {
 
     public static final String registryName = "apiary";
 
-    private static boolean something;
 
     public ApiaryBlock() {
         super(Material.wood);
@@ -41,7 +38,7 @@ public class ApiaryBlock extends BlockContainer {
         final TileEntityApiary te;
         final Random random = worldIn.rand;
 
-        if (!something && (te = (TileEntityApiary)worldIn.getTileEntity(pos)) != null) {
+        if ((te = (TileEntityApiary)worldIn.getTileEntity(pos)) != null) {
             for (int i = 0; i < te.getSizeInventory(); ++i) {
                 final ItemStack itemStack = te.getStackInSlot(i);
                 if (itemStack == null) continue;
@@ -84,10 +81,5 @@ public class ApiaryBlock extends BlockContainer {
 
         playerIn.openGui(HarvestCraft.instance, 0, worldIn, pos.getX(), pos.getY(), pos.getZ());
         return true;
-    }
-
-    @Override
-    public EnumBlockRenderType getRenderType(IBlockState state) {
-        return EnumBlockRenderType.MODEL;
     }
 }

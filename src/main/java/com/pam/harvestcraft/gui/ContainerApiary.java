@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerApiary extends Container {
 
-    private TileEntityApiary apiary;
+    private final TileEntityApiary apiary;
     private int lastProduceTime = 0;
     private int lastRunTime = 0;
     private int lastBeeRunTime = 0;
@@ -21,7 +21,7 @@ public class ContainerApiary extends Container {
 
         for (int x = 0; x < 6; ++x) {
             for (int y = 0; y < 3; ++y) {
-                addSlotToContainer(new SlotPamResult(inv.player, tileEntityApiary, y + x * 3, 62 + 18 * x, 17 + 18 * y));
+                addSlotToContainer(new SlotPamResult(tileEntityApiary, y + x * 3, 62 + 18 * x, 17 + 18 * y));
             }
         }
 

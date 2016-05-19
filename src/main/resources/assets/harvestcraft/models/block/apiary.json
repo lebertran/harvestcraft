@@ -2,7 +2,7 @@
     "parent": "block/cube",
     "textures": {
         "up": "harvestcraft:blocks/apiarytop",
-        "down": "harvestcraft:blocks/apiarytop",
+        "down": "harvestcraft:blocks/sinkbottom_0",
         "north": "harvestcraft:blocks/apiaryfront",
         "south": "harvestcraft:blocks/apiaryside",
         "west": "harvestcraft:blocks/apiaryside",

@@ -13,6 +13,7 @@ import com.pam.harvestcraft.loottables.LootTableLoadEventHandler;
 import com.pam.harvestcraft.tileentities.MarketItems;
 import com.pam.harvestcraft.tileentities.TileEntityApiary;
 import com.pam.harvestcraft.tileentities.TileEntityMarket;
+import com.pam.harvestcraft.tileentities.TileEntityPresser;
 import com.pam.harvestcraft.worldgen.BeehiveWorldGen;
 import com.pam.harvestcraft.worldgen.BushWorldWorldGen;
 import com.pam.harvestcraft.worldgen.FruitTreeWorldGen;
@@ -53,8 +54,9 @@ public class CommonProxy {
         MarketItems.registerItems();
         PacketHandler.init();
 
-        GameRegistry.registerTileEntity(TileEntityMarket.class, "PamMarket");
         GameRegistry.registerTileEntity(TileEntityApiary.class, "PamApiary");
+        GameRegistry.registerTileEntity(TileEntityMarket.class, "PamMarket");
+        GameRegistry.registerTileEntity(TileEntityPresser.class, "PamPresser");
 
         MinecraftForge.EVENT_BUS.register(new LootTableLoadEventHandler());
         RightClickHarvesting.instance.register();

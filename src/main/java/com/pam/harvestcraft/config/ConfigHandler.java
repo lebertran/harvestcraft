@@ -1,7 +1,7 @@
 package com.pam.harvestcraft.config;
 
-import com.pam.harvestcraft.blocks.BlockBaseGarden;
 import com.pam.harvestcraft.blocks.CropRegistry;
+import com.pam.harvestcraft.blocks.blocks.BlockBaseGarden;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.FMLLog;
