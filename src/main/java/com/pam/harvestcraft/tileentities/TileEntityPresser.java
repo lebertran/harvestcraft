@@ -174,14 +174,14 @@ public class TileEntityPresser extends TileEntity implements IInventory, ITickab
         } else if (inventory[1].stackSize + results[0].stackSize <= results[0].getMaxStackSize()) {
             inventory[1].stackSize += results[0].stackSize;
         }
-/*
+
         if (results[1] != null) {
             if (inventory[2] == null) {
                 inventory[2] = results[1].copy();
             } else if (inventory[2].isItemEqual(results[1])) {
                 inventory[2].stackSize += results[1].stackSize;
             }
-        }*/
+        }
 
         --inventory[0].stackSize;
         if (inventory[0].stackSize <= 0) {
