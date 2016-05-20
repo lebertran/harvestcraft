@@ -32,7 +32,7 @@ public class RightClickHarvesting {
 
     public static final RightClickHarvesting instance = new RightClickHarvesting();
 
-    private final HashMap<String, PropertyInteger> ageCache = new HashMap<>();
+    private static final HashMap<String, PropertyInteger> ageCache = new HashMap<>();
 
     private RightClickHarvesting() {}
 
@@ -64,7 +64,7 @@ public class RightClickHarvesting {
         }
     }
 
-    public void harvestCrops(IBlockState blockState, EntityPlayer player, World world, BlockPos blockPos) {
+    public static void harvestCrops(IBlockState blockState, EntityPlayer player, World world, BlockPos blockPos) {
         final BlockCrops crops = (BlockCrops) blockState.getBlock();
         if (crops.getMetaFromState(blockState) >= crops.func_185526_g()) {
             final ItemStack stack = player.getHeldItemMainhand();
@@ -88,12 +88,12 @@ public class RightClickHarvesting {
             world.setBlockState(blockPos, blockState.withProperty(getAge(crops), 0));
 
             for (ItemStack drop : drops) {
-                dropItem(drop, world, blockPos, player);
+                dropItem(drop, world, blockPos);
             }
         }
     }
 
-    public void harvestFruit(IBlockState blockState, EntityPlayer player, World world, BlockPos blockPos) {
+    public static void harvestFruit(IBlockState blockState, EntityPlayer player, World world, BlockPos blockPos) {
         final PamCropGrowable blockPamFruit =  (PamCropGrowable) blockState.getBlock();
 
         if (blockPamFruit.isMature(blockState)) {
@@ -111,46 +111,67 @@ public class RightClickHarvesting {
             world.setBlockState(blockPos, blockState.withProperty(ageProperty, 0), 3);
 
             for (ItemStack drop : drops) {
-                dropItem(drop, world, blockPos, player);
+                dropItem(drop, world, blockPos);
             }
         }
     }
 
-    private void dropItem(ItemStack itemStack, World world, BlockPos pos, EntityPlayer player) {
-        final EntityItem entityItem = new EntityItem(world, pos.getX(), pos.getY() - 1D, pos.getZ(), itemStack);
+    private static void dropItem(ItemStack itemStack, World world, BlockPos pos) {
+        if (world.restoringBlockSnapshots || world.isRemote) return;
+
+        float f = 0.5F;
+        double d0 = (world.rand.nextFloat() * f) + 0.25D;
+        double d1 = (world.rand.nextFloat() * f) + 0.25D;
+        double d2 = (world.rand.nextFloat() * f) + 0.25D;
+
+        final EntityItem entityItem = new EntityItem(world, pos.getX() + d0, pos.getY() + d1, pos.getZ() + d2, itemStack);
+        entityItem.setDefaultPickupDelay();
         world.spawnEntityInWorld(entityItem);
-        entityItem.onCollideWithPlayer(player);
     }
 
     // Reflection :(
-    private PropertyInteger getAge(BlockCrops crops) {
+    private static PropertyInteger getAge(BlockCrops crops) {
         if (ageCache.containsKey(crops.getRegistryName().toString())) {
             return ageCache.get(crops.getRegistryName().toString());
         }
 
-        try {
-            final Method dropMethod = crops.getClass().getDeclaredMethod("func_185524_e");
-            dropMethod.setAccessible(true);
-
-            final PropertyInteger result = (PropertyInteger) dropMethod.invoke(crops);
-            ageCache.put(crops.getRegistryName().toString(), result);
-            return result;
-        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-            FMLLog.info("Error getting crop by reflection, next try with superclass.");
+        PropertyInteger age = tryGetAgeByReflection(crops.getClass(), crops, "func_185524_e");
+        if (age != null) {
+            ageCache.put(crops.getRegistryName().toString(), age);
+            return age;
         }
 
-        try {
-            final Method dropMethod = crops.getClass().getSuperclass().getDeclaredMethod("func_185524_e");
-            dropMethod.setAccessible(true);
-
-            final PropertyInteger result = (PropertyInteger) dropMethod.invoke(crops);
-            ageCache.put(crops.getRegistryName().toString(), result);
-            return result;
-        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-            FMLLog.bigWarning("Final error getting crop by reflection.");
+        age = tryGetAgeByReflection(crops.getClass().getSuperclass(), crops, "func_185524_e");
+        if (age != null) {
+            ageCache.put(crops.getRegistryName().toString(), age);
+            return age;
         }
 
+        age = tryGetAgeByReflection(crops.getClass(), crops, "getAge");
+        if (age != null) {
+            ageCache.put(crops.getRegistryName().toString(), age);
+            return age;
+        }
+
+        age = tryGetAgeByReflection(crops.getClass().getSuperclass(), crops, "getAge");
+        if (age != null) {
+            ageCache.put(crops.getRegistryName().toString(), age);
+            return age;
+        }
+
+        FMLLog.bigWarning("Could not get PropertyInteger from crop %s via reflection.", crops.getUnlocalizedName());
         return null;
+    }
+
+    private static PropertyInteger tryGetAgeByReflection(Class clazz, BlockCrops obj, String methodName) {
+        try {
+            final Method dropMethod = clazz.getDeclaredMethod(methodName);
+            dropMethod.setAccessible(true);
+
+            return (PropertyInteger) dropMethod.invoke(obj);
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            return null;
+        }
     }
 
 }

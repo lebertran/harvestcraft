@@ -182,7 +182,7 @@ public class ConfigHandler {
 
     private void initBeesSettings() {
         enableBeehiveGeneration = config.getBoolean(CATEGORY_BEE, "enableBeehiveGeneration", true, "Enable generation of beehives.");
-        beehiveRarity = config.getInt(CATEGORY_BEE, "beehiveRarity", 50, 0, Short.MAX_VALUE, "The higher the value, the more beehives are generated.");
+        beehiveRarity = config.getInt(CATEGORY_BEE, "beehiveRarity", 20, 0, Short.MAX_VALUE, "The higher the value, the more beehives are generated.");
     }
 
     private void initGeneralSettings() {

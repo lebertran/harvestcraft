@@ -36,12 +36,12 @@ public class TileEntityApiary extends TileEntity implements IInventory, ITickabl
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
 
-        NBTTagList invTag = compound.getTagList("Items", 10);
+        final NBTTagList tagList = compound.getTagList("Items", 10);
         inventory = new ItemStack[getSizeInventory()];
 
-        for (int i = 0; i < invTag.tagCount(); ++i) {
-            NBTTagCompound stackTag = invTag.getCompoundTagAt(i);
-            byte slot = stackTag.getByte("Slot");
+        for (int i = 0; i < tagList.tagCount(); ++i) {
+            final NBTTagCompound stackTag = tagList.getCompoundTagAt(i);
+            final byte slot = stackTag.getByte("Slot");
 
             if (slot < 0 || slot >= inventory.length) continue;
             inventory[slot] = ItemStack.loadItemStackFromNBT(stackTag);
@@ -59,17 +59,16 @@ public class TileEntityApiary extends TileEntity implements IInventory, ITickabl
         compound.setShort("RunTime", (short) runTime);
         compound.setShort("ProduceTime", (short) produceTime);
 
-        final NBTTagList intTag = new NBTTagList();
+        final NBTTagList tagList = new NBTTagList();
         for (int i = 0; i < inventory.length; ++i) {
             if (inventory[i] == null) continue;
 
             final NBTTagCompound stackTag = new NBTTagCompound();
             stackTag.setByte("Slot", (byte) i);
             inventory[i].writeToNBT(stackTag);
-            intTag.appendTag(stackTag);
+            tagList.appendTag(stackTag);
         }
-        compound.setTag("Items", intTag);
-
+        compound.setTag("Items", tagList);
     }
 
     @Override

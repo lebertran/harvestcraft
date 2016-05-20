@@ -18,32 +18,32 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileEntityPresser extends TileEntity implements IInventory, ITickable {
 
-    private ItemStack[] itemStacks = new ItemStack[3];
+    private ItemStack[] inventory = new ItemStack[3];
     public short cookTime;
 
 
     @Override
     public int getSizeInventory() {
-        return itemStacks.length;
+        return inventory.length;
     }
 
     @Override
     public ItemStack getStackInSlot(int index) {
-        return itemStacks[index];
+        return inventory[index];
     }
 
     @Override
     public ItemStack decrStackSize(int index, int count) {
-        if (itemStacks[index] != null) {
-            if (itemStacks[index].stackSize <= count) {
-                final ItemStack itemStack = itemStacks[index];
-                itemStacks[index] = null;
+        if (inventory[index] != null) {
+            if (inventory[index].stackSize <= count) {
+                final ItemStack itemStack = inventory[index];
+                inventory[index] = null;
                 return itemStack;
             }
 
-            final ItemStack itemStack = itemStacks[index].splitStack(count);
-            if (itemStacks[index].stackSize == 0) {
-                itemStacks[index] = null;
+            final ItemStack itemStack = inventory[index].splitStack(count);
+            if (inventory[index].stackSize == 0) {
+                inventory[index] = null;
             }
             return itemStack;
         }
@@ -53,7 +53,7 @@ public class TileEntityPresser extends TileEntity implements IInventory, ITickab
 
     @Override
     public void setInventorySlotContents(int index, ItemStack stack) {
-        itemStacks[index] = stack;
+        inventory[index] = stack;
 
         if (stack != null && stack.stackSize > getInventoryStackLimit()) {
             stack.stackSize = getInventoryStackLimit();
@@ -75,14 +75,14 @@ public class TileEntityPresser extends TileEntity implements IInventory, ITickab
         super.readFromNBT(compound);
 
         final NBTTagList tagList = compound.getTagList("Items", 10);
-        itemStacks = new ItemStack[getSizeInventory()];
+        inventory = new ItemStack[getSizeInventory()];
 
         for (int i = 0; i < tagList.tagCount(); ++i) {
-            final NBTTagCompound newCompound = tagList.getCompoundTagAt(i);
-            byte slot = newCompound.getByte("Slot");
+            final NBTTagCompound stackTag = tagList.getCompoundTagAt(i);
+            final byte slot = stackTag.getByte("Slot");
 
-            if (slot < 0 || slot >= itemStacks.length) continue;
-            itemStacks[slot] = ItemStack.loadItemStackFromNBT(newCompound);
+            if (slot < 0 || slot >= inventory.length) continue;
+            inventory[slot] = ItemStack.loadItemStackFromNBT(stackTag);
         }
 
         cookTime = compound.getShort("CookTime");
@@ -93,15 +93,15 @@ public class TileEntityPresser extends TileEntity implements IInventory, ITickab
         super.writeToNBT(compound);
 
         compound.setShort("CookTime", cookTime);
+
         final NBTTagList tagList = new NBTTagList();
+        for (int i = 0; i < inventory.length; ++i) {
+            if (inventory[i] == null) continue;
 
-        for (int i = 0; i < itemStacks.length; ++i) {
-            if (itemStacks[i] == null) continue;
-
-            final NBTTagCompound newCompound = new NBTTagCompound();
-            newCompound.setByte("Slot", (byte) i);
-            itemStacks[i].writeToNBT(newCompound);
-            tagList.appendTag(newCompound);
+            final NBTTagCompound stackTag = new NBTTagCompound();
+            stackTag.setByte("Slot", (byte) i);
+            inventory[i].writeToNBT(stackTag);
+            tagList.appendTag(stackTag);
         }
         compound.setTag("Items", tagList);
     }
@@ -145,19 +145,19 @@ public class TileEntityPresser extends TileEntity implements IInventory, ITickab
     }
 
     private boolean canRun() {
-        if (itemStacks[0] == null) return false;
+        if (inventory[0] == null) return false;
 
-        final ItemStack[] results = PresserRecipes.getPressingResult(itemStacks[0]);
+        final ItemStack[] results = PresserRecipes.getPressingResult(inventory[0]);
         if (results == null) return false;
 
-        if (itemStacks[1] != null) {
-            if (!itemStacks[1].isItemEqual(results[0])) return false;
-            if (itemStacks[1].stackSize + results[0].stackSize >= itemStacks[1].getMaxStackSize()) return false;
+        if (inventory[1] != null) {
+            if (!inventory[1].isItemEqual(results[0])) return false;
+            if (inventory[1].stackSize + results[0].stackSize > inventory[1].getMaxStackSize()) return false;
         }
 
-        if (results[1] != null && itemStacks[2] != null) {
-            if (!itemStacks[2].isItemEqual(results[1])) return false;
-            if (itemStacks[2].stackSize + results[1].stackSize >= itemStacks[2].getMaxStackSize()) return false;
+        if (results[1] != null && inventory[2] != null) {
+            if (!inventory[2].isItemEqual(results[1])) return false;
+            if (inventory[2].stackSize + results[1].stackSize > inventory[2].getMaxStackSize()) return false;
         }
 
         return true;
@@ -166,26 +166,26 @@ public class TileEntityPresser extends TileEntity implements IInventory, ITickab
     public void pressComb() {
         if (!canRun()) return;
 
-        final ItemStack[] results = PresserRecipes.getPressingResult(itemStacks[0]);
+        final ItemStack[] results = PresserRecipes.getPressingResult(inventory[0]);
         if (results == null) return;
 
-        if (itemStacks[1] == null) {
-            itemStacks[1] = results[0].copy();
-        } else if (itemStacks[1].getMaxStackSize() == results[0].getMaxStackSize()) {
-            itemStacks[1].stackSize += results[0].stackSize;
+        if (inventory[1] == null) {
+            inventory[1] = results[0].copy();
+        } else if (inventory[1].stackSize + results[0].stackSize <= results[0].getMaxStackSize()) {
+            inventory[1].stackSize += results[0].stackSize;
         }
-
+/*
         if (results[1] != null) {
-            if (itemStacks[2] == null) {
-                itemStacks[2] = results[1].copy();
-            } else if (itemStacks[2].isItemEqual(results[1])) {
-                itemStacks[2].stackSize += results[1].stackSize;
+            if (inventory[2] == null) {
+                inventory[2] = results[1].copy();
+            } else if (inventory[2].isItemEqual(results[1])) {
+                inventory[2].stackSize += results[1].stackSize;
             }
-        }
+        }*/
 
-        --itemStacks[0].stackSize;
-        if (itemStacks[0].stackSize <= 0) {
-            itemStacks[0] = null;
+        --inventory[0].stackSize;
+        if (inventory[0].stackSize <= 0) {
+            inventory[0] = null;
         }
     }
 

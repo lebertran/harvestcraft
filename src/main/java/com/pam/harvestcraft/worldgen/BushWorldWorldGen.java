@@ -2,6 +2,7 @@ package com.pam.harvestcraft.worldgen;
 
 import com.pam.harvestcraft.HarvestCraft;
 import com.pam.harvestcraft.blocks.BlockRegistry;
+import com.pam.harvestcraft.blocks.CropRegistry;
 import com.pam.harvestcraft.blocks.blocks.BlockBaseGarden;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

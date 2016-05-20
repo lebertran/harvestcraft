@@ -27,49 +27,10 @@ public class RecipeRegistry {
         registerOtherRecipes();
         registerBeeRecipes();
         registerPresserRecipe();
+        registerSmelting();
     }
 
-    private static void registerPresserRecipe() {
-        addShapedOreRecipe(BlockRegistry.presser, "#O#", "# #", "#O#", '#', ingotIron, 'O', Blocks.piston);
-        addShapedOreRecipe(BlockRegistry.presser, "#O#", "# #", "#O#", '#', ingotCopper, 'O', Blocks.piston);
-        addShapedOreRecipe(BlockRegistry.presser, "#O#", "# #", "#O#", '#', ingotSteel, 'O', Blocks.piston);
-    }
-
-    private static void registerBeeRecipes() {
-        for (int i = 1; i < 18; i++) {
-            addShapelessOreRecipe(ItemRegistry.royaljellyItem, new ItemStack(ItemRegistry.queenbeeItem, 1, i));
-        }
-
-        addShapelessOreRecipe(ItemRegistry.queenbeeItem, ItemRegistry.grubItem, ItemRegistry.royaljellyItem);
-        addShapedOreRecipe(BlockRegistry.apiary, "#O#", "#O#", "#O#",'#', plankWood, 'O', Items.item_frame);
-    }
-
-    private static void registerFoodRecipes() {
-        for (BlockPamSapling sapling : FruitRegistry.getSaplings()) {
-            addShapelessOreRecipe(sapling, sapling.getFruit(), sapling.getFruit(), sapling.getFruit(), Blocks.sapling);
-        }
-
-        if (config.enablecroptoseedRecipe) {
-            for (Map.Entry<String, ItemSeedFood> food : CropRegistry.getFoods().entrySet()) {
-                if (!config.enablecropspecialplanting ||
-                        !food.getKey().equals(CropRegistry.CRANBERRY) && !food.getKey().equals(CropRegistry.RICE) && !food.getKey().equals(CropRegistry.SEAWEED) ) {
-                    addShapelessOreRecipe(food.getValue(), CropRegistry.getSeed(food.getKey()));
-                }
-            }
-        }
-
-        if (config.enablesaltfromwaterbucketrecipe) addShapelessOreRecipe(ItemRegistry.saltItem, toolPot, listAllwater);
-
-        addShapelessOreRecipe(new ItemStack(ItemRegistry.sunflowerseedsItem, 2, 0), new ItemStack(Blocks.double_plant, 1, 0), new ItemStack(Blocks.double_plant, 1, 0));
-        addShapelessOreRecipe(ItemRegistry.freshwaterItem, listAllwater);
-        addShapelessOreRecipe(ItemRegistry.bubblywaterItem, toolPot, ItemRegistry.freshwaterItem);
-        addShapelessOreRecipe(Items.sugar, toolPot, foodHoneydrop);
-        addShapelessOreRecipe(Items.sugar, toolPot, dropHoney);
-        addShapelessOreRecipe(Items.fish, listAllfishraw);
-        addShapelessOreRecipe(new ItemStack(ItemRegistry.freshwaterItem, config.freshwaterfrombucket), Items.water_bucket);
-        addShapelessOreRecipe(new ItemStack(ItemRegistry.freshmilkItem, config.freshmilkfrombucket), Items.milk_bucket);
-        addShapedOreRecipe(Items.cake, "AAA", "BEB", "CCC", 'A', listAllmilk, 'B', listAllsugar, 'C', flourEqualswheat, 'E', listAllegg);
-        addShapelessOreRecipe(Items.mushroom_stew, Items.bowl, listAllmushroom, listAllmushroom);
+    private static void registerSmelting() {
         addSmelting(ItemRegistry.doughItem, Items.bread);
         addSmelting(Items.bread, ItemRegistry.toastItem);
         addSmelting(Items.pumpkin_seeds, ItemRegistry.roastedpumpkinseedsItem);
@@ -113,6 +74,52 @@ public class RecipeRegistry {
         addSmelting(ItemRegistry.shrimprawItem, ItemRegistry.shrimpcookedItem);
         addSmelting(ItemRegistry.snailrawItem, ItemRegistry.snailcookedItem);
         addSmelting(ItemRegistry.turtlerawItem, ItemRegistry.turtlecookedItem);
+    }
+
+    private static void registerPresserRecipe() {
+        addShapedOreRecipe(BlockRegistry.presser, "#O#", "# #", "#O#", '#', ingotIron, 'O', Blocks.piston);
+        addShapedOreRecipe(BlockRegistry.presser, "#O#", "# #", "#O#", '#', ingotCopper, 'O', Blocks.piston);
+        addShapedOreRecipe(BlockRegistry.presser, "#O#", "# #", "#O#", '#', ingotSteel, 'O', Blocks.piston);
+    }
+
+    private static void registerBeeRecipes() {
+        for (int i = 1; i < 18; i++) {
+            addShapelessOreRecipe(ItemRegistry.royaljellyItem, new ItemStack(ItemRegistry.queenbeeItem, 1, i));
+        }
+
+        addShapelessOreRecipe(ItemRegistry.queenbeeItem, ItemRegistry.grubItem, ItemRegistry.royaljellyItem);
+        addShapedOreRecipe(BlockRegistry.apiary, "#O#", "#O#", "#O#",'#', plankWood, 'O', Items.item_frame);
+        addShapelessOreRecipe(ItemRegistry.fruitbaitItem, Items.string, listAllfruit, listAllfruit, listAllfruit);
+        addShapelessOreRecipe(ItemRegistry.grainbaitItem, Items.string, listAllgrain, listAllgrain, listAllgrain);
+        addShapelessOreRecipe(ItemRegistry.veggiebaitItem, Items.string, listAllveggie, listAllveggie, listAllveggie);
+    }
+
+    private static void registerFoodRecipes() {
+        for (BlockPamSapling sapling : FruitRegistry.getSaplings()) {
+            addShapelessOreRecipe(sapling, sapling.getFruit(), sapling.getFruit(), sapling.getFruit(), Blocks.sapling);
+        }
+
+        if (config.enablecroptoseedRecipe) {
+            for (Map.Entry<String, ItemSeedFood> food : CropRegistry.getFoods().entrySet()) {
+                if (!config.enablecropspecialplanting ||
+                        !food.getKey().equals(CropRegistry.CRANBERRY) && !food.getKey().equals(CropRegistry.RICE) && !food.getKey().equals(CropRegistry.SEAWEED) ) {
+                    addShapelessOreRecipe(food.getValue(), CropRegistry.getSeed(food.getKey()));
+                }
+            }
+        }
+
+        if (config.enablesaltfromwaterbucketrecipe) addShapelessOreRecipe(ItemRegistry.saltItem, toolPot, listAllwater);
+
+        addShapelessOreRecipe(new ItemStack(ItemRegistry.sunflowerseedsItem, 2, 0), new ItemStack(Blocks.double_plant, 1, 0), new ItemStack(Blocks.double_plant, 1, 0));
+        addShapelessOreRecipe(ItemRegistry.freshwaterItem, listAllwater);
+        addShapelessOreRecipe(ItemRegistry.bubblywaterItem, toolPot, ItemRegistry.freshwaterItem);
+        addShapelessOreRecipe(Items.sugar, toolPot, foodHoneydrop);
+        addShapelessOreRecipe(Items.sugar, toolPot, dropHoney);
+        addShapelessOreRecipe(Items.fish, listAllfishraw);
+        addShapelessOreRecipe(new ItemStack(ItemRegistry.freshwaterItem, config.freshwaterfrombucket), Items.water_bucket);
+        addShapelessOreRecipe(new ItemStack(ItemRegistry.freshmilkItem, config.freshmilkfrombucket), Items.milk_bucket);
+        addShapedOreRecipe(Items.cake, "AAA", "BEB", "CCC", 'A', listAllmilk, 'B', listAllsugar, 'C', flourEqualswheat, 'E', listAllegg);
+        addShapelessOreRecipe(Items.mushroom_stew, Items.bowl, listAllmushroom, listAllmushroom);
         addShapelessOreRecipe(ItemRegistry.silkentofuItem, toolSaucepan, cropSoybean);
         addShapelessOreRecipe(ItemRegistry.firmtofuItem, toolSkillet, foodSilkentofu);
         addShapelessOreRecipe(ItemRegistry.soymilkItem, toolPot, cropSoybean);
@@ -765,8 +772,7 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.yorkshirepuddingItem, toolBakeware, foodFlour, foodSalt, foodStock, listAllegg, listAllmilk);
     }
 
-    private static void registerOtherRecipes() {
-        // Market recipes
+    private static void registerMarketRecipe() {
         final Item marketRecipeItem;
         switch (config.marketblockrecipeItem) {
             case 1:
@@ -790,7 +796,10 @@ public class RecipeRegistry {
         }
 
         addShapedOreRecipe(new ItemStack(BlockRegistry.pamMarket, 1), "XOX", "OEO", "XOX", 'X', "plankWood", 'O', Blocks.wool, 'E', marketRecipeItem);
+    }
 
+    private static void registerOtherRecipes() {
+        // Tools
         addShapedOreRecipe(ItemRegistry.potItem, true, "X@@", " @@", '@', ingotIron, 'X', stickWood);
         addShapedOreRecipe(ItemRegistry.skilletItem, true, "@  ", " @ ", "  X", '@', ingotIron, 'X', stickWood);
         addShapedOreRecipe(ItemRegistry.saucepanItem, true, "@ ", "X ", '@', ingotIron, 'X', stickWood);
@@ -799,7 +808,6 @@ public class RecipeRegistry {
         addShapedOreRecipe(ItemRegistry.mortarandpestleItem, true, "X@X", " X ", '@', stickWood, 'X', stone);
         addShapedOreRecipe(ItemRegistry.mixingbowlItem, true, "X@X", " X ", '@', stickWood, 'X', plankWood);
         addShapedOreRecipe(ItemRegistry.juicerItem, true, "@ ", "X ", '@', stone, 'X', Blocks.stone_pressure_plate);
-
         //Copper Tools
         addShapedOreRecipe(ItemRegistry.potItem, true, "X@@", " @@", '@', ingotCopper, 'X', stickWood);
         addShapedOreRecipe(ItemRegistry.skilletItem, true, "@  ", " @ ", "  X", '@', ingotCopper, 'X', stickWood);
@@ -812,7 +820,6 @@ public class RecipeRegistry {
         addShapedOreRecipe(ItemRegistry.cuttingboardItem, true, "@  ", " X ", "  O", '@', ingotSteel, 'X', stickWood, 'O', plankWood);
         //Nether Brick Bakeware
         addShapedOreRecipe(ItemRegistry.bakewareItem, true, "@@@", "@ @", "@@@", '@', ingotBrickNether);
-
 
         //Cotton Seed & Switch Recipes
         addShapelessOreRecipe(new ItemStack(CropRegistry.getCrop(CropRegistry.COTTON), 2), cropCotton, cropCotton);

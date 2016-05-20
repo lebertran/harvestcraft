@@ -658,7 +658,6 @@ public final class ItemRegistry {
         fruitbaitItem = registerGenericItem("fruitbaitItem");
         grainbaitItem = registerGenericItem("grainbaitItem");
         veggiebaitItem = registerGenericItem("veggiebaitItem");
-
     }
 
     private static void registerFoodItems() {

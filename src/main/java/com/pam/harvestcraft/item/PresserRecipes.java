@@ -60,25 +60,26 @@ public class PresserRecipes {
         registerItemRecipe(CropRegistry.getFood(CropRegistry.TEALEAF), ItemRegistry.oliveoilItem, ItemRegistry.grainbaitItem);
     }
 
-    public static void registerItemRecipe(Item input, Item item, Item item2) {
-        makeItemStackRecipe(new ItemStack(input, 1, 32767), new ItemStack(item), new ItemStack(item2));
+    public static void registerItemRecipe(Item input, Item leftItem, Item rightItem) {
+        final ItemStack outputLeft = leftItem != null ? new ItemStack(leftItem) : null;
+        final ItemStack outputRight = rightItem != null ? new ItemStack(rightItem) : null;
+
+        makeItemStackRecipe(new ItemStack(input, 1, 32767), outputLeft, outputRight);
     }
 
-    public static void registerBlockRecipe(Block input, Item item, Item item2) {
-        registerItemRecipe(Item.getItemFromBlock(input), item, item2);
+    public static void registerBlockRecipe(Block input, Item leftItem, Item rightItem) {
+        registerItemRecipe(Item.getItemFromBlock(input), leftItem, rightItem);
     }
 
-    public static void makeItemStackRecipe(ItemStack input, ItemStack itemStack, ItemStack itemStack2) {
-        final ItemStack[] itemStacks = new ItemStack[] {itemStack, itemStack2};
-        pressingList.put(input, itemStacks);
+    public static void makeItemStackRecipe(ItemStack input, ItemStack outputLeft, ItemStack outputRight) {
+        final ItemStack[] outputs = new ItemStack[] {outputLeft, outputRight};
+        pressingList.put(input, outputs);
     }
 
-    public static ItemStack[] getPressingResult(ItemStack stack) {
+    public static ItemStack[] getPressingResult(ItemStack input) {
         for (Map.Entry<ItemStack, ItemStack[]> entry : pressingList.entrySet()) {
-            if (isSameItem(stack, entry.getKey())) return entry.getValue();
+            if (isSameItem(input, entry.getKey())) return entry.getValue();
         }
-
-        FMLLog.bigWarning("No pressing result for result item %s.", stack.getItem().getUnlocalizedName());
 
         return null;
     }
