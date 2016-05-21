@@ -20,9 +20,9 @@ import java.util.Map;
 
 public class FruitRegistry {
 
-    public static final String FRUIT_BLOCK_NAME = "pam{0}";
-    public static final String ITEM_NAME = "{0}Item";
-    public static final String SAPLING_NAME = "{0}_sapling";
+    private static final String FRUIT_BLOCK_NAME = "pam{0}";
+    private static final String ITEM_NAME = "{0}Item";
+    private static final String SAPLING_NAME = "{0}_sapling";
 
     public static final String APPLE = "apple";
     public static final String ALMOND = "almond";
@@ -62,8 +62,8 @@ public class FruitRegistry {
     public static final String MAPLE = "maple";
     public static final String PAPERBARK = "paperbark";
     
-    public static final HashMap<String, SaplingType> registeringFruits = new HashMap<>();
-    public static final HashMap<String, SaplingType> registeringLogFruits = new HashMap<>();
+    private static final HashMap<String, SaplingType> registeringFruits = new HashMap<>();
+    private static final HashMap<String, SaplingType> registeringLogFruits = new HashMap<>();
 
     public static final HashSet<ItemBlock> itemBlocks = new HashSet<>();
     
@@ -203,8 +203,8 @@ public class FruitRegistry {
         final BlockPamFruit pamFruit;
         switch (fruitName) {
             case APPLE:
-                pamFruit = new BlockPamFruit(sapling, Items.apple);
-                foodItems.put(fruitName, Items.apple);
+                pamFruit = new BlockPamFruit(sapling, Items.APPLE);
+                foodItems.put(fruitName, Items.APPLE);
                 break;
             default:
                 final Item foodItem = new ItemFood(HarvestCraft.config.cropfoodRestore, HarvestCraft.config.snacksaturation, false);
@@ -254,8 +254,8 @@ public class FruitRegistry {
         final BlockPamFruitLog logFruit;
         switch (fruitName) {
             case PAPERBARK:
-                logFruit = new BlockPamFruitLog(sapling, Items.paper);
-                foodItems.put(fruitName, Items.paper);
+                logFruit = new BlockPamFruitLog(sapling, Items.PAPER);
+                foodItems.put(fruitName, Items.PAPER);
                 break;
             default:
                 final Item item = new ItemFood(HarvestCraft.config.cropfoodRestore, HarvestCraft.config.snacksaturation, false);

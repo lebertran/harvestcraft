@@ -18,7 +18,7 @@ public final class ItemRenderRegister {
         }
     }
 
-    public static void register(final Item item) {
+    private static void register(final Item item) {
         final String resName = item.getRegistryName().toString();
 
         final ModelResourceLocation res =

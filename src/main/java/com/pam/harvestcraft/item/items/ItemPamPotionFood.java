@@ -6,6 +6,7 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraftforge.fml.common.FMLLog;
 
 public class ItemPamPotionFood extends ItemFood {
     public ItemPamPotionFood(int amount, float saturation, boolean isWolfFood) {
@@ -19,9 +20,14 @@ public class ItemPamPotionFood extends ItemFood {
     }
 
     public ItemPamPotionFood addDefaultSpeedPotionEffect() {
-        Potion potion = Potion.getPotionFromResourceLocation("speed");
-        setPotionEffect(new PotionEffect(potion, 60, 0), 0.8F);
         setAlwaysEdible();
+
+        final Potion potion = Potion.getPotionFromResourceLocation("speed");
+        if (potion == null) {
+            FMLLog.bigWarning("Could not set potion effect.");
+            return this;
+        }
+        setPotionEffect(new PotionEffect(potion, 60, 0), 0.8F);
 
         return this;
     }

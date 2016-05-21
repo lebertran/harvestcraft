@@ -6,7 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.common.BiomeDictionary;
@@ -20,7 +20,7 @@ public class BeehiveWorldGen implements IWorldGenerator {
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
         if (!HarvestCraft.config.enableBeehiveGeneration) return;
 
-        final BiomeGenBase biome = world.getBiomeGenForCoords(new BlockPos(chunkX, 0, chunkZ));
+        final Biome biome = world.getBiomeGenForCoords(new BlockPos(chunkX, 0, chunkZ));
 
         if (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.END) || BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.NETHER)) {
             return;
@@ -36,7 +36,7 @@ public class BeehiveWorldGen implements IWorldGenerator {
             int x = chunkX + random.nextInt(16);
             int y = random.nextInt(128) - 1;
             int z = chunkZ + random.nextInt(16);
-            variableBlockPos.set(x, y, z);
+            variableBlockPos.setPos(x, y, z);
 
             if (!isBlockLeaves(world, variableBlockPos)) continue;
 
@@ -52,12 +52,12 @@ public class BeehiveWorldGen implements IWorldGenerator {
     private static boolean isBlockLeaves(World world, BlockPos blockPos) {
         final Block block = world.getBlockState(blockPos).getBlock();
 
-        return block == Blocks.leaves || block == Blocks.leaves2;
+        return block == Blocks.LEAVES || block == Blocks.LEAVES2;
     }
 
     private static int getHeightBelowLeaves(World world, int posX, int posY, int posZ) {
         final BlockPos.MutableBlockPos variableBlockPos = new BlockPos.MutableBlockPos();
-        variableBlockPos.set(posX, posY, posZ);
+        variableBlockPos.setPos(posX, posY, posZ);
 
         // Starting from a known leaves block, descend until air block is reached.
         // If another block is reached (non-leaves, non-air), abort and return -1.
@@ -65,7 +65,7 @@ public class BeehiveWorldGen implements IWorldGenerator {
             variableBlockPos.setY(y);
             final Block block = world.getBlockState(variableBlockPos).getBlock();
 
-            if (block == Blocks.leaves || block == Blocks.leaves2) continue;
+            if (block == Blocks.LEAVES || block == Blocks.LEAVES2) continue;
 
             if (world.isAirBlock(variableBlockPos)) return y;
 

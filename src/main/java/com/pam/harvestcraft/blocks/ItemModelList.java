@@ -23,11 +23,11 @@ public class ItemModelList {
         return this;
     }
 
-    public HashMap<Integer, String> getRegistrations() {
+    HashMap<Integer, String> getRegistrations() {
         return this.registrations;
     }
 
-    public static String getResourcePath(String resource) {
+    private static String getResourcePath(String resource) {
         return (Reference.MODID + ":") + resource;
     }
 

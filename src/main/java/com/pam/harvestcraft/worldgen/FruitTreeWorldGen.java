@@ -4,7 +4,7 @@ import com.pam.harvestcraft.blocks.FruitRegistry;
 import com.pam.harvestcraft.blocks.growables.BlockPamSapling;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.common.BiomeDictionary;
@@ -23,7 +23,7 @@ public class FruitTreeWorldGen implements IWorldGenerator {
         final int yCh = random.nextInt(128) + 64;
         final int zCh = chunkZ * 16 + random.nextInt(16);
 
-        final BiomeGenBase biome = world.getBiomeGenForCoords(new BlockPos(xChunk + 16, 0, zChunk + 16));
+        final Biome biome = world.getBiomeGenForCoords(new BlockPos(xChunk + 16, 0, zChunk + 16));
         final BlockPos blockPos = new BlockPos(xCh, yCh, zCh);
 
         if (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.DEAD)) {
@@ -230,7 +230,7 @@ public class FruitTreeWorldGen implements IWorldGenerator {
 
     }
 
-    public void generateFruitTree(World world, BlockPos pos, String fruitName) {
+    private void generateFruitTree(World world, BlockPos pos, String fruitName) {
         final BlockPamSapling sapling = FruitRegistry.getSapling(fruitName);
         if (sapling == null) return;
 

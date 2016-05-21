@@ -3,6 +3,7 @@ package com.pam.harvestcraft.tileentities;
 import com.pam.harvestcraft.blocks.BlockRegistry;
 import com.pam.harvestcraft.blocks.blocks.BlockBaseGarden;
 import com.pam.harvestcraft.item.ItemRegistry;
+import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.BlockFlower;
@@ -53,7 +54,8 @@ public class TileEntityApiary extends TileEntity implements IInventory, ITickabl
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound compound) {
+    @MethodsReturnNonnullByDefault
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
 
         compound.setShort("RunTime", (short) runTime);
@@ -69,6 +71,8 @@ public class TileEntityApiary extends TileEntity implements IInventory, ITickabl
             tagList.appendTag(stackTag);
         }
         compound.setTag("Items", tagList);
+
+        return compound;
     }
 
     @Override
@@ -133,9 +137,11 @@ public class TileEntityApiary extends TileEntity implements IInventory, ITickabl
         return false;
     }
 
-    public void run() {
+    private void run() {
         inventory[18].attemptDamageItem(1, worldObj.rand);
         final ItemStack itemProduced = getComb();
+
+        if (itemProduced == null) return;
 
         for (int i = 0; i < 18; ++i) {
             if (inventory[i] != null) continue;
@@ -144,7 +150,7 @@ public class TileEntityApiary extends TileEntity implements IInventory, ITickabl
         }
     }
 
-    public ItemStack getComb() {
+    private ItemStack getComb() {
         int randomNum = worldObj.rand.nextInt(100);
 
         if (inventory[18] != null) {
@@ -163,7 +169,7 @@ public class TileEntityApiary extends TileEntity implements IInventory, ITickabl
         return null;
     }
 
-    public int getRunTime(ItemStack stack) {
+    private int getRunTime(ItemStack stack) {
         if (stack == null) {
             return 0;
         }
@@ -173,7 +179,7 @@ public class TileEntityApiary extends TileEntity implements IInventory, ITickabl
         return 0;
     }
 
-    public int getRunTime() {
+    private int getRunTime() {
         final int radius = 2;
         final World world = worldObj;
         final int varX = pos.getX();
@@ -289,8 +295,8 @@ public class TileEntityApiary extends TileEntity implements IInventory, ITickabl
     public void setField(int id, int value) {}
 
     @Override
-    public Packet<?> getDescriptionPacket() {
-        NBTTagCompound tag = new NBTTagCompound();
+    public SPacketUpdateTileEntity getUpdatePacket() {
+        final NBTTagCompound tag = new NBTTagCompound();
         writeToNBT(tag);
 
         return new SPacketUpdateTileEntity(getPos(), 1, tag);

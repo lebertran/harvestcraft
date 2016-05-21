@@ -17,13 +17,13 @@ import java.util.ArrayList;
 
 public class MarketItems {
 
-    public enum CurrencyType {
+    private enum CurrencyType {
         DEFAULT, SEEDS, SAPLING, ANIMAL
     }
 
     private static final ArrayList<MarketData> items = new ArrayList<>();
 
-    public static void registerItems(MarketData data) {
+    private static void registerItems(MarketData data) {
         items.add(data);
     }
 
@@ -63,24 +63,16 @@ public class MarketItems {
     private static void registerBonemeal() {
         final ItemStack currency = getCurrency(HarvestCraft.config.marketcurrencyBonemeal, CurrencyType.DEFAULT);
 
-        registerItems(new MarketData(new ItemStack(Items.dye, 1, 15), currency, HarvestCraft.config.marketbonemealPrice));
+        registerItems(new MarketData(new ItemStack(Items.DYE, 1, 15), currency, HarvestCraft.config.marketbonemealPrice));
     }
 
     private static void registerAnimalEggs() {
 
-        final ItemStack pigEgg = new ItemStack(Items.spawn_egg, 1, 90);
-        final ItemStack sheepEgg = new ItemStack(Items.spawn_egg, 1, 91);
-        final ItemStack cowEgg = new ItemStack(Items.spawn_egg, 1, 92);
-        final ItemStack chickenEgg = new ItemStack(Items.spawn_egg, 93);
-        final ItemStack horseEgg = new ItemStack(Items.spawn_egg, 100);
-
-        if (FMLCommonHandler.instance().getEffectiveSide().isClient()) {
-            ItemMonsterPlacer.func_185078_a(pigEgg, EntityList.classToStringMapping.get(EntityPig.class));
-            ItemMonsterPlacer.func_185078_a(sheepEgg, EntityList.classToStringMapping.get(EntitySheep.class));
-            ItemMonsterPlacer.func_185078_a(cowEgg, EntityList.classToStringMapping.get(EntityCow.class));
-            ItemMonsterPlacer.func_185078_a(chickenEgg, EntityList.classToStringMapping.get(EntityChicken.class));
-            ItemMonsterPlacer.func_185078_a(horseEgg, EntityList.classToStringMapping.get(EntityHorse.class));
-        }
+        final ItemStack pigEgg = new ItemStack(Items.SPAWN_EGG, 1, 90);
+        final ItemStack sheepEgg = new ItemStack(Items.SPAWN_EGG, 1, 91);
+        final ItemStack cowEgg = new ItemStack(Items.SPAWN_EGG, 1, 92);
+        final ItemStack chickenEgg = new ItemStack(Items.SPAWN_EGG, 93);
+        final ItemStack horseEgg = new ItemStack(Items.SPAWN_EGG, 100);
 
         if (HarvestCraft.config.marketsellPig) {
             final ItemStack currency = getCurrency(HarvestCraft.config.marketcurrencyPig, CurrencyType.ANIMAL);
@@ -112,7 +104,7 @@ public class MarketItems {
         final ItemStack currency = getCurrency(HarvestCraft.config.marketcurrencyconiferousSaplings, CurrencyType.SAPLING);
 
         registerItems(new MarketData(new ItemStack(FruitRegistry.getSapling(FruitRegistry.MAPLE), 1), currency, HarvestCraft.config.marketsaplingPrice));
-        registerItems(new MarketData(new ItemStack(Blocks.sapling, 1, 1), currency, HarvestCraft.config.marketsaplingPrice));
+        registerItems(new MarketData(new ItemStack(Blocks.SAPLING, 1, 1), currency, HarvestCraft.config.marketsaplingPrice));
     }
 
     private static void registerTropicalSaplings() {
@@ -123,8 +115,8 @@ public class MarketItems {
         }
         registerItems(new MarketData(new ItemStack(FruitRegistry.getSapling(FruitRegistry.CINNAMON), 1), currency, HarvestCraft.config.marketsaplingPrice));
         registerItems(new MarketData(new ItemStack(FruitRegistry.getSapling(FruitRegistry.PAPERBARK), 1), currency, HarvestCraft.config.marketsaplingPrice));
-        registerItems(new MarketData(new ItemStack(Blocks.sapling, 1, 3), currency, HarvestCraft.config.marketsaplingPrice));
-        registerItems(new MarketData(new ItemStack(Blocks.sapling, 1, 4), currency, HarvestCraft.config.marketsaplingPrice));
+        registerItems(new MarketData(new ItemStack(Blocks.SAPLING, 1, 3), currency, HarvestCraft.config.marketsaplingPrice));
+        registerItems(new MarketData(new ItemStack(Blocks.SAPLING, 1, 4), currency, HarvestCraft.config.marketsaplingPrice));
     }
 
     private static void registerTemperateSaplings() {
@@ -134,9 +126,9 @@ public class MarketItems {
             registerItems(new MarketData(new ItemStack(sapling, 1), currency, HarvestCraft.config.marketsaplingPrice));
         }
 
-        registerItems(new MarketData(new ItemStack(Blocks.sapling, 1, 0), currency, HarvestCraft.config.marketsaplingPrice));
-        registerItems(new MarketData(new ItemStack(Blocks.sapling, 1, 2), currency, HarvestCraft.config.marketsaplingPrice));
-        registerItems(new MarketData(new ItemStack(Blocks.sapling, 1, 5), currency, HarvestCraft.config.marketsaplingPrice));
+        registerItems(new MarketData(new ItemStack(Blocks.SAPLING, 1, 0), currency, HarvestCraft.config.marketsaplingPrice));
+        registerItems(new MarketData(new ItemStack(Blocks.SAPLING, 1, 2), currency, HarvestCraft.config.marketsaplingPrice));
+        registerItems(new MarketData(new ItemStack(Blocks.SAPLING, 1, 5), currency, HarvestCraft.config.marketsaplingPrice));
     }
 
     private static void registerSeeds() {
@@ -146,37 +138,37 @@ public class MarketItems {
             registerItems(new MarketData(new ItemStack(seed), currency, HarvestCraft.config.marketseedPrice));
 
         }
-        registerItems(new MarketData(new ItemStack(Items.wheat_seeds), currency, HarvestCraft.config.marketseedPrice));
-        registerItems(new MarketData(new ItemStack(Items.pumpkin_seeds), currency, HarvestCraft.config.marketseedPrice));
-        registerItems(new MarketData(new ItemStack(Items.melon_seeds), currency, HarvestCraft.config.marketseedPrice));
+        registerItems(new MarketData(new ItemStack(Items.WHEAT_SEEDS), currency, HarvestCraft.config.marketseedPrice));
+        registerItems(new MarketData(new ItemStack(Items.PUMPKIN_SEEDS), currency, HarvestCraft.config.marketseedPrice));
+        registerItems(new MarketData(new ItemStack(Items.MELON_SEEDS), currency, HarvestCraft.config.marketseedPrice));
     }
     
     private static ItemStack getCurrency(int config, CurrencyType currencyType) {
         switch (config) {
             case 1:
-                return new ItemStack(Items.diamond);
+                return new ItemStack(Items.DIAMOND);
             case 2:
-                return new ItemStack(Items.gold_ingot);
+                return new ItemStack(Items.GOLD_INGOT);
             case 3:
-                return new ItemStack(Items.gold_nugget);
+                return new ItemStack(Items.GOLD_NUGGET);
             case 4:
-                return new ItemStack(Items.iron_ingot);
+                return new ItemStack(Items.IRON_INGOT);
             case 5:
                 if (currencyType.equals(CurrencyType.ANIMAL))
-                    return new ItemStack(Items.egg);
+                    return new ItemStack(Items.EGG);
                 if (currencyType.equals(CurrencyType.SEEDS))
-                    return new ItemStack(Items.wheat_seeds);
+                    return new ItemStack(Items.WHEAT_SEEDS);
                 if (currencyType.equals(CurrencyType.SAPLING))
-                    return new ItemStack(Blocks.sapling);
+                    return new ItemStack(Blocks.SAPLING);
                 else
                     return null;
             case 6:
-                return new ItemStack(Items.apple);
+                return new ItemStack(Items.APPLE);
             case 7:
-                return new ItemStack(Items.dye);
+                return new ItemStack(Items.DYE);
             case 0:
             default:
-                return new ItemStack(Items.emerald);
+                return new ItemStack(Items.EMERALD);
         }
     }
 

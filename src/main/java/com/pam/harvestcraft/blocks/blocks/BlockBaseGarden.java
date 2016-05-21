@@ -28,8 +28,8 @@ public class BlockBaseGarden extends BlockBush {
     public static final Map<String, List<ItemStack>> drops = new HashMap<>();
 
     public enum Region {
-        PLAINS(EnumPlantType.Plains, Blocks.grass, Blocks.dirt),
-        DESERT(EnumPlantType.Desert, Blocks.sand);
+        PLAINS(EnumPlantType.Plains, Blocks.GRASS, Blocks.DIRT),
+        DESERT(EnumPlantType.Desert, Blocks.SAND);
 
         private final EnumPlantType plantType;
 
@@ -47,8 +47,6 @@ public class BlockBaseGarden extends BlockBush {
         public Block[] getSoilBlocks() {
             return soilBlocks;
         }
-
-
     }
 
     private final String type;
@@ -56,7 +54,7 @@ public class BlockBaseGarden extends BlockBush {
     private final Region region;
 
     public BlockBaseGarden(String type, Region region) {
-        super(Material.grass);
+        super(Material.GRASS);
         this.type = type;
         this.name = type.toLowerCase();
         this.region = region;
@@ -123,11 +121,6 @@ public class BlockBaseGarden extends BlockBush {
         return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
     }
 
-    @Override
-    public AxisAlignedBB getSelectedBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
-        return NULL_AABB;
-    }
-
     public String getName() {
         return name;
     }
@@ -137,10 +130,10 @@ public class BlockBaseGarden extends BlockBush {
      */
     @Override
     public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te, ItemStack stack) {
-        player.triggerAchievement(StatList.func_188055_a(this));
+        player.addStat(StatList.getBlockStats(this));
         player.addExhaustion(0.025F);
 
-        if (player.isSneaking() || canSilkHarvest(worldIn, pos, state, player) && EnchantmentHelper.getEnchantmentLevel(Enchantments.silkTouch, stack) > 0) {
+        if (player.isSneaking() || canSilkHarvest(worldIn, pos, state, player) && EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, stack) > 0) {
             List<ItemStack> items = new ArrayList<>();
             ItemStack itemstack = createStackedBlock(state);
 
@@ -154,7 +147,7 @@ public class BlockBaseGarden extends BlockBush {
             }
         } else {
             harvesters.set(player);
-            final int i = EnchantmentHelper.getEnchantmentLevel(Enchantments.fortune, stack);
+            final int i = EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, stack);
             dropBlockAsItem(worldIn, pos, state, i);
             harvesters.set(null);
         }

@@ -13,6 +13,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 
 public class FruitTreeGen extends WorldGenAbstractTree {
@@ -32,6 +33,8 @@ public class FruitTreeGen extends WorldGenAbstractTree {
         this.fruitType = fruitType;
     }
 
+    @Override
+    @ParametersAreNonnullByDefault
     public boolean generate(World worldIn, Random rand, BlockPos blockPos) {
         final BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
 
@@ -56,7 +59,7 @@ public class FruitTreeGen extends WorldGenAbstractTree {
                 for (int iPosX = blockPos.getX() - k, halflength = blockPos.getX() + k; iPosX <= halflength + k && canGenerate; ++iPosX) {
                     for (int iPosZ = blockPos.getZ() - k, halfLength = blockPos.getZ() + k; iPosZ <= halfLength + k && canGenerate; ++iPosZ) {
                         if (iPosY >= 0 && iPosY < 256) {
-                            if (!this.isReplaceable(worldIn, mutableBlockPos.set(iPosX, iPosY, iPosZ))) {
+                            if (!this.isReplaceable(worldIn, mutableBlockPos.setPos(iPosX, iPosY, iPosZ))) {
                                 canGenerate = false;
                             }
                         } else {
@@ -72,7 +75,7 @@ public class FruitTreeGen extends WorldGenAbstractTree {
                 BlockPos down = blockPos.down();
                 IBlockState blockState = worldIn.getBlockState(down);
                 Block block = blockState.getBlock();
-                boolean isSoil = block.canSustainPlant(blockState, worldIn, down, EnumFacing.UP, (BlockSapling) Blocks.sapling);
+                boolean isSoil = block.canSustainPlant(blockState, worldIn, down, EnumFacing.UP, (BlockSapling) Blocks.SAPLING);
 
                 if (isSoil && treeTopPos + 1 < 256) {
                     block.onPlantGrow(blockState, worldIn, down, blockPos);
@@ -95,7 +98,7 @@ public class FruitTreeGen extends WorldGenAbstractTree {
                                     Block leavesBlock = worldIn.getBlockState(leavesBlockPos).getBlock();
 
                                     if (leavesBlock.isAir(leavesBlockState, worldIn, leavesBlockPos) || leavesBlock.isLeaves(leavesBlockState, worldIn, leavesBlockPos)
-                                            || leavesBlock.getMaterial(leavesBlockState) == Material.vine) {
+                                            || leavesBlock.getMaterial(leavesBlockState) == Material.VINE) {
                                         this.setBlockAndNotifyAdequately(worldIn, leavesBlockPos, this.metaLeaves);
 
 
@@ -124,7 +127,7 @@ public class FruitTreeGen extends WorldGenAbstractTree {
 
                         if (blockUp.isAir(blockStateUp, worldIn, upN) || blockUp.isLeaves(blockStateUp, worldIn, upN) ||
                                 blockUp == fruitType.getBlock()
-                                || blockUp.getMaterial(blockStateUp) == Material.vine) {
+                                || blockUp.getMaterial(blockStateUp) == Material.VINE) {
                             this.setBlockAndNotifyAdequately(worldIn, blockPos.up(i), this.metaWood);
 
                             if (this.vinesGrow && i > 0) {
@@ -155,7 +158,7 @@ public class FruitTreeGen extends WorldGenAbstractTree {
 
                             for (int xStart = blockPos.getX() - k, xEnd = blockPos.getX() + k; xStart <= xEnd; ++xStart) {
                                 for (int zStart = blockPos.getZ() - k, zEnd = blockPos.getZ() + k; zStart <= zEnd; ++zStart) {
-                                    mutableBlockPos.set(xStart, yBottom, zStart);
+                                    mutableBlockPos.setPos(xStart, yBottom, zStart);
                                     if (worldIn.getBlockState(mutableBlockPos).getBlock().isLeaves(
                                             worldIn.getBlockState(mutableBlockPos), worldIn, mutableBlockPos)) {
                                         BlockPos posWest = mutableBlockPos.west();
@@ -210,11 +213,11 @@ public class FruitTreeGen extends WorldGenAbstractTree {
     }
 
     private void setBlockCocoa(World world, int age, BlockPos blockPos, EnumFacing facing) {
-        this.setBlockAndNotifyAdequately(world, blockPos, Blocks.cocoa.getDefaultState().withProperty(BlockCocoa.AGE, age).withProperty(BlockCocoa.FACING, facing));
+        this.setBlockAndNotifyAdequately(world, blockPos, Blocks.COCOA.getDefaultState().withProperty(BlockCocoa.AGE, age).withProperty(BlockCocoa.FACING, facing));
     }
 
     private void setBlockVine(World world, BlockPos blockPos, PropertyBool propertyBool) {
-        this.setBlockAndNotifyAdequately(world, blockPos, Blocks.vine.getDefaultState().withProperty(propertyBool, true));
+        this.setBlockAndNotifyAdequately(world, blockPos, Blocks.VINE.getDefaultState().withProperty(propertyBool, true));
     }
 
     private void setVines(World world, BlockPos blockPos, PropertyBool propertyBool) {

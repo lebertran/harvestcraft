@@ -1,5 +1,5 @@
 package com.pam.harvestcraft.addons;
-
+/*
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import mcp.mobius.waila.api.IWailaDataProvider;
@@ -34,14 +34,18 @@ public class WailaVanillaHandler implements IWailaDataProvider {
 
     /**
      * Waila ignores that vanilla beetroot only has stages 0-3. Let's fix that.
-     */
+     *//*
     private String fixBeetroot(IWailaDataAccessor accessor) {
-        final boolean mature = accessor.getMetadata() >= ((BlockBeetroot) accessor.getBlock()).func_185526_g();
+
+        if (!(accessor.getBlock() instanceof BlockBeetroot)) return "";
+        final BlockBeetroot blockBeetroot = (BlockBeetroot) accessor.getBlock();
+
+        final boolean mature = blockBeetroot.isMaxAge(accessor.getBlockState());
 
         if (mature) {
             return String.format("%s : %s", LangUtil.translateG("hud.msg.growth"), LangUtil.translateG("hud.msg.mature"));
         } else {
-            float matureAge = ((BlockBeetroot) accessor.getBlock()).func_185526_g();
+            float matureAge = blockBeetroot.getMaxAge();
 
             final float growthValue = (accessor.getMetadata() / matureAge) * 100.0F;
             return String.format("%s : %.0f %%", LangUtil.translateG("hud.msg.growth"), growthValue);
@@ -72,3 +76,4 @@ public class WailaVanillaHandler implements IWailaDataProvider {
         registrar.registerBodyProvider(new WailaPamHandler(), BlockBeetroot.class);
     }
 }
+*/

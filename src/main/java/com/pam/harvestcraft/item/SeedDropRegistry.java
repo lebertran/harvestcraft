@@ -15,6 +15,8 @@ public class SeedDropRegistry {
             if (entry.getValue()) {
                 final Item item = CropRegistry.getSeed(entry.getKey());
 
+                if (item == null) continue;
+
                 MinecraftForge.addGrassSeed(new ItemStack(item, 1, 0), HarvestCraft.config.seedrarity);
             }
         }

@@ -10,6 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 
 public class LogFruitTreeGen extends WorldGenAbstractTree {
@@ -27,6 +28,7 @@ public class LogFruitTreeGen extends WorldGenAbstractTree {
     }
 
     @Override
+    @ParametersAreNonnullByDefault
     public boolean generate(World worldIn, Random rand, BlockPos blockPos) {
         int treeHeight = rand.nextInt(3) + this.minTreeHeight;
         int treeTopPos = blockPos.getY() + treeHeight;
@@ -49,7 +51,7 @@ public class LogFruitTreeGen extends WorldGenAbstractTree {
                 for (int xStart = blockPos.getX() - k, xEnd = blockPos.getX() + k; xStart <= xEnd && canGenerate; ++xStart) {
                     for (int zStart = blockPos.getZ() - k, zEnd = blockPos.getZ() + k; zStart <= zEnd && canGenerate; ++zStart) {
                         if (iPosY >= 0 && iPosY < 256) {
-                            if (!this.isReplaceable(worldIn, mutableBlockPos.set(xStart, iPosY, zStart))) {
+                            if (!this.isReplaceable(worldIn, mutableBlockPos.setPos(xStart, iPosY, zStart))) {
                                 canGenerate = false;
                             }
                         } else {
@@ -65,7 +67,7 @@ public class LogFruitTreeGen extends WorldGenAbstractTree {
                 BlockPos blockPosDown = blockPos.down();
                 IBlockState blockStateDown = worldIn.getBlockState(blockPosDown);
                 Block blockDown = blockStateDown.getBlock();
-                boolean isSoil = blockDown.canSustainPlant(blockStateDown, worldIn, blockPosDown, EnumFacing.UP, (BlockSapling) Blocks.sapling);
+                boolean isSoil = blockDown.canSustainPlant(blockStateDown, worldIn, blockPosDown, EnumFacing.UP, (BlockSapling) Blocks.SAPLING);
 
                 if (isSoil && treeTopPos < 255) {
                     blockDown.onPlantGrow(blockStateDown, worldIn, blockPosDown, blockPos);
@@ -87,7 +89,7 @@ public class LogFruitTreeGen extends WorldGenAbstractTree {
                                     Block leavesBlock = leavesBlockState.getBlock();
 
                                     if (leavesBlock.isAir(leavesBlockState, worldIn, blockpos) || leavesBlock.isLeaves(leavesBlockState, worldIn, blockpos)
-                                            || leavesBlock.getMaterial(leavesBlockState) == Material.vine) {
+                                            || leavesBlock.getMaterial(leavesBlockState) == Material.VINE) {
                                         this.setBlockAndNotifyAdequately(worldIn, blockpos, this.metaLeaves);
 
                                     }

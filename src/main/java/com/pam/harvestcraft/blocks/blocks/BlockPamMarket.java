@@ -28,8 +28,8 @@ public class BlockPamMarket extends BlockContainer {
     }
 
     public BlockPamMarket() {
-        super(Material.wood);
-        setStepSound(SoundType.WOOD);
+        super(Material.WOOD);
+        setSoundType(SoundType.WOOD);
         this.setCreativeTab(HarvestCraft.modTab);
     }
 

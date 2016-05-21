@@ -1,5 +1,6 @@
 package com.pam.harvestcraft.blocks.growables;
 
+import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
@@ -11,4 +12,6 @@ public interface PamCropGrowable {
     int getMatureAge();
     boolean isMature(IBlockState state);
     List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune);
+    PropertyInteger getAgeProperty();
+
 }

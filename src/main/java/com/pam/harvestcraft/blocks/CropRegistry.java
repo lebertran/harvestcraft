@@ -268,10 +268,10 @@ public class CropRegistry {
 
 
     private static ItemSeedFood createItem(BlockPamCrop cropBlock) {
-        return new ItemSeedFood(HarvestCraft.config.cropfoodRestore, HarvestCraft.config.cropsaturationRestore, cropBlock, Blocks.farmland);
+        return new ItemSeedFood(HarvestCraft.config.cropfoodRestore, HarvestCraft.config.cropsaturationRestore, cropBlock, Blocks.FARMLAND);
     }
 
     private static Item createSeed(BlockPamCrop cropBlock) {
-        return new ItemSeeds(cropBlock, Blocks.farmland);
+        return new ItemSeeds(cropBlock, Blocks.FARMLAND);
     }
 }

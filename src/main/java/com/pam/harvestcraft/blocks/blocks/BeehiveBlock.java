@@ -14,7 +14,7 @@ public class BeehiveBlock extends Block {
     public static final String registryName = "beehive";
 
     public BeehiveBlock() {
-        super(Material.wood);
+        super(Material.WOOD);
         setCreativeTab(HarvestCraft.modTab);
 
         setHardness(1.0f);
@@ -24,6 +24,4 @@ public class BeehiveBlock extends Block {
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
         return ItemRegistry.queenbeeItem;
     }
-
-
 }
