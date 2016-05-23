@@ -182,7 +182,7 @@ public class ConfigHandler {
 
     private void initBeesSettings() {
         enableBeehiveGeneration = config.getBoolean(CATEGORY_BEE, "enableBeehiveGeneration", true, "Enable generation of beehives.");
-        beehiveRarity = config.getInt(CATEGORY_BEE, "beehiveRarity", 20, 0, Short.MAX_VALUE, "The higher the value, the more beehives are generated.");
+        beehiveRarity = config.getInt(CATEGORY_BEE, "beehiveRarity", 10, 0, Short.MAX_VALUE, "The higher the value, the more beehives are generated.");
     }
 
     private void initGeneralSettings() {
@@ -245,8 +245,8 @@ public class ConfigHandler {
         gardenRarity = config.get(CATEGORY_GARDENS, "gardenRarity", 2).getInt();
         gardendropAmount = config.get(CATEGORY_GARDENS, "gardendropAmount", 3).getInt();
         enablegardenSpread = config.get(CATEGORY_GARDENS, "enablegardenSpread", true).getBoolean();
-        gardenspreadRate = config.getInt("gardenSpreadRate", CATEGORY_GARDENS, 80, 1, 100, "Garden spread rate. 100 means a garden spawns every tick. 1 means a garden spawns with a probability of 1% per tick.");
-        gardenSpreadMax = config.get(CATEGORY_GARDENS, "gardenspreadMax", 10).getInt();
+        gardenspreadRate = config.getInt("gardenSpreadRate", CATEGORY_GARDENS, 30, 1, 100, "Garden spread rate. 100 means a garden spawns every tick. 1 means a garden spawns with a probability of 1% per tick.");
+        gardenSpreadMax = config.get(CATEGORY_GARDENS, "gardenspreadMax", 8).getInt();
         enablearidgardenGeneration = config.get(CATEGORY_GARDENS, "enablearidgardenGeneration", true).getBoolean();
         enablefrostgardenGeneration = config.get(CATEGORY_GARDENS, "enablefrostgardenGeneration", true).getBoolean();
         enabletropicalgardenGeneration = config.get(CATEGORY_GARDENS, "enabletropicalgardenGeneration", true).getBoolean();

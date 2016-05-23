@@ -1,5 +1,5 @@
 package com.pam.harvestcraft.addons;
-/*
+
 import com.pam.harvestcraft.blocks.growables.BlockPamCrop;
 import com.pam.harvestcraft.blocks.growables.BlockPamFruit;
 import com.pam.harvestcraft.blocks.growables.BlockPamFruitLog;
@@ -72,4 +72,4 @@ public class WailaPamHandler implements IWailaDataProvider {
         registrar.registerBodyProvider(new WailaPamHandler(), BlockPamFruit.class);
         registrar.registerBodyProvider(new WailaPamHandler(), BlockPamFruitLog.class);
     }
-}*/
+}

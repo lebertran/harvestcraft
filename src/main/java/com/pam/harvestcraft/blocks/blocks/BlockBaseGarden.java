@@ -4,6 +4,7 @@ import com.pam.harvestcraft.HarvestCraft;
 import com.pam.harvestcraft.blocks.BlockRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -60,6 +61,7 @@ public class BlockBaseGarden extends BlockBush {
         this.region = region;
 
         this.setCreativeTab(HarvestCraft.modTab);
+        this.setSoundType(SoundType.PLANT);
         this.setTickRandomly(true);
 
         BlockRegistry.registerBlock(name, this);

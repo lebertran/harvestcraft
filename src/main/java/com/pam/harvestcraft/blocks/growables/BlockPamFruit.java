@@ -3,6 +3,7 @@ package com.pam.harvestcraft.blocks.growables;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCactus;
 import net.minecraft.block.IGrowable;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -38,6 +39,7 @@ public class BlockPamFruit extends Block implements IGrowable, PamCropGrowable {
     public BlockPamFruit(BlockPamSapling sapling, Item fruit) {
         super(Material.PLANTS);
         this.setTickRandomly(true);
+        setSoundType(SoundType.WOOD);
         this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, 0));
         this.sapling = sapling;
         this.fruitItem = fruit;
