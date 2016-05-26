@@ -31,10 +31,10 @@ public class LootHandler {
     }
 
     private static void createPoolIfNotExists(LootTable lootTable, String poolId) {
-        if (lootTable.getPool(poolId) == null) {
-            lootTable.addPool(new LootPool(new LootEntry[] {},
-                    new LootCondition[] {}, new RandomValueRange(1), new RandomValueRange(0), poolId));
-        }
+        if (poolId.equals(VANILLA_LOOT_POOL_ID) || lootTable.getPool(poolId) != null) return;
+
+        lootTable.addPool(new LootPool(new LootEntry[] {}, new LootCondition[] {}, new RandomValueRange(1), new RandomValueRange(0), poolId));
+
     }
 
     private static List<CustomLootPool> getCustomLootPools(ResourceLocation resourceLocation) {

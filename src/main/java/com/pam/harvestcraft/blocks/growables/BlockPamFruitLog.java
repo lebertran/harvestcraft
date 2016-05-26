@@ -28,18 +28,23 @@ public class BlockPamFruitLog extends Block implements IGrowable, PamCropGrowabl
     private final Item fruitItem;
 
     public static final PropertyInteger AGE = PropertyInteger.create("age", 0, MATURE_AGE);
-    public String BASE_STAGE_ID = null;
+    private String BASE_STAGE_ID = null;
 
     public BlockPamFruitLog(BlockPamSapling sapling, Item fruit) {
-        super(Material.wood);
+        super(Material.WOOD);
         this.setHardness(2.0F);
         this.setTickRandomly(true);
         this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, 0));
         this.setCreativeTab(HarvestCraft.modTab);
-        this.setStepSound(SoundType.WOOD);
+        this.setSoundType(SoundType.WOOD);
         this.sapling = sapling;
         this.fruitItem = fruit;
 
+    }
+
+    @Override
+    public PropertyInteger getAgeProperty() {
+        return AGE;
     }
 
     @Override
@@ -52,7 +57,7 @@ public class BlockPamFruitLog extends Block implements IGrowable, PamCropGrowabl
         return true;
     }
 
-    public Item getFruit() {
+    private Item getFruit() {
         if (fruitItem == null) {
             FMLLog.bigWarning("Cannot get fruit %s.", getUnlocalizedName());
         }
@@ -121,7 +126,7 @@ public class BlockPamFruitLog extends Block implements IGrowable, PamCropGrowabl
         super.updateTick(worldIn, pos, state, rand);
     }
 
-    public void grow(World worldIn, BlockPos pos, IBlockState state) {
+    private void grow(World worldIn, BlockPos pos, IBlockState state) {
         int i = state.getValue(AGE) + MathHelper.getRandomIntegerInRange(worldIn.rand, 2, 5);
         if (i > MATURE_AGE) {
             i = 2;

@@ -16,6 +16,8 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
+
 public class TileEntityPresser extends TileEntity implements IInventory, ITickable {
 
     private ItemStack[] inventory = new ItemStack[3];
@@ -89,7 +91,7 @@ public class TileEntityPresser extends TileEntity implements IInventory, ITickab
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound compound) {
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
 
         compound.setShort("CookTime", cookTime);
@@ -104,6 +106,8 @@ public class TileEntityPresser extends TileEntity implements IInventory, ITickab
             tagList.appendTag(stackTag);
         }
         compound.setTag("Items", tagList);
+
+        return compound;
     }
 
     @Override
@@ -163,7 +167,7 @@ public class TileEntityPresser extends TileEntity implements IInventory, ITickab
         return true;
     }
 
-    public void pressComb() {
+    private void pressComb() {
         if (!canRun()) return;
 
         final ItemStack[] results = PresserRecipes.getPressingResult(inventory[0]);
@@ -230,9 +234,10 @@ public class TileEntityPresser extends TileEntity implements IInventory, ITickab
     @Override
     public void clear() {}
 
+    @Nullable
     @Override
-    public Packet<?> getDescriptionPacket() {
-        NBTTagCompound tag = new NBTTagCompound();
+    public SPacketUpdateTileEntity getUpdatePacket() {
+        final NBTTagCompound tag = new NBTTagCompound();
         writeToNBT(tag);
 
         return new SPacketUpdateTileEntity(getPos(), 1, tag);

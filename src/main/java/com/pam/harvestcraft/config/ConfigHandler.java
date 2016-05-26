@@ -18,19 +18,19 @@ public class ConfigHandler {
 
     private final Configuration config;
 
-    public static final String CATEGORY_GENERAL = "general";
-    public static final String CATEGORY_CROPS = "crops";
-    public static final String CATEGORY_GARDENS = "gardens";
-    public static final String CATEGORY_FRUIT_TREES = "fruit trees";
-    public static final String CATEGORY_SALT = "salt";
-    public static final String CATEGORY_BEE = "beekeeping";
-    public static final String CATEGORY_MARKET_SALES = "market sales";
-    public static final String CATEGORY_MARKET_PRICES = "market prices";
-    public static final String CATEGORY_MARKET_CURRENCY = "market currency";
-    public static final String CATEGORY_CANDLES = "candles";
-    public static final String CATEGORY_DIMENSIONS = "dimensions";
-    public static final String CATEGORY_SEEDS = "seeds";
-    public static final String CATEGORY_MISC_RECIPES = "miscellaneous recipes";
+    private static final String CATEGORY_GENERAL = "general";
+    private static final String CATEGORY_CROPS = "crops";
+    private static final String CATEGORY_GARDENS = "gardens";
+    private static final String CATEGORY_FRUIT_TREES = "fruit trees";
+    private static final String CATEGORY_SALT = "salt";
+    private static final String CATEGORY_BEE = "beekeeping";
+    private static final String CATEGORY_MARKET_SALES = "market sales";
+    private static final String CATEGORY_MARKET_PRICES = "market prices";
+    private static final String CATEGORY_MARKET_CURRENCY = "market currency";
+    private static final String CATEGORY_CANDLES = "candles";
+    private static final String CATEGORY_DIMENSIONS = "dimensions";
+    private static final String CATEGORY_SEEDS = "seeds";
+    private static final String CATEGORY_MISC_RECIPES = "miscellaneous recipes";
 
     /**
      * Defaults
@@ -47,9 +47,11 @@ public class ConfigHandler {
 
     public int cropfoodRestore;
     public float cropsaturationRestore;
+
     public float snacksaturation;
     public float mealsaturation;
     public float meatymealsaturation;
+
     public int freshmilkfrombucket;
     public int freshwaterfrombucket;
     public boolean enablesaltfromwaterbucketrecipe;
@@ -163,7 +165,7 @@ public class ConfigHandler {
         initSettings();
     }
 
-    public void initSettings() {
+    private void initSettings() {
         config.load();
 
         initGeneralSettings();
@@ -182,7 +184,7 @@ public class ConfigHandler {
 
     private void initBeesSettings() {
         enableBeehiveGeneration = config.getBoolean(CATEGORY_BEE, "enableBeehiveGeneration", true, "Enable generation of beehives.");
-        beehiveRarity = config.getInt(CATEGORY_BEE, "beehiveRarity", 20, 0, Short.MAX_VALUE, "The higher the value, the more beehives are generated.");
+        beehiveRarity = config.getInt(CATEGORY_BEE, "beehiveRarity", 10, 0, Short.MAX_VALUE, "The higher the value, the more beehives are generated.");
     }
 
     private void initGeneralSettings() {
@@ -245,8 +247,8 @@ public class ConfigHandler {
         gardenRarity = config.get(CATEGORY_GARDENS, "gardenRarity", 2).getInt();
         gardendropAmount = config.get(CATEGORY_GARDENS, "gardendropAmount", 3).getInt();
         enablegardenSpread = config.get(CATEGORY_GARDENS, "enablegardenSpread", true).getBoolean();
-        gardenspreadRate = config.getInt("gardenSpreadRate", CATEGORY_GARDENS, 80, 1, 100, "Garden spread rate. 100 means a garden spawns every tick. 1 means a garden spawns with a probability of 1% per tick.");
-        gardenSpreadMax = config.get(CATEGORY_GARDENS, "gardenspreadMax", 10).getInt();
+        gardenspreadRate = config.getInt("gardenSpreadRate", CATEGORY_GARDENS, 30, 1, 100, "Garden spread rate. 100 means a garden spawns every tick. 1 means a garden spawns with a probability of 1% per tick.");
+        gardenSpreadMax = config.get(CATEGORY_GARDENS, "gardenspreadMax", 8).getInt();
         enablearidgardenGeneration = config.get(CATEGORY_GARDENS, "enablearidgardenGeneration", true).getBoolean();
         enablefrostgardenGeneration = config.get(CATEGORY_GARDENS, "enablefrostgardenGeneration", true).getBoolean();
         enabletropicalgardenGeneration = config.get(CATEGORY_GARDENS, "enabletropicalgardenGeneration", true).getBoolean();

@@ -5,7 +5,7 @@ import com.pam.harvestcraft.tileentities.TileEntityPresser;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
@@ -37,7 +37,7 @@ public class ContainerPresser extends Container {
     public void detectAndSendChanges() {
         super.detectAndSendChanges();
 
-        for (ICrafting crafting : crafters) {
+        for (IContainerListener crafting : listeners) {
             if (lastCookTime == entityPresser.cookTime) continue;
             crafting.sendProgressBarUpdate(this, 0, entityPresser.cookTime);
         }
@@ -61,7 +61,7 @@ public class ContainerPresser extends Container {
         ItemStack itemStack = null;
         final Slot slot = inventorySlots.get(index);
 
-        if (slot != null && slot.getHasStack()) {
+        if (slot != null && slot.getStack() != null) {
             final ItemStack slotStack = slot.getStack();
             itemStack = slotStack.copy();
 

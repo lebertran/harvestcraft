@@ -1,7 +1,9 @@
 package com.pam.harvestcraft.blocks.growables;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockCactus;
 import net.minecraft.block.IGrowable;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -19,6 +21,7 @@ import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -35,11 +38,17 @@ public class BlockPamFruit extends Block implements IGrowable, PamCropGrowable {
     public String BASE_STAGE_ID = null;
 
     public BlockPamFruit(BlockPamSapling sapling, Item fruit) {
-        super(Material.plants);
+        super(Material.PLANTS);
         this.setTickRandomly(true);
+        setSoundType(SoundType.WOOD);
         this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, 0));
         this.sapling = sapling;
         this.fruitItem = fruit;
+    }
+
+    @Override
+    public PropertyInteger getAgeProperty() {
+        return AGE;
     }
 
     public Item getFruit() {
@@ -90,8 +99,9 @@ public class BlockPamFruit extends Block implements IGrowable, PamCropGrowable {
         return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
     }
 
+    @Nullable
     @Override
-    public AxisAlignedBB getSelectedBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
         return NULL_AABB;
     }
 
@@ -109,15 +119,16 @@ public class BlockPamFruit extends Block implements IGrowable, PamCropGrowable {
     public boolean canPlaceBlockAt(World world, BlockPos pos) {
         final Block leafBlock = world.getBlockState(pos.up()).getBlock();
 
-        return this.isSuitableSoilBlock(leafBlock);
+        return isSuitableSoilBlock(leafBlock);
     }
 
     @Override
-    public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighborBlock) {
-        this.validatePosition(world, pos);
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn) {
+        validatePosition(worldIn, pos);
     }
 
     public void validatePosition(World world, BlockPos pos) {
+
         if (!this.canPlaceBlockAt(world, pos)) {
             world.setBlockToAir(pos);
         }
@@ -133,8 +144,8 @@ public class BlockPamFruit extends Block implements IGrowable, PamCropGrowable {
         return false;
     }
 
-    public boolean isSuitableSoilBlock(Block leafBlock) {
-        return leafBlock == Blocks.leaves;
+    private boolean isSuitableSoilBlock(Block leafBlock) {
+        return leafBlock == Blocks.LEAVES || leafBlock == Blocks.LEAVES2;
     }
 
     @Override
@@ -170,7 +181,7 @@ public class BlockPamFruit extends Block implements IGrowable, PamCropGrowable {
         super.updateTick(worldIn, pos, state, rand);
     }
 
-    public void grow(World worldIn, BlockPos pos, IBlockState state) {
+    private void grow(World worldIn, BlockPos pos, IBlockState state) {
         int i = state.getValue(AGE) + MathHelper.getRandomIntegerInRange(worldIn.rand, 1, 2);
         if (i > MATURE_AGE) {
             i = MATURE_AGE;

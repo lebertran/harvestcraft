@@ -24,8 +24,8 @@ public class PresserBlock extends BlockContainerRotating {
     public static final String registryName = "presser";
 
     public PresserBlock() {
-        super(Material.wood);
-        setStepSound(SoundType.WOOD);
+        super(Material.WOOD);
+        setSoundType(SoundType.WOOD);
         setCreativeTab(HarvestCraft.modTab);
     }
 
@@ -60,7 +60,7 @@ public class PresserBlock extends BlockContainerRotating {
 
                 final EntityItem item = new EntityItem(worldIn, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
                         new ItemStack(stack.getItem(), stack.stackSize, stack.getItemDamage()));
-                if (stack.hasTagCompound()) {
+                if (stack.getTagCompound() != null) {
                     item.getEntityItem().readFromNBT((NBTTagCompound) stack.getTagCompound().copy());
                 }
                 worldIn.spawnEntityInWorld(item);

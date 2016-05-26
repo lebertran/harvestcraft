@@ -8,6 +8,5 @@ public class ItemPamBee extends Item {
         setMaxStackSize(1);
         setMaxDamage(18);
         setCreativeTab(HarvestCraft.modTab);
-
     }
 }

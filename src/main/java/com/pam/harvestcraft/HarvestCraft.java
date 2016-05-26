@@ -31,7 +31,7 @@ public class HarvestCraft {
 
     public static final CreativeTabs modTab = new CreativeTabs(Reference.MODID) {
         public Item getTabIconItem() {
-            return Items.wheat;
+            return Items.WHEAT;
         }
     };
 

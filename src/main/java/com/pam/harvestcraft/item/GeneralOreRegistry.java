@@ -20,14 +20,14 @@ public class GeneralOreRegistry {
     public static final String ingotBrickNether = "ingotBrickNether";
 
     // Dye
-    public static final ItemStack dyeRed = new ItemStack(Items.dye, 1, 1);
-    public static final ItemStack dyeGreen = new ItemStack(Items.dye, 1, 2);
-    public static final ItemStack dyeBrown = new ItemStack(Items.dye, 1,3);
-    public static final ItemStack dyePurple = new ItemStack(Items.dye, 1, 5);
-    public static final ItemStack dyeBlue = new ItemStack(Items.dye, 1, 6); // Cyan
-    public static final ItemStack dyeYellow = new ItemStack(Items.dye, 1, 11);
-    public static final ItemStack dyeMagenta = new ItemStack(Items.dye, 1, 13);
-    public static final ItemStack dyeOrange = new ItemStack(Items.dye, 1, 14);
+    public static final ItemStack dyeRed = new ItemStack(Items.DYE, 1, 1);
+    public static final ItemStack dyeGreen = new ItemStack(Items.DYE, 1, 2);
+    public static final ItemStack dyeBrown = new ItemStack(Items.DYE, 1,3);
+    public static final ItemStack dyePurple = new ItemStack(Items.DYE, 1, 5);
+    public static final ItemStack dyeBlue = new ItemStack(Items.DYE, 1, 6); // Cyan
+    public static final ItemStack dyeYellow = new ItemStack(Items.DYE, 1, 11);
+    public static final ItemStack dyeMagenta = new ItemStack(Items.DYE, 1, 13);
+    public static final ItemStack dyeOrange = new ItemStack(Items.DYE, 1, 14);
 
     // Non-forge
     public static final String ingotCopper = "ingotCopper";
@@ -884,10 +884,10 @@ public class GeneralOreRegistry {
         OreDictionary.registerOre(foodHoneydrop,  ItemRegistry.honeyItem);
         OreDictionary.registerOre(dropHoney,  ItemRegistry.honeyItem);
 
-        OreDictionary.registerOre(flowerRed,  Blocks.red_flower);
-        OreDictionary.registerOre(flowerYellow,  Blocks.yellow_flower);
+        OreDictionary.registerOre(flowerRed,  Blocks.RED_FLOWER);
+        OreDictionary.registerOre(flowerYellow,  Blocks.YELLOW_FLOWER);
 
-        OreDictionary.registerOre(blockTorch,  Blocks.torch);
+        OreDictionary.registerOre(blockTorch,  Blocks.TORCH);
         OreDictionary.registerOre(logWood, FruitRegistry.getLog(FruitRegistry.MAPLE));
         OreDictionary.registerOre(logWood, FruitRegistry.getLog(FruitRegistry.PAPERBARK));
         OreDictionary.registerOre(logWood, FruitRegistry.getLog(FruitRegistry.CINNAMON));
@@ -927,20 +927,20 @@ public class GeneralOreRegistry {
         }
 
         if (HarvestCraft.config.enablelistAllwatervanillawaterbucket) {
-            OreDictionary.registerOre(listAllwater, Items.water_bucket);
+            OreDictionary.registerOre(listAllwater, Items.WATER_BUCKET);
         }
         if (HarvestCraft.config.enablelistAllwaterfreshwater) {
             OreDictionary.registerOre(listAllwater, ItemRegistry.freshwaterItem);
         }
 
         registerOres(listAllveggie,
-                Items.carrot,
-                Items.potato,
-                Blocks.pumpkin,
+                Items.CARROT,
+                Items.POTATO,
+                Blocks.PUMPKIN,
                 CropRegistry.getFood(CropRegistry.ASPARAGUS),
                 CropRegistry.getFood(CropRegistry.BEAN),
                 CropRegistry.getFood(CropRegistry.BEET),
-                Items.beetroot,
+                Items.BEETROOT,
                 CropRegistry.getFood(CropRegistry.BROCCOLI),
                 CropRegistry.getFood(CropRegistry.CAULIFLOWER),
                 CropRegistry.getFood(CropRegistry.CELERY),
@@ -973,59 +973,59 @@ public class GeneralOreRegistry {
                 CropRegistry.getFood(CropRegistry.SPINACH),
                 CropRegistry.getFood(CropRegistry.WATERCHESTNUT));
 
-        OreDictionary.registerOre(listAllchickenraw, Items.chicken);
-        OreDictionary.registerOre(listAllegg, Items.egg);
-        OreDictionary.registerOre(listAllchickencooked, Items.cooked_chicken);
-        OreDictionary.registerOre(listAllporkraw, Items.porkchop);
-        OreDictionary.registerOre(listAllporkcooked, Items.cooked_porkchop);
-        OreDictionary.registerOre(listAllbeefraw, Items.beef);
-        OreDictionary.registerOre(listAllbeefcooked, Items.cooked_beef);
-        OreDictionary.registerOre(listAllmuttonraw, Items.mutton);
-        OreDictionary.registerOre(listAllmuttoncooked, Items.cooked_mutton);
+        OreDictionary.registerOre(listAllchickenraw, Items.CHICKEN);
+        OreDictionary.registerOre(listAllegg, Items.EGG);
+        OreDictionary.registerOre(listAllchickencooked, Items.COOKED_CHICKEN);
+        OreDictionary.registerOre(listAllporkraw, Items.PORKCHOP);
+        OreDictionary.registerOre(listAllporkcooked, Items.COOKED_PORKCHOP);
+        OreDictionary.registerOre(listAllbeefraw, Items.BEEF);
+        OreDictionary.registerOre(listAllbeefcooked, Items.COOKED_BEEF);
+        OreDictionary.registerOre(listAllmuttonraw, Items.MUTTON);
+        OreDictionary.registerOre(listAllmuttoncooked, Items.COOKED_MUTTON);
         OreDictionary.registerOre(listAllturkeyraw, ItemRegistry.turkeyrawItem);
         OreDictionary.registerOre(listAllturkeycooked, ItemRegistry.turkeycookedItem);
-        OreDictionary.registerOre(listAllrabbitraw, Items.rabbit);
-        OreDictionary.registerOre(listAllrabbitcooked, Items.cooked_rabbit);
+        OreDictionary.registerOre(listAllrabbitraw, Items.RABBIT);
+        OreDictionary.registerOre(listAllrabbitcooked, Items.COOKED_RABBIT);
         OreDictionary.registerOre(listAllvenisonraw, ItemRegistry.venisonrawItem);
         OreDictionary.registerOre(listAllvenisoncooked, ItemRegistry.venisoncookedItem);
         OreDictionary.registerOre(listAllheavycream, ItemRegistry.heavycreamItem);
         OreDictionary.registerOre(listAllicecream, ItemRegistry.icecreamItem);
-        OreDictionary.registerOre(listAllmilk, Items.milk_bucket);
+        OreDictionary.registerOre(listAllmilk, Items.MILK_BUCKET);
         OreDictionary.registerOre(listAllmilk, ItemRegistry.freshmilkItem);
 
 
 
-        OreDictionary.registerOre(cropCarrot, Items.carrot);
-        OreDictionary.registerOre(cropPotato, Items.potato);
-        OreDictionary.registerOre(cropPumpkin, Blocks.pumpkin);
-        OreDictionary.registerOre(listAllgrain, Items.wheat);
-        OreDictionary.registerOre(flourEqualswheat, Items.wheat);
+        OreDictionary.registerOre(cropCarrot, Items.CARROT);
+        OreDictionary.registerOre(cropPotato, Items.POTATO);
+        OreDictionary.registerOre(cropPumpkin, Blocks.PUMPKIN);
+        OreDictionary.registerOre(listAllgrain, Items.WHEAT);
+        OreDictionary.registerOre(flourEqualswheat, Items.WHEAT);
         OreDictionary.registerOre(flourEqualswheat, ItemRegistry.flourItem);
-        OreDictionary.registerOre(listAllmushroom, Blocks.red_mushroom);
-        OreDictionary.registerOre(listAllmushroom, Blocks.brown_mushroom);
+        OreDictionary.registerOre(listAllmushroom, Blocks.RED_MUSHROOM);
+        OreDictionary.registerOre(listAllmushroom, Blocks.BROWN_MUSHROOM);
         OreDictionary.registerOre(listAllmushroom, CropRegistry.getFood(CropRegistry.WHITEMUSHROOM));
-        OreDictionary.registerOre(cropApple, Items.apple);
-        OreDictionary.registerOre(listAllfruit, Items.apple);
-        OreDictionary.registerOre(listAllfruit, Items.chorus_fruit);
-        OreDictionary.registerOre(listAllmeatraw, Items.beef);
-        OreDictionary.registerOre(listAllmeatraw, Items.chicken);
-        OreDictionary.registerOre(listAllmeatraw, Items.porkchop);
-        OreDictionary.registerOre(listAllmeatraw, Items.mutton);
+        OreDictionary.registerOre(cropApple, Items.APPLE);
+        OreDictionary.registerOre(listAllfruit, Items.APPLE);
+        OreDictionary.registerOre(listAllfruit, Items.CHORUS_FRUIT);
+        OreDictionary.registerOre(listAllmeatraw, Items.BEEF);
+        OreDictionary.registerOre(listAllmeatraw, Items.CHICKEN);
+        OreDictionary.registerOre(listAllmeatraw, Items.PORKCHOP);
+        OreDictionary.registerOre(listAllmeatraw, Items.MUTTON);
         OreDictionary.registerOre(listAllmeatraw, ItemRegistry.turkeyrawItem);
-        OreDictionary.registerOre(listAllmeatraw, Items.rabbit);
+        OreDictionary.registerOre(listAllmeatraw, Items.RABBIT);
         OreDictionary.registerOre(listAllmeatraw, ItemRegistry.venisonrawItem);
 
-        OreDictionary.registerOre(listAllmeatcooked, Items.cooked_beef);
-        OreDictionary.registerOre(listAllmeatcooked, Items.cooked_chicken);
-        OreDictionary.registerOre(listAllmeatcooked, Items.cooked_porkchop);
-        OreDictionary.registerOre(listAllmeatcooked, Items.cooked_mutton);
+        OreDictionary.registerOre(listAllmeatcooked, Items.COOKED_BEEF);
+        OreDictionary.registerOre(listAllmeatcooked, Items.COOKED_CHICKEN);
+        OreDictionary.registerOre(listAllmeatcooked, Items.COOKED_PORKCHOP);
+        OreDictionary.registerOre(listAllmeatcooked, Items.COOKED_MUTTON);
         OreDictionary.registerOre(listAllmeatcooked, ItemRegistry.turkeycookedItem);
-        OreDictionary.registerOre(listAllmeatcooked, Items.cooked_rabbit);
+        OreDictionary.registerOre(listAllmeatcooked, Items.COOKED_RABBIT);
         OreDictionary.registerOre(listAllmeatcooked, ItemRegistry.venisoncookedItem);
-        OreDictionary.registerOre(listAllfishraw, Items.fish);
-        OreDictionary.registerOre(listAllfishraw, new ItemStack(Items.fish, 1, 1));
-        OreDictionary.registerOre(listAllfishraw, new ItemStack(Items.fish, 1, 2));
-        OreDictionary.registerOre(listAllfishraw, new ItemStack(Items.fish, 1, 3));
+        OreDictionary.registerOre(listAllfishraw, Items.FISH);
+        OreDictionary.registerOre(listAllfishraw, new ItemStack(Items.FISH, 1, 1));
+        OreDictionary.registerOre(listAllfishraw, new ItemStack(Items.FISH, 1, 2));
+        OreDictionary.registerOre(listAllfishraw, new ItemStack(Items.FISH, 1, 3));
         OreDictionary.registerOre(listAllfishraw, ItemRegistry.calamarirawItem);
         OreDictionary.registerOre(listAllfishraw, ItemRegistry.firmtofuItem);
         OreDictionary.registerOre(listAllfishraw, ItemRegistry.anchovyrawItem);
@@ -1049,12 +1049,12 @@ public class GeneralOreRegistry {
         OreDictionary.registerOre(listAllfishraw, ItemRegistry.tunarawItem);
         OreDictionary.registerOre(listAllfishraw, ItemRegistry.walleyerawItem);
         OreDictionary.registerOre(listAllfishraw, ItemRegistry.greenheartfishItem);
-        OreDictionary.registerOre(listAllfishcooked, Items.cooked_fish);
-        OreDictionary.registerOre(listAllfishcooked, new ItemStack(Items.cooked_fish, 1, 1));
+        OreDictionary.registerOre(listAllfishcooked, Items.COOKED_FISH);
+        OreDictionary.registerOre(listAllfishcooked, new ItemStack(Items.COOKED_FISH, 1, 1));
         OreDictionary.registerOre(listAllfishcooked, ItemRegistry.calamaricookedItem);
-        OreDictionary.registerOre(salmonRaw, new ItemStack(Items.fish, 1));
+        OreDictionary.registerOre(salmonRaw, new ItemStack(Items.FISH, 1));
 
-        OreDictionary.registerOre(listAllsugar, Items.sugar);
+        OreDictionary.registerOre(listAllsugar, Items.SUGAR);
         OreDictionary.registerOre(listAllsugar, ItemRegistry.honeyItem);
 
         OreDictionary.registerOre(listAllgreenveggie, CropRegistry.getFood(CropRegistry.ASPARAGUS));
@@ -1067,9 +1067,9 @@ public class GeneralOreRegistry {
         OreDictionary.registerOre(cropBean, CropRegistry.getFood(CropRegistry.BEAN));
         OreDictionary.registerOre(seedBean, CropRegistry.getSeed(CropRegistry.BEAN));
         OreDictionary.registerOre(cropBeet, CropRegistry.getFood(CropRegistry.BEET));
-        OreDictionary.registerOre(cropBeet, Items.beetroot);
+        OreDictionary.registerOre(cropBeet, Items.BEETROOT);
         OreDictionary.registerOre(seedBeet, CropRegistry.getSeed(CropRegistry.BEET));
-        OreDictionary.registerOre(seedBeet, Items.beetroot_seeds);
+        OreDictionary.registerOre(seedBeet, Items.BEETROOT_SEEDS);
         OreDictionary.registerOre(cropBroccoli, CropRegistry.getFood(CropRegistry.BROCCOLI));
 
         OreDictionary.registerOre(listAllgreenveggie, CropRegistry.getFood(CropRegistry.BROCCOLI));
@@ -1663,8 +1663,8 @@ public class GeneralOreRegistry {
         OreDictionary.registerOre(foodCustard, ItemRegistry.custardItem);
         OreDictionary.registerOre(foodSushi, ItemRegistry.sushiItem);
         OreDictionary.registerOre(foodGardensoup, ItemRegistry.gardensoupItem);
-        OreDictionary.registerOre(foodMuttonraw, Items.mutton);
-        OreDictionary.registerOre(foodMuttoncooked, Items.cooked_mutton);
+        OreDictionary.registerOre(foodMuttonraw, Items.MUTTON);
+        OreDictionary.registerOre(foodMuttoncooked, Items.COOKED_MUTTON);
         OreDictionary.registerOre(foodCalamariraw, ItemRegistry.calamarirawItem);
         OreDictionary.registerOre(foodCalamaricooked, ItemRegistry.calamaricookedItem);
         OreDictionary.registerOre(foodApplejelly, ItemRegistry.applejellyItem);
@@ -1808,7 +1808,7 @@ public class GeneralOreRegistry {
         OreDictionary.registerOre(foodSpinachpie, ItemRegistry.spinachpieItem);
         OreDictionary.registerOre(foodSteamedspinach, ItemRegistry.steamedspinachItem);
         OreDictionary.registerOre(foodVegemiteontoast, ItemRegistry.vegemiteontoastItem);
-        OreDictionary.registerOre(foodSalmonraw, new ItemStack(Items.fish, 1, 1));
+        OreDictionary.registerOre(foodSalmonraw, new ItemStack(Items.FISH, 1, 1));
         OreDictionary.registerOre(foodAnchovyraw, ItemRegistry.anchovyrawItem);
         OreDictionary.registerOre(foodBassraw, ItemRegistry.bassrawItem);
         OreDictionary.registerOre(foodCarpraw, ItemRegistry.carprawItem);
@@ -1861,8 +1861,8 @@ public class GeneralOreRegistry {
         OreDictionary.registerOre(foodRaspberrytrifle, ItemRegistry.raspberrytrifleItem);
         OreDictionary.registerOre(foodTurkeyraw, ItemRegistry.turkeyrawItem);
         OreDictionary.registerOre(foodTurkeycooked, ItemRegistry.turkeycookedItem);
-        OreDictionary.registerOre(foodRabbitraw, Items.rabbit);
-        OreDictionary.registerOre(foodRabbitcooked, Items.cooked_rabbit);
+        OreDictionary.registerOre(foodRabbitraw, Items.RABBIT);
+        OreDictionary.registerOre(foodRabbitcooked, Items.COOKED_RABBIT);
         OreDictionary.registerOre(foodVenisonraw, ItemRegistry.venisonrawItem);
         OreDictionary.registerOre(foodVenisoncooked, ItemRegistry.venisoncookedItem);
         OreDictionary.registerOre(foodStrawberrymilkshake, ItemRegistry.strawberrymilkshakeItem);

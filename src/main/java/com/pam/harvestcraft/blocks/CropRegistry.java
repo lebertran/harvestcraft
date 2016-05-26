@@ -4,6 +4,7 @@ import com.pam.harvestcraft.HarvestCraft;
 import com.pam.harvestcraft.blocks.growables.BlockPamCrop;
 import com.pam.harvestcraft.blocks.growables.ItemBlockCropFruit;
 import com.pam.harvestcraft.item.ItemRegistry;
+import com.pam.harvestcraft.item.items.ItemPamSeedFood;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -267,11 +268,11 @@ public class CropRegistry {
     }
 
 
-    private static ItemSeedFood createItem(BlockPamCrop cropBlock) {
-        return new ItemSeedFood(HarvestCraft.config.cropfoodRestore, HarvestCraft.config.cropsaturationRestore, cropBlock, Blocks.farmland);
+    private static ItemPamSeedFood createItem(BlockPamCrop cropBlock) {
+        return new ItemPamSeedFood(HarvestCraft.config.cropfoodRestore, HarvestCraft.config.cropsaturationRestore, cropBlock);
     }
 
     private static Item createSeed(BlockPamCrop cropBlock) {
-        return new ItemSeeds(cropBlock, Blocks.farmland);
+        return new ItemSeeds(cropBlock, Blocks.FARMLAND);
     }
 }

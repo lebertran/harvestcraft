@@ -2,6 +2,7 @@ package com.pam.harvestcraft.gui;
 
 import com.pam.harvestcraft.tileentities.TileEntityMarket;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
@@ -30,13 +31,13 @@ public class ContainerMarket extends Container {
 
     public ItemStack transferStackInSlot(EntityPlayer entityPlayer, int slotIndex) {
         ItemStack itemStack = null;
-        Slot slot = inventorySlots.get(slotIndex);
-        if ((slot != null) && (slot.getHasStack())) {
+        final Slot slot = inventorySlots.get(slotIndex);
+        if (slot != null && slot.getStack() != null) {
             ItemStack slotStack = slot.getStack();
             itemStack = slotStack.copy();
 
             if (slotIndex >= 1) {
-                if (slotStack.getItem() == net.minecraft.init.Items.emerald) {
+                if (slotStack.getItem() == Items.EMERALD) {
                     if (!mergeItemStack(slotStack, 0, 1, false)) {
                         return null;
                     }

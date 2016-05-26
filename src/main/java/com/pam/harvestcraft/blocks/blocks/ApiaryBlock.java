@@ -23,8 +23,8 @@ public class ApiaryBlock extends BlockContainerRotating {
 
 
     public ApiaryBlock() {
-        super(Material.wood);
-        setStepSound(SoundType.WOOD);
+        super(Material.WOOD);
+        setSoundType(SoundType.WOOD);
         setCreativeTab(HarvestCraft.modTab);
     }
 
@@ -54,7 +54,7 @@ public class ApiaryBlock extends BlockContainerRotating {
                     final EntityItem entityItem =
                             new EntityItem(worldIn, pos.getX() + f, pos.getY() + f1,
                                     pos.getZ() + f2, new ItemStack(itemStack.getItem(), j, itemStack.getItemDamage()));
-                    if (itemStack.hasTagCompound()) {
+                    if (itemStack.getTagCompound() != null) {
                         entityItem.getEntityItem().readFromNBT((NBTTagCompound) itemStack.getTagCompound().copy());
                     }
                     float f3 = 0.05f;

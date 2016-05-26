@@ -2,6 +2,7 @@ package com.pam.harvestcraft.item;
 
 import com.pam.harvestcraft.HarvestCraft;
 import com.pam.harvestcraft.item.items.ItemPamBee;
+import com.pam.harvestcraft.item.items.ItemPamFood;
 import com.pam.harvestcraft.item.items.ItemPamPotionFood;
 import com.pam.harvestcraft.item.items.ItemPamTool;
 import net.minecraft.item.Item;
@@ -1280,27 +1281,27 @@ public final class ItemRegistry {
         toadintheholeItem = registerItemFood("toadintheholeItem", 10, config.meatymealsaturation);
     }
 
-    public static Item registerItemTool(String registryName) {
+    private static Item registerItemTool(String registryName) {
         final ItemPamTool item = new ItemPamTool();
         item.setContainerItem(item);
 
         return registerItem(item, registryName);
     }
 
-    public static Item registerItemFood(String registryName, int amount, float saturation) {
-        final Item item = new ItemFood(amount, saturation, false);
+    private static Item registerItemFood(String registryName, int amount, float saturation) {
+        final Item item = new ItemPamFood(amount, saturation);
 
         return registerItem(item, registryName);
     }
 
-    public static Item registerGenericItem(String registryName) {
+    private static Item registerGenericItem(String registryName) {
         final Item item = new Item();
 
         return registerItem(item, registryName);
     }
 
 
-    public static ItemPamPotionFood registerPotionFood(String registryName, int amount, float saturation) {
+    private static ItemPamPotionFood registerPotionFood(String registryName, int amount, float saturation) {
         Item item = new ItemPamPotionFood(amount, saturation, false);
 
         return (ItemPamPotionFood) registerItem(item, registryName);

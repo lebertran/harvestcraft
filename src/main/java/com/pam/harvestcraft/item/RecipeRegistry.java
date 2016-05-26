@@ -31,11 +31,11 @@ public class RecipeRegistry {
     }
 
     private static void registerSmelting() {
-        addSmelting(ItemRegistry.doughItem, Items.bread);
-        addSmelting(Items.bread, ItemRegistry.toastItem);
-        addSmelting(Items.pumpkin_seeds, ItemRegistry.roastedpumpkinseedsItem);
-        addSmelting(Blocks.brown_mushroom, ItemRegistry.grilledmushroomItem);
-        addSmelting(Blocks.red_mushroom, ItemRegistry.grilledmushroomItem);
+        addSmelting(ItemRegistry.doughItem, Items.BREAD);
+        addSmelting(Items.BREAD, ItemRegistry.toastItem);
+        addSmelting(Items.PUMPKIN_SEEDS, ItemRegistry.roastedpumpkinseedsItem);
+        addSmelting(Blocks.BROWN_MUSHROOM, ItemRegistry.grilledmushroomItem);
+        addSmelting(Blocks.RED_MUSHROOM, ItemRegistry.grilledmushroomItem);
         addSmelting(ItemRegistry.calamarirawItem, ItemRegistry.calamaricookedItem);
         addSmelting(CropRegistry.getFood(CropRegistry.ASPARAGUS), ItemRegistry.grilledasparagusItem);
         addSmelting(CropRegistry.getFood(CropRegistry.RICE), ItemRegistry.ricecakeItem);
@@ -50,21 +50,21 @@ public class RecipeRegistry {
         addSmelting(FruitRegistry.getFood(FruitRegistry.VANILLABEAN), ItemRegistry.vanillaItem);
         addSmelting(FruitRegistry.getFood(FruitRegistry.CHESTNUT), ItemRegistry.roastedchestnutItem);
         addSmelting(CropRegistry.getFood(CropRegistry.SESAME), ItemRegistry.toastedsesameseedsItem);
-        addSmelting(ItemRegistry.anchovyrawItem, Items.cooked_fish);
-        addSmelting(ItemRegistry.bassrawItem, Items.cooked_fish);
-        addSmelting(ItemRegistry.carprawItem, Items.cooked_fish);
-        addSmelting(ItemRegistry.catfishrawItem, Items.cooked_fish);
-        addSmelting(ItemRegistry.charrrawItem, Items.cooked_fish);
-        addSmelting(ItemRegistry.eelrawItem, Items.cooked_fish);
-        addSmelting(ItemRegistry.grouperrawItem, Items.cooked_fish);
-        addSmelting(ItemRegistry.herringrawItem, Items.cooked_fish);
-        addSmelting(ItemRegistry.mudfishrawItem, Items.cooked_fish);
-        addSmelting(ItemRegistry.perchrawItem, Items.cooked_fish);
-        addSmelting(ItemRegistry.snapperrawItem, Items.cooked_fish);
-        addSmelting(ItemRegistry.tilapiarawItem, Items.cooked_fish);
-        addSmelting(ItemRegistry.troutrawItem, Items.cooked_fish);
-        addSmelting(ItemRegistry.tunarawItem, Items.cooked_fish);
-        addSmelting(ItemRegistry.walleyerawItem, Items.cooked_fish);
+        addSmelting(ItemRegistry.anchovyrawItem, Items.COOKED_FISH);
+        addSmelting(ItemRegistry.bassrawItem, Items.COOKED_FISH);
+        addSmelting(ItemRegistry.carprawItem, Items.COOKED_FISH);
+        addSmelting(ItemRegistry.catfishrawItem, Items.COOKED_FISH);
+        addSmelting(ItemRegistry.charrrawItem, Items.COOKED_FISH);
+        addSmelting(ItemRegistry.eelrawItem, Items.COOKED_FISH);
+        addSmelting(ItemRegistry.grouperrawItem, Items.COOKED_FISH);
+        addSmelting(ItemRegistry.herringrawItem, Items.COOKED_FISH);
+        addSmelting(ItemRegistry.mudfishrawItem, Items.COOKED_FISH);
+        addSmelting(ItemRegistry.perchrawItem, Items.COOKED_FISH);
+        addSmelting(ItemRegistry.snapperrawItem, Items.COOKED_FISH);
+        addSmelting(ItemRegistry.tilapiarawItem, Items.COOKED_FISH);
+        addSmelting(ItemRegistry.troutrawItem, Items.COOKED_FISH);
+        addSmelting(ItemRegistry.tunarawItem, Items.COOKED_FISH);
+        addSmelting(ItemRegistry.walleyerawItem, Items.COOKED_FISH);
         addSmelting(ItemRegistry.clamrawItem, ItemRegistry.clamcookedItem);
         addSmelting(ItemRegistry.crabrawItem, ItemRegistry.crabcookedItem);
         addSmelting(ItemRegistry.crayfishrawItem, ItemRegistry.crayfishcookedItem);
@@ -77,9 +77,9 @@ public class RecipeRegistry {
     }
 
     private static void registerPresserRecipe() {
-        addShapedOreRecipe(BlockRegistry.presser, "#O#", "# #", "#O#", '#', ingotIron, 'O', Blocks.piston);
-        addShapedOreRecipe(BlockRegistry.presser, "#O#", "# #", "#O#", '#', ingotCopper, 'O', Blocks.piston);
-        addShapedOreRecipe(BlockRegistry.presser, "#O#", "# #", "#O#", '#', ingotSteel, 'O', Blocks.piston);
+        addShapedOreRecipe(BlockRegistry.presser, "#O#", "# #", "#O#", '#', ingotIron, 'O', Blocks.PISTON);
+        addShapedOreRecipe(BlockRegistry.presser, "#O#", "# #", "#O#", '#', ingotCopper, 'O', Blocks.PISTON);
+        addShapedOreRecipe(BlockRegistry.presser, "#O#", "# #", "#O#", '#', ingotSteel, 'O', Blocks.PISTON);
     }
 
     private static void registerBeeRecipes() {
@@ -88,15 +88,15 @@ public class RecipeRegistry {
         }
 
         addShapelessOreRecipe(ItemRegistry.queenbeeItem, ItemRegistry.grubItem, ItemRegistry.royaljellyItem);
-        addShapedOreRecipe(BlockRegistry.apiary, "#O#", "#O#", "#O#",'#', plankWood, 'O', Items.item_frame);
-        addShapelessOreRecipe(ItemRegistry.fruitbaitItem, Items.string, listAllfruit, listAllfruit, listAllfruit);
-        addShapelessOreRecipe(ItemRegistry.grainbaitItem, Items.string, listAllgrain, listAllgrain, listAllgrain);
-        addShapelessOreRecipe(ItemRegistry.veggiebaitItem, Items.string, listAllveggie, listAllveggie, listAllveggie);
+        addShapedOreRecipe(BlockRegistry.apiary, "#O#", "#O#", "#O#",'#', plankWood, 'O', Items.ITEM_FRAME);
+        addShapelessOreRecipe(ItemRegistry.fruitbaitItem, Items.STRING, listAllfruit, listAllfruit, listAllfruit);
+        addShapelessOreRecipe(ItemRegistry.grainbaitItem, Items.STRING, listAllgrain, listAllgrain, listAllgrain);
+        addShapelessOreRecipe(ItemRegistry.veggiebaitItem, Items.STRING, listAllveggie, listAllveggie, listAllveggie);
     }
 
     private static void registerFoodRecipes() {
         for (BlockPamSapling sapling : FruitRegistry.getSaplings()) {
-            addShapelessOreRecipe(sapling, sapling.getFruit(), sapling.getFruit(), sapling.getFruit(), Blocks.sapling);
+            addShapelessOreRecipe(sapling, sapling.getFruit(), sapling.getFruit(), sapling.getFruit(), Blocks.SAPLING);
         }
 
         if (config.enablecroptoseedRecipe) {
@@ -110,22 +110,22 @@ public class RecipeRegistry {
 
         if (config.enablesaltfromwaterbucketrecipe) addShapelessOreRecipe(ItemRegistry.saltItem, toolPot, listAllwater);
 
-        addShapelessOreRecipe(new ItemStack(ItemRegistry.sunflowerseedsItem, 2, 0), new ItemStack(Blocks.double_plant, 1, 0), new ItemStack(Blocks.double_plant, 1, 0));
+        addShapelessOreRecipe(new ItemStack(ItemRegistry.sunflowerseedsItem, 2, 0), new ItemStack(Blocks.DOUBLE_PLANT, 1, 0), new ItemStack(Blocks.DOUBLE_PLANT, 1, 0));
         addShapelessOreRecipe(ItemRegistry.freshwaterItem, listAllwater);
         addShapelessOreRecipe(ItemRegistry.bubblywaterItem, toolPot, ItemRegistry.freshwaterItem);
-        addShapelessOreRecipe(Items.sugar, toolPot, foodHoneydrop);
-        addShapelessOreRecipe(Items.sugar, toolPot, dropHoney);
-        addShapelessOreRecipe(Items.fish, listAllfishraw);
-        addShapelessOreRecipe(new ItemStack(ItemRegistry.freshwaterItem, config.freshwaterfrombucket), Items.water_bucket);
-        addShapelessOreRecipe(new ItemStack(ItemRegistry.freshmilkItem, config.freshmilkfrombucket), Items.milk_bucket);
-        addShapedOreRecipe(Items.cake, "AAA", "BEB", "CCC", 'A', listAllmilk, 'B', listAllsugar, 'C', flourEqualswheat, 'E', listAllegg);
-        addShapelessOreRecipe(Items.mushroom_stew, Items.bowl, listAllmushroom, listAllmushroom);
+        addShapelessOreRecipe(Items.SUGAR, toolPot, foodHoneydrop);
+        addShapelessOreRecipe(Items.SUGAR, toolPot, dropHoney);
+        addShapelessOreRecipe(Items.FISH, listAllfishraw);
+        addShapelessOreRecipe(new ItemStack(ItemRegistry.freshwaterItem, config.freshwaterfrombucket), Items.WATER_BUCKET);
+        addShapelessOreRecipe(new ItemStack(ItemRegistry.freshmilkItem, config.freshmilkfrombucket), Items.MILK_BUCKET);
+        addShapedOreRecipe(Items.CAKE, "AAA", "BEB", "CCC", 'A', listAllmilk, 'B', listAllsugar, 'C', flourEqualswheat, 'E', listAllegg);
+        addShapelessOreRecipe(Items.MUSHROOM_STEW, Items.BOWL, listAllmushroom, listAllmushroom);
         addShapelessOreRecipe(ItemRegistry.silkentofuItem, toolSaucepan, cropSoybean);
         addShapelessOreRecipe(ItemRegistry.firmtofuItem, toolSkillet, foodSilkentofu);
         addShapelessOreRecipe(ItemRegistry.soymilkItem, toolPot, cropSoybean);
-        addShapelessOreRecipe(ItemRegistry.flourItem, toolMortarandpestle, Items.wheat);
+        addShapelessOreRecipe(ItemRegistry.flourItem, toolMortarandpestle, Items.WHEAT);
         addShapelessOreRecipe(ItemRegistry.flourItem, toolMortarandpestle, cropRice);
-        addShapelessOreRecipe(ItemRegistry.flourItem, toolMortarandpestle, Items.potato);
+        addShapelessOreRecipe(ItemRegistry.flourItem, toolMortarandpestle, Items.POTATO);
         addShapelessOreRecipe(ItemRegistry.flourItem, toolMortarandpestle, cropRye);
         addShapelessOreRecipe(ItemRegistry.flourItem, toolMortarandpestle, cropOats);
         addShapelessOreRecipe(ItemRegistry.flourItem, toolMortarandpestle, cropBarley);
@@ -140,47 +140,47 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.cheeseItem, toolPot, listAllmilk, foodSalt);
         addShapelessOreRecipe(ItemRegistry.cheeseItem, toolPot, listAllmilk, dustSalt);
         addShapelessOreRecipe(ItemRegistry.cheeseItem, toolPot, listAllmilk, itemSalt);
-        addShapelessOreRecipe(ItemRegistry.icecreamItem, toolMixingbowl, listAllmilk, foodSalt, Items.snowball);
-        addShapelessOreRecipe(ItemRegistry.icecreamItem, toolMixingbowl, listAllmilk, dustSalt, Items.snowball);
-        addShapelessOreRecipe(ItemRegistry.icecreamItem, toolMixingbowl, listAllmilk, itemSalt, Items.snowball);
+        addShapelessOreRecipe(ItemRegistry.icecreamItem, toolMixingbowl, listAllmilk, foodSalt, Items.SNOWBALL);
+        addShapelessOreRecipe(ItemRegistry.icecreamItem, toolMixingbowl, listAllmilk, dustSalt, Items.SNOWBALL);
+        addShapelessOreRecipe(ItemRegistry.icecreamItem, toolMixingbowl, listAllmilk, itemSalt, Items.SNOWBALL);
         addShapelessOreRecipe(ItemRegistry.grilledcheeseItem, toolSkillet, foodToast, foodButter, foodCheese);
         addShapelessOreRecipe(ItemRegistry.applesauceItem, toolPot, cropApple);
         addShapelessOreRecipe(ItemRegistry.applejuiceItem, toolJuicer, cropApple);
         addShapelessOreRecipe(ItemRegistry.applepieItem, toolBakeware, cropApple, listAllsugar, foodDough);
         addShapelessOreRecipe(ItemRegistry.caramelappleItem, cropApple, foodCaramel, stickWood);
-        addShapelessOreRecipe(ItemRegistry.pumpkinbreadItem, toolBakeware, Blocks.pumpkin, listAllsugar, foodDough);
-        addShapelessOreRecipe(ItemRegistry.pumpkinsoupItem, toolPot, Blocks.pumpkin, listAllheavycream, foodStock);
-        addShapelessOreRecipe(ItemRegistry.melonjuiceItem, toolJuicer, Items.melon);
-        addShapelessOreRecipe(ItemRegistry.melonsmoothieItem, toolJuicer, Items.melon, Items.snowball);
-        addShapelessOreRecipe(ItemRegistry.carrotjuiceItem, toolJuicer, Items.carrot);
-        addShapelessOreRecipe(ItemRegistry.carrotcakeItem, toolBakeware, Items.carrot, listAllsugar, foodDough);
-        addShapelessOreRecipe(ItemRegistry.carrotsoupItem, toolPot, Items.carrot, listAllheavycream, foodStock);
-        addShapelessOreRecipe(ItemRegistry.glazedcarrotsItem, toolSaucepan, Items.carrot, foodButter, listAllsugar);
-        addShapelessOreRecipe(ItemRegistry.butteredpotatoItem, Items.baked_potato, foodButter);
+        addShapelessOreRecipe(ItemRegistry.pumpkinbreadItem, toolBakeware, Blocks.PUMPKIN, listAllsugar, foodDough);
+        addShapelessOreRecipe(ItemRegistry.pumpkinsoupItem, toolPot, Blocks.PUMPKIN, listAllheavycream, foodStock);
+        addShapelessOreRecipe(ItemRegistry.melonjuiceItem, toolJuicer, Items.MELON);
+        addShapelessOreRecipe(ItemRegistry.melonsmoothieItem, toolJuicer, Items.MELON, Items.SNOWBALL);
+        addShapelessOreRecipe(ItemRegistry.carrotjuiceItem, toolJuicer, Items.CARROT);
+        addShapelessOreRecipe(ItemRegistry.carrotcakeItem, toolBakeware, Items.CARROT, listAllsugar, foodDough);
+        addShapelessOreRecipe(ItemRegistry.carrotsoupItem, toolPot, Items.CARROT, listAllheavycream, foodStock);
+        addShapelessOreRecipe(ItemRegistry.glazedcarrotsItem, toolSaucepan, Items.CARROT, foodButter, listAllsugar);
+        addShapelessOreRecipe(ItemRegistry.butteredpotatoItem, Items.BAKED_POTATO, foodButter);
         addShapelessOreRecipe(ItemRegistry.loadedbakedpotatoItem, foodButteredpotato, listAllporkcooked, foodCheese);
         addShapelessOreRecipe(ItemRegistry.mashedpotatoesItem, toolMixingbowl, foodButteredpotato, foodSalt);
         addShapelessOreRecipe(ItemRegistry.mashedpotatoesItem, toolMixingbowl, foodButteredpotato, dustSalt);
         addShapelessOreRecipe(ItemRegistry.mashedpotatoesItem, toolMixingbowl, foodButteredpotato, itemSalt);
-        addShapelessOreRecipe(ItemRegistry.potatosaladItem, toolCuttingboard, Items.baked_potato, foodMayo);
-        addShapelessOreRecipe(ItemRegistry.potatosoupItem, toolPot, Items.potato, foodSalt, foodStock);
-        addShapelessOreRecipe(ItemRegistry.potatosoupItem, toolPot, Items.potato, dustSalt, foodStock);
-        addShapelessOreRecipe(ItemRegistry.potatosoupItem, toolPot, Items.potato, itemSalt, foodStock);
-        addShapelessOreRecipe(ItemRegistry.friesItem, toolBakeware, Items.potato, foodSalt);
-        addShapelessOreRecipe(ItemRegistry.friesItem, toolBakeware, Items.potato, dustSalt);
-        addShapelessOreRecipe(ItemRegistry.friesItem, toolBakeware, Items.potato, itemSalt);
+        addShapelessOreRecipe(ItemRegistry.potatosaladItem, toolCuttingboard, Items.BAKED_POTATO, foodMayo);
+        addShapelessOreRecipe(ItemRegistry.potatosoupItem, toolPot, Items.POTATO, foodSalt, foodStock);
+        addShapelessOreRecipe(ItemRegistry.potatosoupItem, toolPot, Items.POTATO, dustSalt, foodStock);
+        addShapelessOreRecipe(ItemRegistry.potatosoupItem, toolPot, Items.POTATO, itemSalt, foodStock);
+        addShapelessOreRecipe(ItemRegistry.friesItem, toolBakeware, Items.POTATO, foodSalt);
+        addShapelessOreRecipe(ItemRegistry.friesItem, toolBakeware, Items.POTATO, dustSalt);
+        addShapelessOreRecipe(ItemRegistry.friesItem, toolBakeware, Items.POTATO, itemSalt);
         addShapelessOreRecipe(ItemRegistry.stuffedmushroomItem, toolBakeware, listAllmushroom, foodCheese, foodToast);
         addShapelessOreRecipe(ItemRegistry.grilledmushroomItem, toolSkillet, listAllmushroom);
-        addShapelessOreRecipe(ItemRegistry.chickensandwichItem, toolSkillet, listAllchickenraw, Items.bread, foodMayo);
-        addShapelessOreRecipe(ItemRegistry.chickennoodlesoupItem, toolPot, listAllchickenraw, Items.carrot, foodPasta, foodStock);
-        addShapelessOreRecipe(ItemRegistry.chickenpotpieItem, toolBakeware, listAllchickenraw, Items.potato, Items.carrot, foodDough);
+        addShapelessOreRecipe(ItemRegistry.chickensandwichItem, toolSkillet, listAllchickenraw, Items.BREAD, foodMayo);
+        addShapelessOreRecipe(ItemRegistry.chickennoodlesoupItem, toolPot, listAllchickenraw, Items.CARROT, foodPasta, foodStock);
+        addShapelessOreRecipe(ItemRegistry.chickenpotpieItem, toolBakeware, listAllchickenraw, Items.POTATO, Items.CARROT, foodDough);
         addShapelessOreRecipe(ItemRegistry.breadedporkchopItem, toolSkillet, listAllporkraw, foodFlour);
-        addShapelessOreRecipe(ItemRegistry.hotdogItem, toolPot, listAllporkraw, Items.bread);
+        addShapelessOreRecipe(ItemRegistry.hotdogItem, toolPot, listAllporkraw, Items.BREAD);
         addShapelessOreRecipe(ItemRegistry.bakedhamItem, toolBakeware, listAllporkraw, cropApple, listAllsugar);
         addShapelessOreRecipe(ItemRegistry.hamburgerItem, toolSkillet, listAllbeefraw, foodToast);
         addShapelessOreRecipe(ItemRegistry.cheeseburgerItem, foodHamburger, foodCheese);
         addShapelessOreRecipe(ItemRegistry.baconcheeseburgerItem, foodCheeseburger, listAllporkcooked);
-        addShapelessOreRecipe(ItemRegistry.potroastItem, toolPot, listAllbeefraw, Items.potato, Items.carrot, foodStock);
-        addShapelessOreRecipe(ItemRegistry.fishsandwichItem, toolSkillet, listAllfishraw, foodMayo, Items.bread);
+        addShapelessOreRecipe(ItemRegistry.potroastItem, toolPot, listAllbeefraw, Items.POTATO, Items.CARROT, foodStock);
+        addShapelessOreRecipe(ItemRegistry.fishsandwichItem, toolSkillet, listAllfishraw, foodMayo, Items.BREAD);
         addShapelessOreRecipe(ItemRegistry.fishsticksItem, toolBakeware, listAllfishraw, foodFlour);
         addShapelessOreRecipe(ItemRegistry.fishandchipsItem, foodFishsticks, foodFries);
         addShapelessOreRecipe(ItemRegistry.mayoItem, toolJuicer, listAllegg);
@@ -192,19 +192,19 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.taffyItem, toolSaucepan, listAllsugar, listAllwater, foodSalt);
         addShapelessOreRecipe(ItemRegistry.taffyItem, toolSaucepan, listAllsugar, listAllwater, dustSalt);
         addShapelessOreRecipe(ItemRegistry.taffyItem, toolSaucepan, listAllsugar, listAllwater, itemSalt);
-        addShapelessOreRecipe(ItemRegistry.spidereyesoupItem, toolPot, Items.spider_eye, foodStock);
-        addShapelessOreRecipe(ItemRegistry.zombiejerkyItem, Items.rotten_flesh, foodSalt, foodSalt);
-        addShapelessOreRecipe(ItemRegistry.zombiejerkyItem, Items.rotten_flesh, dustSalt, dustSalt);
-        addShapelessOreRecipe(ItemRegistry.zombiejerkyItem, Items.rotten_flesh, itemSalt, itemSalt);
-        addShapelessOreRecipe(ItemRegistry.zombiejerkyItem, Items.rotten_flesh, itemSalt, dustSalt);
-        addShapelessOreRecipe(ItemRegistry.zombiejerkyItem, Items.rotten_flesh, itemSalt, foodSalt);
-        addShapelessOreRecipe(ItemRegistry.zombiejerkyItem, Items.rotten_flesh, foodSalt, dustSalt);
+        addShapelessOreRecipe(ItemRegistry.spidereyesoupItem, toolPot, Items.SPIDER_EYE, foodStock);
+        addShapelessOreRecipe(ItemRegistry.zombiejerkyItem, Items.ROTTEN_FLESH, foodSalt, foodSalt);
+        addShapelessOreRecipe(ItemRegistry.zombiejerkyItem, Items.ROTTEN_FLESH, dustSalt, dustSalt);
+        addShapelessOreRecipe(ItemRegistry.zombiejerkyItem, Items.ROTTEN_FLESH, itemSalt, itemSalt);
+        addShapelessOreRecipe(ItemRegistry.zombiejerkyItem, Items.ROTTEN_FLESH, itemSalt, dustSalt);
+        addShapelessOreRecipe(ItemRegistry.zombiejerkyItem, Items.ROTTEN_FLESH, itemSalt, foodSalt);
+        addShapelessOreRecipe(ItemRegistry.zombiejerkyItem, Items.ROTTEN_FLESH, foodSalt, dustSalt);
         addShapelessOreRecipe(ItemRegistry.cocoapowderItem, toolMortarandpestle, dyeBrown);
         addShapelessOreRecipe(ItemRegistry.chocolatebarItem, toolSaucepan, foodCocoapowder, foodButter, listAllmilk);
         addShapelessOreRecipe(ItemRegistry.hotchocolateItem, toolJuicer, foodCocoapowder, listAllmilk);
         addShapelessOreRecipe(ItemRegistry.chocolateicecreamItem, toolMixingbowl, listAllicecream, foodCocoapowder);
-        addShapelessOreRecipe(ItemRegistry.vegetablesoupItem, toolPot, Items.potato, Items.carrot, listAllmushroom, foodStock);
-        addShapelessOreRecipe(new ItemStack(ItemRegistry.stockItem, 3), toolPot, Items.bone);
+        addShapelessOreRecipe(ItemRegistry.vegetablesoupItem, toolPot, Items.POTATO, Items.CARROT, listAllmushroom, foodStock);
+        addShapelessOreRecipe(new ItemStack(ItemRegistry.stockItem, 3), toolPot, Items.BONE);
         addShapelessOreRecipe(new ItemStack(ItemRegistry.stockItem, 3), toolPot, listAllmeatraw);
         addShapelessOreRecipe(new ItemStack(ItemRegistry.stockItem, 3), toolPot, listAllveggie);
         addShapelessOreRecipe(ItemRegistry.fruitsaladItem, toolCuttingboard, listAllfruit, listAllfruit);
@@ -214,7 +214,7 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.ketchupItem, toolJuicer, cropTomato);
         addShapelessOreRecipe(ItemRegistry.chickenparmasanItem, toolBakeware, listAllchickencooked, cropTomato, foodCheese);
         addShapelessOreRecipe(ItemRegistry.pizzaItem, toolBakeware, foodDough, cropTomato, foodCheese, listAllporkraw);
-        addShapelessOreRecipe(ItemRegistry.springsaladItem, toolCuttingboard, cropLettuce, Items.carrot);
+        addShapelessOreRecipe(ItemRegistry.springsaladItem, toolCuttingboard, cropLettuce, Items.CARROT);
         addShapelessOreRecipe(ItemRegistry.springsaladItem, toolCuttingboard, cropLettuce, cropOnion);
         addShapelessOreRecipe(ItemRegistry.springsaladItem, toolCuttingboard, cropLettuce, cropRadish);
         addShapelessOreRecipe(ItemRegistry.springsaladItem, toolCuttingboard, cropLettuce, cropCucumber);
@@ -238,8 +238,8 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.delightedmealItem, foodDeluxecheeseburger, foodFries, listAllsmoothie);
         addShapelessOreRecipe(ItemRegistry.delightedmealItem, foodDeluxecheeseburger, foodZucchinifries, listAllsmoothie);
         addShapelessOreRecipe(ItemRegistry.onionsoupItem, toolPot, cropOnion, foodStock, foodGrilledcheese);
-        addShapelessOreRecipe(ItemRegistry.potatocakesItem, toolSkillet, cropOnion, Items.potato, foodButter);
-        addShapelessOreRecipe(ItemRegistry.hashItem, toolSkillet, cropOnion, listAllbeefcooked, Items.potato, foodKetchup);
+        addShapelessOreRecipe(ItemRegistry.potatocakesItem, toolSkillet, cropOnion, Items.POTATO, foodButter);
+        addShapelessOreRecipe(ItemRegistry.hashItem, toolSkillet, cropOnion, listAllbeefcooked, Items.POTATO, foodKetchup);
         addShapelessOreRecipe(ItemRegistry.braisedonionsItem, toolSaucepan, cropOnion, foodButter, foodStock);
         addShapelessOreRecipe(ItemRegistry.heartybreakfastItem, listAllporkcooked, foodFriedegg, foodToast, foodPotatocakes, listAlljuice);
         addShapelessOreRecipe(ItemRegistry.heartybreakfastItem, listAllporkcooked, foodFriedegg, foodToast, foodPotatocakes, foodChocolatemilk);
@@ -251,7 +251,7 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.tacoItem, toolCuttingboard, listAllbeefcooked, cropLettuce, foodCheese, foodTortilla);
         addShapelessOreRecipe(ItemRegistry.fishtacoItem, toolCuttingboard, listAllfishcooked, cropLettuce, foodCheese, foodTortilla);
         addShapelessOreRecipe(ItemRegistry.creamedcornItem, toolSaucepan, cropCorn, cropOnion, foodHeavycream);
-        addShapelessOreRecipe(ItemRegistry.strawberrysmoothieItem, toolJuicer, cropStrawberry, Items.snowball);
+        addShapelessOreRecipe(ItemRegistry.strawberrysmoothieItem, toolJuicer, cropStrawberry, Items.SNOWBALL);
         addShapelessOreRecipe(ItemRegistry.strawberrypieItem, toolBakeware, cropStrawberry, foodDough, listAllsugar);
         addShapelessOreRecipe(ItemRegistry.strawberrysaladItem, cropStrawberry, foodFruitsalad);
         addShapelessOreRecipe(ItemRegistry.strawberryjuiceItem, toolJuicer, cropStrawberry);
@@ -261,7 +261,7 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.trailmixItem, foodSaltedsunflowerseeds, foodRaisins, foodChocolatebar);
         addShapelessOreRecipe(ItemRegistry.trailmixItem, listAllnut, listAllnut, foodRaisins, foodChocolatebar);
         addShapelessOreRecipe(ItemRegistry.trailmixItem, foodRoastedpumpkinseeds, foodRaisins, foodChocolatebar);
-        addShapelessOreRecipe(ItemRegistry.pbandjItem, toolCuttingboard, listAllnutbutter, foodGrapejelly, Items.bread);
+        addShapelessOreRecipe(ItemRegistry.pbandjItem, toolCuttingboard, listAllnutbutter, foodGrapejelly, Items.BREAD);
         addShapelessOreRecipe(ItemRegistry.peanutbuttercookiesItem, toolBakeware, listAllnutbutter, foodFlour, listAllegg, listAllsugar);
         addShapelessOreRecipe(ItemRegistry.grapejuiceItem, toolJuicer, cropGrape);
         addShapelessOreRecipe(ItemRegistry.vinegarItem, toolPot, foodGrapejuice);
@@ -276,7 +276,7 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.vegetarianlettucewrapItem, toolCuttingboard, cropCucumber, cropLettuce, cropTomato);
         addShapelessOreRecipe(ItemRegistry.marinatedcucumbersItem, toolPot, cropCucumber, cropOnion, listAllsugar, foodVinegar);
         addShapelessOreRecipe(ItemRegistry.ricesoupItem, toolPot, cropRice, foodStock);
-        addShapelessOreRecipe(ItemRegistry.friedriceItem, toolSkillet, cropRice, Items.carrot, listAllegg, cropOnion);
+        addShapelessOreRecipe(ItemRegistry.friedriceItem, toolSkillet, cropRice, Items.CARROT, listAllegg, cropOnion);
         addShapelessOreRecipe(ItemRegistry.mushroomrisottoItem, toolBakeware, cropRice, listAllmushroom, cropOnion, foodCheese);
         addShapelessOreRecipe(ItemRegistry.curryItem, toolSaucepan, cropRice, foodSalt, cropChilipepper, foodCoconutmilk, listAllspice);
         addShapelessOreRecipe(ItemRegistry.curryItem, toolSaucepan, cropRice, dustSalt, cropChilipepper, foodCoconutmilk, listAllspice);
@@ -292,10 +292,10 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.chiliItem, toolPot, cropBean, cropChilipepper, listAllbeefcooked);
         addShapelessOreRecipe(ItemRegistry.beanburritoItem, toolSkillet, cropBean, foodTortilla, cropRice, foodCheese);
         addShapelessOreRecipe(ItemRegistry.stuffedpepperItem, toolBakeware, cropBellpepper, cropTomato, cropRice);
-        addShapelessOreRecipe(ItemRegistry.veggiestirfryItem, toolSkillet, cropBellpepper, Items.carrot, cropRice, cropOnion, cropBean);
-        addShapelessOreRecipe(ItemRegistry.veggiestirfryItem, toolSkillet, cropBellpepper, Items.carrot, cropRice, cropOnion, cropChilipepper);
-        addShapelessOreRecipe(ItemRegistry.veggiestirfryItem, toolSkillet, cropBellpepper, Items.carrot, cropRice, cropOnion, listAllmushroom);
-        addShapelessOreRecipe(ItemRegistry.grilledskewersItem, toolCuttingboard, cropBellpepper, cropOnion, Items.carrot, stickWood);
+        addShapelessOreRecipe(ItemRegistry.veggiestirfryItem, toolSkillet, cropBellpepper, Items.CARROT, cropRice, cropOnion, cropBean);
+        addShapelessOreRecipe(ItemRegistry.veggiestirfryItem, toolSkillet, cropBellpepper, Items.CARROT, cropRice, cropOnion, cropChilipepper);
+        addShapelessOreRecipe(ItemRegistry.veggiestirfryItem, toolSkillet, cropBellpepper, Items.CARROT, cropRice, cropOnion, listAllmushroom);
+        addShapelessOreRecipe(ItemRegistry.grilledskewersItem, toolCuttingboard, cropBellpepper, cropOnion, Items.CARROT, stickWood);
         addShapelessOreRecipe(ItemRegistry.supremepizzaItem, toolCuttingboard, foodPizza, cropBellpepper, cropOnion, cropSpiceleaf);
         addShapelessOreRecipe(ItemRegistry.omeletItem, toolSkillet, listAllegg, cropBellpepper, cropOnion);
         addShapelessOreRecipe(ItemRegistry.hotwingsItem, toolSkillet, cropChilipepper, listAllchickencooked, foodButter);
@@ -305,11 +305,11 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.lemonaideItem, toolJuicer, cropLemon);
         addShapelessOreRecipe(ItemRegistry.lemonbarItem, toolBakeware, cropLemon, foodDough, listAllsugar);
         addShapelessOreRecipe(ItemRegistry.fishdinnerItem, toolSkillet, cropLemon, foodFlour, listAllfishraw, foodMayo);
-        addShapelessOreRecipe(ItemRegistry.lemonsmoothieItem, toolJuicer, cropLemon, Items.snowball);
+        addShapelessOreRecipe(ItemRegistry.lemonsmoothieItem, toolJuicer, cropLemon, Items.SNOWBALL);
         addShapelessOreRecipe(ItemRegistry.lemonmeringueItem, toolBakeware, cropLemon, listAllsugar, foodDough, listAllheavycream);
         addShapelessOreRecipe(ItemRegistry.candiedlemonItem, toolBakeware, cropLemon, listAllsugar);
         addShapelessOreRecipe(ItemRegistry.lemonchickenItem, toolBakeware, cropLemon, listAllchickenraw, foodButter);
-        addShapelessOreRecipe(ItemRegistry.blueberrysmoothieItem, toolJuicer, cropBlueberry, Items.snowball);
+        addShapelessOreRecipe(ItemRegistry.blueberrysmoothieItem, toolJuicer, cropBlueberry, Items.SNOWBALL);
         addShapelessOreRecipe(ItemRegistry.blueberrypieItem, toolBakeware, cropBlueberry, foodDough, listAllsugar);
         addShapelessOreRecipe(ItemRegistry.blueberrymuffinItem, toolBakeware, cropBlueberry, foodFlour, listAllegg);
         addShapelessOreRecipe(ItemRegistry.blueberryjuiceItem, toolJuicer, cropBlueberry);
@@ -318,13 +318,13 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.cherryjuiceItem, toolJuicer, cropCherry);
         addShapelessOreRecipe(ItemRegistry.cherrypieItem, toolBakeware, cropCherry, foodDough, listAllsugar);
         addShapelessOreRecipe(ItemRegistry.chocolatecherryItem, toolSaucepan, cropCherry, foodChocolatebar);
-        addShapelessOreRecipe(ItemRegistry.cherrysmoothieItem, toolJuicer, cropCherry, Items.snowball);
+        addShapelessOreRecipe(ItemRegistry.cherrysmoothieItem, toolJuicer, cropCherry, Items.SNOWBALL);
         addShapelessOreRecipe(ItemRegistry.cheesecakeItem, toolBakeware, foodFlour, listAllheavycream, listAllsugar, listAllegg);
         addShapelessOreRecipe(ItemRegistry.cherrycheesecakeItem, cropCherry, foodCheesecake);
         addShapelessOreRecipe(ItemRegistry.stuffedeggplantItem, toolBakeware, cropEggplant, cropOnion, cropBellpepper, foodButter, listAllegg);
         addShapelessOreRecipe(ItemRegistry.stuffedeggplantItem, toolBakeware, cropEggplant, cropGarlic);
         addShapelessOreRecipe(ItemRegistry.eggplantparmItem, toolBakeware, cropEggplant, cropTomato, foodPasta, foodCheese);
-        addShapelessOreRecipe(ItemRegistry.raspberryicedteaItem, cropTea, Items.snowball, cropRaspberry);
+        addShapelessOreRecipe(ItemRegistry.raspberryicedteaItem, cropTea, Items.SNOWBALL, cropRaspberry);
         addShapelessOreRecipe(ItemRegistry.chaiteaItem, cropTea, foodGroundcinnamon, foodBlackpepper);
         addShapelessOreRecipe(ItemRegistry.espressoItem, cropCoffee, cropCoffee, cropCoffee, listAllsugar);
         addShapelessOreRecipe(ItemRegistry.coffeeconlecheItem, foodEspresso, listAllmilk, foodGroundcinnamon);
@@ -337,7 +337,7 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.bakedbeetsItem, toolBakeware, cropBeet, foodButter, foodBlackpepper);
         addShapelessOreRecipe(ItemRegistry.broccolimacItem, toolPot, cropBroccoli, foodPasta, foodCheese);
         addShapelessOreRecipe(ItemRegistry.broccolindipItem, toolMixingbowl, cropBroccoli, cropOnion, listAllheavycream);
-        addShapelessOreRecipe(ItemRegistry.creamedbroccolisoupItem, toolPot, cropBroccoli, Items.carrot, foodFlour, foodBlackpepper, foodStock);
+        addShapelessOreRecipe(ItemRegistry.creamedbroccolisoupItem, toolPot, cropBroccoli, Items.CARROT, foodFlour, foodBlackpepper, foodStock);
         addShapelessOreRecipe(ItemRegistry.sweetpotatopieItem, toolBakeware, cropSweetpotato, foodDough, foodGroundcinnamon, foodMarshmellows);
         addShapelessOreRecipe(ItemRegistry.candiedsweetpotatoesItem, toolSaucepan, cropSweetpotato, listAllsugar, foodGroundcinnamon);
         addShapelessOreRecipe(ItemRegistry.mashedsweetpotatoesItem, toolSaucepan, cropSweetpotato, foodButter);
@@ -348,13 +348,13 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.pineappleupsidedowncakeItem, toolBakeware, cropPineapple, foodDough, cropCherry, cropWalnut);
         addShapelessOreRecipe(ItemRegistry.pineapplehamItem, toolBakeware, cropPineapple, listAllporkraw, cropCherry, listAllsugar);
         addShapelessOreRecipe(ItemRegistry.pineappleyogurtItem, cropPineapple, foodPlainyogurt);
-        addShapelessOreRecipe(ItemRegistry.turnipsoupItem, toolPot, cropTurnip, Blocks.pumpkin, foodButter, foodStock);
-        addShapelessOreRecipe(ItemRegistry.roastedrootveggiemedleyItem, toolBakeware, cropTurnip, Items.carrot, cropOnion, cropSpiceleaf);
-        addShapelessOreRecipe(ItemRegistry.roastedrootveggiemedleyItem, toolBakeware, Blocks.pumpkin, Items.carrot, cropOnion, cropSpiceleaf);
-        addShapelessOreRecipe(ItemRegistry.roastedrootveggiemedleyItem, toolBakeware, Items.potato, Items.carrot, cropOnion, cropSpiceleaf);
-        addShapelessOreRecipe(ItemRegistry.roastedrootveggiemedleyItem, toolBakeware, cropSweetpotato, Items.carrot, cropOnion, cropSpiceleaf);
-        addShapelessOreRecipe(ItemRegistry.roastedrootveggiemedleyItem, toolBakeware, cropRadish, Items.carrot, cropOnion, cropSpiceleaf);
-        addShapelessOreRecipe(ItemRegistry.roastedrootveggiemedleyItem, toolBakeware, cropParsnip, Items.carrot, cropOnion, cropSpiceleaf);
+        addShapelessOreRecipe(ItemRegistry.turnipsoupItem, toolPot, cropTurnip, Blocks.PUMPKIN, foodButter, foodStock);
+        addShapelessOreRecipe(ItemRegistry.roastedrootveggiemedleyItem, toolBakeware, cropTurnip, Items.CARROT, cropOnion, cropSpiceleaf);
+        addShapelessOreRecipe(ItemRegistry.roastedrootveggiemedleyItem, toolBakeware, Blocks.PUMPKIN, Items.CARROT, cropOnion, cropSpiceleaf);
+        addShapelessOreRecipe(ItemRegistry.roastedrootveggiemedleyItem, toolBakeware, Items.POTATO, Items.CARROT, cropOnion, cropSpiceleaf);
+        addShapelessOreRecipe(ItemRegistry.roastedrootveggiemedleyItem, toolBakeware, cropSweetpotato, Items.CARROT, cropOnion, cropSpiceleaf);
+        addShapelessOreRecipe(ItemRegistry.roastedrootveggiemedleyItem, toolBakeware, cropRadish, Items.CARROT, cropOnion, cropSpiceleaf);
+        addShapelessOreRecipe(ItemRegistry.roastedrootveggiemedleyItem, toolBakeware, cropParsnip, Items.CARROT, cropOnion, cropSpiceleaf);
         addShapelessOreRecipe(ItemRegistry.bakedturnipsItem, toolBakeware, cropTurnip, foodButter, foodSalt, foodBlackpepper);
         addShapelessOreRecipe(ItemRegistry.bakedturnipsItem, toolBakeware, cropTurnip, foodButter, dustSalt, foodBlackpepper);
         addShapelessOreRecipe(ItemRegistry.bakedturnipsItem, toolBakeware, cropTurnip, foodButter, itemSalt, foodBlackpepper);
@@ -375,11 +375,11 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.garlicmashedpotatoesItem, foodMashedpotatoes, cropGarlic);
         addShapelessOreRecipe(ItemRegistry.garlicchickenItem, toolBakeware, cropGarlic, cropGarlic, cropGarlic, foodOliveoil, listAllchickenraw);
         addShapelessOreRecipe(ItemRegistry.summerradishsaladItem, toolMixingbowl, cropRadish, cropOnion, cropCucumber, foodVinegar);
-        addShapelessOreRecipe(ItemRegistry.summersquashwithradishItem, toolMixingbowl, cropRadish, cropZucchini, Blocks.pumpkin, cropSpiceleaf, foodOliveoil);
+        addShapelessOreRecipe(ItemRegistry.summersquashwithradishItem, toolMixingbowl, cropRadish, cropZucchini, Blocks.PUMPKIN, cropSpiceleaf, foodOliveoil);
         addShapelessOreRecipe(ItemRegistry.celeryandpeanutbutterItem, cropCelery, listAllnutbutter);
-        addShapelessOreRecipe(ItemRegistry.chickencelerycasseroleItem, toolBakeware, cropCelery, listAllchickenraw, cropGarlic, Items.carrot, listAllmushroom);
+        addShapelessOreRecipe(ItemRegistry.chickencelerycasseroleItem, toolBakeware, cropCelery, listAllchickenraw, cropGarlic, Items.CARROT, listAllmushroom);
         addShapelessOreRecipe(ItemRegistry.peasandceleryItem, toolMixingbowl, cropCelery, cropPeas, cropLemon, foodBlackpepper);
-        addShapelessOreRecipe(ItemRegistry.celerysoupItem, toolPot, cropCelery, cropOnion, Items.carrot, foodStock);
+        addShapelessOreRecipe(ItemRegistry.celerysoupItem, toolPot, cropCelery, cropOnion, Items.CARROT, foodStock);
         addShapelessOreRecipe(ItemRegistry.zucchinibreadItem, toolBakeware, cropZucchini, foodDough, foodGroundcinnamon, cropWalnut);
         addShapelessOreRecipe(ItemRegistry.zucchinifriesItem, toolBakeware, cropZucchini, foodToast, foodCheese, listAllegg);
         addShapelessOreRecipe(ItemRegistry.zestyzucchiniItem, toolBakeware, cropZucchini, foodPasta, cropChilipepper, cropGarlic, foodCheese);
@@ -390,10 +390,10 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.candiedwalnutsItem, toolSaucepan, cropWalnut, foodVanilla, foodGroundcinnamon, listAllsugar);
         addShapelessOreRecipe(ItemRegistry.brownieItem, toolBakeware, cropWalnut, foodFlour, listAllegg, foodButter, listAllsugar, foodCocoapowder, foodVanilla);
         addShapelessOreRecipe(ItemRegistry.papayajuiceItem, toolJuicer, cropPapaya);
-        addShapelessOreRecipe(ItemRegistry.papayasmoothieItem, toolJuicer, cropPapaya, Items.snowball);
+        addShapelessOreRecipe(ItemRegistry.papayasmoothieItem, toolJuicer, cropPapaya, Items.SNOWBALL);
         addShapelessOreRecipe(ItemRegistry.papayayogurtItem, cropPapaya, foodPlainyogurt);
         addShapelessOreRecipe(ItemRegistry.starfruitjuiceItem, toolJuicer, cropStarfruit);
-        addShapelessOreRecipe(ItemRegistry.starfruitsmoothieItem, toolJuicer, cropStarfruit, Items.snowball);
+        addShapelessOreRecipe(ItemRegistry.starfruitsmoothieItem, toolJuicer, cropStarfruit, Items.SNOWBALL);
         addShapelessOreRecipe(ItemRegistry.starfruityogurtItem, cropStarfruit, foodPlainyogurt);
         addShapelessOreRecipe(ItemRegistry.guacamoleItem, toolCuttingboard, cropAvocado, cropChilipepper, cropTomato, cropOnion, cropSpiceleaf);
         addShapelessOreRecipe(ItemRegistry.creamofavocadosoupItem, toolPot, cropAvocado, listAllheavycream, cropLime, cropSpiceleaf, foodStock);
@@ -407,7 +407,7 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.banananutbreadItem, toolBakeware, cropBanana, foodFlour, cropWalnut, listAllmilk, foodSalt);
         addShapelessOreRecipe(ItemRegistry.banananutbreadItem, toolBakeware, cropBanana, foodFlour, cropWalnut, listAllmilk, dustSalt);
         addShapelessOreRecipe(ItemRegistry.banananutbreadItem, toolBakeware, cropBanana, foodFlour, cropWalnut, listAllmilk, itemSalt);
-        addShapelessOreRecipe(ItemRegistry.bananasmoothieItem, toolJuicer, cropBanana, Items.snowball);
+        addShapelessOreRecipe(ItemRegistry.bananasmoothieItem, toolJuicer, cropBanana, Items.SNOWBALL);
         addShapelessOreRecipe(ItemRegistry.bananayogurtItem, cropBanana, foodPlainyogurt);
         addShapelessOreRecipe(ItemRegistry.coconutmilkItem, toolJuicer, cropCoconut);
         addShapelessOreRecipe(ItemRegistry.chickencurryItem, toolPot, cropCoconut, foodPlainyogurt, listAllchickenraw, listAllspice, cropChilipepper, cropRice, foodGroundcinnamon, cropGarlic);
@@ -415,21 +415,21 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.coconutyogurtItem, cropCoconut, foodPlainyogurt);
         addShapelessOreRecipe(ItemRegistry.orangejuiceItem, toolJuicer, cropOrange);
         addShapelessOreRecipe(ItemRegistry.orangechickenItem, toolSaucepan, cropOrange, listAllchickenraw, listAllsugar, cropRice, cropBroccoli);
-        addShapelessOreRecipe(ItemRegistry.orangesmoothieItem, toolJuicer, cropOrange, Items.snowball);
+        addShapelessOreRecipe(ItemRegistry.orangesmoothieItem, toolJuicer, cropOrange, Items.SNOWBALL);
         addShapelessOreRecipe(ItemRegistry.orangeyogurtItem, cropOrange, foodPlainyogurt);
         addShapelessOreRecipe(ItemRegistry.peachjuiceItem, toolJuicer, cropPeach);
         addShapelessOreRecipe(ItemRegistry.peachcobblerItem, toolBakeware, cropPeach, listAllsugar, foodDough);
-        addShapelessOreRecipe(ItemRegistry.peachsmoothieItem, toolJuicer, cropPeach, Items.snowball);
+        addShapelessOreRecipe(ItemRegistry.peachsmoothieItem, toolJuicer, cropPeach, Items.SNOWBALL);
         addShapelessOreRecipe(ItemRegistry.peachyogurtItem, cropPeach, foodPlainyogurt);
         addShapelessOreRecipe(ItemRegistry.limejuiceItem, toolJuicer, cropLime);
         addShapelessOreRecipe(ItemRegistry.keylimepieItem, toolBakeware, cropLime, listAllheavycream, listAllsugar, foodDough);
-        addShapelessOreRecipe(ItemRegistry.limesmoothieItem, toolJuicer, cropLime, Items.snowball);
+        addShapelessOreRecipe(ItemRegistry.limesmoothieItem, toolJuicer, cropLime, Items.SNOWBALL);
         addShapelessOreRecipe(ItemRegistry.limeyogurtItem, cropLime, foodPlainyogurt);
         addShapelessOreRecipe(ItemRegistry.mangojuiceItem, toolJuicer, cropMango);
-        addShapelessOreRecipe(ItemRegistry.mangosmoothieItem, toolJuicer, cropMango, Items.snowball);
+        addShapelessOreRecipe(ItemRegistry.mangosmoothieItem, toolJuicer, cropMango, Items.SNOWBALL);
         addShapelessOreRecipe(ItemRegistry.mangoyogurtItem, cropMango, foodPlainyogurt);
         addShapelessOreRecipe(ItemRegistry.pomegranatejuiceItem, toolJuicer, cropPomegranate);
-        addShapelessOreRecipe(ItemRegistry.pomegranatesmoothieItem, toolJuicer, cropPomegranate, Items.snowball);
+        addShapelessOreRecipe(ItemRegistry.pomegranatesmoothieItem, toolJuicer, cropPomegranate, Items.SNOWBALL);
         addShapelessOreRecipe(ItemRegistry.pomegranateyogurtItem, cropPomegranate, foodPlainyogurt);
         addShapelessOreRecipe(ItemRegistry.vanillayogurtItem, foodVanilla, foodPlainyogurt);
         addShapelessOreRecipe(ItemRegistry.cinnamonrollItem, toolBakeware, foodGroundcinnamon, listAllsugar, foodDough);
@@ -440,7 +440,7 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.powdereddonutItem, foodDonut, listAllsugar);
         addShapelessOreRecipe(ItemRegistry.jellydonutItem, foodDonut, foodGrapejelly);
         addShapelessOreRecipe(ItemRegistry.frosteddonutItem, foodDonut, listAllsugar, dyeRed, dyeGreen, dyeYellow);
-        addShapelessOreRecipe(ItemRegistry.cactussoupItem, toolPot, Blocks.cactus, foodStock);
+        addShapelessOreRecipe(ItemRegistry.cactussoupItem, toolPot, Blocks.CACTUS, foodStock);
         addShapelessOreRecipe(ItemRegistry.wafflesItem, toolSkillet, foodFlour, listAllegg, listAllmilk, foodButter);
         addShapelessOreRecipe(ItemRegistry.seedsoupItem, toolPot, listAllseed, foodStock);
         addShapelessOreRecipe(ItemRegistry.softpretzelItem, toolBakeware, foodDough, foodButter, foodSalt);
@@ -453,9 +453,9 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.friedchickenItem, toolPot, listAllchickenraw, foodFlour, cropSpiceleaf, foodBlackpepper, foodOliveoil);
         addShapelessOreRecipe(ItemRegistry.chocolatesprinklecakeItem, toolBakeware, foodCocoapowder, listAllsugar, foodDough, dyeRed, dyeGreen, dyeYellow);
         addShapelessOreRecipe(ItemRegistry.redvelvetcakeItem, toolBakeware, listAllmilk, foodFlour, listAllheavycream, listAllsugar, listAllegg, dyeRed, dyeRed);
-        addShapelessOreRecipe(ItemRegistry.footlongItem, toolCuttingboard, Items.bread, listAllbeefcooked, cropLettuce, cropTomato, foodMayo);
-        addShapelessOreRecipe(ItemRegistry.footlongItem, toolCuttingboard, Items.bread, listAllchickencooked, cropLettuce, cropTomato, foodMayo);
-        addShapelessOreRecipe(ItemRegistry.footlongItem, toolCuttingboard, Items.bread, listAllporkcooked, cropLettuce, cropTomato, foodMayo);
+        addShapelessOreRecipe(ItemRegistry.footlongItem, toolCuttingboard, Items.BREAD, listAllbeefcooked, cropLettuce, cropTomato, foodMayo);
+        addShapelessOreRecipe(ItemRegistry.footlongItem, toolCuttingboard, Items.BREAD, listAllchickencooked, cropLettuce, cropTomato, foodMayo);
+        addShapelessOreRecipe(ItemRegistry.footlongItem, toolCuttingboard, Items.BREAD, listAllporkcooked, cropLettuce, cropTomato, foodMayo);
         addShapelessOreRecipe(ItemRegistry.blueberryyogurtItem, cropBlueberry, foodPlainyogurt);
         addShapelessOreRecipe(ItemRegistry.lemonyogurtItem, cropLemon, foodPlainyogurt);
         addShapelessOreRecipe(ItemRegistry.cherryyogurtItem, cropCherry, foodPlainyogurt);
@@ -464,20 +464,20 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.chocolateyogurtItem, foodCocoapowder, foodPlainyogurt);
         addShapelessOreRecipe(ItemRegistry.blackberryjuiceItem, toolJuicer, cropBlackberry);
         addShapelessOreRecipe(ItemRegistry.blackberrycobblerItem, cropBlackberry, toolBakeware, listAllsugar, foodDough);
-        addShapelessOreRecipe(ItemRegistry.blackberrysmoothieItem, toolJuicer, cropBlackberry, Items.snowball);
+        addShapelessOreRecipe(ItemRegistry.blackberrysmoothieItem, toolJuicer, cropBlackberry, Items.SNOWBALL);
         addShapelessOreRecipe(ItemRegistry.blackberryyogurtItem, cropBlackberry, foodPlainyogurt);
         addShapelessOreRecipe(ItemRegistry.chocolatemilkItem, listAllmilk, foodCocoapowder);
-        addShapelessOreRecipe(ItemRegistry.pumpkinyogurtItem, Blocks.pumpkin, foodPlainyogurt);
+        addShapelessOreRecipe(ItemRegistry.pumpkinyogurtItem, Blocks.PUMPKIN, foodPlainyogurt);
         addShapelessOreRecipe(ItemRegistry.raspberryjuiceItem, toolJuicer, cropRaspberry);
         addShapelessOreRecipe(ItemRegistry.raspberrypieItem, cropRaspberry, toolBakeware, listAllsugar, foodDough);
-        addShapelessOreRecipe(ItemRegistry.raspberrysmoothieItem, toolJuicer, cropRaspberry, Items.snowball);
+        addShapelessOreRecipe(ItemRegistry.raspberrysmoothieItem, toolJuicer, cropRaspberry, Items.SNOWBALL);
         addShapelessOreRecipe(ItemRegistry.raspberryyogurtItem, cropRaspberry, foodPlainyogurt);
         addShapelessOreRecipe(ItemRegistry.cinnamonsugardonutItem, foodDonut, listAllsugar, foodGroundcinnamon);
-        addShapelessOreRecipe(ItemRegistry.melonyogurtItem, Items.melon, foodPlainyogurt);
+        addShapelessOreRecipe(ItemRegistry.melonyogurtItem, Items.MELON, foodPlainyogurt);
         addShapelessOreRecipe(ItemRegistry.kiwijuiceItem, toolJuicer, cropKiwi);
-        addShapelessOreRecipe(ItemRegistry.kiwismoothieItem, toolJuicer, cropKiwi, Items.snowball);
+        addShapelessOreRecipe(ItemRegistry.kiwismoothieItem, toolJuicer, cropKiwi, Items.SNOWBALL);
         addShapelessOreRecipe(ItemRegistry.kiwiyogurtItem, cropKiwi, foodPlainyogurt);
-        addShapelessOreRecipe(new ItemStack(ItemRegistry.plainyogurtItem, 4), listAllmilk, Items.leather);
+        addShapelessOreRecipe(new ItemStack(ItemRegistry.plainyogurtItem, 4), listAllmilk, Items.LEATHER);
         addShapelessOreRecipe(ItemRegistry.appleyogurtItem, cropApple, foodPlainyogurt);
         addShapelessOreRecipe(ItemRegistry.saltedsunflowerseedsItem, cropSunflower, foodSalt);
         addShapelessOreRecipe(ItemRegistry.saltedsunflowerseedsItem, cropSunflower, dustSalt);
@@ -509,7 +509,7 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.saladdressingItem, toolJuicer, foodOliveoil, dustSalt, foodVinegar);
         addShapelessOreRecipe(ItemRegistry.saladdressingItem, toolJuicer, foodOliveoil, itemSalt, foodVinegar);
         addShapelessOreRecipe(ItemRegistry.saladdressingItem, toolJuicer, foodMayo, cropSpiceleaf, cropSpiceleaf);
-        addShapelessOreRecipe(ItemRegistry.shepardspieItem, toolBakeware, listAllmuttonraw, Items.potato, Items.carrot, foodDough, cropPeas);
+        addShapelessOreRecipe(ItemRegistry.shepardspieItem, toolBakeware, listAllmuttonraw, Items.POTATO, Items.CARROT, foodDough, cropPeas);
         addShapelessOreRecipe(ItemRegistry.eggnogItem, toolJuicer, listAllegg, foodGroundnutmeg, cropCinnamon, listAllheavycream);
         addShapelessOreRecipe(ItemRegistry.custardItem, toolSaucepan, listAllegg, foodGroundnutmeg, cropCinnamon, listAllheavycream);
         addShapelessOreRecipe(ItemRegistry.sushiItem, toolCuttingboard, listAllfishraw, cropSeaweed, cropRice);
@@ -530,24 +530,24 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.raspberryjellyItem, toolSaucepan, cropRaspberry, listAllsugar);
         addShapelessOreRecipe(ItemRegistry.starfruitjellyItem, toolSaucepan, cropStarfruit, listAllsugar);
         addShapelessOreRecipe(ItemRegistry.strawberryjellyItem, toolSaucepan, cropStrawberry, listAllsugar);
-        addShapelessOreRecipe(ItemRegistry.watermelonjellyItem, toolSaucepan, Items.melon, Items.melon, listAllsugar);
-        addShapelessOreRecipe(ItemRegistry.applejellysandwichItem, toolCuttingboard, listAllnutbutter, foodApplejelly, Items.bread);
-        addShapelessOreRecipe(ItemRegistry.blackberryjellysandwichItem, toolCuttingboard, listAllnutbutter, foodBlackberryjelly, Items.bread);
-        addShapelessOreRecipe(ItemRegistry.blueberryjellysandwichItem, toolCuttingboard, listAllnutbutter, foodBlueberryjelly, Items.bread);
-        addShapelessOreRecipe(ItemRegistry.cherryjellysandwichItem, toolCuttingboard, listAllnutbutter, foodCherryjelly, Items.bread);
-        addShapelessOreRecipe(ItemRegistry.cranberryjellysandwichItem, toolCuttingboard, listAllnutbutter, foodCranberryjelly, Items.bread);
-        addShapelessOreRecipe(ItemRegistry.kiwijellysandwichItem, toolCuttingboard, listAllnutbutter, foodKiwijelly, Items.bread);
-        addShapelessOreRecipe(ItemRegistry.lemonjellysandwichItem, toolCuttingboard, listAllnutbutter, foodLemonjelly, Items.bread);
-        addShapelessOreRecipe(ItemRegistry.limejellysandwichItem, toolCuttingboard, listAllnutbutter, foodLimejelly, Items.bread);
-        addShapelessOreRecipe(ItemRegistry.mangojellysandwichItem, toolCuttingboard, listAllnutbutter, foodMangojelly, Items.bread);
-        addShapelessOreRecipe(ItemRegistry.orangejellysandwichItem, toolCuttingboard, listAllnutbutter, foodOrangejelly, Items.bread);
-        addShapelessOreRecipe(ItemRegistry.papayajellysandwichItem, toolCuttingboard, listAllnutbutter, foodPapayajelly, Items.bread);
-        addShapelessOreRecipe(ItemRegistry.peachjellysandwichItem, toolCuttingboard, listAllnutbutter, foodPeachjelly, Items.bread);
-        addShapelessOreRecipe(ItemRegistry.pomegranatejellysandwichItem, toolCuttingboard, listAllnutbutter, foodPomegranatejelly, Items.bread);
-        addShapelessOreRecipe(ItemRegistry.raspberryjellysandwichItem, toolCuttingboard, listAllnutbutter, foodRaspberryjelly, Items.bread);
-        addShapelessOreRecipe(ItemRegistry.starfruitjellysandwichItem, toolCuttingboard, listAllnutbutter, foodStarfruitjelly, Items.bread);
-        addShapelessOreRecipe(ItemRegistry.strawberryjellysandwichItem, toolCuttingboard, listAllnutbutter, foodStrawberryjelly, Items.bread);
-        addShapelessOreRecipe(ItemRegistry.watermelonjellysandwichItem, toolCuttingboard, listAllnutbutter, foodWatermelonjelly, Items.bread);
+        addShapelessOreRecipe(ItemRegistry.watermelonjellyItem, toolSaucepan, Items.MELON, Items.MELON, listAllsugar);
+        addShapelessOreRecipe(ItemRegistry.applejellysandwichItem, toolCuttingboard, listAllnutbutter, foodApplejelly, Items.BREAD);
+        addShapelessOreRecipe(ItemRegistry.blackberryjellysandwichItem, toolCuttingboard, listAllnutbutter, foodBlackberryjelly, Items.BREAD);
+        addShapelessOreRecipe(ItemRegistry.blueberryjellysandwichItem, toolCuttingboard, listAllnutbutter, foodBlueberryjelly, Items.BREAD);
+        addShapelessOreRecipe(ItemRegistry.cherryjellysandwichItem, toolCuttingboard, listAllnutbutter, foodCherryjelly, Items.BREAD);
+        addShapelessOreRecipe(ItemRegistry.cranberryjellysandwichItem, toolCuttingboard, listAllnutbutter, foodCranberryjelly, Items.BREAD);
+        addShapelessOreRecipe(ItemRegistry.kiwijellysandwichItem, toolCuttingboard, listAllnutbutter, foodKiwijelly, Items.BREAD);
+        addShapelessOreRecipe(ItemRegistry.lemonjellysandwichItem, toolCuttingboard, listAllnutbutter, foodLemonjelly, Items.BREAD);
+        addShapelessOreRecipe(ItemRegistry.limejellysandwichItem, toolCuttingboard, listAllnutbutter, foodLimejelly, Items.BREAD);
+        addShapelessOreRecipe(ItemRegistry.mangojellysandwichItem, toolCuttingboard, listAllnutbutter, foodMangojelly, Items.BREAD);
+        addShapelessOreRecipe(ItemRegistry.orangejellysandwichItem, toolCuttingboard, listAllnutbutter, foodOrangejelly, Items.BREAD);
+        addShapelessOreRecipe(ItemRegistry.papayajellysandwichItem, toolCuttingboard, listAllnutbutter, foodPapayajelly, Items.BREAD);
+        addShapelessOreRecipe(ItemRegistry.peachjellysandwichItem, toolCuttingboard, listAllnutbutter, foodPeachjelly, Items.BREAD);
+        addShapelessOreRecipe(ItemRegistry.pomegranatejellysandwichItem, toolCuttingboard, listAllnutbutter, foodPomegranatejelly, Items.BREAD);
+        addShapelessOreRecipe(ItemRegistry.raspberryjellysandwichItem, toolCuttingboard, listAllnutbutter, foodRaspberryjelly, Items.BREAD);
+        addShapelessOreRecipe(ItemRegistry.starfruitjellysandwichItem, toolCuttingboard, listAllnutbutter, foodStarfruitjelly, Items.BREAD);
+        addShapelessOreRecipe(ItemRegistry.strawberryjellysandwichItem, toolCuttingboard, listAllnutbutter, foodStrawberryjelly, Items.BREAD);
+        addShapelessOreRecipe(ItemRegistry.watermelonjellysandwichItem, toolCuttingboard, listAllnutbutter, foodWatermelonjelly, Items.BREAD);
         addShapelessOreRecipe(ItemRegistry.cherrysodaItem, toolPot, foodBubblywater, listAllsugar, foodCherryjuice);
         addShapelessOreRecipe(ItemRegistry.colasodaItem, toolPot, foodBubblywater, listAllsugar, cropSpiceleaf);
         addShapelessOreRecipe(ItemRegistry.gingersodaItem, toolPot, foodBubblywater, listAllsugar, cropGinger);
@@ -566,19 +566,19 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.oldworldveggiesoupItem, toolPot, foodStock, cropOnion, cropPeas, cropBarley);
         addShapelessOreRecipe(ItemRegistry.spicebunItem, toolBakeware, foodFlour, listAllmilk, foodGroundnutmeg, foodGroundcinnamon, foodRaisins);
         addShapelessOreRecipe(ItemRegistry.gingeredrhubarbtartItem, toolBakeware, foodDough, cropRhubarb, cropGinger, listAllsugar, listAllegg);
-        addShapelessOreRecipe(ItemRegistry.lambbarleysoupItem, toolPot, foodStock, listAllmuttonraw, cropOnion, Items.carrot, cropBarley);
+        addShapelessOreRecipe(ItemRegistry.lambbarleysoupItem, toolPot, foodStock, listAllmuttonraw, cropOnion, Items.CARROT, cropBarley);
         addShapelessOreRecipe(ItemRegistry.honeylemonlambItem, toolBakeware, listAllmuttonraw, cropLemon, foodMustard, foodHoneydrop);
         addShapelessOreRecipe(ItemRegistry.honeylemonlambItem, toolBakeware, listAllmuttonraw, cropLemon, foodMustard, dropHoney);
-        addShapelessOreRecipe(ItemRegistry.pumpkinoatsconesItem, toolBakeware, foodFlour, cropOats, Blocks.pumpkin, foodButter);
+        addShapelessOreRecipe(ItemRegistry.pumpkinoatsconesItem, toolBakeware, foodFlour, cropOats, Blocks.PUMPKIN, foodButter);
         addShapelessOreRecipe(ItemRegistry.beefjerkyItem, listAllbeefraw, foodSalt);
         addShapelessOreRecipe(ItemRegistry.beefjerkyItem, listAllbeefraw, dustSalt);
         addShapelessOreRecipe(ItemRegistry.beefjerkyItem, listAllbeefraw, itemSalt);
         addShapelessOreRecipe(ItemRegistry.plumjuiceItem, toolJuicer, cropPlum);
         addShapelessOreRecipe(ItemRegistry.pearjuiceItem, toolJuicer, cropPear);
         addShapelessOreRecipe(ItemRegistry.ovenroastedcauliflowerItem, toolBakeware, cropCauliflower, foodOliveoil, cropGarlic, cropLemon);
-        addShapelessOreRecipe(ItemRegistry.leekbaconsoupItem, toolPot, cropLeek, listAllporkcooked, Items.potato, listAllheavycream);
+        addShapelessOreRecipe(ItemRegistry.leekbaconsoupItem, toolPot, cropLeek, listAllporkcooked, Items.POTATO, listAllheavycream);
         addShapelessOreRecipe(ItemRegistry.herbbutterparsnipsItem, toolSaucepan, cropParsnip, foodButter, cropSpiceleaf);
-        addShapelessOreRecipe(ItemRegistry.scallionbakedpotatoItem, Items.baked_potato, cropScallion, listAllheavycream);
+        addShapelessOreRecipe(ItemRegistry.scallionbakedpotatoItem, Items.BAKED_POTATO, cropScallion, listAllheavycream);
         addShapelessOreRecipe(ItemRegistry.bamboosteamedriceItem, toolPot, cropRice, cropBambooshoot);
         addShapelessOreRecipe(ItemRegistry.sweetpotatosouffleItem, toolBakeware, cropSweetpotato, cropPecan, foodDough, foodButter);
         addShapelessOreRecipe(ItemRegistry.cashewchickenItem, toolSaucepan, listAllchickenraw, cropCashew, cropRice, listAllpepper);
@@ -586,18 +586,18 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.apricotyogurtItem, cropApricot, foodPlainyogurt);
         addShapelessOreRecipe(ItemRegistry.apricotglazedporkItem, listAllporkcooked, foodApricotjelly);
         addShapelessOreRecipe(ItemRegistry.apricotjellyItem, toolSaucepan, cropApricot, listAllsugar);
-        addShapelessOreRecipe(ItemRegistry.apricotjellysandwichItem, toolCuttingboard, listAllnutbutter, foodApricotjelly, Items.bread);
-        addShapelessOreRecipe(ItemRegistry.apricotsmoothieItem, toolJuicer, cropApricot, Items.snowball);
+        addShapelessOreRecipe(ItemRegistry.apricotjellysandwichItem, toolCuttingboard, listAllnutbutter, foodApricotjelly, Items.BREAD);
+        addShapelessOreRecipe(ItemRegistry.apricotsmoothieItem, toolJuicer, cropApricot, Items.SNOWBALL);
         addShapelessOreRecipe(ItemRegistry.figbarItem, toolBakeware, cropFig, listAllsugar, foodDough);
         addShapelessOreRecipe(ItemRegistry.figjellyItem, toolSaucepan, cropFig, listAllsugar);
-        addShapelessOreRecipe(ItemRegistry.figjellysandwichItem, toolCuttingboard, listAllnutbutter, foodFigjelly, Items.bread);
-        addShapelessOreRecipe(ItemRegistry.figsmoothieItem, toolJuicer, cropFig, Items.snowball);
+        addShapelessOreRecipe(ItemRegistry.figjellysandwichItem, toolCuttingboard, listAllnutbutter, foodFigjelly, Items.BREAD);
+        addShapelessOreRecipe(ItemRegistry.figsmoothieItem, toolJuicer, cropFig, Items.SNOWBALL);
         addShapelessOreRecipe(ItemRegistry.figyogurtItem, cropFig, foodPlainyogurt);
         addShapelessOreRecipe(ItemRegistry.figjuiceItem, toolJuicer, cropFig);
         addShapelessOreRecipe(ItemRegistry.grapefruitjuiceItem, toolJuicer, cropGrapefruit);
         addShapelessOreRecipe(ItemRegistry.grapefruitjellyItem, toolSaucepan, cropGrapefruit, listAllsugar);
-        addShapelessOreRecipe(ItemRegistry.grapefruitjellysandwichItem, toolCuttingboard, listAllnutbutter, foodGrapefruitjelly, Items.bread);
-        addShapelessOreRecipe(ItemRegistry.grapefruitsmoothieItem, toolJuicer, cropGrapefruit, Items.snowball);
+        addShapelessOreRecipe(ItemRegistry.grapefruitjellysandwichItem, toolCuttingboard, listAllnutbutter, foodGrapefruitjelly, Items.BREAD);
+        addShapelessOreRecipe(ItemRegistry.grapefruitsmoothieItem, toolJuicer, cropGrapefruit, Items.SNOWBALL);
         addShapelessOreRecipe(ItemRegistry.grapefruityogurtItem, cropGrapefruit, foodPlainyogurt);
         addShapelessOreRecipe(ItemRegistry.grapefruitsodaItem, toolPot, foodBubblywater, listAllsugar, foodGrapefruitjuice);
         addShapelessOreRecipe(ItemRegistry.citrussaladItem, toolCuttingboard, listAllcitrus, cropLettuce);
@@ -605,9 +605,9 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.pralinesItem, toolSaucepan, cropPecan, listAllsugar);
         addShapelessOreRecipe(ItemRegistry.persimmonjuiceItem, toolJuicer, cropPersimmon);
         addShapelessOreRecipe(ItemRegistry.persimmonyogurtItem, cropPersimmon, foodPlainyogurt);
-        addShapelessOreRecipe(ItemRegistry.persimmonsmoothieItem, toolJuicer, cropPersimmon, Items.snowball);
+        addShapelessOreRecipe(ItemRegistry.persimmonsmoothieItem, toolJuicer, cropPersimmon, Items.SNOWBALL);
         addShapelessOreRecipe(ItemRegistry.persimmonjellyItem, toolSaucepan, cropPersimmon, listAllsugar);
-        addShapelessOreRecipe(ItemRegistry.persimmonjellysandwichItem, toolCuttingboard, listAllnutbutter, foodPersimmonjelly, Items.bread);
+        addShapelessOreRecipe(ItemRegistry.persimmonjellysandwichItem, toolCuttingboard, listAllnutbutter, foodPersimmonjelly, Items.BREAD);
         addShapelessOreRecipe(ItemRegistry.pistachiobakedsalmonItem, toolBakeware, cropPistachio, foodSalmonraw);
         addShapelessOreRecipe(ItemRegistry.baconwrappeddatesItem, toolBakeware, cropDate, listAllporkcooked);
         addShapelessOreRecipe(ItemRegistry.datenutbreadItem, toolBakeware, cropDate, foodDough, listAllnut);
@@ -621,7 +621,7 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.toastsandwichItem, foodToast, foodToast);
         addShapelessOreRecipe(ItemRegistry.potatoandcheesepirogiItem, toolSkillet, foodDough, cropPotato, foodCheese);
         addShapelessOreRecipe(ItemRegistry.zeppoleItem, toolPot, foodOliveoil, foodDough, foodGroundcinnamon);
-        addShapelessOreRecipe(ItemRegistry.sausageinbreadItem, foodMaplesausage, Items.bread, foodKetchup, cropOnion);
+        addShapelessOreRecipe(ItemRegistry.sausageinbreadItem, foodMaplesausage, Items.BREAD, foodKetchup, cropOnion);
         addShapelessOreRecipe(ItemRegistry.chocolatecaramelfudgeItem, toolBakeware, foodChocolatebar, foodCaramel);
         addShapelessOreRecipe(ItemRegistry.lavendershortbreadItem, toolBakeware, dyePurple, foodDough);
         addShapelessOreRecipe(ItemRegistry.beefwellingtonItem, listAllbeefraw, foodDough, listAllmushroom, cropSpinach);
@@ -635,7 +635,7 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.vegemiteItem, toolPot, listAllsugar, cropBarley, listAllwater, cropSpiceleaf);
         addShapelessOreRecipe(ItemRegistry.honeycombchocolatebarItem, toolSaucepan, foodChocolatebar, foodHoneydrop);
         addShapelessOreRecipe(ItemRegistry.cherrycoconutchocolatebarItem, toolSaucepan, foodChocolatebar, cropCherry, foodToastedcoconut);
-        addShapelessOreRecipe(ItemRegistry.fairybreadItem, toolBakeware, Items.bread, foodButter, dyeRed, dyeGreen, dyeYellow);
+        addShapelessOreRecipe(ItemRegistry.fairybreadItem, toolBakeware, Items.BREAD, foodButter, dyeRed, dyeGreen, dyeYellow);
         addShapelessOreRecipe(ItemRegistry.lamingtonItem, toolBakeware, foodDough, foodChocolatebar, foodToastedcoconut);
         addShapelessOreRecipe(ItemRegistry.timtamItem, toolBakeware, listAllsugar, foodFlour, listAllmilk, foodChocolatebar);
         addShapelessOreRecipe(ItemRegistry.meatpieItem, toolBakeware, listAllbeefraw, foodDough, cropOnion, cropGarlic, foodBlackpepper, foodStock);
@@ -670,9 +670,9 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.chorizoItem, toolCuttingboard, listAllporkcooked, listAllspice, cropGarlic, dustSalt);
         addShapelessOreRecipe(ItemRegistry.chorizoItem, toolCuttingboard, listAllporkcooked, listAllspice, cropGarlic, itemSalt);
         addShapelessOreRecipe(ItemRegistry.coleslawItem, toolMixingbowl, cropCabbage, cropCarrot, foodMayo, foodBlackpepper);
-        addShapelessOreRecipe(ItemRegistry.energydrinkItem, toolPot, foodBubblywater, listAllsugar, Items.redstone);
+        addShapelessOreRecipe(ItemRegistry.energydrinkItem, toolPot, foodBubblywater, listAllsugar, Items.REDSTONE);
         addShapelessOreRecipe(ItemRegistry.friedonionsItem, toolPot, cropOnion, foodOliveoil);
-        addShapelessOreRecipe(ItemRegistry.meatfeastpizzaItem, toolPot, foodPizza, foodPepperoni, foodPorksausage, listAllbeefcooked, Items.cooked_chicken);
+        addShapelessOreRecipe(ItemRegistry.meatfeastpizzaItem, toolPot, foodPizza, foodPepperoni, foodPorksausage, listAllbeefcooked, Items.COOKED_CHICKEN);
         addShapelessOreRecipe(ItemRegistry.mincepieItem, toolBakeware, listAllbeefcooked, listAllfruit, listAllnut, foodDough, foodButter);
         addShapelessOreRecipe(ItemRegistry.onionhamburgerItem, toolCuttingboard, foodHamburger, foodFriedonions);
         addShapelessOreRecipe(ItemRegistry.pepperoniItem, toolCuttingboard, listAllporkcooked, listAllspice, cropBellpepper, foodSalt);
@@ -685,13 +685,13 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.porksausageItem, toolCuttingboard, listAllporkcooked, listAllspice, dustSalt);
         addShapelessOreRecipe(ItemRegistry.porksausageItem, toolCuttingboard, listAllporkcooked, listAllspice, itemSalt);
         addShapelessOreRecipe(ItemRegistry.raspberrytrifleItem, toolBakeware, cropRaspberry, listAllheavycream, foodVanilla, foodDough);
-        addShapelessOreRecipe(ItemRegistry.pumpkincheesecakeItem, Blocks.pumpkin, foodCheesecake);
-        addShapelessOreRecipe(ItemRegistry.pumpkinmuffinItem, toolBakeware, Blocks.pumpkin, foodFlour, listAllegg);
+        addShapelessOreRecipe(ItemRegistry.pumpkincheesecakeItem, Blocks.PUMPKIN, foodCheesecake);
+        addShapelessOreRecipe(ItemRegistry.pumpkinmuffinItem, toolBakeware, Blocks.PUMPKIN, foodFlour, listAllegg);
         addShapelessOreRecipe(ItemRegistry.suaderoItem, toolCuttingboard, listAllbeefcooked, foodOliveoil);
         addShapelessOreRecipe(ItemRegistry.randomtacoItem, toolCuttingboard, listAllbeefcooked, cropOnion, foodCheese, cropAvocado, listAllspice, foodLimejuice, foodTortilla);
-        addShapelessOreRecipe(ItemRegistry.strawberrymilkshakeItem, toolJuicer, listAllmilk, cropStrawberry, Items.snowball);
-        addShapelessOreRecipe(ItemRegistry.chocolatemilkshakeItem, toolJuicer, listAllmilk, foodCocoapowder, Items.snowball);
-        addShapelessOreRecipe(ItemRegistry.bananamilkshakeItem, toolJuicer, listAllmilk, cropBanana, Items.snowball);
+        addShapelessOreRecipe(ItemRegistry.strawberrymilkshakeItem, toolJuicer, listAllmilk, cropStrawberry, Items.SNOWBALL);
+        addShapelessOreRecipe(ItemRegistry.chocolatemilkshakeItem, toolJuicer, listAllmilk, foodCocoapowder, Items.SNOWBALL);
+        addShapelessOreRecipe(ItemRegistry.bananamilkshakeItem, toolJuicer, listAllmilk, cropBanana, Items.SNOWBALL);
         addShapelessOreRecipe(ItemRegistry.cornflakesItem, toolMixingbowl, listAllmilk, cropCorn);
         addShapelessOreRecipe(ItemRegistry.coleslawburgerItem, toolCuttingboard, foodHamburger, foodColeslaw);
         addShapelessOreRecipe(ItemRegistry.roastchickenItem, toolBakeware, listAllchickenraw, foodSalt, foodBlackpepper);
@@ -715,12 +715,12 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.dimsumItem, toolPot, cropRice, foodDough, cropWaterchestnut, listAllmushroom, listAllmeatraw);
         addShapelessOreRecipe(ItemRegistry.friedpecanokraItem, toolSkillet, cropOkra, cropPecan, foodOliveoil, foodBlackpepper);
         addShapelessOreRecipe(ItemRegistry.gooseberryjellyItem, toolSaucepan, cropGooseberry, listAllsugar);
-        addShapelessOreRecipe(ItemRegistry.gooseberryjellysandwichItem, toolCuttingboard, listAllnutbutter, foodGooseberryjelly, Items.bread);
-        addShapelessOreRecipe(ItemRegistry.gooseberrymilkshakeItem, toolJuicer, listAllmilk, cropGooseberry, Items.snowball);
+        addShapelessOreRecipe(ItemRegistry.gooseberryjellysandwichItem, toolCuttingboard, listAllnutbutter, foodGooseberryjelly, Items.BREAD);
+        addShapelessOreRecipe(ItemRegistry.gooseberrymilkshakeItem, toolJuicer, listAllmilk, cropGooseberry, Items.SNOWBALL);
         addShapelessOreRecipe(ItemRegistry.gooseberrypieItem, toolBakeware, cropGooseberry, listAllsugar, foodDough);
-        addShapelessOreRecipe(ItemRegistry.gooseberrysmoothieItem, toolJuicer, cropGooseberry, Items.snowball);
+        addShapelessOreRecipe(ItemRegistry.gooseberrysmoothieItem, toolJuicer, cropGooseberry, Items.SNOWBALL);
         addShapelessOreRecipe(ItemRegistry.gooseberryyogurtItem, cropGooseberry, foodPlainyogurt);
-        addShapelessOreRecipe(ItemRegistry.hamsweetpicklesandwichItem, toolCuttingboard, foodSweetpickle, Items.bread, listAllporkcooked, foodMayo);
+        addShapelessOreRecipe(ItemRegistry.hamsweetpicklesandwichItem, toolCuttingboard, foodSweetpickle, Items.BREAD, listAllporkcooked, foodMayo);
         addShapelessOreRecipe(ItemRegistry.hushpuppiesItem, toolPot, foodCornmeal, listAllegg, cropOnion, foodOliveoil);
         addShapelessOreRecipe(ItemRegistry.kimchiItem, toolPot, foodSalt, cropCabbage, cropGarlic, cropGinger, cropRadish, cropScallion, listAllspice, cropSesame);
         addShapelessOreRecipe(ItemRegistry.mochiItem, toolMortarandpestle, cropRice, listAllsugar, listAllwater);
@@ -729,7 +729,7 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.okrachipsItem, toolBakeware, cropOkra, foodSalt, cropSpiceleaf);
         addShapelessOreRecipe(ItemRegistry.okracreoleItem, toolSkillet, cropOkra, cropGarlic, cropTomato, cropBellpepper, cropOnion, listAllspice);
         addShapelessOreRecipe(ItemRegistry.pistachiobutterItem, toolJuicer, cropPistachio);
-        addShapelessOreRecipe(ItemRegistry.ploughmanslunchItem, toolCuttingboard, Items.bread, cropApple, foodCheese, foodSweetpickle, cropOnion, listAllporkcooked, foodBoiledegg);
+        addShapelessOreRecipe(ItemRegistry.ploughmanslunchItem, toolCuttingboard, Items.BREAD, cropApple, foodCheese, foodSweetpickle, cropOnion, listAllporkcooked, foodBoiledegg);
         addShapelessOreRecipe(ItemRegistry.porklomeinItem, toolPot, listAllporkraw, foodPasta, cropOnion, cropCarrot, cropCabbage, cropGarlic, foodSoysauce);
         addShapelessOreRecipe(ItemRegistry.salmonpattiesItem, toolSkillet, foodSalmonraw, foodToast, listAllegg, foodOliveoil);
         addShapelessOreRecipe(ItemRegistry.sausageItem, toolCuttingboard, listAllmeatraw, foodSalt, listAllspice);
@@ -741,19 +741,19 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.sweetpickleItem, toolPot, foodVinegar, foodSalt, cropSpiceleaf, cropCucumber, listAllsugar);
         addShapelessOreRecipe(ItemRegistry.veggiestripsItem, toolBakeware, listAllveggie, listAllveggie, listAllveggie, foodSalt, listAllspice);
         addShapelessOreRecipe(ItemRegistry.vindalooItem, toolSaucepan, listAllmeatraw, foodCurrypowder, foodButter, foodBlackpepper, cropOnion);
-        addShapelessOreRecipe(ItemRegistry.applesmoothieItem, toolJuicer, cropApple, Items.snowball);
+        addShapelessOreRecipe(ItemRegistry.applesmoothieItem, toolJuicer, cropApple, Items.SNOWBALL);
         addShapelessOreRecipe(ItemRegistry.cheeseontoastItem, toolBakeware, foodToast, foodCheese);
         addShapelessOreRecipe(ItemRegistry.chocolaterollItem, toolBakeware, foodChocolatebar, foodFlour, listAllheavycream);
         addShapelessOreRecipe(ItemRegistry.coconutcreamItem, toolPot, cropCoconut);
-        addShapelessOreRecipe(ItemRegistry.coconutsmoothieItem, toolJuicer, cropCoconut, Items.snowball);
+        addShapelessOreRecipe(ItemRegistry.coconutsmoothieItem, toolJuicer, cropCoconut, Items.SNOWBALL);
         addShapelessOreRecipe(ItemRegistry.crackerItem, toolBakeware, foodFlour, foodOliveoil, foodSalt, listAllwater);
-        addShapelessOreRecipe(ItemRegistry.cranberrysmoothieItem, toolJuicer, cropCranberry, Items.snowball);
+        addShapelessOreRecipe(ItemRegistry.cranberrysmoothieItem, toolJuicer, cropCranberry, Items.SNOWBALL);
         addShapelessOreRecipe(ItemRegistry.cranberryyogurtItem, cropCranberry, foodPlainyogurt);
         addShapelessOreRecipe(ItemRegistry.deluxechickencurryItem, toolCuttingboard, foodChickencurry, cropRice, foodNaan, foodMangochutney);
         addShapelessOreRecipe(new ItemStack(ItemRegistry.garammasalaItem, 4), toolMortarandpestle, foodBlackpepper, foodGroundcinnamon, cropSpiceleaf, foodGroundnutmeg);
-        addShapelessOreRecipe(ItemRegistry.grapesmoothieItem, toolJuicer, cropGrape, Items.snowball);
+        addShapelessOreRecipe(ItemRegistry.grapesmoothieItem, toolJuicer, cropGrape, Items.SNOWBALL);
         addShapelessOreRecipe(ItemRegistry.gravyItem, foodStock, foodFlour);
-        addShapelessOreRecipe(ItemRegistry.honeysandwichItem, toolCuttingboard, listAllnutbutter, ItemRegistry.honeyItem, Items.bread);
+        addShapelessOreRecipe(ItemRegistry.honeysandwichItem, toolCuttingboard, listAllnutbutter, ItemRegistry.honeyItem, Items.BREAD);
         addShapelessOreRecipe(ItemRegistry.jamrollItem, toolBakeware, foodChocolatebar, foodFlour, foodRaspberryjelly);
         addShapelessOreRecipe(ItemRegistry.mangochutneyItem, toolPot, cropMango, cropSpiceleaf, cropMustard, foodOliveoil);
         addShapelessOreRecipe(ItemRegistry.marzipanItem, toolMortarandpestle, ItemRegistry.honeyItem, cropAlmond);
@@ -761,11 +761,11 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.paneertikkamasalaItem, toolSaucepan, foodPaneer, foodGarammasala, foodCurrypowder, foodCoconutcream, cropOnion, cropBellpepper, cropTomato, cropGinger);
         addShapelessOreRecipe(ItemRegistry.peaandhamsoupItem, toolPot, cropPeas, listAllporkraw, cropOnion, cropCarrot, cropCelery, foodBlackpepper);
         addShapelessOreRecipe(ItemRegistry.pearjellyItem, toolSaucepan, cropPear, listAllsugar);
-        addShapelessOreRecipe(ItemRegistry.pearjellysandwichItem, toolCuttingboard, listAllnutbutter, foodPearjelly, Items.bread);
-        addShapelessOreRecipe(ItemRegistry.pearsmoothieItem, toolJuicer, cropPear, Items.snowball);
+        addShapelessOreRecipe(ItemRegistry.pearjellysandwichItem, toolCuttingboard, listAllnutbutter, foodPearjelly, Items.BREAD);
+        addShapelessOreRecipe(ItemRegistry.pearsmoothieItem, toolJuicer, cropPear, Items.SNOWBALL);
         addShapelessOreRecipe(ItemRegistry.plumjellyItem, toolSaucepan, cropPlum, listAllsugar);
-        addShapelessOreRecipe(ItemRegistry.plumjellysandwichItem, toolCuttingboard, listAllnutbutter, foodPlumjelly, Items.bread);
-        addShapelessOreRecipe(ItemRegistry.plumsmoothieItem, toolJuicer, cropPlum, Items.snowball);
+        addShapelessOreRecipe(ItemRegistry.plumjellysandwichItem, toolCuttingboard, listAllnutbutter, foodPlumjelly, Items.BREAD);
+        addShapelessOreRecipe(ItemRegistry.plumsmoothieItem, toolJuicer, cropPlum, Items.SNOWBALL);
         addShapelessOreRecipe(ItemRegistry.potatoandleeksoupItem, toolPot, cropPotato, cropLeek, foodStock, listAllheavycream, cropSpiceleaf, foodBlackpepper);
         addShapelessOreRecipe(ItemRegistry.toadintheholeItem, toolBakeware, foodYorkshirepudding, foodSausage);
         addShapelessOreRecipe(ItemRegistry.tunapotatoItem, toolCuttingboard, foodButteredpotato, cropCorn, listAllfishcooked);
@@ -776,26 +776,26 @@ public class RecipeRegistry {
         final Item marketRecipeItem;
         switch (config.marketblockrecipeItem) {
             case 1:
-                marketRecipeItem = Items.diamond;
+                marketRecipeItem = Items.DIAMOND;
                 break;
             case 2:
-                marketRecipeItem = Items.gold_ingot;
+                marketRecipeItem = Items.GOLD_INGOT;
                 break;
             case 3:
-                marketRecipeItem = Items.gold_nugget;
+                marketRecipeItem = Items.GOLD_NUGGET;
                 break;
             case 4:
-                marketRecipeItem = Items.iron_ingot;
+                marketRecipeItem = Items.IRON_INGOT;
                 break;
             case 5:
-                marketRecipeItem = Items.apple;
+                marketRecipeItem = Items.APPLE;
                 break;
             case 0:
             default:
-                marketRecipeItem = Items.emerald;
+                marketRecipeItem = Items.EMERALD;
         }
 
-        addShapedOreRecipe(new ItemStack(BlockRegistry.pamMarket, 1), "XOX", "OEO", "XOX", 'X', "plankWood", 'O', Blocks.wool, 'E', marketRecipeItem);
+        addShapedOreRecipe(new ItemStack(BlockRegistry.pamMarket, 1), "XOX", "OEO", "XOX", 'X', "plankWood", 'O', Blocks.WOOL, 'E', marketRecipeItem);
     }
 
     private static void registerOtherRecipes() {
@@ -807,7 +807,7 @@ public class RecipeRegistry {
         addShapedOreRecipe(ItemRegistry.cuttingboardItem, true, "@  ", " X ", "  O", '@', ingotIron, 'X', stickWood, 'O', plankWood);
         addShapedOreRecipe(ItemRegistry.mortarandpestleItem, true, "X@X", " X ", '@', stickWood, 'X', stone);
         addShapedOreRecipe(ItemRegistry.mixingbowlItem, true, "X@X", " X ", '@', stickWood, 'X', plankWood);
-        addShapedOreRecipe(ItemRegistry.juicerItem, true, "@ ", "X ", '@', stone, 'X', Blocks.stone_pressure_plate);
+        addShapedOreRecipe(ItemRegistry.juicerItem, true, "@ ", "X ", '@', stone, 'X', Blocks.STONE_PRESSURE_PLATE);
         //Copper Tools
         addShapedOreRecipe(ItemRegistry.potItem, true, "X@@", " @@", '@', ingotCopper, 'X', stickWood);
         addShapedOreRecipe(ItemRegistry.skilletItem, true, "@  ", " @ ", "  X", '@', ingotCopper, 'X', stickWood);
@@ -825,30 +825,30 @@ public class RecipeRegistry {
         addShapelessOreRecipe(new ItemStack(CropRegistry.getCrop(CropRegistry.COTTON), 2), cropCotton, cropCotton);
 
         //Woven Cloth Recipes
-        addShapelessOreRecipe(new ItemStack(Items.string, 2), cropCotton, cropCotton, cropCotton);
-        addShapelessOreRecipe(new ItemStack(ItemRegistry.wovencottonItem, 1), Items.string, Items.string  );
+        addShapelessOreRecipe(new ItemStack(Items.STRING, 2), cropCotton, cropCotton, cropCotton);
+        addShapelessOreRecipe(new ItemStack(ItemRegistry.wovencottonItem, 1), Items.STRING, Items.STRING  );
         addShapelessOreRecipe(new ItemStack(ItemRegistry.wovencottonItem, 3), materialCloth, materialCloth, materialCloth);
         //Woven Cloth into Wool Recipe
-        addShapelessOreRecipe(new ItemStack(Blocks.wool, 1, 0), materialCloth, materialCloth);
+        addShapelessOreRecipe(new ItemStack(Blocks.WOOL, 1, 0), materialCloth, materialCloth);
 
         //Cotton Armor Recipes
-        addShapedOreRecipe(new ItemStack(Items.leather_helmet, 1), "XXX", "X X", 'X', ItemRegistry.wovencottonItem);
-        addShapedOreRecipe(new ItemStack(Items.leather_chestplate, 1), "X X", "XXX", "XXX", 'X', ItemRegistry.wovencottonItem);
-        addShapedOreRecipe(new ItemStack(Items.leather_leggings, 1), "XXX", "X X", "X X", 'X', ItemRegistry.wovencottonItem);
-        addShapedOreRecipe(new ItemStack(Items.leather_boots, 1), "X X", "X X", 'X', ItemRegistry.wovencottonItem);
+        addShapedOreRecipe(new ItemStack(Items.LEATHER_HELMET, 1), "XXX", "X X", 'X', ItemRegistry.wovencottonItem);
+        addShapedOreRecipe(new ItemStack(Items.LEATHER_CHESTPLATE, 1), "X X", "XXX", "XXX", 'X', ItemRegistry.wovencottonItem);
+        addShapedOreRecipe(new ItemStack(Items.LEATHER_LEGGINGS, 1), "XXX", "X X", "X X", 'X', ItemRegistry.wovencottonItem);
+        addShapedOreRecipe(new ItemStack(Items.LEATHER_BOOTS, 1), "X X", "X X", 'X', ItemRegistry.wovencottonItem);
 
         addShapelessOreRecipe(CropRegistry.getSeed(CropRegistry.CANDLEBERRY), CropRegistry.getFood(CropRegistry.CANDLEBERRY));
 
         // Random Recipes
-        addShapelessOreRecipe(new ItemStack(Items.slime_ball, 1), foodJellyfishraw);
+        addShapelessOreRecipe(new ItemStack(Items.SLIME_BALL, 1), foodJellyfishraw);
 
         //Pumpkin Lanterns
-        addShapelessOreRecipe(new ItemStack(Blocks.lit_pumpkin, 1), GeneralOreRegistry.cropPumpkin, blockTorch);
+        addShapelessOreRecipe(new ItemStack(Blocks.LIT_PUMPKIN, 1), GeneralOreRegistry.cropPumpkin, blockTorch);
 
         //Logs
-        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 4, 1), new ItemStack(FruitRegistry.getLog(FruitRegistry.MAPLE)));
-        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 4, 3), new ItemStack(FruitRegistry.getLog(FruitRegistry.PAPERBARK)));
-        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.planks, 4, 3), new ItemStack(FruitRegistry.getLog(FruitRegistry.CINNAMON)));
+        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.PLANKS, 4, 1), new ItemStack(FruitRegistry.getLog(FruitRegistry.MAPLE)));
+        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.PLANKS, 4, 3), new ItemStack(FruitRegistry.getLog(FruitRegistry.PAPERBARK)));
+        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.PLANKS, 4, 3), new ItemStack(FruitRegistry.getLog(FruitRegistry.CINNAMON)));
     }
 
     private static void addShapelessOreRecipe(Block result, Object... recipe) {

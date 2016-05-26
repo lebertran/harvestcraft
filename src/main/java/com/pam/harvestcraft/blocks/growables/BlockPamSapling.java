@@ -19,7 +19,7 @@ import java.util.Random;
 public class BlockPamSapling extends BlockBush implements IGrowable {
 
     public final String name;
-    protected static final AxisAlignedBB SAPLING_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
+    private static final AxisAlignedBB SAPLING_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
     private Block fruit;
     private final SaplingType saplingType;
 
@@ -31,7 +31,7 @@ public class BlockPamSapling extends BlockBush implements IGrowable {
 
     public BlockPamSapling(String name, SaplingType saplingType) {
         super();
-        this.setStepSound(SoundType.PLANT);
+        this.setSoundType(SoundType.PLANT);
         this.setHardness(0.0F);
         this.setCreativeTab(HarvestCraft.modTab);
         this.saplingType = saplingType;
@@ -54,8 +54,8 @@ public class BlockPamSapling extends BlockBush implements IGrowable {
                 rarity = HarvestCraft.config.temperatefruittreeRarity;
         }
 
-        logState = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, planks);
-        leavesState = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, planks)
+        logState = Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, planks);
+        leavesState = Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, planks)
                 .withProperty(BlockLeaves.CHECK_DECAY, false);
     }
 
@@ -76,11 +76,11 @@ public class BlockPamSapling extends BlockBush implements IGrowable {
     }
 
     @Override
-    public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighborBlock) {
-        this.validatePosition(world, pos, state);
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn) {
+        validatePosition(worldIn, pos, state);
     }
 
-    public void validatePosition(World world, BlockPos pos, IBlockState state) {
+    private void validatePosition(World world, BlockPos pos, IBlockState state) {
         if (!this.canPlaceBlockAt(world, pos)) {
             this.dropBlockAsItem(world, pos, state, 0);
 
@@ -98,8 +98,8 @@ public class BlockPamSapling extends BlockBush implements IGrowable {
         return false;
     }
 
-    public boolean isSuitableSoilBlock(Block soilBlock) {
-        return soilBlock == Blocks.grass || soilBlock == Blocks.dirt || soilBlock == Blocks.farmland;
+    private boolean isSuitableSoilBlock(Block soilBlock) {
+        return soilBlock == Blocks.GRASS || soilBlock == Blocks.DIRT || soilBlock == Blocks.FARMLAND;
     }
 
     @Override
@@ -113,11 +113,11 @@ public class BlockPamSapling extends BlockBush implements IGrowable {
         }
     }
 
-    public void grow(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-        this.generateTree(worldIn, pos, state, rand);
+    private void grow(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+        generateTree(worldIn, pos, state, rand);
     }
 
-    public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+    private void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand) {
         if (!TerrainGen.saplingGrowTree(worldIn, rand, pos)) {
             return;
         }

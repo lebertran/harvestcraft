@@ -5,7 +5,7 @@ import com.pam.harvestcraft.tileentities.TileEntityApiary;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
@@ -42,17 +42,17 @@ public class ContainerApiary extends Container {
     public void detectAndSendChanges() {
         super.detectAndSendChanges();
 
-        for (ICrafting crafter : crafters) {
+        for (IContainerListener listener : listeners) {
             if (lastProduceTime != apiary.produceTime) {
-                crafter.sendProgressBarUpdate(this, 1, apiary.produceTime);
+                listener.sendProgressBarUpdate(this, 1, apiary.produceTime);
             }
 
             if (lastRunTime != apiary.runTime) {
-                crafter.sendProgressBarUpdate(this, 2, apiary.runTime);
+                listener.sendProgressBarUpdate(this, 2, apiary.runTime);
             }
 
             if (lastBeeRunTime != apiary.currentBeeRunTime) {
-                crafter.sendProgressBarUpdate(this, 3, apiary.currentBeeRunTime);
+                listener.sendProgressBarUpdate(this, 3, apiary.currentBeeRunTime);
             }
         }
 
@@ -86,7 +86,7 @@ public class ContainerApiary extends Container {
         ItemStack itemStack = null;
         final Slot slot = inventorySlots.get(index);
 
-        if (slot != null && slot.getHasStack()) {
+        if (slot != null && slot.getStack() != null) {
             final ItemStack slotStack = slot.getStack();
             itemStack = slotStack.copy();
 

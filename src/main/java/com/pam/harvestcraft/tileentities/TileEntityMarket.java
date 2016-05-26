@@ -9,7 +9,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 
 public class TileEntityMarket extends TileEntity implements IInventory {
-    public int stockNum = 0;
+    private int stockNum = 0;
     private ItemStack paySlot = null;
 
     @Override
@@ -103,14 +103,14 @@ public class TileEntityMarket extends TileEntity implements IInventory {
         this.markDirty();
     }
 
-    public void takeCurrencyFromSlot(int price) {
+    void takeCurrencyFromSlot(int price) {
         if (this.paySlot != null) {
             this.paySlot.stackSize -= price;
         }
         this.markDirty();
     }
 
-    public void clearInventory() {
+    void clearInventory() {
         this.paySlot = null;
     }
 
@@ -120,10 +120,14 @@ public class TileEntityMarket extends TileEntity implements IInventory {
         this.stockNum = par1NBTTagCompound.getInteger("StockNum");
     }
 
+
+
     @Override
-    public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
-        super.writeToNBT(par1NBTTagCompound);
-        par1NBTTagCompound.setInteger("StockNum", stockNum);
+    public NBTTagCompound writeToNBT(NBTTagCompound tagCompound) {
+        super.writeToNBT(tagCompound);
+        tagCompound.setInteger("StockNum", stockNum);
+
+        return tagCompound;
     }
 
     public int getBrowsingInfo() {

@@ -24,15 +24,15 @@ import java.util.Random;
 
 public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, PamCropGrowable {
 
-    public static final int MATURE_AGE = 3;
+    private static final int MATURE_AGE = 3;
 
-    public static final PropertyInteger AGE = PropertyInteger.create("age", 0, MATURE_AGE);
+    private static final PropertyInteger AGE = PropertyInteger.create("age", 0, MATURE_AGE);
 
     private static final AxisAlignedBB[] CROPS_AABB = new AxisAlignedBB[]{new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.25D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.375D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.625D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.75D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.875D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D)};
 
-    public final String registerName;
+    private final String registerName;
     public final String name;
-    public String BASE_STAGE_ID = null;
+    private String BASE_STAGE_ID = null;
 
     private Item seed;
     private Item food;
@@ -51,7 +51,7 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
         this.registerName = registerName;
         this.name = name;
 
-        this.setDefaultState(blockState.getBaseState().withProperty(getAge(), 0));
+        this.setDefaultState(blockState.getBaseState().withProperty(getAgeProperty(), 0));
     }
 
     public String getStageId(int stage) {
@@ -65,15 +65,15 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
         // CROPS_AABB is based on an age range from 0 to 7. Times two should fix that issue.
-        return CROPS_AABB[state.getValue(getAge()) * 2];
+        return CROPS_AABB[state.getValue(AGE) * 2];
     }
 
-    public boolean isSuitableSoilBlock(Block soilBlock) {
-        return soilBlock == Blocks.farmland;
+    private boolean isSuitableSoilBlock(Block soilBlock) {
+        return soilBlock == Blocks.FARMLAND;
     }
 
     @Override
-    public PropertyInteger getAge() {
+    public PropertyInteger getAgeProperty() {
         return AGE;
     }
 
@@ -83,7 +83,7 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
     }
 
     public boolean isMature(IBlockState state) {
-        return state.getValue(getAge()) >= MATURE_AGE;
+        return state.getValue(getAgeProperty()) >= MATURE_AGE;
     }
 
     @Override
@@ -118,7 +118,7 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        return getDefaultState().withProperty(getAge(), meta);
+        return getDefaultState().withProperty(getAgeProperty(), meta);
     }
 
     @Override
@@ -148,14 +148,14 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
     }
 
     public int getMetaFromState(IBlockState state) {
-        return state.getValue(getAge());
+        return state.getValue(getAgeProperty());
     }
 
     @Override
     public boolean canPlaceBlockAt(World world, BlockPos pos) {
         Block soilBlock = world.getBlockState(pos.down()).getBlock();
 
-        return this.isSuitableSoilBlock(soilBlock);
+        return isSuitableSoilBlock(soilBlock);
     }
 
     @Override
@@ -182,7 +182,7 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
         return new BlockStateContainer(this, AGE);
     }
 
-    protected int getRandomInt(World world) {
+    private int getRandomInt(World world) {
         return MathHelper.getRandomIntegerInRange(world.rand, 1, 3);
     }
 
@@ -240,36 +240,33 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
         return ret;
     }
 
-    /**
-     * Equivalent methods
-     */
     @Override
-    public boolean func_185514_i(IBlockState state) {
+    protected boolean canSustainBush(IBlockState state) {
         return isSuitableSoilBlock(state.getBlock());
     }
 
     @Override
-    public int func_185526_g() {
+    public int getMaxAge() {
         return getMatureAge();
     }
 
     @Override
-    public int func_185527_x(IBlockState state) {
+    protected int getAge(IBlockState state) {
         return getMetaFromState(state);
     }
 
     @Override
-    public IBlockState func_185528_e(int p_185528_1_) {
-        return getStateFromMeta(p_185528_1_);
+    public IBlockState withAge(int age) {
+        return getDefaultState().withProperty(AGE, age);
     }
 
     @Override
-    public boolean func_185525_y(IBlockState state) {
-        return isMature(state);
+    public boolean isMaxAge(IBlockState state) {
+        return getAge(state) >= getMaxAge();
     }
 
     @Override
-    public int func_185529_b(World worldIn) {
-        return getRandomInt(worldIn);
+    public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state) {
+        return getAge(state) < getMaxAge();
     }
 }
