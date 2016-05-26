@@ -2,6 +2,7 @@ package com.pam.harvestcraft.item;
 
 import com.pam.harvestcraft.HarvestCraft;
 import com.pam.harvestcraft.item.items.ItemPamBee;
+import com.pam.harvestcraft.item.items.ItemPamFood;
 import com.pam.harvestcraft.item.items.ItemPamPotionFood;
 import com.pam.harvestcraft.item.items.ItemPamTool;
 import net.minecraft.item.Item;
@@ -1288,7 +1289,7 @@ public final class ItemRegistry {
     }
 
     private static Item registerItemFood(String registryName, int amount, float saturation) {
-        final Item item = new ItemFood(amount, saturation, false);
+        final Item item = new ItemPamFood(amount, saturation);
 
         return registerItem(item, registryName);
     }

@@ -47,9 +47,11 @@ public class ConfigHandler {
 
     public int cropfoodRestore;
     public float cropsaturationRestore;
+
     public float snacksaturation;
     public float mealsaturation;
     public float meatymealsaturation;
+
     public int freshmilkfrombucket;
     public int freshwaterfrombucket;
     public boolean enablesaltfromwaterbucketrecipe;

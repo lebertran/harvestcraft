@@ -12,6 +12,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.FMLLog;
 
 import java.util.List;
 
@@ -23,12 +24,6 @@ public class WailaVanillaHandler implements IWailaDataProvider {
 
     @Override
     public List<String> getWailaHead(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
-        if (accessor.getBlock() instanceof BlockBeetroot) {
-            final String newtip = fixBeetroot(accessor);
-            currenttip.clear();
-            currenttip.add(newtip);
-        }
-
         return currenttip;
     }
 
@@ -40,7 +35,7 @@ public class WailaVanillaHandler implements IWailaDataProvider {
         if (!(accessor.getBlock() instanceof BlockBeetroot)) return "";
         final BlockBeetroot blockBeetroot = (BlockBeetroot) accessor.getBlock();
 
-        final boolean mature = blockBeetroot.isMaxAge(accessor.getBlockState());
+        final boolean mature = accessor.getMetadata() >= blockBeetroot.getMaxAge();
 
         if (mature) {
             return String.format("%s : %s", LangUtil.translateG("hud.msg.growth"), LangUtil.translateG("hud.msg.mature"));
@@ -54,7 +49,17 @@ public class WailaVanillaHandler implements IWailaDataProvider {
 
     @Override
     public List<String> getWailaBody(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
-        return null;
+        FMLLog.info("beetroot 1");
+
+        if (accessor.getBlock() instanceof BlockBeetroot) {
+            FMLLog.info("beetroot 2");
+
+            final String newtip = fixBeetroot(accessor);
+            currenttip.clear();
+            currenttip.add(newtip);
+        }
+
+        return currenttip;
     }
 
     @Override
@@ -73,6 +78,6 @@ public class WailaVanillaHandler implements IWailaDataProvider {
 
     @SuppressWarnings("unused")
     public static void callbackRegister(IWailaRegistrar registrar) {
-        registrar.registerBodyProvider(new WailaPamHandler(), BlockBeetroot.class);
+        registrar.registerBodyProvider(new WailaVanillaHandler(), BlockBeetroot.class);
     }
 }

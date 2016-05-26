@@ -7,6 +7,7 @@ import com.pam.harvestcraft.blocks.growables.BlockPamSapling;
 import com.pam.harvestcraft.blocks.growables.BlockPamSapling.SaplingType;
 import com.pam.harvestcraft.blocks.growables.ItemBlockCropFruit;
 import com.pam.harvestcraft.item.ItemRegistry;
+import com.pam.harvestcraft.item.items.ItemPamFood;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -207,7 +208,7 @@ public class FruitRegistry {
                 foodItems.put(fruitName, Items.APPLE);
                 break;
             default:
-                final Item foodItem = new ItemFood(HarvestCraft.config.cropfoodRestore, HarvestCraft.config.snacksaturation, false);
+                final Item foodItem = new ItemPamFood(HarvestCraft.config.cropfoodRestore, HarvestCraft.config.snacksaturation);
                 foodItems.put(fruitName, foodItem);
                 final Item fruit = ItemRegistry.registerItem(foodItem, getItemName(fruitName));
 
@@ -258,7 +259,7 @@ public class FruitRegistry {
                 foodItems.put(fruitName, Items.PAPER);
                 break;
             default:
-                final Item item = new ItemFood(HarvestCraft.config.cropfoodRestore, HarvestCraft.config.snacksaturation, false);
+                final Item item = new ItemPamFood(HarvestCraft.config.cropfoodRestore, HarvestCraft.config.snacksaturation);
                 foodItems.put(fruitName, item);
                 final Item fruit = ItemRegistry.registerItem(item, getItemName(fruitName));
 

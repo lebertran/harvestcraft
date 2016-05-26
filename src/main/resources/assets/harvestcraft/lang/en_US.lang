@@ -33,6 +33,10 @@ tile.windygarden.name=Windy Garden
 tile.shadedgarden.name=Shaded Garden
 tile.soggygarden.name=Soggy Garden
 
+item.desc.snack=Snack
+item.desc.lightmeal=Light meal
+item.desc.largemeal=Large meal
+item.desc.potionspeed=Speed (0:03)
 
 harvestcraft.tile.pamAlmond.name=Almond
 harvestcraft.tile.pamApple.name=Apple
