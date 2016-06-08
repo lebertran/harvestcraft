@@ -11,6 +11,7 @@ import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.FMLLog;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -31,7 +32,8 @@ public class ItemModels {
     private static void defineItemModels() {
 
         for (BlockBaseGarden garden : BlockRegistry.gardens.values()) {
-            registerItemModels(getItem(garden), new ItemModelList("gardens/").add(0, garden.getName()));
+            registerItemModels(getItem(garden), new ItemModelList("gardens/")
+                    .add(0, garden.getName()));
         }
 
         for (BlockPamCrop crop : CropRegistry.getCrops().values()) {

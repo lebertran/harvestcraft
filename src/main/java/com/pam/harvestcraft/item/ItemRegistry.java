@@ -6,16 +6,19 @@ import com.pam.harvestcraft.item.items.ItemPamFood;
 import com.pam.harvestcraft.item.items.ItemPamPotionFood;
 import com.pam.harvestcraft.item.items.ItemPamTool;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemFood;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import java.util.HashMap;
+import java.util.HashSet;
 
 import static com.pam.harvestcraft.HarvestCraft.config;
 
 public final class ItemRegistry {
     public static final HashMap<String, Item> items = new HashMap<>();
+
+    public static final HashSet<Item> allFishRaw = new HashSet<>();
+    public static final HashSet<Item> allFood = new HashSet<>();
+    public static final HashSet<Item> allJuice = new HashSet<>();
 
     // Items
     public static Item cuttingboardItem;
@@ -55,15 +58,12 @@ public final class ItemRegistry {
     public static Item icecreamItem;
     public static Item grilledcheeseItem;
     public static Item applesauceItem;
-    public static Item applejuiceItem;
     public static Item applepieItem;
     public static Item caramelappleItem;
     public static Item pumpkinbreadItem;
     public static Item roastedpumpkinseedsItem;
     public static Item pumpkinsoupItem;
-    public static Item melonjuiceItem;
     public static Item melonsmoothieItem;
-    public static Item carrotjuiceItem;
     public static Item carrotcakeItem;
     public static Item carrotsoupItem;
     public static Item glazedcarrotsItem;
@@ -134,13 +134,11 @@ public final class ItemRegistry {
     public static Item strawberrysmoothieItem;
     public static Item strawberrypieItem;
     public static Item strawberrysaladItem;
-    public static Item strawberryjuiceItem;
     public static Item chocolatestrawberryItem;
     public static Item peanutbutterItem;
     public static Item trailmixItem;
     public static Item pbandjItem;
     public static Item peanutbuttercookiesItem;
-    public static Item grapejuiceItem;
     public static Item vinegarItem;
     public static Item grapejellyItem;
     public static Item grapesaladItem;
@@ -179,10 +177,8 @@ public final class ItemRegistry {
     public static Item blueberrysmoothieItem;
     public static Item blueberrypieItem;
     public static Item blueberrymuffinItem;
-    public static Item blueberryjuiceItem;
     public static Item pancakesItem;
     public static Item blueberrypancakesItem;
-    public static Item cherryjuiceItem;
     public static Item cherrypieItem;
     public static Item chocolatecherryItem;
     public static Item cherrysmoothieItem;
@@ -238,10 +234,8 @@ public final class ItemRegistry {
     public static Item walnutraisinbreadItem;
     public static Item candiedwalnutsItem;
     public static Item brownieItem;
-    public static Item papayajuiceItem;
     public static Item papayasmoothieItem;
     public static Item papayayogurtItem;
-    public static Item starfruitjuiceItem;
     public static Item starfruitsmoothieItem;
     public static Item starfruityogurtItem;
     public static Item guacamoleItem;
@@ -259,22 +253,17 @@ public final class ItemRegistry {
     public static Item chickencurryItem;
     public static Item coconutshrimpItem;
     public static Item coconutyogurtItem;
-    public static Item orangejuiceItem;
     public static Item orangechickenItem;
     public static Item orangesmoothieItem;
     public static Item orangeyogurtItem;
-    public static Item peachjuiceItem;
     public static Item peachcobblerItem;
     public static Item peachsmoothieItem;
     public static Item peachyogurtItem;
-    public static Item limejuiceItem;
     public static Item keylimepieItem;
     public static Item limesmoothieItem;
     public static Item limeyogurtItem;
-    public static Item mangojuiceItem;
     public static Item mangosmoothieItem;
     public static Item mangoyogurtItem;
-    public static Item pomegranatejuiceItem;
     public static Item pomegranatesmoothieItem;
     public static Item pomegranateyogurtItem;
     public static Item vanillayogurtItem;
@@ -304,19 +293,16 @@ public final class ItemRegistry {
     public static Item strawberryyogurtItem;
     public static Item grapeyogurtItem;
     public static Item chocolateyogurtItem;
-    public static Item blackberryjuiceItem;
     public static Item blackberrycobblerItem;
     public static Item blackberrysmoothieItem;
     public static Item blackberryyogurtItem;
     public static Item chocolatemilkItem;
     public static Item pumpkinyogurtItem;
-    public static Item raspberryjuiceItem;
     public static Item raspberrypieItem;
     public static Item raspberrysmoothieItem;
     public static Item raspberryyogurtItem;
     public static Item cinnamonsugardonutItem;
     public static Item melonyogurtItem;
-    public static Item kiwijuiceItem;
     public static Item kiwismoothieItem;
     public static Item kiwiyogurtItem;
     public static Item plainyogurtItem;
@@ -324,11 +310,9 @@ public final class ItemRegistry {
     public static Item saltedsunflowerseedsItem;
     public static Item sunflowerwheatrollsItem;
     public static Item sunflowerbroccolisaladItem;
-    public static Item cranberryjuiceItem;
     public static Item cranberrysauceItem;
     public static Item cranberrybarItem;
     public static Item peppermintItem;
-    public static Item cactusfruitjuiceItem;
     public static Item blackpepperItem;
     public static Item groundcinnamonItem;
     public static Item groundnutmegItem;
@@ -401,8 +385,6 @@ public final class ItemRegistry {
     public static Item honeylemonlambItem;
     public static Item pumpkinoatsconesItem;
     public static Item beefjerkyItem;
-    public static Item plumjuiceItem;
-    public static Item pearjuiceItem;
     public static Item ovenroastedcauliflowerItem;
     public static Item leekbaconsoupItem;
     public static Item herbbutterparsnipsItem;
@@ -414,7 +396,6 @@ public final class ItemRegistry {
     public static Item roastedchestnutItem;
     public static Item sweetpotatosouffleItem;
     public static Item cashewchickenItem;
-    public static Item apricotjuiceItem;
     public static Item apricotyogurtItem;
     public static Item apricotglazedporkItem;
     public static Item apricotjellyItem;
@@ -425,8 +406,6 @@ public final class ItemRegistry {
     public static Item figjellysandwichItem;
     public static Item figsmoothieItem;
     public static Item figyogurtItem;
-    public static Item figjuiceItem;
-    public static Item grapefruitjuiceItem;
     public static Item grapefruitjellyItem;
     public static Item grapefruitjellysandwichItem;
     public static Item grapefruitsmoothieItem;
@@ -435,7 +414,6 @@ public final class ItemRegistry {
     public static Item citrussaladItem;
     public static Item pecanpieItem;
     public static Item pralinesItem;
-    public static Item persimmonjuiceItem;
     public static Item persimmonyogurtItem;
     public static Item persimmonsmoothieItem;
     public static Item persimmonjellyItem;
@@ -639,11 +617,39 @@ public final class ItemRegistry {
     public static Item grainbaitItem;
     public static Item veggiebaitItem;
 
+    public static Item applejuiceItem;
+    public static Item melonjuiceItem;
+    public static Item carrotjuiceItem;
+    public static Item strawberryjuiceItem;
+    public static Item grapejuiceItem;
+    public static Item blueberryjuiceItem;
+    public static Item cherryjuiceItem;
+    public static Item papayajuiceItem;
+    public static Item starfruitjuiceItem;
+    public static Item orangejuiceItem;
+    public static Item peachjuiceItem;
+    public static Item limejuiceItem;
+    public static Item mangojuiceItem;
+    public static Item pomegranatejuiceItem;
+    public static Item blackberryjuiceItem;
+    public static Item raspberryjuiceItem;
+    public static Item kiwijuiceItem;
+    public static Item cranberryjuiceItem;
+    public static Item cactusfruitjuiceItem;
+    public static Item plumjuiceItem;
+    public static Item pearjuiceItem;
+    public static Item apricotjuiceItem;
+    public static Item figjuiceItem;
+    public static Item grapefruitjuiceItem;
+    public static Item persimmonjuiceItem;
+
+
     public static boolean initialized = false;
 
     public static void registerItems() {
         registerFoodItems();
         registerBeesItems();
+        registerTools();
 
         initialized = true;
     }
@@ -652,6 +658,7 @@ public final class ItemRegistry {
         queenbeeItem = registerItem(new ItemPamBee(), "queenbeeItem");
         grubItem = registerGenericItem("grubItem");
         honeycombItem = registerGenericItem("honeycombItem");
+        honeyItem = registerItemFood("honeyItem", 4, 0.6F);
         waxcombItem = registerGenericItem("waxcombItem");
         royaljellyItem = registerGenericItem("royaljellyItem");
 
@@ -662,18 +669,9 @@ public final class ItemRegistry {
     }
 
     private static void registerFoodItems() {
-        cuttingboardItem = registerItemTool("cuttingboardItem");
-        potItem = registerItemTool("potItem");
-        skilletItem = registerItemTool("skilletItem");
-        saucepanItem = registerItemTool("saucepanItem");
-        bakewareItem = registerItemTool("bakewareItem");
-        mortarandpestleItem = registerItemTool("mortarandpestleItem");
-        mixingbowlItem = registerItemTool("mixingbowlItem");
-        juicerItem = registerItemTool("juicerItem");
         ediblerootItem = registerItemFood("ediblerootItem", config.cropfoodRestore, config.cropsaturationRestore);
         sunflowerseedsItem = registerItemFood("sunflowerseedsItem", config.cropfoodRestore, config.cropsaturationRestore);
 
-        honeyItem = registerItemFood("honeyItem", 4, 0.6F);
         calamarirawItem = registerItemFood("calamarirawItem", 2, config.snacksaturation);
         calamaricookedItem = registerItemFood("calamaricookedItem", 5, config.mealsaturation);
 
@@ -689,7 +687,6 @@ public final class ItemRegistry {
         cheeseItem = registerItemFood("cheeseItem", 2, config.mealsaturation);
         icecreamItem = registerItemFood("icecreamItem", 8, config.mealsaturation);
         grilledcheeseItem = registerItemFood("grilledcheeseItem", 9, config.mealsaturation);
-        applejuiceItem = registerPotionFood("applejuiceItem", 5, config.mealsaturation);
         applesauceItem = registerItemFood("applesauceItem", 6, config.mealsaturation);
         pumpkinbreadItem = registerItemFood("pumpkinbreadItem", 8, config.mealsaturation);
         caramelappleItem = registerItemFood("caramelappleItem", 7, config.mealsaturation);
@@ -714,10 +711,10 @@ public final class ItemRegistry {
         heavycreamItem = registerGenericItem("heavycreamItem");
         butterItem = registerGenericItem("butterItem");
 
+        registerJuices();
+
         pumpkinsoupItem = registerItemFood("pumpkinsoupItem", 8, config.meatymealsaturation);
-        melonjuiceItem = registerPotionFood("melonjuiceItem", 3, config.mealsaturation);
         melonsmoothieItem = registerPotionFood("melonsmoothieItem", 5, config.mealsaturation);
-        carrotjuiceItem = registerPotionFood("carrotjuiceItem", 5, config.mealsaturation);
         carrotcakeItem = registerItemFood("carrotcakeItem", 8, config.mealsaturation);
         carrotsoupItem = registerItemFood("carrotsoupItem", 8, config.meatymealsaturation);
         glazedcarrotsItem = registerItemFood("glazedcarrotsItem", 7, config.mealsaturation);
@@ -788,13 +785,11 @@ public final class ItemRegistry {
         strawberrysmoothieItem = registerItemFood("strawberrysmoothieItem", 6, config.mealsaturation);
         strawberrypieItem = registerItemFood("strawberrypieItem", 8, config.mealsaturation);
         strawberrysaladItem = registerItemFood("strawberrysaladItem", 8, config.mealsaturation);
-        strawberryjuiceItem = registerPotionFood("strawberryjuiceItem", 5, config.mealsaturation);
         chocolatestrawberryItem = registerItemFood("chocolatestrawberryItem", 6, config.mealsaturation);
         peanutbutterItem = registerItemFood("peanutbutterItem", 5, config.mealsaturation);
         trailmixItem = registerItemFood("trailmixItem", 10, config.mealsaturation);
         pbandjItem = registerItemFood("pbandjItem", 10, config.mealsaturation);
         peanutbuttercookiesItem = registerItemFood("peanutbuttercookiesItem", 9, config.snacksaturation);
-        grapejuiceItem = registerPotionFood("grapejuiceItem", 5, config.mealsaturation);
         vinegarItem = registerGenericItem("vinegarItem");
         grapejellyItem = registerItemFood("grapejellyItem", 5, config.mealsaturation);
         grapesaladItem = registerItemFood("grapesaladItem", 8, config.mealsaturation);
@@ -833,10 +828,8 @@ public final class ItemRegistry {
         blueberrysmoothieItem = registerPotionFood("blueberrysmoothieItem", 6, config.mealsaturation);
         blueberrypieItem = registerItemFood("blueberrypieItem", 8, config.mealsaturation);
         blueberrymuffinItem = registerItemFood("blueberrymuffinItem", 8, config.mealsaturation);
-        blueberryjuiceItem = registerPotionFood("blueberryjuiceItem", 5, config.mealsaturation);
         pancakesItem = registerItemFood("pancakesItem", 6, config.mealsaturation);
         blueberrypancakesItem = registerItemFood("blueberrypancakesItem", 8, config.mealsaturation);
-        cherryjuiceItem = registerPotionFood("cherryjuiceItem", 5, config.mealsaturation);
         cherrypieItem = registerItemFood("cherrypieItem", 8, config.mealsaturation);
         chocolatecherryItem = registerItemFood("chocolatecherryItem", 8, config.snacksaturation);
         cherrysmoothieItem = registerPotionFood("cherrysmoothieItem", 6, config.mealsaturation);
@@ -892,10 +885,8 @@ public final class ItemRegistry {
         walnutraisinbreadItem = registerItemFood("walnutraisinbreadItem", 10, config.mealsaturation);
         candiedwalnutsItem = registerItemFood("candiedwalnutsItem", 8, config.mealsaturation);
         brownieItem = registerItemFood("brownieItem", 10, config.snacksaturation);
-        papayajuiceItem = registerPotionFood("papayajuiceItem", 5, config.mealsaturation);
         papayasmoothieItem = registerPotionFood("papayasmoothieItem", 6, config.mealsaturation);
         papayayogurtItem = registerItemFood("papayayogurtItem", 8, config.mealsaturation);
-        starfruitjuiceItem = registerPotionFood("starfruitjuiceItem", 5, config.mealsaturation);
         starfruitsmoothieItem = registerPotionFood("starfruitsmoothieItem", 6, config.mealsaturation);
         starfruityogurtItem = registerItemFood("starfruityogurtItem", 8, config.mealsaturation);
         guacamoleItem = registerItemFood("guacamoleItem", 10, config.mealsaturation);
@@ -913,22 +904,17 @@ public final class ItemRegistry {
         chickencurryItem = registerItemFood("chickencurryItem", 14, config.meatymealsaturation);
         coconutshrimpItem = registerItemFood("coconutshrimpItem", 10, config.meatymealsaturation);
         coconutyogurtItem = registerItemFood("coconutyogurtItem", 8, config.mealsaturation);
-        orangejuiceItem = registerPotionFood("orangejuiceItem", 5, config.mealsaturation);
         orangechickenItem = registerItemFood("orangechickenItem", 12, config.meatymealsaturation);
         orangesmoothieItem = registerPotionFood("orangesmoothieItem", 6, config.mealsaturation);
         orangeyogurtItem = registerItemFood("orangeyogurtItem", 8, config.mealsaturation);
-        peachjuiceItem = registerPotionFood("peachjuiceItem", 5, config.mealsaturation);
         peachcobblerItem = registerItemFood("peachcobblerItem", 8, config.mealsaturation);
         peachsmoothieItem = registerItemFood("peachsmoothieItem", 6, config.mealsaturation);
         peachyogurtItem = registerItemFood("peachyogurtItem", 8, config.mealsaturation);
-        limejuiceItem = registerPotionFood("limejuiceItem", 5, config.mealsaturation);
         keylimepieItem = registerItemFood("keylimepieItem", 6, config.mealsaturation);
         limesmoothieItem = registerPotionFood("limesmoothieItem", 9, config.mealsaturation);
         limeyogurtItem = registerItemFood("limeyogurtItem", 8, config.mealsaturation);
-        mangojuiceItem = registerPotionFood("mangojuiceItem", 5, config.mealsaturation);
         mangosmoothieItem = registerPotionFood("mangosmoothieItem", 6, config.mealsaturation);
         mangoyogurtItem = registerItemFood("mangoyogurtItem", 8, config.mealsaturation);
-        pomegranatejuiceItem = registerPotionFood("pomegranatejuiceItem", 5, config.mealsaturation);
         pomegranatesmoothieItem = registerPotionFood("pomegranatesmoothieItem", 6, config.mealsaturation);
         pomegranateyogurtItem = registerItemFood("pomegranateyogurtItem", 8, config.mealsaturation);
         vanillayogurtItem = registerItemFood("vanillayogurtItem", 8, config.mealsaturation);
@@ -958,19 +944,16 @@ public final class ItemRegistry {
         strawberryyogurtItem = registerItemFood("strawberryyogurtItem", 8, config.mealsaturation);
         grapeyogurtItem = registerItemFood("grapeyogurtItem", 8, config.mealsaturation);
         chocolateyogurtItem = registerItemFood("chocolateyogurtItem", 8, config.mealsaturation);
-        blackberryjuiceItem = registerPotionFood("blackberryjuiceItem", 5, config.mealsaturation);
         blackberrycobblerItem = registerItemFood("blackberrycobblerItem", 8, config.mealsaturation);
         blackberrysmoothieItem = registerPotionFood("blackberrysmoothieItem", 6, config.mealsaturation);
         blackberryyogurtItem = registerItemFood("blackberryyogurtItem", 8, config.mealsaturation);
         chocolatemilkItem = registerPotionFood("chocolatemilkItem", 6, config.mealsaturation);
         pumpkinyogurtItem = registerItemFood("pumpkinyogurtItem", 8, config.mealsaturation);
-        raspberryjuiceItem = registerPotionFood("raspberryjuiceItem", 5, config.mealsaturation);
         raspberrypieItem = registerItemFood("raspberrypieItem", 8, config.mealsaturation);
         raspberrysmoothieItem = registerPotionFood("raspberrysmoothieItem", 6, config.mealsaturation);
         raspberryyogurtItem = registerItemFood("raspberryyogurtItem", 8, config.mealsaturation);
         cinnamonsugardonutItem = registerItemFood("cinnamonsugardonutItem", 8, config.snacksaturation);
         melonyogurtItem = registerItemFood("melonyogurtItem", 6, config.mealsaturation);
-        kiwijuiceItem = registerPotionFood("kiwijuiceItem", 5, config.mealsaturation);
         kiwismoothieItem = registerPotionFood("kiwismoothieItem", 6, config.mealsaturation);
         kiwiyogurtItem = registerItemFood("kiwiyogurtItem", 8, config.mealsaturation);
         plainyogurtItem = registerItemFood("plainyogurtItem", 4, config.mealsaturation);
@@ -978,11 +961,9 @@ public final class ItemRegistry {
         saltedsunflowerseedsItem = registerItemFood("saltedsunflowerseedsItem", 6, config.mealsaturation);
         sunflowerwheatrollsItem = registerItemFood("sunflowerwheatrollsItem", 10, config.mealsaturation);
         sunflowerbroccolisaladItem = registerItemFood("sunflowerbroccolisaladItem", 13, config.mealsaturation);
-        cranberryjuiceItem = registerPotionFood("cranberryjuiceItem", 5, config.mealsaturation);
         cranberrysauceItem = registerItemFood("cranberrysauceItem", 6, config.mealsaturation);
         cranberrybarItem = registerItemFood("cranberrybarItem", 8, config.mealsaturation);
         peppermintItem = registerItemFood("peppermintItem", 5, config.snacksaturation);
-        cactusfruitjuiceItem = registerPotionFood("cactusfruitjuiceItem", 5, config.mealsaturation);
         blackpepperItem = registerGenericItem("blackpepperItem");
         groundcinnamonItem = registerGenericItem("groundcinnamonItem");
         groundnutmegItem = registerGenericItem("groundnutmegItem");
@@ -1055,8 +1036,6 @@ public final class ItemRegistry {
         honeylemonlambItem = registerItemFood("honeylemonlambItem", 8, config.meatymealsaturation);
         pumpkinoatsconesItem = registerItemFood("pumpkinoatsconesItem", 6, config.mealsaturation);
         beefjerkyItem = registerItemFood("beefjerkyItem", 5, config.meatymealsaturation);
-        plumjuiceItem = registerPotionFood("plumjuiceItem", 5, config.mealsaturation);
-        pearjuiceItem = registerPotionFood("pearjuiceItem", 5, config.mealsaturation);
         ovenroastedcauliflowerItem = registerItemFood("ovenroastedcauliflowerItem", 10, config.mealsaturation);
         leekbaconsoupItem = registerItemFood("leekbaconsoupItem", 8, config.meatymealsaturation);
         herbbutterparsnipsItem = registerItemFood("herbbutterparsnipsItem", 7, config.mealsaturation);
@@ -1068,7 +1047,6 @@ public final class ItemRegistry {
         roastedchestnutItem = registerItemFood("roastedchestnutItem", 4, config.snacksaturation);
         sweetpotatosouffleItem = registerItemFood("sweetpotatosouffleItem", 6, config.mealsaturation);
         cashewchickenItem = registerItemFood("cashewchickenItem", 6, config.mealsaturation);
-        apricotjuiceItem = registerPotionFood("apricotjuiceItem", 5, config.mealsaturation);
         apricotyogurtItem = registerItemFood("apricotyogurtItem", 6, config.mealsaturation);
         apricotglazedporkItem = registerItemFood("apricotglazedporkItem", 6, config.meatymealsaturation);
         apricotjellyItem = registerItemFood("apricotjellyItem", 5, config.mealsaturation);
@@ -1079,8 +1057,6 @@ public final class ItemRegistry {
         figjellysandwichItem = registerItemFood("figjellysandwichItem", 10, config.mealsaturation);
         figsmoothieItem = registerPotionFood("figsmoothieItem", 6, config.mealsaturation);
         figyogurtItem = registerItemFood("figyogurtItem", 8, config.mealsaturation);
-        figjuiceItem = registerPotionFood("figjuiceItem", 5, config.mealsaturation);
-        grapefruitjuiceItem = registerPotionFood("grapefruitjuiceItem", 5, config.mealsaturation);
         grapefruitjellyItem = registerItemFood("grapefruitjellyItem", 5, config.mealsaturation);
         grapefruitjellysandwichItem = registerItemFood("grapefruitjellysandwichItem", 10, config.mealsaturation);
         grapefruitsmoothieItem = registerPotionFood("grapefruitsmoothieItem", 6, config.mealsaturation);
@@ -1089,7 +1065,6 @@ public final class ItemRegistry {
         citrussaladItem = registerItemFood("citrussaladItem", 6, config.mealsaturation);
         pecanpieItem = registerItemFood("pecanpieItem", 6, config.mealsaturation);
         pralinesItem = registerItemFood("pralinesItem", 6, config.snacksaturation);
-        persimmonjuiceItem = registerPotionFood("persimmonjuiceItem", 5, config.mealsaturation);
         persimmonyogurtItem = registerItemFood("persimmonyogurtItem", 8, config.mealsaturation);
         persimmonsmoothieItem = registerPotionFood("persimmonsmoothieItem", 6, config.mealsaturation);
         persimmonjellyItem = registerItemFood("persimmonjellyItem", 5, config.mealsaturation);
@@ -1140,31 +1115,8 @@ public final class ItemRegistry {
         spinachpieItem = registerItemFood("spinachpieItem", 8, config.mealsaturation);
         steamedspinachItem = registerItemFood("steamedspinachItem", 2, config.mealsaturation);
         vegemiteontoastItem = registerItemFood("vegemiteontoastItem", 7, config.mealsaturation);
-        anchovyrawItem = registerItemFood("anchovyrawItem", 2, config.meatymealsaturation);
-        bassrawItem = registerItemFood("bassrawItem", 2, config.meatymealsaturation);
-        carprawItem = registerItemFood("carprawItem", 2, config.meatymealsaturation);
-        catfishrawItem = registerItemFood("catfishrawItem", 2, config.meatymealsaturation);
-        charrrawItem = registerItemFood("charrrawItem", 2, config.meatymealsaturation);
-        clamrawItem = registerItemFood("clamrawItem", 2, config.meatymealsaturation);
-        crabrawItem = registerItemFood("crabrawItem", 2, config.meatymealsaturation);
-        crayfishrawItem = registerItemFood("crayfishrawItem", 2, config.meatymealsaturation);
-        eelrawItem = registerItemFood("eelrawItem", 2, config.meatymealsaturation);
-        frograwItem = registerItemFood("frograwItem", 2, config.meatymealsaturation);
-        grouperrawItem = registerItemFood("grouperrawItem", 2, config.meatymealsaturation);
-        herringrawItem = registerItemFood("herringrawItem", 2, config.meatymealsaturation);
-        jellyfishrawItem = registerItemFood("jellyfishrawItem", 2, config.meatymealsaturation);
-        mudfishrawItem = registerItemFood("mudfishrawItem", 2, config.meatymealsaturation);
-        octopusrawItem = registerItemFood("octopusrawItem", 2, config.meatymealsaturation);
-        perchrawItem = registerItemFood("perchrawItem", 2, config.meatymealsaturation);
-        scalloprawItem = registerItemFood("scalloprawItem", 2, config.meatymealsaturation);
-        shrimprawItem = registerItemFood("shrimprawItem", 2, config.meatymealsaturation);
-        snailrawItem = registerItemFood("snailrawItem", 2, config.meatymealsaturation);
-        snapperrawItem = registerItemFood("snapperrawItem", 2, config.meatymealsaturation);
-        tilapiarawItem = registerItemFood("tilapiarawItem", 2, config.meatymealsaturation);
-        troutrawItem = registerItemFood("troutrawItem", 2, config.meatymealsaturation);
-        tunarawItem = registerItemFood("tunarawItem", 2, config.meatymealsaturation);
-        turtlerawItem = registerItemFood("turtlerawItem", 2, config.meatymealsaturation);
-        walleyerawItem = registerItemFood("walleyerawItem", 2, config.meatymealsaturation);
+        registerFish();
+
         holidaycakeItem = registerItemFood("holidaycakeItem", 10, config.mealsaturation);
         clamcookedItem = registerItemFood("clamcookedItem", 2, config.meatymealsaturation);
         crabcookedItem = registerItemFood("crabcookedItem", 2, config.meatymealsaturation);
@@ -1228,7 +1180,6 @@ public final class ItemRegistry {
         gooseberrypieItem = registerItemFood("gooseberrypieItem", 8, config.mealsaturation);
         gooseberrysmoothieItem = registerItemFood("gooseberrysmoothieItem", 6, config.mealsaturation);
         gooseberryyogurtItem = registerItemFood("gooseberryyogurtItem", 8, config.mealsaturation);
-        greenheartfishItem = registerItemFood("greenheartfishItem", 2, config.meatymealsaturation);
         hamsweetpicklesandwichItem = registerItemFood("hamsweetpicklesandwichItem", 10, config.meatymealsaturation);
         hushpuppiesItem = registerItemFood("hushpuppiesItem", 6, config.mealsaturation);
         kimchiItem = registerItemFood("kimchiItem", 10, config.mealsaturation);
@@ -1281,6 +1232,74 @@ public final class ItemRegistry {
         toadintheholeItem = registerItemFood("toadintheholeItem", 10, config.meatymealsaturation);
     }
 
+    private static void registerTools() {
+        cuttingboardItem = registerItemTool("cuttingboardItem");
+        potItem = registerItemTool("potItem");
+        skilletItem = registerItemTool("skilletItem");
+        saucepanItem = registerItemTool("saucepanItem");
+        bakewareItem = registerItemTool("bakewareItem");
+        mortarandpestleItem = registerItemTool("mortarandpestleItem");
+        mixingbowlItem = registerItemTool("mixingbowlItem");
+        juicerItem = registerItemTool("juicerItem");
+    }
+
+    private static void registerFish() {
+        anchovyrawItem = registerRawFish("anchovyrawItem");
+        bassrawItem = registerRawFish("bassrawItem");
+        carprawItem = registerRawFish("carprawItem");
+        catfishrawItem = registerRawFish("catfishrawItem");
+        charrrawItem = registerRawFish("charrrawItem");
+        clamrawItem = registerRawFish("clamrawItem");
+        crabrawItem = registerRawFish("crabrawItem");
+        crayfishrawItem = registerRawFish("crayfishrawItem");
+        eelrawItem = registerRawFish("eelrawItem");
+        frograwItem = registerRawFish("frograwItem");
+        grouperrawItem = registerRawFish("grouperrawItem");
+        herringrawItem = registerRawFish("herringrawItem");
+        jellyfishrawItem = registerRawFish("jellyfishrawItem");
+        mudfishrawItem = registerRawFish("mudfishrawItem");
+        octopusrawItem = registerRawFish("octopusrawItem");
+        perchrawItem = registerRawFish("perchrawItem");
+        scalloprawItem = registerRawFish("scalloprawItem");
+        shrimprawItem = registerRawFish("shrimprawItem");
+        snailrawItem = registerRawFish("snailrawItem");
+        snapperrawItem = registerRawFish("snapperrawItem");
+        tilapiarawItem = registerRawFish("tilapiarawItem");
+        troutrawItem = registerRawFish("troutrawItem");
+        tunarawItem = registerRawFish("tunarawItem");
+        turtlerawItem = registerRawFish("turtlerawItem");
+        walleyerawItem = registerRawFish("walleyerawItem");
+        greenheartfishItem = registerRawFish("greenheartfishItem");
+    }
+
+    private static void registerJuices() {
+        applejuiceItem = registerJuice("applejuiceItem");
+        melonjuiceItem = registerJuice("melonjuiceItem");
+        carrotjuiceItem = registerJuice("carrotjuiceItem");
+        strawberryjuiceItem = registerJuice("strawberryjuiceItem");
+        grapejuiceItem = registerJuice("grapejuiceItem");
+        blueberryjuiceItem = registerJuice("blueberryjuiceItem");
+        cherryjuiceItem = registerJuice("cherryjuiceItem");
+        papayajuiceItem = registerJuice("papayajuiceItem");
+        starfruitjuiceItem = registerJuice("starfruitjuiceItem");
+        orangejuiceItem = registerJuice("orangejuiceItem");
+        peachjuiceItem = registerJuice("peachjuiceItem");
+        limejuiceItem = registerJuice("limejuiceItem");
+        mangojuiceItem = registerJuice("mangojuiceItem");
+        pomegranatejuiceItem = registerJuice("pomegranatejuiceItem");
+        blackberryjuiceItem = registerJuice("blackberryjuiceItem");
+        raspberryjuiceItem = registerJuice("raspberryjuiceItem");
+        kiwijuiceItem = registerJuice("kiwijuiceItem");
+        cranberryjuiceItem = registerJuice("cranberryjuiceItem");
+        cactusfruitjuiceItem = registerJuice("cactusfruitjuiceItem");
+        plumjuiceItem = registerJuice("plumjuiceItem");
+        pearjuiceItem = registerJuice("pearjuiceItem");
+        apricotjuiceItem = registerJuice("apricotjuiceItem");
+        figjuiceItem = registerJuice("figjuiceItem");
+        grapefruitjuiceItem = registerJuice("grapefruitjuiceItem");
+        persimmonjuiceItem = registerJuice("persimmonjuiceItem");
+    }
+
     private static Item registerItemTool(String registryName) {
         final ItemPamTool item = new ItemPamTool();
         item.setContainerItem(item);
@@ -1290,8 +1309,24 @@ public final class ItemRegistry {
 
     private static Item registerItemFood(String registryName, int amount, float saturation) {
         final Item item = new ItemPamFood(amount, saturation);
+        allFood.add(item);
 
         return registerItem(item, registryName);
+    }
+
+    private static Item registerJuice(String juiceName) {
+        final Item juiceItem = registerPotionFood(juiceName, 5, config.mealsaturation);
+        allJuice.add(juiceItem);
+
+        return juiceItem;
+    }
+    
+    private static Item registerRawFish(String fishName) {
+        final Item fishItem = registerItemFood(fishName, 2, config.meatymealsaturation);
+        
+        allFishRaw.add(fishItem);
+        
+        return fishItem;
     }
 
     private static Item registerGenericItem(String registryName) {
@@ -1302,7 +1337,7 @@ public final class ItemRegistry {
 
 
     private static ItemPamPotionFood registerPotionFood(String registryName, int amount, float saturation) {
-        Item item = new ItemPamPotionFood(amount, saturation, false);
+        final Item item = new ItemPamPotionFood(amount, saturation, false);
 
         return (ItemPamPotionFood) registerItem(item, registryName);
     }

@@ -11,6 +11,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
 import java.util.ArrayList;
@@ -71,8 +72,16 @@ public class MarketItems {
         final ItemStack pigEgg = new ItemStack(Items.SPAWN_EGG, 1, 90);
         final ItemStack sheepEgg = new ItemStack(Items.SPAWN_EGG, 1, 91);
         final ItemStack cowEgg = new ItemStack(Items.SPAWN_EGG, 1, 92);
-        final ItemStack chickenEgg = new ItemStack(Items.SPAWN_EGG, 93);
-        final ItemStack horseEgg = new ItemStack(Items.SPAWN_EGG, 100);
+        final ItemStack chickenEgg = new ItemStack(Items.SPAWN_EGG, 1, 93);
+        final ItemStack horseEgg = new ItemStack(Items.SPAWN_EGG, 1, 100);
+
+        if (FMLCommonHandler.instance().getEffectiveSide().isClient()) {
+            ItemMonsterPlacer.applyEntityIdToItemStack(pigEgg, EntityList.getEntityStringFromClass(EntityPig.class));
+            ItemMonsterPlacer.applyEntityIdToItemStack(sheepEgg, EntityList.getEntityStringFromClass(EntitySheep.class));
+            ItemMonsterPlacer.applyEntityIdToItemStack(cowEgg, EntityList.getEntityStringFromClass(EntityCow.class));
+            ItemMonsterPlacer.applyEntityIdToItemStack(chickenEgg, EntityList.getEntityStringFromClass(EntityChicken.class));
+            ItemMonsterPlacer.applyEntityIdToItemStack(horseEgg, EntityList.getEntityStringFromClass(EntityHorse.class));
+        }
 
         if (HarvestCraft.config.marketsellPig) {
             final ItemStack currency = getCurrency(HarvestCraft.config.marketcurrencyPig, CurrencyType.ANIMAL);

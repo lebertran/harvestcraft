@@ -11,7 +11,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemSeedFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
+import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
@@ -27,6 +29,7 @@ public class RecipeRegistry {
         registerOtherRecipes();
         registerBeeRecipes();
         registerPresserRecipe();
+        registerMarketRecipe();
         registerSmelting();
     }
 
@@ -95,15 +98,20 @@ public class RecipeRegistry {
     }
 
     private static void registerFoodRecipes() {
+
         for (BlockPamSapling sapling : FruitRegistry.getSaplings()) {
-            addShapelessOreRecipe(sapling, sapling.getFruit(), sapling.getFruit(), sapling.getFruit(), Blocks.SAPLING);
+            GameRegistry.addShapelessRecipe(new ItemStack(sapling),
+                    new ItemStack(sapling.getFruitItem()),
+                    new ItemStack(sapling.getFruitItem()),
+                    new ItemStack(sapling.getFruitItem()),
+                    new ItemStack(Blocks.SAPLING, 1, OreDictionary.WILDCARD_VALUE));
         }
 
         if (config.enablecroptoseedRecipe) {
             for (Map.Entry<String, ItemSeedFood> food : CropRegistry.getFoods().entrySet()) {
                 if (!config.enablecropspecialplanting ||
                         !food.getKey().equals(CropRegistry.CRANBERRY) && !food.getKey().equals(CropRegistry.RICE) && !food.getKey().equals(CropRegistry.SEAWEED) ) {
-                    addShapelessOreRecipe(food.getValue(), CropRegistry.getSeed(food.getKey()));
+                    addShapelessOreRecipe(CropRegistry.getSeed(food.getKey()), food.getValue());
                 }
             }
         }
@@ -514,6 +522,7 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.custardItem, toolSaucepan, listAllegg, foodGroundnutmeg, cropCinnamon, listAllheavycream);
         addShapelessOreRecipe(ItemRegistry.sushiItem, toolCuttingboard, listAllfishraw, cropSeaweed, cropRice);
         addShapelessOreRecipe(ItemRegistry.gardensoupItem, toolPot, foodStock, listAllveggie, listAllveggie);
+
         addShapelessOreRecipe(ItemRegistry.applejellyItem, toolSaucepan, cropApple, listAllsugar);
         addShapelessOreRecipe(ItemRegistry.blackberryjellyItem, toolSaucepan, cropBlackberry, listAllsugar);
         addShapelessOreRecipe(ItemRegistry.blueberryjellyItem, toolSaucepan, cropBlueberry, listAllsugar);
@@ -531,6 +540,7 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.starfruitjellyItem, toolSaucepan, cropStarfruit, listAllsugar);
         addShapelessOreRecipe(ItemRegistry.strawberryjellyItem, toolSaucepan, cropStrawberry, listAllsugar);
         addShapelessOreRecipe(ItemRegistry.watermelonjellyItem, toolSaucepan, Items.MELON, Items.MELON, listAllsugar);
+
         addShapelessOreRecipe(ItemRegistry.applejellysandwichItem, toolCuttingboard, listAllnutbutter, foodApplejelly, Items.BREAD);
         addShapelessOreRecipe(ItemRegistry.blackberryjellysandwichItem, toolCuttingboard, listAllnutbutter, foodBlackberryjelly, Items.BREAD);
         addShapelessOreRecipe(ItemRegistry.blueberryjellysandwichItem, toolCuttingboard, listAllnutbutter, foodBlueberryjelly, Items.BREAD);
@@ -548,6 +558,7 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.starfruitjellysandwichItem, toolCuttingboard, listAllnutbutter, foodStarfruitjelly, Items.BREAD);
         addShapelessOreRecipe(ItemRegistry.strawberryjellysandwichItem, toolCuttingboard, listAllnutbutter, foodStrawberryjelly, Items.BREAD);
         addShapelessOreRecipe(ItemRegistry.watermelonjellysandwichItem, toolCuttingboard, listAllnutbutter, foodWatermelonjelly, Items.BREAD);
+
         addShapelessOreRecipe(ItemRegistry.cherrysodaItem, toolPot, foodBubblywater, listAllsugar, foodCherryjuice);
         addShapelessOreRecipe(ItemRegistry.colasodaItem, toolPot, foodBubblywater, listAllsugar, cropSpiceleaf);
         addShapelessOreRecipe(ItemRegistry.gingersodaItem, toolPot, foodBubblywater, listAllsugar, cropGinger);

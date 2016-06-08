@@ -57,7 +57,7 @@ public class BlockPamFruitLog extends Block implements IGrowable, PamCropGrowabl
         return true;
     }
 
-    private Item getFruit() {
+    public Item getFruitItem() {
         if (fruitItem == null) {
             FMLLog.bigWarning("Cannot get fruit %s.", getUnlocalizedName());
         }
@@ -89,7 +89,7 @@ public class BlockPamFruitLog extends Block implements IGrowable, PamCropGrowabl
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
         if (isMature(state)) {
-            return getFruit();
+            return getFruitItem();
         }
         return null;
     }
@@ -139,8 +139,8 @@ public class BlockPamFruitLog extends Block implements IGrowable, PamCropGrowabl
         final List<ItemStack> drops = new ArrayList<>();
         drops.add(new ItemStack(this, 1));
         if (getMetaFromState(state) >= MATURE_AGE) {
-            drops.add(new ItemStack(getFruit(), 1));
-            drops.add(new ItemStack(getFruit(), 1));
+            drops.add(new ItemStack(getFruitItem(), 1));
+            drops.add(new ItemStack(getFruitItem(), 1));
         }
         return drops;
     }

@@ -6,6 +6,7 @@ import com.pam.harvestcraft.worldgen.LogFruitTreeGen;
 import net.minecraft.block.*;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -14,6 +15,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import net.minecraftforge.fml.common.FMLLog;
 
+import javax.annotation.Nonnull;
 import java.util.Random;
 
 public class BlockPamSapling extends BlockBush implements IGrowable {
@@ -21,6 +23,7 @@ public class BlockPamSapling extends BlockBush implements IGrowable {
     public final String name;
     private static final AxisAlignedBB SAPLING_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
     private Block fruit;
+    private Item fruitItem;
     private final SaplingType saplingType;
 
     // Caching information for sapling.
@@ -180,9 +183,25 @@ public class BlockPamSapling extends BlockBush implements IGrowable {
         return state;
     }
 
+    public Item getFruitItem() {
+        return this.fruitItem;
+    }
 
-    public void setFruit(Block fruit) {
+
+    public void setFruit(@Nonnull Block fruit) {
         this.fruit = fruit;
+
+        if (fruit instanceof BlockPamFruit) {
+            this.fruitItem = ((BlockPamFruit) fruit).getFruitItem();
+            return;
+        }
+
+        if (fruit instanceof BlockPamFruitLog) {
+            this.fruitItem = ((BlockPamFruitLog) fruit).getFruitItem();
+            return;
+        }
+
+        FMLLog.severe("Given fruit block %s is invalid.", fruit.getUnlocalizedName());
     }
 
     public Block getFruit() {

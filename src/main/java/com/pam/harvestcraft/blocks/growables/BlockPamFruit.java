@@ -1,7 +1,6 @@
 package com.pam.harvestcraft.blocks.growables;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockCactus;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -51,7 +50,7 @@ public class BlockPamFruit extends Block implements IGrowable, PamCropGrowable {
         return AGE;
     }
 
-    public Item getFruit() {
+    public Item getFruitItem() {
         if (fruitItem == null) {
             FMLLog.bigWarning("Cannot get fruit %s.", getUnlocalizedName());
         }
@@ -109,8 +108,8 @@ public class BlockPamFruit extends Block implements IGrowable, PamCropGrowable {
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
         final List<ItemStack> drops = new ArrayList<>();
         if (getMetaFromState(state) >= MATURE_AGE) {
-            drops.add(new ItemStack(getFruit(), 1));
-            drops.add(new ItemStack(getFruit(), 1));
+            drops.add(new ItemStack(getFruitItem(), 1));
+            drops.add(new ItemStack(getFruitItem(), 1));
         }
         return drops;
     }

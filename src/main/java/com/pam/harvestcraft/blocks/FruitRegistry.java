@@ -15,9 +15,7 @@ import net.minecraft.item.ItemFood;
 import net.minecraftforge.fml.common.FMLLog;
 
 import java.text.MessageFormat;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.*;
 
 public class FruitRegistry {
 
@@ -66,8 +64,6 @@ public class FruitRegistry {
     private static final HashMap<String, SaplingType> registeringFruits = new HashMap<>();
     private static final HashMap<String, SaplingType> registeringLogFruits = new HashMap<>();
 
-    public static final HashSet<ItemBlock> itemBlocks = new HashSet<>();
-    
     static {
         registeringFruits.put(APPLE, SaplingType.TEMPERATE);
         registeringFruits.put(ALMOND, SaplingType.WARM);
@@ -120,12 +116,13 @@ public class FruitRegistry {
 
     public static final HashMap<String, Item> foodItems = new HashMap<>();
 
-    public static HashSet<BlockPamSapling> getSaplings() {
+    public static Collection<BlockPamSapling> getSaplings() {
         if (!isInitialised) {
             FMLLog.bigWarning("FruitRegistry has not been initialised yet.");
+            return new HashSet<>();
         }
 
-        return new HashSet<>();
+        return saplings.values();
     }
 
     public static BlockPamSapling getSapling(String fruitName) {
@@ -184,6 +181,7 @@ public class FruitRegistry {
         saplings.putAll(temperateSaplings);
         saplings.putAll(warmSaplings);
         saplings.putAll(coldSaplings);
+        saplings.putAll(logSaplings);
 
         isInitialised = true;
     }
@@ -192,7 +190,6 @@ public class FruitRegistry {
         final String saplingName = MessageFormat.format(SAPLING_NAME, fruitName);
         final BlockPamSapling sapling = new BlockPamSapling(saplingName, saplingType);
         final ItemBlock saplingItemBlock = new ItemBlock(sapling);
-        itemBlocks.add(saplingItemBlock);
         BlockRegistry.registerBlock(saplingName, saplingItemBlock, sapling);
 
         if (saplingType.equals(SaplingType.TEMPERATE)) {
@@ -239,7 +236,6 @@ public class FruitRegistry {
         final String saplingName = MessageFormat.format(SAPLING_NAME, fruitName);
         final BlockPamSapling sapling = new BlockPamSapling(saplingName, saplingType);
         final ItemBlock saplingItemBlock = new ItemBlock(sapling);
-        itemBlocks.add(saplingItemBlock);
         BlockRegistry.registerBlock(saplingName, saplingItemBlock, sapling);
 
         if (saplingType.equals(SaplingType.TEMPERATE)) {
