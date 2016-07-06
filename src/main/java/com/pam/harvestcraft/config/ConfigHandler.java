@@ -260,27 +260,27 @@ public class ConfigHandler {
         gardenDropConfig.put("aridGarden", config.getStringList("aridGarden", "drops",
                 new String[]{"harvestcraft:cactusfruitItem"}, ""));
         gardenDropConfig.put("frostGarden", config.getStringList("frostGarden", "drops",
-                new String[]{"harvestcraft:raspberryItem", "harvestcraft:oatsItem", "harvestcraft:ryeItem",
+                new String[]{"harvestcraft:cottonItem", "harvestcraft:raspberryItem", "harvestcraft:oatsItem", "harvestcraft:ryeItem",
                         "harvestcraft:celeryItem", "harvestcraft:peasItem", "harvestcraft:beetItem",
                         "harvestcraft:rutabagaItem", "harvestcraft:broccoliItem", "harvestcraft:cauliflowerItem",
                         "harvestcraft:cabbageItem", "harvestcraft:spinachItem"}, ""));
         gardenDropConfig.put("shadedGarden", config.getStringList("shadedGarden", "drops",
-                new String[]{"harvestcraft:whitemushroomItem", "harvestcraft:blackberryItem", "harvestcraft:zucchiniItem",
+                new String[]{"harvestcraft:cottonItem", "harvestcraft:whitemushroomItem", "harvestcraft:blackberryItem", "harvestcraft:zucchiniItem",
                         "harvestcraft:radishItem", "harvestcraft:rhubarbItem", "harvestcraft:tealeafItem",
                         "harvestcraft:garlicItem", "harvestcraft:sweetpotatoItem", "harvestcraft:turnipItem",
                         "harvestcraft:spiceleafItem", "harvestcraft:beanItem", "harvestcraft:leekItem",
                         "harvestcraft:scallionItem", "harvestcraft:tomatoItem"}, ""));
         gardenDropConfig.put("soggyGarden", config.getStringList("soggyGarden", "drops",
-                new String[]{"harvestcraft:brusselsproutItem", "harvestcraft:spiceleafItem", "harvestcraft:blueberryItem",
+                new String[]{"harvestcraft:cottonItem", "harvestcraft:brusselsproutItem", "harvestcraft:spiceleafItem", "harvestcraft:blueberryItem",
                         "harvestcraft:asparagusItem", "harvestcraft:cranberryItem", "harvestcraft:riceItem",
                         "harvestcraft:seaweedItem", "harvestcraft:waterchestnutItem", "harvestcraft:okraItem"}, ""));
         gardenDropConfig.put("tropicalGarden", config.getStringList("tropicalGarden", "drops",
-                new String[]{"harvestcraft:grapeItem", "harvestcraft:pineappleItem", "harvestcraft:kiwiItem",
+                new String[]{"harvestcraft:cottonItem", "harvestcraft:grapeItem", "harvestcraft:pineappleItem", "harvestcraft:kiwiItem",
                         "harvestcraft:sesameseedsItem", "harvestcraft:curryleafItem", "harvestcraft:bambooshootItem",
                         "harvestcraft:cantaloupeItem", "harvestcraft:gingerItem", "harvestcraft:coffeebeanItem",
                         "harvestcraft:soybeanItem", "harvestcraft:eggplantItem"}, ""));
         gardenDropConfig.put("windyGarden", config.getStringList("windyGarden", "drops",
-                new String[]{"harvestcraft:strawberryItem", "harvestcraft:barleyItem", "harvestcraft:cornItem",
+                new String[]{"harvestcraft:cottonItem", "harvestcraft:strawberryItem", "harvestcraft:barleyItem", "harvestcraft:cornItem",
                         "harvestcraft:cucumberItem", "harvestcraft:wintersquashItem", "harvestcraft:mustardseedsItem",
                         "harvestcraft:onionItem", "harvestcraft:parsnipItem", "harvestcraft:peanutItem",
                         "minecraft:potato", "minecraft:carrot", "harvestcraft:lettuceItem",

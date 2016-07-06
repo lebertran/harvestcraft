@@ -8,7 +8,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -35,10 +34,10 @@ public class ApiaryBlock extends BlockContainerRotating {
 
     @Override
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
-        final TileEntityApiary te;
+        final TileEntityApiary te = (TileEntityApiary)worldIn.getTileEntity(pos);
         final Random random = worldIn.rand;
 
-        if ((te = (TileEntityApiary)worldIn.getTileEntity(pos)) != null) {
+        if (te != null) {
             for (int i = 0; i < te.getSizeInventory(); ++i) {
                 final ItemStack itemStack = te.getStackInSlot(i);
                 if (itemStack == null) continue;
@@ -55,7 +54,7 @@ public class ApiaryBlock extends BlockContainerRotating {
                             new EntityItem(worldIn, pos.getX() + f, pos.getY() + f1,
                                     pos.getZ() + f2, new ItemStack(itemStack.getItem(), j, itemStack.getItemDamage()));
                     if (itemStack.getTagCompound() != null) {
-                        entityItem.getEntityItem().readFromNBT((NBTTagCompound) itemStack.getTagCompound().copy());
+                        entityItem.getEntityItem().readFromNBT(itemStack.getTagCompound().copy());
                     }
                     float f3 = 0.05f;
 

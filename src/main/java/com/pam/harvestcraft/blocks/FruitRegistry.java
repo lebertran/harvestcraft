@@ -11,11 +11,13 @@ import com.pam.harvestcraft.item.items.ItemPamFood;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemFood;
 import net.minecraftforge.fml.common.FMLLog;
 
 import java.text.MessageFormat;
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 
 public class FruitRegistry {
 

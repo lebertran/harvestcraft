@@ -2,7 +2,6 @@ package com.pam.harvestcraft.item.items;
 
 import com.pam.harvestcraft.Reference;
 import net.minecraft.block.Block;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemSeedFood;

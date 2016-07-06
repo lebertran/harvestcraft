@@ -30,35 +30,32 @@ public class CommonProxy {
         FruitRegistry.registerFruits();
         BlockRegistry.initBlockRegistry();
         ItemRegistry.registerItems();
+        MarketItems.registerItems();
 
-        onBlocksAndItemsLoaded();
+        GameRegistry.registerTileEntity(TileEntityApiary.class, "PamApiary");
+        GameRegistry.registerTileEntity(TileEntityMarket.class, "PamMarket");
+        GameRegistry.registerTileEntity(TileEntityPresser.class, "PamPresser");
+
+        GeneralOreRegistry.initOreRegistry();
+
+        HarvestCraft.config.configureGardenDrops();
+
+        MinecraftForge.EVENT_BUS.register(new LootTableLoadEventHandler());
+        RightClickHarvesting.instance.register();
+
     }
 
     public void init(FMLInitializationEvent e) {
+        RecipeRegistry.registerRecipes();
+        SeedDropRegistry.getSeedDrops();
+        PacketHandler.init();
+
+
         GameRegistry.registerWorldGenerator(new BushWorldWorldGen(), 0);
         GameRegistry.registerWorldGenerator(new FruitTreeWorldGen(), 0);
         GameRegistry.registerWorldGenerator(new BeehiveWorldGen(), 0);
     }
 
     public void postInit(FMLPostInitializationEvent e) {
-    }
-
-    public void onBlocksAndItemsLoaded() {
-        HarvestCraft.config.configureGardenDrops();
-
-        GeneralOreRegistry.initOreRegistry();
-
-        RecipeRegistry.registerRecipes();
-        SeedDropRegistry.getSeedDrops();
-
-        MarketItems.registerItems();
-        PacketHandler.init();
-
-        GameRegistry.registerTileEntity(TileEntityApiary.class, "PamApiary");
-        GameRegistry.registerTileEntity(TileEntityMarket.class, "PamMarket");
-        GameRegistry.registerTileEntity(TileEntityPresser.class, "PamPresser");
-
-        MinecraftForge.EVENT_BUS.register(new LootTableLoadEventHandler());
-        RightClickHarvesting.instance.register();
     }
 }

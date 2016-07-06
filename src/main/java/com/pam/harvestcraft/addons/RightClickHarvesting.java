@@ -7,7 +7,6 @@ import com.pam.harvestcraft.blocks.growables.PamCropGrowable;
 import net.minecraft.block.BlockCarrot;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.BlockPotato;
-import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.item.EntityItem;

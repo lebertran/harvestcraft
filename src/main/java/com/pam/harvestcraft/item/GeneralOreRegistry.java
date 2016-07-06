@@ -10,9 +10,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class GeneralOreRegistry {
     // Forge
     public static final String stickWood = "stickWood";

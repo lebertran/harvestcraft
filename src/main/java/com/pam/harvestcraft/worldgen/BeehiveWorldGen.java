@@ -20,7 +20,11 @@ public class BeehiveWorldGen implements IWorldGenerator {
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
         if (!HarvestCraft.config.enableBeehiveGeneration) return;
 
-        final Biome biome = world.getBiomeGenForCoords(new BlockPos(chunkX, 0, chunkZ));
+        final Biome biome = world.getBiome(new BlockPos(chunkX, 0, chunkZ));
+
+        if (biome == null) {
+            return;
+        }
 
         if (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.END) || BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.NETHER)) {
             return;

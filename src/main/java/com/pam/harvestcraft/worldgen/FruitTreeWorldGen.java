@@ -23,7 +23,7 @@ public class FruitTreeWorldGen implements IWorldGenerator {
         final int yCh = random.nextInt(128) + 64;
         final int zCh = chunkZ * 16 + random.nextInt(16);
 
-        final Biome biome = world.getBiomeGenForCoords(new BlockPos(xChunk + 16, 0, zChunk + 16));
+        final Biome biome = world.getBiome(new BlockPos(xChunk + 16, 0, zChunk + 16));
         final BlockPos blockPos = new BlockPos(xCh, yCh, zCh);
 
         if (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.DEAD)) {

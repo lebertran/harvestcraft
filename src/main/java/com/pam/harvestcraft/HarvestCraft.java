@@ -2,9 +2,9 @@ package com.pam.harvestcraft;
 
 import com.pam.harvestcraft.config.ConfigHandler;
 import com.pam.harvestcraft.gui.GuiHandler;
+import com.pam.harvestcraft.item.ItemRegistry;
 import com.pam.harvestcraft.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
@@ -31,7 +31,7 @@ public class HarvestCraft {
 
     public static final CreativeTabs modTab = new CreativeTabs(Reference.MODID) {
         public Item getTabIconItem() {
-            return Items.WHEAT;
+            return ItemRegistry.hamburgerItem;
         }
     };
 
@@ -42,13 +42,13 @@ public class HarvestCraft {
         config = new ConfigHandler(new Configuration(event.getSuggestedConfigurationFile()));
 
         proxy.preInit(event);
-
-        NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
     }
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
         proxy.init(event);
+
+        NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
     }
 
     @EventHandler

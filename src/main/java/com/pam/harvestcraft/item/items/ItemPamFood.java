@@ -1,8 +1,6 @@
 package com.pam.harvestcraft.item.items;
 
-import com.pam.harvestcraft.HarvestCraft;
 import com.pam.harvestcraft.Reference;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;

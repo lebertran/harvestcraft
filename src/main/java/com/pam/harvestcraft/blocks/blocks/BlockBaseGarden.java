@@ -4,7 +4,6 @@ import com.pam.harvestcraft.HarvestCraft;
 import com.pam.harvestcraft.blocks.BlockRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
-import net.minecraft.block.BlockStairs;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

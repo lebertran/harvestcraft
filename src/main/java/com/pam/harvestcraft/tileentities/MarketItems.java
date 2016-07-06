@@ -9,10 +9,8 @@ import net.minecraft.entity.passive.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraft.nbt.NBTTagCompound;
 
 import java.util.ArrayList;
 
@@ -75,13 +73,11 @@ public class MarketItems {
         final ItemStack chickenEgg = new ItemStack(Items.SPAWN_EGG, 1, 93);
         final ItemStack horseEgg = new ItemStack(Items.SPAWN_EGG, 1, 100);
 
-        if (FMLCommonHandler.instance().getEffectiveSide().isClient()) {
-            ItemMonsterPlacer.applyEntityIdToItemStack(pigEgg, EntityList.getEntityStringFromClass(EntityPig.class));
-            ItemMonsterPlacer.applyEntityIdToItemStack(sheepEgg, EntityList.getEntityStringFromClass(EntitySheep.class));
-            ItemMonsterPlacer.applyEntityIdToItemStack(cowEgg, EntityList.getEntityStringFromClass(EntityCow.class));
-            ItemMonsterPlacer.applyEntityIdToItemStack(chickenEgg, EntityList.getEntityStringFromClass(EntityChicken.class));
-            ItemMonsterPlacer.applyEntityIdToItemStack(horseEgg, EntityList.getEntityStringFromClass(EntityHorse.class));
-        }
+        registerEntityId(pigEgg, EntityPig.class);
+        registerEntityId(sheepEgg, EntitySheep.class);
+        registerEntityId(cowEgg, EntityCow.class);
+        registerEntityId(chickenEgg, EntityChicken.class);
+        registerEntityId(horseEgg, EntityHorse.class);
 
         if (HarvestCraft.config.marketsellPig) {
             final ItemStack currency = getCurrency(HarvestCraft.config.marketcurrencyPig, CurrencyType.ANIMAL);
@@ -106,6 +102,16 @@ public class MarketItems {
         if (HarvestCraft.config.marketsellHorse) {
             final ItemStack currency = getCurrency(HarvestCraft.config.marketcurrencyHorse, CurrencyType.ANIMAL);
             registerItems(new MarketData(horseEgg, currency, HarvestCraft.config.markethorsePrice));
+        }
+    }
+
+    private static <T extends EntityAnimal> void registerEntityId(final ItemStack stack, final Class<T> animal) {
+        final NBTTagCompound nbttagcompound = stack.hasTagCompound() ? stack.getTagCompound() : new NBTTagCompound();
+        NBTTagCompound nbttagcompound1 = new NBTTagCompound();
+        nbttagcompound1.setString("id", EntityList.getEntityStringFromClass(animal));
+        if (nbttagcompound != null) {
+            nbttagcompound.setTag("EntityTag", nbttagcompound1);
+            stack.setTagCompound(nbttagcompound);
         }
     }
 

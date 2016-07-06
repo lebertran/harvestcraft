@@ -11,7 +11,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemSeedFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
-import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -86,9 +85,7 @@ public class RecipeRegistry {
     }
 
     private static void registerBeeRecipes() {
-        for (int i = 1; i < 18; i++) {
-            addShapelessOreRecipe(ItemRegistry.royaljellyItem, new ItemStack(ItemRegistry.queenbeeItem, 1, i));
-        }
+        addShapelessOreRecipe(ItemRegistry.royaljellyItem, new ItemStack(ItemRegistry.queenbeeItem, 1, OreDictionary.WILDCARD_VALUE));
 
         addShapelessOreRecipe(ItemRegistry.queenbeeItem, ItemRegistry.grubItem, ItemRegistry.royaljellyItem);
         addShapedOreRecipe(BlockRegistry.apiary, "#O#", "#O#", "#O#",'#', plankWood, 'O', Items.ITEM_FRAME);
@@ -494,7 +491,7 @@ public class RecipeRegistry {
         addShapelessOreRecipe(ItemRegistry.sunflowerwheatrollsItem, toolBakeware, cropSunflower, foodFlour, listAllegg, dustSalt, foodOliveoil);
         addShapelessOreRecipe(ItemRegistry.sunflowerwheatrollsItem, toolBakeware, cropSunflower, foodFlour, listAllegg, itemSalt, foodOliveoil);
         addShapelessOreRecipe(ItemRegistry.sunflowerbroccolisaladItem, toolCuttingboard, cropSunflower, cropBroccoli, foodMayo, listAllsugar, listAllporkcooked);
-        addShapelessOreRecipe(ItemRegistry.cranberryjuiceItem, toolJuicer, cropCranberry, listAllsugar);
+        addShapelessOreRecipe(ItemRegistry.cranberryjuiceItem, toolJuicer, cropCranberry);
         addShapelessOreRecipe(ItemRegistry.cranberrysauceItem, toolPot, cropCranberry, listAllsugar);
         addShapelessOreRecipe(ItemRegistry.cranberrybarItem, toolBakeware, cropCranberry, listAllsugar, foodDough);
         addShapelessOreRecipe(ItemRegistry.peppermintItem, toolSaucepan, cropSpiceleaf, listAllsugar);

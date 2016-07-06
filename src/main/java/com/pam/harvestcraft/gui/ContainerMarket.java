@@ -42,7 +42,7 @@ public class ContainerMarket extends Container {
                         return null;
                     }
                 } else if ((slotIndex >= 1) && (slotIndex < 28)) {
-                    if (!mergeItemStack(slotStack, 27, 37, false)) {
+                    if (!mergeItemStack(slotStack, 28, 37, false)) {
                         return null;
                     }
                 } else if ((slotIndex >= 1) && (slotIndex < 37) && (!mergeItemStack(slotStack, 1, 28, false))) {

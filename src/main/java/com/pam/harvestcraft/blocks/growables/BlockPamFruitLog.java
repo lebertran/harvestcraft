@@ -27,7 +27,7 @@ public class BlockPamFruitLog extends Block implements IGrowable, PamCropGrowabl
     private final BlockPamSapling sapling;
     private final Item fruitItem;
 
-    public static final PropertyInteger AGE = PropertyInteger.create("age", 0, MATURE_AGE);
+    private static final PropertyInteger AGE = PropertyInteger.create("age", 0, MATURE_AGE);
     private String BASE_STAGE_ID = null;
 
     public BlockPamFruitLog(BlockPamSapling sapling, Item fruit) {
@@ -64,6 +64,7 @@ public class BlockPamFruitLog extends Block implements IGrowable, PamCropGrowabl
 
         return fruitItem;
     }
+
     public BlockPamSapling getSapling() {
         return sapling;
     }
@@ -88,10 +89,7 @@ public class BlockPamFruitLog extends Block implements IGrowable, PamCropGrowabl
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        if (isMature(state)) {
-            return getFruitItem();
-        }
-        return null;
+        return Item.getItemFromBlock(this);
     }
 
     @Override
@@ -137,7 +135,6 @@ public class BlockPamFruitLog extends Block implements IGrowable, PamCropGrowabl
     @Override
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
         final List<ItemStack> drops = new ArrayList<>();
-        drops.add(new ItemStack(this, 1));
         if (getMetaFromState(state) >= MATURE_AGE) {
             drops.add(new ItemStack(getFruitItem(), 1));
             drops.add(new ItemStack(getFruitItem(), 1));
