@@ -1,6 +1,7 @@
 package com.pam.harvestcraft.proxy;
 
 import com.pam.harvestcraft.Reference;
+import com.pam.harvestcraft.config.ConfigSyncMessage;
 import com.pam.harvestcraft.tileentities.MessageMarketBrowse;
 import com.pam.harvestcraft.tileentities.MessageMarketBuy;
 import com.pam.harvestcraft.tileentities.MessageMarketClosed;
@@ -16,5 +17,6 @@ public class PacketHandler  {
         network.registerMessage(MessageMarketBrowse.class, MessageMarketBrowse.class, 0, Side.SERVER);
         network.registerMessage(MessageMarketBuy.class, MessageMarketBuy.class, 1, Side.SERVER);
         network.registerMessage(MessageMarketClosed.class, MessageMarketClosed.class, 2, Side.SERVER);
+        network.registerMessage(ConfigSyncMessage.class, ConfigSyncMessage.class, 3, Side.SERVER);
     }
 }

@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class BlockPamFruit extends Block implements IGrowable, PamCropGrowable {
+public class BlockPamFruit extends BlockStage implements IGrowable, PamCropGrowable {
 
     private static final int MATURE_AGE = 2;
 
@@ -75,6 +75,7 @@ public class BlockPamFruit extends Block implements IGrowable, PamCropGrowable {
         return 5f;
     }
 
+    @Override
     public String getStageId(int stage) {
         if (BASE_STAGE_ID == null) {
             BASE_STAGE_ID = getUnlocalizedName().replaceFirst("pam", "").replaceFirst("tile.", "").toLowerCase() + "_stage";

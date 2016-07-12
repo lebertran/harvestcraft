@@ -1,10 +1,6 @@
 package com.pam.harvestcraft.blocks;
 
 import com.pam.harvestcraft.blocks.blocks.BlockBaseGarden;
-import com.pam.harvestcraft.blocks.growables.BlockPamCrop;
-import com.pam.harvestcraft.blocks.growables.BlockPamFruit;
-import com.pam.harvestcraft.blocks.growables.BlockPamFruitLog;
-import com.pam.harvestcraft.blocks.growables.BlockPamSapling;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelBakery;
@@ -35,30 +31,31 @@ public class ItemModels {
                     .add(0, garden.getName()));
         }
 
-        for (BlockPamCrop crop : CropRegistry.getCrops().values()) {
-            registerItemModels(getItem(crop), new ItemModelList("crops/")
-                    .add(0, crop.getStageId(0))
-                    .add(1, crop.getStageId(1))
-                    .add(2, crop.getStageId(2))
-                    .add(3, crop.getStageId(3)));
+        for (Crop crop : Crop.values()) {
+            registerItemModels(getItem(crop.cropBlock()), new ItemModelList("crops/")
+                    .add(0, crop.cropBlock().getStageId(0))
+                    .add(1, crop.cropBlock().getStageId(1))
+                    .add(2, crop.cropBlock().getStageId(2))
+                    .add(3, crop.cropBlock().getStageId(3)));
         }
-        for (BlockPamSapling sapling : FruitRegistry.getSaplings()) {
-            registerItemModels(getItem(sapling), new ItemModelList("saplings/")
-                    .add(0, sapling.getName()));
+        for (Fruit fruit : Fruit.values()) {
+            registerItemModels(getItem(fruit.sapling()), new ItemModelList("saplings/")
+                    .add(0, fruit.sapling().getName()));
+
+            registerItemModels(getItem(fruit.block()), new ItemModelList("fruits/")
+                    .add(0, fruit.block().getStageId(0))
+                    .add(1, fruit.block().getStageId(1))
+                    .add(2, fruit.block().getStageId(2)));
         }
 
-        for (BlockPamFruit fruit : FruitRegistry.fruits) {
-            registerItemModels(getItem(fruit), new ItemModelList("fruits/")
-                    .add(0, fruit.getStageId(0))
-                    .add(1, fruit.getStageId(1))
-                    .add(2, fruit.getStageId(2)));
-        }
+        for (FruitLog fruitLog : FruitLog.values()) {
+            registerItemModels(getItem(fruitLog.sapling()), new ItemModelList("saplings/")
+                    .add(0, fruitLog.sapling().getName()));
 
-        for (BlockPamFruitLog fruit : FruitRegistry.logs.values()) {
-            registerItemModels(getItem(fruit), new ItemModelList("fruits/")
-                    .add(0, fruit.getStageId(0))
-                    .add(1, fruit.getStageId(1))
-                    .add(2, fruit.getStageId(2)));
+            registerItemModels(getItem(fruitLog.block()), new ItemModelList("fruits/")
+                    .add(0, fruitLog.block().getStageId(0))
+                    .add(1, fruitLog.block().getStageId(1))
+                    .add(2, fruitLog.block().getStageId(2)));
         }
     }
 

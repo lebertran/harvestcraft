@@ -21,6 +21,7 @@ public class ItemPamPotionFood extends ItemFood {
     public ItemPamPotionFood(int amount, float saturation, boolean isWolfFood) {
         super(amount, saturation, isWolfFood);
         setCreativeTab(HarvestCraft.modTab);
+        setAlwaysEdible();
 
         this.saturation = saturation;
     }
@@ -31,14 +32,12 @@ public class ItemPamPotionFood extends ItemFood {
     }
 
     public ItemPamPotionFood addDefaultSpeedPotionEffect() {
-        setAlwaysEdible();
-
         final Potion potion = Potion.getPotionFromResourceLocation("speed");
         if (potion == null) {
             FMLLog.bigWarning("Could not set potion effect.");
             return this;
         }
-        setPotionEffect(new PotionEffect(potion, 60, 0), 0.8F);
+        setPotionEffect(new PotionEffect(potion, 60, 0), 1);
 
         return this;
     }

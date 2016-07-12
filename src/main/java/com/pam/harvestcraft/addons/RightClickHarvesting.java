@@ -82,7 +82,7 @@ public class RightClickHarvesting {
             world.setBlockState(blockPos, crops.withAge(0));
 
             for (ItemStack drop : drops) {
-                dropItem(drop, world, blockPos);
+                dropItem(drop, world, blockPos, false);
             }
         }
     }
@@ -102,15 +102,15 @@ public class RightClickHarvesting {
             world.setBlockState(blockPos, blockState.withProperty(blockPamFruit.getAgeProperty(), 0), 3);
 
             for (ItemStack drop : drops) {
-                dropItem(drop, world, blockPos);
+                dropItem(drop, world, blockPos, blockPamFruit instanceof BlockPamFruitLog);
             }
         }
     }
 
-    private static void dropItem(ItemStack itemStack, World world, BlockPos pos) {
+    private static void dropItem(ItemStack itemStack, World world, BlockPos pos, boolean isLogFruit) {
         if (world.restoringBlockSnapshots || world.isRemote) return;
 
-        float f = 0.5F;
+        float f = (isLogFruit) ? 1F : 0.5F;
         double d0 = (world.rand.nextFloat() * f) + 0.25D;
         double d1 = (world.rand.nextFloat() * f) + 0.25D;
         double d2 = (world.rand.nextFloat() * f) + 0.25D;

@@ -1,5 +1,6 @@
 package com.pam.harvestcraft.blocks.growables;
 
+import com.pam.harvestcraft.blocks.Crop;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.IGrowable;
@@ -32,24 +33,16 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
 
     private final String registerName;
     public final String name;
+    private final Crop crop;
+
     private String BASE_STAGE_ID = null;
 
-    private Item seed;
-    private Item food;
-
-    public void setSeed(Item seed) {
-        this.seed = seed;
-    }
-
-    public void setFood(Item food) {
-        this.food = food;
-    }
-
-    public BlockPamCrop(String registerName, String name) {
+    public BlockPamCrop(String registerName, Crop crop) {
         super();
 
         this.registerName = registerName;
-        this.name = name;
+        this.name = crop.getCropName();
+        this.crop = crop;
 
         this.setDefaultState(blockState.getBaseState().withProperty(getAgeProperty(), 0));
     }
@@ -88,12 +81,12 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
 
     @Override
     public Item getSeed() {
-        if (seed == null) {
+        if (crop.seed() == null) {
             FMLLog.bigWarning("No seed have been set up for %s.", getUnlocalizedName());
             return new Item();
         }
 
-        return seed;
+        return crop.seed();
     }
 
     @Override
@@ -108,12 +101,12 @@ public class BlockPamCrop extends BlockCrops implements IGrowable, IPlantable, P
 
     @Override
     public Item getCrop() {
-        if (food == null) {
+        if (crop.food() == null) {
             FMLLog.bigWarning("No food has been set up for %s.", getUnlocalizedName());
             return new Item();
         }
 
-        return food;
+        return crop.food();
     }
 
     @Override

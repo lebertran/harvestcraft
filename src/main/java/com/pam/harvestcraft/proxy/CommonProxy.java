@@ -3,8 +3,9 @@ package com.pam.harvestcraft.proxy;
 import com.pam.harvestcraft.HarvestCraft;
 import com.pam.harvestcraft.addons.RightClickHarvesting;
 import com.pam.harvestcraft.blocks.BlockRegistry;
-import com.pam.harvestcraft.blocks.CropRegistry;
-import com.pam.harvestcraft.blocks.FruitRegistry;
+import com.pam.harvestcraft.blocks.Crop;
+import com.pam.harvestcraft.blocks.Fruit;
+import com.pam.harvestcraft.blocks.FruitLog;
 import com.pam.harvestcraft.item.GeneralOreRegistry;
 import com.pam.harvestcraft.item.ItemRegistry;
 import com.pam.harvestcraft.item.RecipeRegistry;
@@ -26,8 +27,9 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class CommonProxy {
 
     public void preInit(FMLPreInitializationEvent e) {
-        CropRegistry.registerCrops();
-        FruitRegistry.registerFruits();
+        Crop.registerAll();
+        Fruit.registerAll();
+        FruitLog.registerAll();
         BlockRegistry.initBlockRegistry();
         ItemRegistry.registerItems();
         MarketItems.registerItems();

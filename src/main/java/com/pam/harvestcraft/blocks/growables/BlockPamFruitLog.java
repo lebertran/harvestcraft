@@ -1,7 +1,6 @@
 package com.pam.harvestcraft.blocks.growables;
 
 import com.pam.harvestcraft.HarvestCraft;
-import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -21,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class BlockPamFruitLog extends Block implements IGrowable, PamCropGrowable {
+public class BlockPamFruitLog extends BlockStage implements IGrowable, PamCropGrowable {
 
     private static final int MATURE_AGE = 2;
     private final BlockPamSapling sapling;
@@ -69,6 +68,7 @@ public class BlockPamFruitLog extends Block implements IGrowable, PamCropGrowabl
         return sapling;
     }
 
+    @Override
     public String getStageId(int stage) {
         if (BASE_STAGE_ID == null) {
             BASE_STAGE_ID = getUnlocalizedName().replaceFirst("pam", "").replaceFirst("tile.", "").toLowerCase() + "_stage";

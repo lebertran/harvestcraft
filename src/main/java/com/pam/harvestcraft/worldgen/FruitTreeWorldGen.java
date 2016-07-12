@@ -1,6 +1,7 @@
 package com.pam.harvestcraft.worldgen;
 
-import com.pam.harvestcraft.blocks.FruitRegistry;
+import com.pam.harvestcraft.blocks.Fruit;
+import com.pam.harvestcraft.blocks.FruitLog;
 import com.pam.harvestcraft.blocks.growables.BlockPamSapling;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -38,47 +39,47 @@ public class FruitTreeWorldGen implements IWorldGenerator {
                 switch (random.nextInt(9)) {
                     case 0:
                         if (config.appletreeGeneration) {
-                            generateFruitTree(world, blockPos, FruitRegistry.APPLE);
+                            generateFruitTree(world, blockPos, Fruit.APPLE);
                             break;
                         }
                     case 1:
                         if (config.avocadotreeGeneration) {
-                            generateFruitTree(world, blockPos, FruitRegistry.AVOCADO);
+                            generateFruitTree(world, blockPos, Fruit.AVOCADO);
                             break;
                         }
                     case 2:
                         if (config.cherrytreeGeneration) {
-                            generateFruitTree(world, blockPos, FruitRegistry.CHERRY);
+                            generateFruitTree(world, blockPos, Fruit.CHERRY);
                             break;
                         }
                     case 3:
                         if (config.chestnuttreeGeneration) {
-                            generateFruitTree(world, blockPos, FruitRegistry.CHESTNUT);
+                            generateFruitTree(world, blockPos, Fruit.CHESTNUT);
                             break;
                         }
                     case 4:
                         if (config.nutmegtreeGeneration) {
-                            generateFruitTree(world, blockPos, FruitRegistry.NUTMEG);
+                            generateFruitTree(world, blockPos, Fruit.NUTMEG);
                             break;
                         }
                     case 5:
                         if (config.peartreeGeneration) {
-                            generateFruitTree(world, blockPos, FruitRegistry.PEAR);
+                            generateFruitTree(world, blockPos, Fruit.PEAR);
                             break;
                         }
                     case 6:
                         if (config.plumtreeGeneration) {
-                            generateFruitTree(world, blockPos, FruitRegistry.PLUM);
+                            generateFruitTree(world, blockPos, Fruit.PLUM);
                             break;
                         }
                     case 7:
                         if (config.walnuttreeGeneration) {
-                            generateFruitTree(world, blockPos, FruitRegistry.WALNUT);
+                            generateFruitTree(world, blockPos, Fruit.WALNUT);
                             break;
                         }
                     case 8:
                         if (config.gooseberrytreeGeneration) {
-                            generateFruitTree(world, blockPos, FruitRegistry.GOOSEBERRY);
+                            generateFruitTree(world, blockPos, Fruit.GOOSEBERRY);
                             break;
                         }
                 }
@@ -90,132 +91,132 @@ public class FruitTreeWorldGen implements IWorldGenerator {
             switch (random.nextInt(25)) {
                 case 0:
                     if (config.bananatreeGeneration) {
-                        generateFruitTree(world, blockPos, FruitRegistry.BANANA);
+                        generateFruitTree(world, blockPos, Fruit.BANANA);
                         break;
                     }
                 case 1:
                     if (config.cinnamontreeGeneration) {
-                        generateFruitTree(world, blockPos, FruitRegistry.CINNAMON);
+                        generateFruitTree(world, blockPos, FruitLog.CINNAMON);
                         break;
                     }
                 case 2:
                     if (config.coconuttreeGeneration) {
-                        generateFruitTree(world, blockPos, FruitRegistry.COCONUT);
+                        generateFruitTree(world, blockPos, Fruit.COCONUT);
                         break;
                     }
                 case 3:
                     if (config.datetreeGeneration) {
-                        generateFruitTree(world, blockPos, FruitRegistry.DATE);
+                        generateFruitTree(world, blockPos, Fruit.DATE);
                         break;
                     }
                 case 4:
                     if (config.dragonfruittreeGeneration) {
-                        generateFruitTree(world, blockPos, FruitRegistry.DRAGONFRUIT);
+                        generateFruitTree(world, blockPos, Fruit.DRAGONFRUIT);
                         break;
                     }
                 case 5:
                     if (config.papayatreeGeneration) {
-                        generateFruitTree(world, blockPos, FruitRegistry.PAPAYA);
+                        generateFruitTree(world, blockPos, Fruit.PAPAYA);
                         break;
                     }
                 case 6:
                     if (config.almondtreeGeneration) {
-                        generateFruitTree(world, blockPos, FruitRegistry.ALMOND);
+                        generateFruitTree(world, blockPos, Fruit.ALMOND);
                         break;
                     }
                 case 7:
                     if (config.apricottreeGeneration) {
-                        generateFruitTree(world, blockPos, FruitRegistry.APRICOT);
+                        generateFruitTree(world, blockPos, Fruit.APRICOT);
                         break;
                     }
                 case 8:
                     if (config.cashewtreeGeneration) {
-                        generateFruitTree(world, blockPos, FruitRegistry.CASHEW);
+                        generateFruitTree(world, blockPos, Fruit.CASHEW);
                         break;
                     }
                 case 9:
                     if (config.duriantreeGeneration) {
-                        generateFruitTree(world, blockPos, FruitRegistry.DURIAN);
+                        generateFruitTree(world, blockPos, Fruit.DURIAN);
                         break;
                     }
                 case 10:
                     if (config.figtreeGeneration) {
-                        generateFruitTree(world, blockPos, FruitRegistry.FIG);
+                        generateFruitTree(world, blockPos, Fruit.FIG);
                         break;
                     }
                 case 11:
                     if (config.grapefruittreeGeneration) {
-                        generateFruitTree(world, blockPos, FruitRegistry.GRAPEFRUIT);
+                        generateFruitTree(world, blockPos, Fruit.GRAPEFRUIT);
                         break;
                     }
                 case 12:
                     if (config.lemontreeGeneration) {
-                        generateFruitTree(world, blockPos, FruitRegistry.LEMON);
+                        generateFruitTree(world, blockPos, Fruit.LEMON);
                         break;
                     }
                 case 13:
                     if (config.limetreeGeneration) {
-                        generateFruitTree(world, blockPos, FruitRegistry.LIME);
+                        generateFruitTree(world, blockPos, Fruit.LIME);
                         break;
                     }
                 case 14:
                     if (config.mangotreeGeneration) {
-                        generateFruitTree(world, blockPos, FruitRegistry.MANGO);
+                        generateFruitTree(world, blockPos, Fruit.MANGO);
                         break;
                     }
                 case 15:
                     if (config.orangetreeGeneration) {
-                        generateFruitTree(world, blockPos, FruitRegistry.ORANGE);
+                        generateFruitTree(world, blockPos, Fruit.ORANGE);
                         break;
                     }
                 case 16:
                     if (config.paperbarktreeGeneration) {
-                        generateFruitTree(world, blockPos, FruitRegistry.PAPERBARK);
+                        generateFruitTree(world, blockPos, FruitLog.PAPERBARK);
                         break;
                     }
                 case 17:
                     if (config.peachtreeGeneration) {
-                        generateFruitTree(world, blockPos, FruitRegistry.PEACH);
+                        generateFruitTree(world, blockPos, Fruit.PEACH);
                         break;
                     }
                 case 18:
                     if (config.pecantreeGeneration) {
-                        generateFruitTree(world, blockPos, FruitRegistry.PECAN);
+                        generateFruitTree(world, blockPos, Fruit.PECAN);
                         break;
                     }
                 case 19:
                     if (config.peppercorntreeGeneration) {
-                        generateFruitTree(world, blockPos, FruitRegistry.PEPPERCORN);
+                        generateFruitTree(world, blockPos, Fruit.PEPPERCORN);
                         break;
                     }
                 case 20:
                     if (config.persimmontreeGeneration) {
-                        generateFruitTree(world, blockPos, FruitRegistry.PERSIMMON);
+                        generateFruitTree(world, blockPos, Fruit.PERSIMMON);
                         break;
                     }
                 case 21:
                     if (config.pistachiotreeGeneration) {
-                        generateFruitTree(world, blockPos, FruitRegistry.PISTACHIO);
+                        generateFruitTree(world, blockPos, Fruit.PISTACHIO);
                         break;
                     }
                 case 22:
                     if (config.pomegranatetreeGeneration) {
-                        generateFruitTree(world, blockPos, FruitRegistry.POMEGRANATE);
+                        generateFruitTree(world, blockPos, Fruit.POMEGRANATE);
                         break;
                     }
                 case 23:
                     if (config.starfruittreeGeneration) {
-                        generateFruitTree(world, blockPos, FruitRegistry.STARFRUIT);
+                        generateFruitTree(world, blockPos, Fruit.STARFRUIT);
                         break;
                     }
                 case 24:
                     if (config.vanillabeantreeGeneration) {
-                        generateFruitTree(world, blockPos, FruitRegistry.VANILLABEAN);
+                        generateFruitTree(world, blockPos, Fruit.VANILLABEAN);
                         break;
                     }
                 case 25:
                     if (config.olivetreeGeneration) {
-                        generateFruitTree(world, blockPos, FruitRegistry.OLIVE);
+                        generateFruitTree(world, blockPos, Fruit.OLIVE);
                     }
             }
         }
@@ -224,14 +225,21 @@ public class FruitTreeWorldGen implements IWorldGenerator {
                 || (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.MOUNTAIN))
                 || (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.CONIFEROUS))) {
             if (config.mapletreeGeneration) {
-                generateFruitTree(world, blockPos, FruitRegistry.MAPLE);
+                generateFruitTree(world, blockPos, FruitLog.MAPLE);
             }
         }
 
     }
 
-    private void generateFruitTree(World world, BlockPos pos, String fruitName) {
-        final BlockPamSapling sapling = FruitRegistry.getSapling(fruitName);
+    private void generateFruitTree(World world, BlockPos pos, Fruit fruit) {
+        final BlockPamSapling sapling = fruit.sapling();
+        if (sapling == null) return;
+
+        sapling.worldGenTrees(world, pos);
+    }
+
+    private void generateFruitTree(World world, BlockPos pos, FruitLog fruit) {
+        final BlockPamSapling sapling = fruit.sapling();
         if (sapling == null) return;
 
         sapling.worldGenTrees(world, pos);

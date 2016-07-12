@@ -1,22 +1,19 @@
 package com.pam.harvestcraft.item;
 
 import com.pam.harvestcraft.blocks.BlockRegistry;
-import com.pam.harvestcraft.blocks.CropRegistry;
-import com.pam.harvestcraft.blocks.FruitRegistry;
-import com.pam.harvestcraft.blocks.growables.BlockPamSapling;
+import com.pam.harvestcraft.blocks.Crop;
+import com.pam.harvestcraft.blocks.Fruit;
+import com.pam.harvestcraft.blocks.FruitLog;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemSeedFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
-
-import java.util.Map;
 
 import static com.pam.harvestcraft.HarvestCraft.config;
 import static com.pam.harvestcraft.item.GeneralOreRegistry.*;
@@ -39,19 +36,19 @@ public class RecipeRegistry {
         addSmelting(Blocks.BROWN_MUSHROOM, ItemRegistry.grilledmushroomItem);
         addSmelting(Blocks.RED_MUSHROOM, ItemRegistry.grilledmushroomItem);
         addSmelting(ItemRegistry.calamarirawItem, ItemRegistry.calamaricookedItem);
-        addSmelting(CropRegistry.getFood(CropRegistry.ASPARAGUS), ItemRegistry.grilledasparagusItem);
-        addSmelting(CropRegistry.getFood(CropRegistry.RICE), ItemRegistry.ricecakeItem);
-        addSmelting(CropRegistry.getFood(CropRegistry.TEALEAF), ItemRegistry.teaItem);
-        addSmelting(CropRegistry.getFood(CropRegistry.CORN), ItemRegistry.popcornItem);
-        addSmelting(CropRegistry.getFood(CropRegistry.SWEETPOTATO), ItemRegistry.bakedsweetpotatoItem);
-        addSmelting(CropRegistry.getFood(CropRegistry.COFFEE), ItemRegistry.coffeeItem);
-        addSmelting(CropRegistry.getFood(CropRegistry.EGGPLANT), ItemRegistry.grilledeggplantItem);
-        addSmelting(CropRegistry.getFood(CropRegistry.GRAPE), ItemRegistry.raisinsItem);
-        addSmelting(CropRegistry.getFood(CropRegistry.WHITEMUSHROOM), ItemRegistry.grilledmushroomItem);
-        addSmelting(FruitRegistry.getFood(FruitRegistry.COCONUT), ItemRegistry.toastedcoconutItem);
-        addSmelting(FruitRegistry.getFood(FruitRegistry.VANILLABEAN), ItemRegistry.vanillaItem);
-        addSmelting(FruitRegistry.getFood(FruitRegistry.CHESTNUT), ItemRegistry.roastedchestnutItem);
-        addSmelting(CropRegistry.getFood(CropRegistry.SESAME), ItemRegistry.toastedsesameseedsItem);
+        addSmelting(Crop.ASPARAGUS.food(), ItemRegistry.grilledasparagusItem);
+        addSmelting(Crop.RICE.food(), ItemRegistry.ricecakeItem);
+        addSmelting(Crop.TEALEAF.food(), ItemRegistry.teaItem);
+        addSmelting(Crop.CORN.food(), ItemRegistry.popcornItem);
+        addSmelting(Crop.SWEETPOTATO.food(), ItemRegistry.bakedsweetpotatoItem);
+        addSmelting(Crop.COFFEE.food(), ItemRegistry.coffeeItem);
+        addSmelting(Crop.EGGPLANT.food(), ItemRegistry.grilledeggplantItem);
+        addSmelting(Crop.GRAPE.food(), ItemRegistry.raisinsItem);
+        addSmelting(Crop.WHITEMUSHROOM.food(), ItemRegistry.grilledmushroomItem);
+        addSmelting(Fruit.COCONUT.yield(), ItemRegistry.toastedcoconutItem);
+        addSmelting(Fruit.VANILLABEAN.yield(), ItemRegistry.vanillaItem);
+        addSmelting(Fruit.CHESTNUT.yield(), ItemRegistry.roastedchestnutItem);
+        addSmelting(Crop.SESAME.food(), ItemRegistry.toastedsesameseedsItem);
         addSmelting(ItemRegistry.anchovyrawItem, Items.COOKED_FISH);
         addSmelting(ItemRegistry.bassrawItem, Items.COOKED_FISH);
         addSmelting(ItemRegistry.carprawItem, Items.COOKED_FISH);
@@ -96,19 +93,27 @@ public class RecipeRegistry {
 
     private static void registerFoodRecipes() {
 
-        for (BlockPamSapling sapling : FruitRegistry.getSaplings()) {
-            GameRegistry.addShapelessRecipe(new ItemStack(sapling),
-                    new ItemStack(sapling.getFruitItem()),
-                    new ItemStack(sapling.getFruitItem()),
-                    new ItemStack(sapling.getFruitItem()),
+        for (final Fruit fruit : Fruit.values()) {
+            GameRegistry.addShapelessRecipe(new ItemStack(fruit.sapling()),
+                    new ItemStack(fruit.yield()),
+                    new ItemStack(fruit.yield()),
+                    new ItemStack(fruit.yield()),
+                    new ItemStack(Blocks.SAPLING, 1, OreDictionary.WILDCARD_VALUE));
+        }
+
+        for (final FruitLog fruit : FruitLog.values()) {
+            GameRegistry.addShapelessRecipe(new ItemStack(fruit.sapling()),
+                    new ItemStack(fruit.yield()),
+                    new ItemStack(fruit.yield()),
+                    new ItemStack(fruit.yield()),
                     new ItemStack(Blocks.SAPLING, 1, OreDictionary.WILDCARD_VALUE));
         }
 
         if (config.enablecroptoseedRecipe) {
-            for (Map.Entry<String, ItemSeedFood> food : CropRegistry.getFoods().entrySet()) {
+            for (final Crop crop : Crop.values()) {
                 if (!config.enablecropspecialplanting ||
-                        !food.getKey().equals(CropRegistry.CRANBERRY) && !food.getKey().equals(CropRegistry.RICE) && !food.getKey().equals(CropRegistry.SEAWEED) ) {
-                    addShapelessOreRecipe(CropRegistry.getSeed(food.getKey()), food.getValue());
+                        !crop.equals(Crop.CRANBERRY) && !crop.equals(Crop.RICE) && !crop.equals(Crop.SEAWEED) ) {
+                    addShapelessOreRecipe(crop.seed(), crop.food());
                 }
             }
         }
@@ -830,7 +835,7 @@ public class RecipeRegistry {
         addShapedOreRecipe(ItemRegistry.bakewareItem, true, "@@@", "@ @", "@@@", '@', ingotBrickNether);
 
         //Cotton Seed & Switch Recipes
-        addShapelessOreRecipe(new ItemStack(CropRegistry.getCrop(CropRegistry.COTTON), 2), cropCotton, cropCotton);
+        addShapelessOreRecipe(new ItemStack(Crop.COTTON.cropBlock(), 2), cropCotton, cropCotton);
 
         //Woven Cloth Recipes
         addShapelessOreRecipe(new ItemStack(Items.STRING, 2), cropCotton, cropCotton, cropCotton);
@@ -845,7 +850,7 @@ public class RecipeRegistry {
         addShapedOreRecipe(new ItemStack(Items.LEATHER_LEGGINGS, 1), "XXX", "X X", "X X", 'X', ItemRegistry.wovencottonItem);
         addShapedOreRecipe(new ItemStack(Items.LEATHER_BOOTS, 1), "X X", "X X", 'X', ItemRegistry.wovencottonItem);
 
-        addShapelessOreRecipe(CropRegistry.getSeed(CropRegistry.CANDLEBERRY), CropRegistry.getFood(CropRegistry.CANDLEBERRY));
+        addShapelessOreRecipe(Crop.CANDLEBERRY.seed(), Crop.CANDLEBERRY.food());
 
         // Random Recipes
         addShapelessOreRecipe(new ItemStack(Items.SLIME_BALL, 1), foodJellyfishraw);
@@ -854,9 +859,9 @@ public class RecipeRegistry {
         addShapelessOreRecipe(new ItemStack(Blocks.LIT_PUMPKIN, 1), GeneralOreRegistry.cropPumpkin, blockTorch);
 
         //Logs
-        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.PLANKS, 4, 1), new ItemStack(FruitRegistry.getLog(FruitRegistry.MAPLE)));
-        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.PLANKS, 4, 3), new ItemStack(FruitRegistry.getLog(FruitRegistry.PAPERBARK)));
-        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.PLANKS, 4, 3), new ItemStack(FruitRegistry.getLog(FruitRegistry.CINNAMON)));
+        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.PLANKS, 4, 1), new ItemStack(FruitLog.MAPLE.block()));
+        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.PLANKS, 4, 3), new ItemStack(FruitLog.PAPERBARK.block()));
+        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.PLANKS, 4, 3), new ItemStack(FruitLog.CINNAMON.block()));
     }
 
     private static void addShapelessOreRecipe(Block result, Object... recipe) {

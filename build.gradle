@@ -17,18 +17,14 @@ buildscript {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-//noinspection GroovyUnusedAssignment
 sourceCompatibility = JavaVersion.VERSION_1_8
-//noinspection GroovyUnusedAssignment
 targetCompatibility = JavaVersion.VERSION_1_8
 
 ext.configFile = file('build.properties')
-//noinspection GroovyAssignabilityCheck
 ext.config = parseConfig(configFile)
 
 version = config.version
 group="com.pam.harvestcraft"
-//noinspection GroovyUnusedAssignment
 archivesBaseName = "${config.mod_id}"
 
 minecraft {

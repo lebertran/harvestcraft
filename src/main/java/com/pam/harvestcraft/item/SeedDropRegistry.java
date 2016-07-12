@@ -1,7 +1,7 @@
 package com.pam.harvestcraft.item;
 
 import com.pam.harvestcraft.HarvestCraft;
-import com.pam.harvestcraft.blocks.CropRegistry;
+import com.pam.harvestcraft.blocks.Crop;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
@@ -11,9 +11,9 @@ import java.util.Map;
 public class SeedDropRegistry {
 
     public static void getSeedDrops() {
-        for (Map.Entry<String, Boolean> entry : HarvestCraft.config.seedDropFromGrass.entrySet()) {
+        for (Map.Entry<Crop, Boolean> entry : HarvestCraft.config.seedDropFromGrass.entrySet()) {
             if (entry.getValue()) {
-                final Item item = CropRegistry.getSeed(entry.getKey());
+                final Item item = entry.getKey().seed();
 
                 if (item == null) continue;
 

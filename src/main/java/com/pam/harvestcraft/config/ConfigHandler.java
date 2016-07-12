@@ -1,7 +1,9 @@
 package com.pam.harvestcraft.config;
 
-import com.pam.harvestcraft.blocks.CropRegistry;
+import com.pam.harvestcraft.blocks.Crop;
 import com.pam.harvestcraft.blocks.blocks.BlockBaseGarden;
+import com.pam.harvestcraft.loottables.LootHelper;
+import com.pam.harvestcraft.tileentities.MarketItems;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.FMLLog;
@@ -64,7 +66,7 @@ public class ConfigHandler {
     public boolean enablelistAllwaterfreshwater;
     public boolean enablelistAllwatervanillawaterbucket;
 
-    public final HashMap<String, Boolean> seedDropFromGrass = new HashMap<>();
+    public final HashMap<Crop, Boolean> seedDropFromGrass = new HashMap<>();
 
     private final Map<String, String[]> gardenDropConfig = new HashMap<>();
 
@@ -322,67 +324,67 @@ public class ConfigHandler {
     private void initSeedDropSettings() {
         seedrarity = config.get(CATEGORY_SEEDS, "seedrarity", 1).getInt();
 
-        initSeedDropFromGrassSetting("asparagusseeddropfromgrass", CropRegistry.ASPARAGUS);
-        initSeedDropFromGrassSetting("barleyseeddropfromgrass", CropRegistry.BARLEY);
-        initSeedDropFromGrassSetting("beanseeddropfromgrass", CropRegistry.BEAN);
-        initSeedDropFromGrassSetting("beetseeddropfromgrass", CropRegistry.BEET);
-        initSeedDropFromGrassSetting("broccoliseeddropfromgrass", CropRegistry.BROCCOLI);
-        initSeedDropFromGrassSetting("cauliflowerseeddropfromgrass", CropRegistry.CAULIFLOWER);
-        initSeedDropFromGrassSetting("celeryseeddropfromgrass", CropRegistry.CELERY);
-        initSeedDropFromGrassSetting("cranberryseeddropfromgrass", CropRegistry.CRANBERRY);
-        initSeedDropFromGrassSetting("garlicseeddropfromgrass", CropRegistry.GARLIC);
-        initSeedDropFromGrassSetting("gingerseeddropfromgrass", CropRegistry.GINGER);
-        initSeedDropFromGrassSetting("leekseeddropfromgrass", CropRegistry.LEEK);
-        initSeedDropFromGrassSetting("lettuceseeddropfromgrass", CropRegistry.LETTUCE);
-        initSeedDropFromGrassSetting("oatsseeddropfromgrass", CropRegistry.OATS);
-        initSeedDropFromGrassSetting("onionseeddropfromgrass", CropRegistry.ONION);
-        initSeedDropFromGrassSetting("parsnipseeddropfromgrass", CropRegistry.PARSNIP);
-        initSeedDropFromGrassSetting("peanutseeddropfromgrass", CropRegistry.PEANUT);
-        initSeedDropFromGrassSetting("pineappleseeddropfromgrass", CropRegistry.PINEAPPLE);
-        initSeedDropFromGrassSetting("radishseeddropfromgrass", CropRegistry.RADISH);
-        initSeedDropFromGrassSetting("riceseeddropfromgrass", CropRegistry.RICE);
-        initSeedDropFromGrassSetting("rutabagaseeddropfromgrass", CropRegistry.RUTABAGA);
-        initSeedDropFromGrassSetting("ryeseeddropfromgrass", CropRegistry.RYE);
-        initSeedDropFromGrassSetting("scallionseeddropfromgrass", CropRegistry.SCALLION);
-        initSeedDropFromGrassSetting("soybeanseeddropfromgrass", CropRegistry.SOYBEAN);
-        initSeedDropFromGrassSetting("spiceleafseeddropfromgrass", CropRegistry.SPICELEAF);
-        initSeedDropFromGrassSetting("sweetpotatoseeddropfromgrass", CropRegistry.SWEETPOTATO);
-        initSeedDropFromGrassSetting("teaseeddropfromgrass", CropRegistry.TEALEAF);
-        initSeedDropFromGrassSetting("turnipseeddropfromgrass", CropRegistry.TURNIP);
-        initSeedDropFromGrassSetting("whitemushroomseeddropfromgrass", CropRegistry.WHITEMUSHROOM);
+        initSeedDropFromGrassSetting("asparagusseeddropfromgrass", Crop.ASPARAGUS);
+        initSeedDropFromGrassSetting("barleyseeddropfromgrass", Crop.BARLEY);
+        initSeedDropFromGrassSetting("beanseeddropfromgrass", Crop.BEAN);
+        initSeedDropFromGrassSetting("beetseeddropfromgrass", Crop.BEET);
+        initSeedDropFromGrassSetting("broccoliseeddropfromgrass", Crop.BROCCOLI);
+        initSeedDropFromGrassSetting("cauliflowerseeddropfromgrass", Crop.CAULIFLOWER);
+        initSeedDropFromGrassSetting("celeryseeddropfromgrass", Crop.CELERY);
+        initSeedDropFromGrassSetting("cranberryseeddropfromgrass", Crop.CRANBERRY);
+        initSeedDropFromGrassSetting("garlicseeddropfromgrass", Crop.GARLIC);
+        initSeedDropFromGrassSetting("gingerseeddropfromgrass", Crop.GINGER);
+        initSeedDropFromGrassSetting("leekseeddropfromgrass", Crop.LEEK);
+        initSeedDropFromGrassSetting("lettuceseeddropfromgrass", Crop.LETTUCE);
+        initSeedDropFromGrassSetting("oatsseeddropfromgrass", Crop.OATS);
+        initSeedDropFromGrassSetting("onionseeddropfromgrass", Crop.ONION);
+        initSeedDropFromGrassSetting("parsnipseeddropfromgrass", Crop.PARSNIP);
+        initSeedDropFromGrassSetting("peanutseeddropfromgrass", Crop.PEANUT);
+        initSeedDropFromGrassSetting("pineappleseeddropfromgrass", Crop.PINEAPPLE);
+        initSeedDropFromGrassSetting("radishseeddropfromgrass", Crop.RADISH);
+        initSeedDropFromGrassSetting("riceseeddropfromgrass", Crop.RICE);
+        initSeedDropFromGrassSetting("rutabagaseeddropfromgrass", Crop.RUTABAGA);
+        initSeedDropFromGrassSetting("ryeseeddropfromgrass", Crop.RYE);
+        initSeedDropFromGrassSetting("scallionseeddropfromgrass", Crop.SCALLION);
+        initSeedDropFromGrassSetting("soybeanseeddropfromgrass", Crop.SOYBEAN);
+        initSeedDropFromGrassSetting("spiceleafseeddropfromgrass", Crop.SPICELEAF);
+        initSeedDropFromGrassSetting("sweetpotatoseeddropfromgrass", Crop.SWEETPOTATO);
+        initSeedDropFromGrassSetting("teaseeddropfromgrass", Crop.TEALEAF);
+        initSeedDropFromGrassSetting("turnipseeddropfromgrass", Crop.TURNIP);
+        initSeedDropFromGrassSetting("whitemushroomseeddropfromgrass", Crop.WHITEMUSHROOM);
 
-        initSeedDropFromGrassSetting("artichokeseeddropfromgrass", CropRegistry.ARTICHOKE);
-        initSeedDropFromGrassSetting("bellpepperseeddropfromgrass", CropRegistry.BELLPEPPER);
-        initSeedDropFromGrassSetting("blackberryseeddropfromgrass", CropRegistry.BLACKBERRY);
-        initSeedDropFromGrassSetting("blueberryseeddropfromgrass", CropRegistry.BLUEBERRY);
-        initSeedDropFromGrassSetting("brusselsproutseeddropfromgrass", CropRegistry.BRUSSELSPROUT);
-        initSeedDropFromGrassSetting("cabbageseeddropfromgrass", CropRegistry.CABBAGE);
-        initSeedDropFromGrassSetting("cactusfruitseeddropfromgrass", CropRegistry.CACTUSFRUIT);
-        initSeedDropFromGrassSetting("candleberryseeddropfromgrass", CropRegistry.CANDLEBERRY);
-        initSeedDropFromGrassSetting("cantaloupeseeddropfromgrass", CropRegistry.CANTALOUPE);
-        initSeedDropFromGrassSetting("chilipepperseeddropfromgrass", CropRegistry.CHILIPEPPER);
-        initSeedDropFromGrassSetting("coffeeseeddropfromgrass", CropRegistry.COFFEE);
-        initSeedDropFromGrassSetting("cornseeddropfromgrass", CropRegistry.CORN);
-        initSeedDropFromGrassSetting("cottonseeddropfromgrass", CropRegistry.COTTON);
-        initSeedDropFromGrassSetting("cucumberseeddropfromgrass", CropRegistry.CUCUMBER);
-        initSeedDropFromGrassSetting("eggplantseeddropfromgrass", CropRegistry.EGGPLANT);
-        initSeedDropFromGrassSetting("grapeseeddropfromgrass", CropRegistry.GRAPE);
-        initSeedDropFromGrassSetting("kiwiseeddropfromgrass", CropRegistry.KIWI);
-        initSeedDropFromGrassSetting("mustardseeddropfromgrass", CropRegistry.MUSTARD);
-        initSeedDropFromGrassSetting("okraseeddropfromgrass", CropRegistry.OKRA);
-        initSeedDropFromGrassSetting("peasseeddropfromgrass", CropRegistry.PEAS);
-        initSeedDropFromGrassSetting("raspberryseeddropfromgrass", CropRegistry.RASPBERRY);
-        initSeedDropFromGrassSetting("rhubarbseeddropfromgrass", CropRegistry.RHUBARB);
-        initSeedDropFromGrassSetting("seaweedseeddropfromgrass", CropRegistry.SEAWEED);
-        initSeedDropFromGrassSetting("strawberryseeddropfromgrass", CropRegistry.STRAWBERRY);
-        initSeedDropFromGrassSetting("tomatoseeddropfromgrass", CropRegistry.TOMATO);
-        initSeedDropFromGrassSetting("wintersquashseeddropfromgrass", CropRegistry.WINTERSQUASH);
-        initSeedDropFromGrassSetting("zucchiniseeddropfromgrass", CropRegistry.ZUCCHINI);
-        initSeedDropFromGrassSetting("bambooshootseeddropfromgrass", CropRegistry.BAMBOOSHOOT);
-        initSeedDropFromGrassSetting("spinachseeddropfromgrass", CropRegistry.SPINACH);
-        initSeedDropFromGrassSetting("curryleafseeddropfromgrass", CropRegistry.CURRYLEAF);
-        initSeedDropFromGrassSetting("sesameseedsseeddropfromgrass", CropRegistry.SESAME);
-        initSeedDropFromGrassSetting("waterchestnutseeddropfromgrass", CropRegistry.WATERCHESTNUT);
+        initSeedDropFromGrassSetting("artichokeseeddropfromgrass", Crop.ARTICHOKE);
+        initSeedDropFromGrassSetting("bellpepperseeddropfromgrass", Crop.BELLPEPPER);
+        initSeedDropFromGrassSetting("blackberryseeddropfromgrass", Crop.BLACKBERRY);
+        initSeedDropFromGrassSetting("blueberryseeddropfromgrass", Crop.BLUEBERRY);
+        initSeedDropFromGrassSetting("brusselsproutseeddropfromgrass", Crop.BRUSSELSPROUT);
+        initSeedDropFromGrassSetting("cabbageseeddropfromgrass", Crop.CABBAGE);
+        initSeedDropFromGrassSetting("cactusfruitseeddropfromgrass", Crop.CACTUSFRUIT);
+        initSeedDropFromGrassSetting("candleberryseeddropfromgrass", Crop.CANDLEBERRY);
+        initSeedDropFromGrassSetting("cantaloupeseeddropfromgrass", Crop.CANTALOUPE);
+        initSeedDropFromGrassSetting("chilipepperseeddropfromgrass", Crop.CHILIPEPPER);
+        initSeedDropFromGrassSetting("coffeeseeddropfromgrass", Crop.COFFEE);
+        initSeedDropFromGrassSetting("cornseeddropfromgrass", Crop.CORN);
+        initSeedDropFromGrassSetting("cottonseeddropfromgrass", Crop.COTTON);
+        initSeedDropFromGrassSetting("cucumberseeddropfromgrass", Crop.CUCUMBER);
+        initSeedDropFromGrassSetting("eggplantseeddropfromgrass", Crop.EGGPLANT);
+        initSeedDropFromGrassSetting("grapeseeddropfromgrass", Crop.GRAPE);
+        initSeedDropFromGrassSetting("kiwiseeddropfromgrass", Crop.KIWI);
+        initSeedDropFromGrassSetting("mustardseeddropfromgrass", Crop.MUSTARD);
+        initSeedDropFromGrassSetting("okraseeddropfromgrass", Crop.OKRA);
+        initSeedDropFromGrassSetting("peasseeddropfromgrass", Crop.PEAS);
+        initSeedDropFromGrassSetting("raspberryseeddropfromgrass", Crop.RASPBERRY);
+        initSeedDropFromGrassSetting("rhubarbseeddropfromgrass", Crop.RHUBARB);
+        initSeedDropFromGrassSetting("seaweedseeddropfromgrass", Crop.SEAWEED);
+        initSeedDropFromGrassSetting("strawberryseeddropfromgrass", Crop.STRAWBERRY);
+        initSeedDropFromGrassSetting("tomatoseeddropfromgrass", Crop.TOMATO);
+        initSeedDropFromGrassSetting("wintersquashseeddropfromgrass", Crop.WINTERSQUASH);
+        initSeedDropFromGrassSetting("zucchiniseeddropfromgrass", Crop.ZUCCHINI);
+        initSeedDropFromGrassSetting("bambooshootseeddropfromgrass", Crop.BAMBOOSHOOT);
+        initSeedDropFromGrassSetting("spinachseeddropfromgrass", Crop.SPINACH);
+        initSeedDropFromGrassSetting("curryleafseeddropfromgrass", Crop.CURRYLEAF);
+        initSeedDropFromGrassSetting("sesameseedsseeddropfromgrass", Crop.SESAME);
+        initSeedDropFromGrassSetting("waterchestnutseeddropfromgrass", Crop.WATERCHESTNUT);
     }
 
     private void initMiscRecipesSettings() {
@@ -397,7 +399,7 @@ public class ConfigHandler {
         marketblockrecipeItem = config.get(CATEGORY_MISC_RECIPES, "marketblockrecipeItem", 0).getInt();
     }
 
-    private void initSeedDropFromGrassSetting(String key, String item) {
+    private void initSeedDropFromGrassSetting(String key, Crop item) {
         boolean doDrop = config.get(CATEGORY_SEEDS, key, false).getBoolean();
 
         seedDropFromGrass.put(item, doDrop);
@@ -442,5 +444,11 @@ public class ConfigHandler {
 
             BlockBaseGarden.drops.put(garden, drops);
         }
+    }
+
+
+    public void onConfigChanged() {
+        MarketItems.onConfigChanged();
+        LootHelper.onConfigChanged();
     }
 }
